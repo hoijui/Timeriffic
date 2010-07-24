@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Project: Timeriffic
+ * Copyright (C) 2009 ralfoide gmail com,
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!--
+    Language: german.
+    Regions:  any.
+-->
+
+<resources>
+    <!-- App title. Not translated -->
+    <string name="app_name">Timeriffic</string>
+
+    <!-- === Menu === -->
+
+    <!-- Menu - Settings: preferences. -->
+    <string name="settings">Einstellungen</string>
+    <!-- Menu - Check now: force app to recompute next alarm. -->
+    <string name="check_now">Jetzt prüfen</string>
+    <!-- Menu - About: display introduction/help screen. -->
+    <string name="about">Über</string>
+    <!-- Menu - Reset: reset current profile. -->
+    <string name="reset">Reset</string>
+    <!-- Menu - Report Error: display the error reporting screen. -->
+    <string name="report_error">Fehler melden</string>
+
+
+    <!-- === Context Menu on Profile List === -->
+
+    <!-- Context Menu - Edit (profile or timed action) -->
+    <string name="edit">Bearbeiten</string>
+    <!-- Context Menu - Rename (profile or timed action) -->
+    <string name="rename">Umbenennen</string>
+    <!-- Context Menu - Delete (profile or timed action) -->
+    <string name="delete">Löschen</string>
+
+    <!-- Context Menu - Insert new timed action -->
+    <string name="insert_action">Aktion einfügen</string>
+    <!-- Context Menu - Insert new profile -->
+    <string name="insert_profile">Profil einfügen</string>
+    <!-- Menu & Context Menu - Add new profile -->
+    <string name="append_profile">Neues Profil</string>
+
+
+    <!-- === Settings / Preferences === -->
+
+    <!-- Settings screen title -->
+    <string name="prefs_title">Timeriffic - Einstellungen</string>
+
+    <!-- Settings - Enable Timeriffic: toggle title -->
+    <string name="prefs_enable_label">Timeriffic anschalten</string>
+    <!-- Settings - Enable Timeriffic: help string when on -->
+    <string name="prefs_enable_on">Timeriffic ist an.</string>
+    <!-- Settings - Enable Timeriffic: help string when off -->
+    <string name="prefs_enable_off">Timeriffic ist aus.</string>
+
+    <!-- Settings - Skip Intro: toggle title -->
+    <string name="prefs_dismiss_intro_label">Überspringe Einführung beim Start</string>
+    <!-- Settings - Skip Intro: help string when on -->
+    <string name="prefs_dismiss_intro_on">Einführung wird übersprungen.</string>
+    <!-- Settings - Skip Intro: help string when off -->
+    <string name="prefs_dismiss_intro_off">Einführung wird angezeigt.</string>
+
+    <!-- Settings - Check audio service: toggle title -->
+    <string name="prefs_check_service_label">Audiodienst prüfen</string>
+    <!-- Settings - Check audio service: help string when on -->
+    <string name="prefs_check_service_off">Audiodienst wird nicht überprüft.</string>
+    <!-- Settings - Check audio service: help string when off -->
+    <string name="prefs_check_service_on">Audiodienst wird überprüft.</string>
+
+    <!-- Settings - Animation of the toggle button logo: title -->
+    <string name="prefs_toggle_anim_label">Animation de/aktivieren</string>
+    <!-- Settings - Animation of the toggle button logo: help string -->
+    <string name="prefs_toggle_anim_tooltip">Wähle eine Animation des An/Aus-Icons in der Profilliste.</string>
+<!-- BEGIN NEW TRANSLATION -->
+    <string name="save_to_sd">Sichern auf die SD-Karte</string>
+    <string name="restore_from_sd">Wiederherstellen von der SD-Karte</string>
+    <!-- Settings - Display Notification: toggle title -->
+    <string name="prefs_display_notif_label">Zeige Benachrichtigung bei Profiländerung</string>
+    <!-- Settings - Display Notification: help string when on -->
+    <string name="prefs_display_notif_on">Es wird eine Benachrichtigung bei Profiländerung angezeigt</string>
+    <!-- Settings - Display Notification: help string when off -->
+    <string name="prefs_display_notif_off">Es wird keine Benachrichtigung bei Profiländerung angezeigt</string>
+<!--  END NEW TRANSLATION -->
+
+
+    <!-- === Intro screen === -->
+
+    <string name="intro_title">Timeriffic %s - Einführung</string>
+    <string name="intro_button_continue">Weiter</string>
+    <!-- I noticed in some languages (e.g. Korean) we need to set the minEms
+         of the continue button to 10 otherwise the layout doesn't make the
+         button wide enough to display its text. For most languages this
+         should stay empty, unless there's a strong need to specify it.
+         When we do use it, it should be an integer for Button.setMinEms(). -->
+    <string name="intro_button_minEms">0</string>
+    <string name="intro_checkbox_dont_display_again">Nicht nochmal anzeigen</string>
+
+
+    <!-- === Profile screen === -->
+
+    <string name="profiles_empty_help">Benutze das MENÜ um neue Profile hinzuzufügen.</string>
+
+    <string name="timedactioncontextmenu_title">Zeitaktion</string>
+
+    <string name="profilecontextmenu_title">Profil</string>
+
+    <string name="insertprofile_new_profile_title">Neues Profil</string>
+
+    <string name="deleteprofile_title">Lösche Profil</string>
+    <string name="deleteprofile_msgbody">Möchtest du wirklich das Profil \'%s\' und alle seine Aktionen löschen?</string>
+    <string name="deleteprofile_button_delete">Löschen</string>
+    <string name="deleteprofile_button_cancel">Abbrechen</string>
+
+    <string name="deleteaction_title">Aktion löschen</string>
+    <string name="deleteaction_msgbody">Möchtest du die Aktion \'%s\' wirklich löschen?</string>
+    <string name="deleteaction_button_delete">Löschen</string>
+    <string name="deleteaction_button_cancel">Abbrechen</string>
+
+    <string name="resetprofiles_msg_confirm_delete">Möchtest du <u>alle Profile</u> wirklich löschen? <b>Keine Wiederherstellung möglich!</b></string>
+    <string name="resetprofiles_button_cancel">Abbrechen</string>
+
+    <!-- summary of timed actions on profile list screen -->
+
+    <!-- special case when there's no action to execute (the action won't run) -->
+    <string name="timedaction_no_action">Keine Aktion</string>
+    <!-- special case when no days are selected (so the action won't run) -->
+    <string name="timedaction_nodays_never">Nie</string>
+
+    <!-- Timed action hour/time display using String.format, see the
+         Date and Time section at
+           http://java.sun.com/j2se/1.5.0/docs/api/java/util/Formatter.html
+         Summary:
+           tk=hour 0-23, tl=hour 1-12, tp=am/om, tM=minutes 00-59
+     -->
+    <!-- display time on exact hour -->
+    <string name="timedaction_time_0_minute">%1$tk:%1$tM</string>
+    <!-- display time: hour with minutes != 0 -->
+    <string name="timedaction_time_with_minutes">%1$tk:%1$tM</string>
+
+    <string name="timedaction_airplane_on">Flugzeugmodus An</string>
+    <string name="timedaction_airplane_off">Flugzeugmodus Aus</string>
+    <string name="timedaction_wifi_on">Wifi An</string>
+    <string name="timedaction_wifi_off">Wifi Aus</string>
+    <string name="timedaction_bluetooth_on">Bluetooth An</string>
+    <string name="timedaction_bluetooth_off">Bluetooth Aus</string>
+    <string name="timedaction_ringer_int">Klingelton %d%%</string>
+    <string name="timedaction_notif_int">Nachrichtenton %d%%</string>
+    <string name="timedaction_brightness_int">Helligkeit %d%%</string>
+    <string name="timedaction_apndroid_on">3G/2G Daten An</string>
+    <string name="timedaction_apndroid_off">3G/2G Daten Aus</string>
+
+    <!-- edit profile screen -->
+
+    <string name="editprofile_title">Profil erstellen/ändern</string>
+    <string name="editprofile_profile_name">Profilname:</string>
+    <string name="editprofile_profile_hint">Profilname</string>
+    <string name="editprofile_checkbox_enabled">Einschalten</string>
+    <string name="editprofile_button_accept">Ausführen</string>
+
+    <!-- edit action screen -->
+
+    <string name="editaction_title">Timeriffic - Zeitaktion bearbeiten</string>
+
+    <string name="editaction_section_action">Aktion</string>
+    <string name="editaction_section_time_and_day">Datum und Zeit</string>
+    <string name="editaction_section_days">Tage</string>
+
+    <string name="editaction_button_label">  <b>@</b>\n  $</string>
+
+    <string name="setting_not_supported">Nicht ünterstüzt</string>
+    <string name="setting_not_installed">Nicht installiert</string>
+
+    <string name="editaction_ringer">Klingeltonlaut.</string>
+    <string name="editaction_vibrate">Vibration</string>
+    <string name="editaction_volume">Hauptlautstärke</string>
+    <string name="editaction_brightness">Helligkeit</string>
+    <string name="editaction_wifi">Wifi</string>
+    <string name="editaction_airplane">Flugzeugmodus</string>
+<!-- BEGIN NEW TRANSLATION -->
+    <string name="editaction_media_volume">Medienlaut.</string>
+    <string name="editaction_alarm_volume">Alarmlautstärke</string>
+<!--  END NEW TRANSLATION -->
+    <string name="editaction_notif_volume">Nachrichtlaut.</string>
+    <string name="editaction_bluetooth">Bluetooth</string>
+    <!-- APNdroid app name, not translated -->
+    <string name="editaction_apndroid">APNdroid</string>
+
+    <!-- percent dialog -->
+
+    <string name="percent_do_not_change">Nicht ändern.</string>
+    <string name="percent_change_to">Folgenden Wert festlegen:</string>
+    <string name="percent_button_unchanged">Ungeändert</string>
+    <string name="percent_button_accept">Akzeptieren</string>
+
+    <!-- enum dialog -->
+
+    <string name="enum_unchanged">Ungeändert</string>
+
+    <!-- toggle on/off dialog -->
+
+    <string name="toggle_turn_on">Anschalten</string>
+    <string name="toggle_turn_off">Ausschalten</string>
+
+    <!-- toast to display next change time -->
+
+    <string name="toast_next_change_at_datetime">Nächste Änderung: %s</string>
+    <!-- toast_next_alarm_date_time uses Java SimpleDateFormat, see
+         http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html
+    -->
+    <string name="toast_next_alarm_date_time">dd.MM.yyyy HH:mm:ss</string>
+
+
+    <!-- global status (information view at the top) -->
+
+    <string name="globalstatus_nextlast_date_time">dd.MM.yyyy HH:mm:ss</string>
+    <string name="globalstatus_next">Nächste:</string>
+    <string name="globalstatus_last">Letzte:</string>
+    <string name="globalstatus_disabled">Timeriffic ist ausgeschaltet</string>
+
+    <!-- settings -->
+
+    <string name="ringermode_ring">Klingeln</string>
+    <string name="ringermode_mute">Lautlos</string>
+
+    <string name="vibrateringermode_vibrate">Vibriere</string>
+    <string name="vibrateringermode_no_vibrate">Vibriere nicht</string>
+    <string name="vibrateringermode_no_ringer_vibrate">Vibrere nur für Benachrichtigungen</string>
+    <string name="vibrateringermode_no_notif_vibrate">Vibriere nur für Klingelton</string>
+
+    <!-- check services dialog -->
+
+    <string name="checkservices_dlg_title">Dienst nicht gefunden</string>
+    <string name="checkservices_ok_button">OK</string>
+    <string name="checkservices_skip_button">Nicht nochmal anzeigen</string>
+    <string name="checkservices_warning">Warnung! Die folgenden Funktionen sind auf dem Handy nicht verfügbar:</string>
+    <string name="checkservices_miss_audio_service">Lautstärke und Klingelton</string>
+    <string name="checkservices_miss_wifi_service">Wifi De/aktivieren</string>
+    <string name="checkservices_miss_airplane">Flugzeugmodus</string>
+    <string name="checkservices_miss_brightness">Helligkeit</string>
+
+<!-- BEGIN NEW TRANSLATION -->
+    <string name="checkservices_miss_bluetooh">Bluetooth</string>
+    <string name="checkservices_miss_apndroid">APNDroid</string>
+    <string name="checkservices_miss_ringguard">RingGuard</string>
+    <string name="checkservices_explain_why">explain why</string>
+
+    <string name="checkservices_help_bluetooh">Bluetoothänderungen benötigen Android 2.0 oder neuer.</string>
+    <string name="checkservices_help_application">Um diese Funktion zu aktivieren installiere die APP \'%s\' vom Android Market.</string>
+    <string name="install_now_button">Jetzt installieren</string>
+<!--  END NEW TRANSLATION -->
+
+    <!-- === Error Reporting === -->
+
+    <!-- Error Report UI: dialog title. -->
+    <string name="errorreport_title">Timeriffic - Fehlerbericht</string>
+
+    <!-- Error Report UI: generate button. -->
+    <string name="errorreport_generate">Erstellen</string>
+
+    <!-- Error Report UI: next button (go from page 1 to page 2). -->
+    <string name="errorreport_next">Nächster &gt;</string>
+
+    <!-- Error Report UI: previous button (go from page 2 to page 1). -->
+    <string name="errorreport_prev">&lt; Letzter</string>
+
+    <!-- Error Report UI page 1: text above "select Program Error or Feature Request" -->
+    <string name="errorreport_user1">Wähle die Art des Berichts die du berichten möchtest:</string>
+
+    <!-- Error Report UI page 1: select user feedback type, "Program Error" or Feature Request -->
+    <string name="errorreport_program_err">Programmfehler</string>
+
+    <!-- Error Report UI page 1: select user feedback type, Program Error or "Feature Request" -->
+    <string name="errorreport_feat_req">Funktionswunsch</string>
+
+    <!-- Error Report UI page 1: text displayed on top of user feedback EditText -->
+    <string name="errorreport_user2">Bitte kommentiere deinen Bericht:</string>
+
+    <!-- Error Report UI page 1: text hint displayed *inside* the user feedback EditText -->
+    <string name="errorreport_user_hint">Bevor wir etwas tun können beschreibe bitte den Fehler oder Funktionswunsch.</string>
+
+    <!-- Error Report UI: sending fail because there's no mail app. -->
+    <string name="errorreport_nomailapp">Keine APP zum versenden von E-mail\'s gefunden. Bitte installiere eine(z.B) um fortzufahren.</string>
+
+    <!-- Error Report UI: header of generated email (the rest of the log is in English).
+         Formatting: Spacing matters. Use "/" to insert a new line.
+    -->
+    <string name="errorreport_emailheader">Dies ist ein Fehlerbericht von Timeriffic./
+Der automatische Bericht startet hier.
+    </string>
+
+</resources>

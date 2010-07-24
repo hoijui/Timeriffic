@@ -1,0 +1,250 @@
+TODO (approximate version plan)
+
+v1.9 "SD support"
+. Migrate db to new format, keep in memory
+. Specify format to be extensible but don't add features yet. Must be sortable.
+. Write-through to text file (start..end commit changes)
+. Also store to SD
+. Menu reset profiles > revert from SD (manual)
+. Add froyo backup API for the file (using TS as in sample)
+
+. Notification on setting applied (optional)
+. Auto-brightness support (?)
+
+v1.10 "Profile UI revamp"
+. Don't auto-edit on actions
+. Selectable profile/actions
+. On select, display button bar: up/down, edit, add, remove
+
+v1.11 "Exclusion feature"
+
+v1.12 
+
+T v1.8.15 => medium update, couple features + improvements based on googlecode tickets.
+. T need to add serious functional tests + UI tests framework (to make sure things don't break when I add features)
+ (Note: "risk" below means potential impact of bugs on usability and probability of inserting regressions)
+. T merge the rest of AndroidAppLib
+. T make action buttons dynamic. C=Medium.
+. T generic help for action buttons including disabled buttons. C=Medium
+. T use action buttons' help to explain volume/brigthness issue + why no bluetooth < 2.0). Need new UI + I18n.
+. T media volume. C=Easy. Low risk.
+. T detect sound link setting. C=Medium. Low risk.
+. T warn sound linked . Ui.
+. T detect auto brightness. Medium.
+. T change auto brightness. C=Experimental. Low Risk. Try moonblink's googlecode (check license)
+. T -- publish
+
+T v1.9
+. T remove DB, C=high, risky. need extra testing.
+. T save restore SD. C=medium. Needs tests.
+. T -- publish
+
+
+TODO (misc)
+
+20100309 Bug: StaleData/Cursor.closed (can't repro but happens often)
+20100309 Bug: Missing WakeLock permission (can't repro, happens rarely)
+20100309 APNDroid button: don't gray, explain what to do
+20100309 BT 2.0: don't gray, explain why missing
+20100309 Ring/Notif volume: check if tied in prefs (possible?)
+20100309 Ring/Notif volume: explain it must not be tied in prefs
+20100309 Support 24
+
+20091222 Don't start Airplane mode when in talk. Delay via notification.
+20091207 Store profiles as text in shared prefs
+20091207 Export profiles to SD card
+20091207 Import profiles from SD card
+20091207 Whitelist of emergency numbers not to silence
+
+20090406 Fix old settings import db, gets wrong profile/action type
+20090305 Set/Change button in Edit Action. Back for cancel (dismiss).
+20090305 Reorder actions/profiles
+20090305 Collapse profiles in profile list
+20090305 Provide actions using options menu (mirror long press => context)
+20090305 Gray text color depending on global toggle
+
+
+
+DONE for 1.9
+
+DONE for 1.8
+
+[1.8.16]
+20100702 1.8.16 in Market
+20100702 Update German translation by Laias
+20100629 For debug, display language in intro file.
+20100629 Added German translation by Laias
+20100629 Updated Chinese translation zh-TW by goapk.com
+20100622 Added Chinese translation zh-TW by goapk.com
+
+[1.8.15]
+20100620 Add "media volume" and "alarm volume" buttons and control
+20100620 Time in 24-hours vs AM/PM (not user choice, system default)
+20100620 Fix prevent invalid DateTime format from crashing SimpleDateFormat
+20100620 Fix DateTime strings for Korean
+
+
+[1.8.14]
+20100620 1.8.14 in Market
+20100616 Added partial volume_change broadcast support
+20100615 Fixes for TimerifficTest
+20100615 Danish Translation by Stefan Thrane Overby
+20100614 Merge new Error Report UI from AndroidAppLib
+20100613 Make error log more compact
+
+[1.8.13]
+20100324 Add Chinese translation zh-CN (中文(简体)) by Wenle Bao
+
+20100314 1.8.12 in Market
+20100314 Fix: correctly support manual time changes and daylight time change.
+20100314 Roundup brightness to nearest 5%.
+
+20100311 1.8.11 in Market
+20100310 Add some links to intro text, e.g. how to translate.
+20100310 Fix crash on invalid SDK Version number
+20100309 Refactor: remove usage of cursor reference in Holder classes
+
+20100307 Fix "continue" button layout width issue in intro activity (korean only)
+20100307 Integrate Korean translation from Paul Noh / Ubinuri / fingertool
+
+20100123 1.8.10 in Market
+20100123 Bug: forgot to apply settings on boot
+20100123 1.8.09 in Market
+20100123 Profile list UI: correctly display prev vs next actions (finally)
+20100123 DB: action.is_enable tri state for normal/next/prev action
+20100123 Fix purple dot for butto enum > 2
+20100123 Aggregate pref.edit.comit and synchronize them
+20100123 Bug: on TimeZone Changed, just recompute next alarm, don't set settings
+
+20100117 Fix crash on screen rotation during reset profiles menu
+20100117 Fix crash at boot
+
+20100116 1.8.07 in Market
+20100116 Rename AutoReceiver to UpdateReceiver, implement UpdateService
+
+20100102 1.8.06 in Market
+20100102 Fix for alarm not firing (FAIL)
+
+20100101 1.8.04 in Market
+20100101 Try to fix "SQL error no column -1"
+
+20091230 1.8.03 in Market
+20091230 New setting: No Notification Vibrate
+20091230 More logs to debug settings not engaging issue + cryptic SQL error
+
+20091229 1.8.02 in Market
+20091229 Fix: screen rotation crashes edit action > percentage dialog
+
+20091229 1.8.01 in Market
+20091229 Fix: remove phone_state action in AutoReceiver, must not reset profiles on phone call
+20091229 Fix insert action in DB: always add at end, linear repack when at top
+
+20091229 1.8.00 on Market
+20091228 Fix Edit Timed Action in landscape (missing a button)
+20091227 Error Report UI
+20091225 Exception Handler
+20091224 Spanish Translation, 2nd draft
+20091223 Spanish Translation, 1st draft
+
+
+DONE for 1.7
+
+20091223 More Flurry Analytics test w/ events.
+20091222 Test Flurry Analytics.
+
+20091219 Link intro APNDroid to Market for easy installation
+20091219 Force display of intro on version upgrade
+20091219 Intro: fix to have webview scroll to follow HTML name anchor
+20091219 Intro: updated for 1.7
+20091219 UI fix: customize toggle on/off labels for APNDroid
+20091219 Bug fix: Recompute state on time zone changed broadcast
+20091219 Remove wifi on/off from default profile (turns wifi off for new installs)
+20091207 Toggle APNDroid 2.0 if installed
+
+
+DONE for 1.6
+
+20091124 Fixed day names to be auto translated using default locale
+20091124 Fixed vibrate to include ringer vs ringer+notification
+20091123 Fixed min brightness to 1
+
+20091025 Fixed DPI issue of the global status strings
+20091025 Notification volume work now. BT will need next release
+20091024 Experimented with BT toggle & notification volume
+20091024 Collected user feedback (in design doc)
+
+20090801 Revamp profile screen with global status view + global toggle (mock from DK)
+
+20090716 Bug in pref names: code depends on actual UI first letter of SettingHelper enums
+20090716 No action: use alternate view to have button "Create Profile"
+20090716 Externalize all strings
+
+20090916 Donut SDK, added support-screens in manifest
+
+
+DONE for 1.5
+
+20090706 Added Wifi and Airplane mode setting.
+
+
+DONE for 1.4
+
+20090629 Added global brightness setting (for pre- and Cupcake)
+
+
+DONE for 1.3
+
+20090411 Fix profile list item selection (adapter index vs list child index) [v1.3.5]
+20090411 Profile header: change color for pressed / list-selected
+20090406 Disable import of old profiles [v1.3.4]
+20090406 Fix mute+vib: only generates mute [v1.3.3]
+20090406 Fix NPE when opening old setting import (root db issue not fixed yet) [v1.3.2]
+20090405 Help page - started
+20090404 Update ralf settings, fix vibrate pref inconsistencies [v1.3.1]
+20090404 Import old settings
+20090404 Update intro text with DK's prose
+20090404 Menu "Append New Profile" => "Add New Profile"
+20090040 Fix UI for percent dialog
+20090040 Dynamically display version number in intro HTML
+20090328 Polish UI (feedback from DK)
+20090311 Add wake lock perm
+20090311 Use gradients instead of background PNG
+20090311 Rework action UI & landscape mode
+20090311 Rework action purposes & names to simplify
+20090305 Open for testing
+20090305 Recompute next event on action changes, display changed event as toast
+20090304 Edit intro text
+20090304 Receiver: compute next, schedule alert, show toast
+20090304 Revamp intro UI, fix for cupcake
+20090302 Remove brightness/wifi. Will reintroduce later with a twist
+20090215 Redesign Edit Action UI for new actions (not complete)
+20090214 New actions
+20090214 Receiver: compute current
+20090214 Check now + UI feedback
+20090212 Fix leaked cursor when resetting profiles
+20090212 Add accept button in profile rename dialog
+20090210 Fix persistent dialog usage in activity
+20090209 Options menu: append new profile
+20090209 Options menu: reset profiles
+20090209 Options menu: settings, about
+20090209 Fix insert action to mean after
+20090207 Fix insert action to set initial description
+20090207 Remove old main UI
+20090207 Timed action add
+20090205 Timed action edit
+20090130 Profile header add/edit name
+
+20090126 Change SQL schema usage: prof_id=prof_index<<shift + action_index
+20090125 Timed action remove
+20090125 Profile header remove
+20090125 Profile header checkbox
+20090125 Context menu for list items
+
+20090124 Cleanup, comments, tasklist
+20090124 Custom CursorAdapter
+20090123 Change for an SQLite DB
+20090123 Experiment with in-memory ListAdapter
+20090121 Experiment with profile UI design
+20090121 setup features for profile/timed-actions design
+20090120 v1.00 on market
+20090119 Add TimePicker preference

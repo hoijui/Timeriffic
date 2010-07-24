@@ -1,0 +1,282 @@
+<!-- Korean translation.
+    Credit: Paul Noh, Ubinuri Inc. (http://www.fingertool.com)
+-->
+
+<resources>
+     <!-- App title. Not translated -->
+     <string name="app_name">Timeriffic</string>
+
+     <!-- === Menu === -->
+
+     <!-- Menu - Settings: preferences. -->
+     <string name="settings">설정</string>
+     <!-- Menu - Check now: force app to recompute next alarm. -->
+     <string name="check_now">지금 확인</string>
+     <!-- Menu - About: display introduction/help screen. -->
+     <string name="about">정보</string>
+     <!-- Menu - Reset: reset current profile. -->
+     <string name="reset">초기화</string>
+     <!-- Menu - Report Error: display the error reporting screen. -->
+     <string name="report_error">리포트 오류</string>
+
+
+     <!-- === Context Menu on Profile List === -->
+
+     <!-- Context Menu - Edit (profile or timed action) -->
+     <string name="edit">편집</string>
+     <!-- Context Menu - Rename (profile or timed action) -->
+     <string name="rename">이름 변경</string>
+     <!-- Context Menu - Delete (profile or timed action) -->
+     <string name="delete">삭제</string>
+
+     <!-- Context Menu - Insert new timed action -->
+     <string name="insert_action">새 액션 입력</string>
+     <!-- Context Menu - Insert new profile -->
+     <string name="insert_profile">새 프로필 입력</string>
+     <!-- Menu & Context Menu - Add new profile -->
+     <string name="append_profile">새 프로필 추가</string>
+
+
+     <!-- === Settings / Preferences === -->
+
+     <!-- Settings screen title -->
+     <string name="prefs_title">Timeriffic - 설정</string>
+
+     <!-- Settings - Enable Timeriffic: toggle title -->
+     <string name="prefs_enable_label">Timeriffic사용</string>
+     <!-- Settings - Enable Timeriffic: help string when on -->
+     <string name="prefs_enable_on">Timeriffic "사용함" 상태</string>
+     <!-- Settings - Enable Timeriffic: help string when off -->
+     <string name="prefs_enable_off">Timeriffic "사용안함" 상태</string>
+
+     <!-- Settings - Skip Intro: toggle title -->
+     <string name="prefs_dismiss_intro_label">소개를 표시하지 않습니다.</string>
+     <!-- Settings - Skip Intro: help string when on -->
+     <string name="prefs_dismiss_intro_on">소개를 건너 뜁니다.</string>
+     <!-- Settings - Skip Intro: help string when off -->
+     <string name="prefs_dismiss_intro_off">소개를 볼 수 있습니다.</string>
+
+     <!-- Settings - Check audio service: toggle title -->
+     <string name="prefs_check_service_label">인증된 오디오 서비스</string>
+     <!-- Settings - Check audio service: help string when on -->
+     <string name="prefs_check_service_off">현재 오디오서비스 미인증.</string>
+     <!-- Settings - Check audio service: help string when off -->
+     <string name="prefs_check_service_on">현재 오디오서비스 인증.</string>
+
+     <!-- Settings - Animation of the toggle button logo: title -->
+     <string name="prefs_toggle_anim_label">애니메이션 전환</string>
+     <!-- Settings - Animation of the toggle button logo: help string -->
+     <string name="prefs_toggle_anim_tooltip">프로필 리스트 화면에서 애니메이션 전환 아이콘을 선택하세요.</string>
+
+
+     <!-- === Intro screen === -->
+
+     <string name="intro_title">Timeriffic %s - 소개</string>
+     <string name="intro_button_continue">계속</string>
+     <!-- In Korean we need to set the minEms of the continue button to 10
+          otherwise the layout doesn't make the button wide enough to display
+          its text. -->
+     <string name="intro_button_minEms">10</string>
+     <string name="intro_checkbox_dont_display_again">다시는 이 화면을 표시하지 않습니다.</string>
+
+
+     <!-- === Profile screen === -->
+
+     <string name="profiles_empty_help">새 프로필을 추가하려면 "메뉴"키를 사용하세요.</string>
+
+     <string name="timedactioncontextmenu_title">액션 시간 초과</string>
+
+     <string name="profilecontextmenu_title">프로필</string>
+
+     <string name="insertprofile_new_profile_title">새 프로필</string>
+
+     <string name="deleteprofile_title">프로필 삭제</string>
+     <string name="deleteprofile_msgbody">정말 프로필과 포함된 액션을 삭제하시겠습니까?</string>
+     <string name="deleteprofile_button_delete">삭제</string>
+     <string name="deleteprofile_button_cancel">취소</string>
+
+     <string name="deleteaction_title">액션 삭제</string>
+     <string name="deleteaction_msgbody">정말 \'%s\' 액션을 삭제하시겠습니까?</string>
+     <string name="deleteaction_button_delete">삭제</string>
+     <string name="deleteaction_button_cancel">취소</string>
+
+     <string name="resetprofiles_msg_confirm_delete"><u>모든 프로필</u>을 삭제하고 초기화하시겠습니까? <b>취소할 수 없습니다!</b></string>
+     <string name="resetprofiles_button_cancel">취소</string>
+
+     <!-- summary of timed actions on profile list screen -->
+
+     <!-- special case when there's no action to execute (the action won't run) -->
+     <string name="timedaction_no_action">액션이 없습니다.</string>
+     <!-- special case when no days are selected (so the action won't run) -->
+     <string name="timedaction_nodays_never">절대 안 함Never</string>
+
+     <!-- Timed action hour/time display using String.format, see the
+          Date and Time section at
+            http://java.sun.com/j2se/1.5.0/docs/api/java/util/Formatter.html
+          Summary:
+            tk=hour 0-23, tl=hour 1-12, tp=am/om, tM=minutes 00-59
+      -->
+     <!-- display time on exact hour -->
+     <string name="timedaction_time_0_minute">%1$tk:%1$tM</string>
+     <!-- display time: hour with minutes != 0 -->
+     <string name="timedaction_time_with_minutes">%1$tk:%1$tM</string>
+
+     <string name="timedaction_airplane_on">비행기모드 On</string>
+     <string name="timedaction_airplane_off">비행기모드 Off</string>
+     <string name="timedaction_wifi_on">무선랜 On</string>
+     <string name="timedaction_wifi_off">무선랜 Off</string>
+     <string name="timedaction_bluetooth_on">블루투스 On</string>
+     <string name="timedaction_bluetooth_off">블루투스 Off</string>
+     <string name="timedaction_ringer_int">벨소리 %d%%</string>
+     <string name="timedaction_notif_int">알리미 %d%%</string>
+     <string name="timedaction_brightness_int">밝기 %d%%</string>
+     <string name="timedaction_apndroid_on">3G망 사용 On</string>
+     <string name="timedaction_apndroid_off">3G망 사용 Off</string>
+<!-- BEGIN NEW TRANSLATION -->
+    <string name="timedaction_media_int">Media %d%%</string>
+    <string name="timedaction_alarm_int">Alarm %d%%</string>
+    <string name="timedaction_auto_brightness">Automatic Brightness</string>
+    <string name="timedaction_automatic">Automatic</string>
+<!--  END NEW TRANSLATION -->
+
+     <!-- edit profile screen -->
+
+     <string name="editprofile_title">Timeriffic - 프로필 편집</string>
+     <string name="editprofile_profile_name">프로필 이름 :</string>
+     <string name="editprofile_profile_hint">프로필 이름</string>
+     <string name="editprofile_checkbox_enabled">켜짐</string>
+     <string name="editprofile_button_accept">수락</string>
+
+     <!-- edit action screen -->
+
+     <string name="editaction_title">Timeriffic - Timed Action 편집</string>
+
+     <string name="editaction_section_action">액션</string>
+     <string name="editaction_section_time_and_day">시간과 주</string>
+     <string name="editaction_section_days">날짜</string>
+
+     <string name="editaction_button_label">  <b>@</b>\n  $</string>
+
+     <string name="setting_not_supported">지원하지 않습니다.</string>
+     <string name="setting_not_installed">설치되지 않았습니다.</string>
+
+     <string name="editaction_ringer">벨소리</string>
+     <string name="editaction_vibrate">진동</string>
+     <string name="editaction_volume">주 볼륨</string>
+     <string name="editaction_brightness">밝기</string>
+     <string name="editaction_wifi">무선랜</string>
+     <string name="editaction_airplane">비행기 모드</string>
+     <string name="editaction_notif_volume">알리미 볼륨</string>
+<!-- BEGIN NEW TRANSLATION -->
+    <string name="editaction_media_volume">Media Vol.</string>
+    <string name="editaction_alarm_volume">Alarm Vol.</string>
+<!--  END NEW TRANSLATION -->
+     <string name="editaction_bluetooth">블루투스</string>
+     <!-- APNdroid app name, not translated -->
+     <string name="editaction_apndroid">APNdroid</string>
+
+     <!-- percent dialog -->
+
+     <string name="percent_do_not_change">변경하지 마세요.</string>
+     <string name="percent_change_to">다음 값을 변경하려면:</string>
+     <string name="percent_button_unchanged">변경 안 됨</string>
+     <string name="percent_button_accept">수락</string>
+
+     <!-- enum dialog -->
+
+     <string name="enum_unchanged">변경 안 됨</string>
+
+     <!-- toggle on/off dialog -->
+
+     <string name="toggle_turn_on">켜기</string>
+     <string name="toggle_turn_off">끄기</string>
+
+     <!-- toast to display next change time -->
+
+     <string name="toast_next_change_at_datetime">다음 변경: %s</string>
+     <!-- toast_next_alarm_date_time uses Java SimpleDateFormat, see
+          http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html
+     -->
+     <string name="toast_next_alarm_date_time">yyyy/MM/dd HH:mm:ss</string>
+
+
+     <!-- global status (information view at the top) -->
+
+     <string name="globalstatus_nextlast_date_time">yyyy/MM/dd HH:mm:ss</string>
+     <string name="globalstatus_next">다음:</string>
+     <string name="globalstatus_last">마지막:</string>
+     <string name="globalstatus_disabled">Timeriffic "사용안함" 상태</string>
+
+     <!-- settings -->
+
+     <string name="ringermode_ring">벨</string>
+     <string name="ringermode_mute">무음</string>
+
+     <string name="vibrateringermode_vibrate">진동</string>
+     <string name="vibrateringermode_no_vibrate">진동 없음</string>
+     <string name="vibrateringermode_no_ringer_vibrate">알리미 작동시 벨소리 없이 진동</string>
+     <string name="vibrateringermode_no_notif_vibrate">알리미가 아닐 경우 벨소리와 진동</string>
+
+     <!-- check services dialog -->
+
+     <string name="checkservices_dlg_title">누락된 서비스</string>
+     <string name="checkservices_ok_button">확인</string>
+     <string name="checkservices_skip_button">다시 보지 않음</string>
+     <string name="checkservices_warning">경고! 다음 기능들은 특정 전화에서는 사용할 수 없습니다.:</string>
+     <string name="checkservices_miss_audio_service">오디오 볼륨과 벨상태</string>
+     <string name="checkservices_miss_wifi_service">무선랜 켜기/끄기</string>
+     <string name="checkservices_miss_airplane">비행기 모드</string>
+     <string name="checkservices_miss_brightness">밝기</string>
+<!-- BEGIN NEW TRANSLATION -->
+    <string name="checkservices_miss_bluetooh">Bluetooth</string>
+    <string name="checkservices_miss_apndroid">APNDroid</string>
+    <string name="checkservices_miss_ringguard">RingGuard</string>
+    <string name="checkservices_explain_why">explain why</string>
+
+    <string name="checkservices_help_bluetooh">Bluetooth control requires Android 2.0 or more.</string>
+    <string name="checkservices_help_application">To enable this feature, install the application \'%s\' from Android Market.</string>
+    <string name="install_now_button">Install Now</string>
+<!--  END NEW TRANSLATION -->
+
+     <!-- === Error Reporting === -->
+
+     <!-- Error Report UI: dialog title. -->
+     <string name="errorreport_title">Timeriffic - 오류 보고</string>
+
+     <!-- Error Report UI: generate button. -->
+     <string name="errorreport_generate">생성하기</string>
+
+<!-- BEGIN - NEW TRANSLATE -->
+    <!-- Error Report UI: next button (go from page 1 to page 2). -->
+    <string name="errorreport_next">Next &gt;</string>
+
+    <!-- Error Report UI: previous button (go from page 2 to page 1). -->
+    <string name="errorreport_prev">&lt; Previous</string>
+
+    <!-- Error Report UI page 1: text above "select Program Error or Feature Request" -->
+    <string name="errorreport_user1">Please indicate the kind of issue you would like to report:</string>
+
+    <!-- Error Report UI page 1: select user feedback type, "Program Error" or Feature Request -->
+    <string name="errorreport_program_err">Program Error</string>
+
+    <!-- Error Report UI page 1: select user feedback type, Program Error or "Feature Request" -->
+    <string name="errorreport_feat_req">Feature Request</string>
+
+    <!-- Error Report UI page 1: text displayed on top of user feedback EditText -->
+    <string name="errorreport_user2">To help us understand the issue, please provide some comments:</string>
+
+    <!-- Error Report UI page 1: text hint displayed *inside* the user feedback EditText -->
+    <string name="errorreport_user_hint">Before we can continue, please describe here your error or your feature request.</string>
+<!-- END - NEW TRANSLATE -->
+
+     <!-- Error Report UI: sending fail because there's no mail app. -->
+     <string name="errorreport_nomailapp">이메일/지메일을 통해 메시지를 보내려면 K9같은 어플을 설치하시기 바랍니다.</string>
+
+     <!-- Error Report UI: header of generated email (the rest of the log is in English).
+          Formatting: Spacing matters. Use "/" to insert a new line.
+     -->
+     <string name="errorreport_emailheader">이 것은 Timeriffic의 버그 보고서입니다./
+Automated report starts here:
+     </string>
+
+ </resources>

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Project: Timeriffic
+ * Copyright (C) 2009 ralfoide gmail com,
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!--
+    Language: fr.
+    Regions:  any.
+-->
+
+<resources>
+
+    <!-- === Menu === -->
+
+    <!-- Menu - Settings: preferences. -->
+    <string name="settings">Paramètres</string>
+    <!-- Menu - Check now: force app to recompute next alarm. -->
+    <string name="check_now">Appliquer</string>
+    <!-- Menu - About: display introduction/help screen. -->
+    <string name="about">A propos de...</string>
+    <!-- Menu - Reset: reset current profile. -->
+    <string name="reset">Tout effacer</string>
+    <!-- Menu - Report Error: display the error reporting screen. -->
+    <string name="report_error">Reporter une erreur</string>
+
+
+    <!-- === Context Menu on Profile List === -->
+
+    <!-- Context Menu - Edit (profile or timed action) -->
+    <string name="edit">Editer</string>
+    <!-- Context Menu - Rename (profile or timed action) -->
+    <string name="rename">Renommer</string>
+    <!-- Context Menu - Delete (profile or timed action) -->
+    <string name="delete">Effacer</string>
+
+    <!-- Context Menu - Insert new timed action -->
+    <string name="insert_action">Insérer une action</string>
+    <!-- Context Menu - Insert new profile -->
+    <string name="insert_profile">Insérer un profil</string>
+    <!-- Menu & Context Menu - Add new profile -->
+    <string name="append_profile">Ajouter un profil</string>
+
+
+    <!-- === Settings / Preferences === -->
+
+    <!-- Settings screen title -->
+    <string name="prefs_title">Timeriffic - Préférences</string>
+
+    <!-- Settings - Enable Timeriffic: toggle title -->
+    <string name="prefs_enable_label">Démarrer Timeriffic</string>
+    <!-- Settings - Enable Timeriffic: help string when on -->
+    <string name="prefs_enable_on">Timeriffic est démarré.</string>
+    <!-- Settings - Enable Timeriffic: help string when off -->
+    <string name="prefs_enable_off">Timeriffic est arrété.</string>
+
+    <!-- Settings - Skip Intro: toggle title -->
+    <string name="prefs_dismiss_intro_label">Ne pas afficher l\'introduction</string>
+    <!-- Settings - Skip Intro: help string when on -->
+    <string name="prefs_dismiss_intro_on">L\'introduction ne sera pas affichée.</string>
+    <!-- Settings - Skip Intro: help string when off -->
+    <string name="prefs_dismiss_intro_off">L\'introduction sera affichée.</string>
+
+    <!-- Settings - Check audio service: toggle title -->
+    <string name="prefs_check_service_label">Valider le service audio</string>
+    <!-- Settings - Check audio service: help string when on -->
+    <string name="prefs_check_service_off">Ne valide pas la présence du service audio.</string>
+    <!-- Settings - Check audio service: help string when off -->
+    <string name="prefs_check_service_on">Valide la présence du service audio.</string>
+
+    <!-- Settings - Animation of the toggle button logo: title -->
+    <string name="prefs_toggle_anim_label">Animation du logo</string>
+    <!-- Settings - Animation of the toggle button logo: help string -->
+    <string name="prefs_toggle_anim_tooltip">Sélectionner l\'animation du logo clickable en haut de la liste des profils.</string>
+
+
+    <!-- === Intro screen === -->
+
+    <string name="intro_title">Timeriffic %s - Introduction</string>
+    <string name="intro_button_continue">Continuer</string>
+    <string name="intro_checkbox_dont_display_again">Ne plus afficher</string>
+
+
+    <!-- === Profile screen === -->
+
+    <string name="profiles_empty_help">Appuyez la touche MENU pour ajouter un profil.</string>
+
+    <string name="timedactioncontextmenu_title">Action</string>
+
+    <string name="profilecontextmenu_title">Profil</string>
+
+    <string name="insertprofile_new_profile_title">Nouveau profil</string>
+
+    <string name="deleteprofile_title">Effacer le profil</string>
+    <string name="deleteprofile_msgbody">Etes-vous sûr de vouloir effacer le profil \'%s\' et toutes ses actions ?</string>
+    <string name="deleteprofile_button_delete">Effacer</string>
+    <string name="deleteprofile_button_cancel">Annuler</string>
+
+    <string name="deleteaction_title">Effacer l\'action</string>
+    <string name="deleteaction_msgbody">Etes-vous sûr de vouloir effacer l\'action \'%s\' ?</string>
+    <string name="deleteaction_button_delete">Effacer</string>
+    <string name="deleteaction_button_cancel">Annuler</string>
+
+    <string name="resetprofiles_msg_confirm_delete">Ceci va effacer tous les profils et ne peut être annulé ! Voulez vous continuer ?</string>
+    <string name="resetprofiles_button_cancel">Annuler</string>
+
+    <!-- summary of timed actions on profile list screen -->
+
+    <!-- special case when there's no action to execute (the action won't run) -->
+    <string name="timedaction_no_action">Aucune action</string>
+    <!-- special case when no days are selected (so the action won't run) -->
+    <string name="timedaction_nodays_never">Jamais</string>
+
+    <!-- Timed action hour/time display using String.format, see the
+         Date and Time section at
+           http://java.sun.com/j2se/1.5.0/docs/api/java/util/Formatter.html
+         Summary:
+           tk=hour 0-23, tl=hour 1-12, tp=am/om, tM=minutes 00-59
+     -->
+    <!-- display time on exact hour -->
+    <string name="timedaction_time_0_minute">%1$tkh</string>
+    <!-- display time: hour with minutes != 0 -->
+    <string name="timedaction_time_with_minutes">%1$tkh%1$tM %1$tp</string>
+
+    <string name="timedaction_airplane_on">Mode avion activé</string>
+    <string name="timedaction_airplane_off">Mode avion désactivé</string>
+    <string name="timedaction_wifi_on">Wi-Fi activé</string>
+    <string name="timedaction_wifi_off">Wi-Fi désactivé</string>
+    <string name="timedaction_bluetooth_on">Bluetooth activé</string>
+    <string name="timedaction_bluetooth_off">Bluetooth désactivé</string>
+    <string name="timedaction_ringer_int">Sonnerie %d%%</string>
+    <string name="timedaction_notif_int">Notification %d%%</string>
+    <string name="timedaction_brightness_int">Luminosité %d%%</string>
+    <string name="timedaction_apndroid_on">Data 3G/2G activé</string>
+    <string name="timedaction_apndroid_off">Data 3G/2G désactivé</string>
+<!-- BEGIN NEW TRANSLATION -->
+    <string name="timedaction_media_int">Media %d%%</string>
+    <string name="timedaction_alarm_int">Alarm %d%%</string>
+    <string name="timedaction_auto_brightness">Automatic Brightness</string>
+    <string name="timedaction_automatic">Automatic</string>
+<!--  END NEW TRANSLATION -->
+
+    <string name="ringermode_ring">Sonner</string>
+    <string name="ringermode_mute">Silence</string>
+
+    <string name="vibrateringermode_vibrate">Vibrer</string>
+    <string name="vibrateringermode_no_vibrate">Ne pas vibrer</string>
+    <string name="vibrateringermode_no_ringer_vibrate">Vibrer pour notifications mais pas sonnerie</string>
+    <string name="vibrateringermode_no_notif_vibrate">Vibrer pour sonnerie mais pas notifications</string>
+
+    <!-- edit profile screen -->
+
+    <string name="editprofile_title">Timeriffic - Editer le profil</string>
+    <string name="editprofile_profile_name">Nom du profil:</string>
+    <string name="editprofile_profile_hint">Nom du profil</string>
+    <string name="editprofile_checkbox_enabled">Activer</string>
+    <string name="editprofile_button_accept">Accepter</string>
+
+    <!-- edit action screen -->
+
+    <string name="editaction_title">Timeriffic - Editer l\'action</string>
+
+    <string name="editaction_section_action">Action</string>
+    <string name="editaction_section_time_and_day">Jour et heure</string>
+    <string name="editaction_section_days">Jours</string>
+
+    <string name="setting_not_supported">Pas supporté</string>
+    <string name="setting_not_installed">Pas installé</string>
+
+    <string name="editaction_ringer">Sonnerie</string>
+    <string name="editaction_vibrate">Vibreur</string>
+    <string name="editaction_volume">Volume</string>
+    <string name="editaction_brightness">Luminosité</string>
+    <string name="editaction_wifi">Wi-Fi</string>
+    <string name="editaction_airplane">Mode avion</string>
+    <string name="editaction_notif_volume">Vol. Notification</string>
+<!-- BEGIN NEW TRANSLATION -->
+    <string name="editaction_media_volume">Media Vol.</string>
+    <string name="editaction_alarm_volume">Alarm Vol.</string>
+<!--  END NEW TRANSLATION -->
+    <string name="editaction_bluetooth">Bluetooth</string>
+
+    <!-- percent dialog -->
+
+    <string name="percent_do_not_change">Ne rien changer.</string>
+    <string name="percent_change_to">Mettre à la valeur suivante:</string>
+    <string name="percent_button_unchanged">Inchangé</string>
+    <string name="percent_button_accept">Accepter</string>
+
+    <!-- enum dialog -->
+
+    <string name="enum_unchanged">Inchangé</string>
+
+    <!-- toggle on/off dialog -->
+
+    <string name="toggle_turn_on">Activer</string>
+    <string name="toggle_turn_off">Désactiver</string>
+
+    <!-- toast to display next change time -->
+
+    <string name="toast_next_change_at_datetime">Prochain Changement: %s</string>
+    <!-- toast_next_alarm_date_time uses Java SimpleDateFormat, see
+         http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html
+    -->
+    <string name="toast_next_alarm_date_time">HH\'h\'mm, \'le\' dd-MM-yyyy</string>
+
+    <!-- global status (information view at the top) -->
+
+    <string name="globalstatus_nextlast_date_time">HH\'h\'mm, \'le\' dd-MM-yyyy</string>
+    <string name="globalstatus_next">Suivant:</string>
+    <string name="globalstatus_last">Dernier:</string>
+    <string name="globalstatus_disabled">Timeriffic est désactivé</string>
+
+    <!-- check services dialog -->
+
+    <string name="checkservices_dlg_title">Services Manquants</string>
+    <string name="checkservices_ok_button">OK</string>
+    <string name="checkservices_skip_button">Ne plus afficher</string>
+    <string name="checkservices_warning">Attention ! Les fonctions suivantes ne vont pas marcher sur cette version d\'Android :</string>
+    <string name="checkservices_miss_audio_service">Volume sonnerie et vibreur</string>
+    <string name="checkservices_miss_wifi_service">Etat de la Wi-Fi</string>
+    <string name="checkservices_miss_airplane">Mode avion</string>
+    <string name="checkservices_miss_brightness">Luminosité</string>
+<!-- BEGIN NEW TRANSLATION -->
+    <string name="checkservices_miss_bluetooh">Bluetooth</string>
+    <string name="checkservices_miss_apndroid">APNDroid</string>
+    <string name="checkservices_miss_ringguard">RingGuard</string>
+    <string name="checkservices_explain_why">explain why</string>
+
+    <string name="checkservices_help_bluetooh">Bluetooth control requires Android 2.0 or more.</string>
+    <string name="checkservices_help_application">To enable this feature, install the application \'%s\' from Android Market.</string>
+    <string name="install_now_button">Install Now</string>
+<!--  END NEW TRANSLATION -->
+
+    <!-- === Error Reporting === -->
+
+    <!-- Error Report UI: dialog title. -->
+    <string name="errorreport_title">Timeriffic - Reporter des erreurs</string>
+
+    <!-- Error Report UI: generate button. -->
+    <string name="errorreport_generate">Générer</string>
+
+    <!-- Error Report UI: next button (go from page 1 to page 2). -->
+    <string name="errorreport_next">Suivant &gt;</string>
+
+    <!-- Error Report UI: previous button (go from page 2 to page 1). -->
+    <string name="errorreport_prev">&lt; Précédent</string>
+
+    <!-- Error Report UI page 1: text above "select Program Error or Feature Request" -->
+    <string name="errorreport_user1">Quel genre d\'erreur désirez vous reporter ?</string>
+
+    <!-- Error Report UI page 1: select user feedback type, "Program Error" or Feature Request -->
+    <string name="errorreport_program_err">Erreur de l\'application / défault de fonctionnement</string>
+
+    <!-- Error Report UI page 1: select user feedback type, Program Error or "Feature Request" -->
+    <string name="errorreport_feat_req">Nouvelle fonctionalité</string>
+
+    <!-- Error Report UI page 1: text displayed on top of user feedback EditText -->
+    <string name="errorreport_user2">Afin de mieux nous aider, veuillez décrire le problème :</string>
+
+    <!-- Error Report UI page 1: text hint displayed *inside* the user feedback EditText -->
+    <string name="errorreport_user_hint">Avant de continuer, veuillez décrire le problème en quelques mots ici.</string>
+
+    <!-- Error Report UI: sending fail because there's no mail app. -->
+    <string name="errorreport_nomailapp">Pas d\'application d\'émail/gmail trouvée pour envoyer le message. Veuillez en installer une (comme K9 sur Market) d\'abord.</string>
+
+    <!-- Error Report UI: header of generated email (the rest of the log is in English).
+         Formatting: Spacing matters. Use "/" to insert a new line.
+    -->
+    <string name="errorreport_emailheader">Ceci est une rapport d\'erreur pour Timeriffic./
+Le rapport automatisé commence ici.
+    </string>
+
+</resources>

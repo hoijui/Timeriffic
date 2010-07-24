@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Project: Timeriffic
+ * Copyright (C) 2009 ralfoide gmail com,
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    >
+
+
+<FrameLayout
+    android:id="@+id/web_frame"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_weight="1"
+    >
+
+    <!-- this useless view forces the frame layout to actually
+         take all the possible space. That's because the WebView will
+         not have a size until it is actually loaded. -->
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@null"
+        />
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true"
+        android:id="@+id/user_frame"
+        android:layout_weight="1"
+        >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:background="@drawable/intro_bg_gradient"
+            >
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/errorreport_user1"
+                android:layout_weight="0"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                />
+
+            <RadioGroup
+                android:id="@+id/radio_group"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dip"
+                android:layout_weight="0"
+                >
+
+                <RadioButton
+                    android:id="@+id/radio_err"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/errorreport_program_err"
+                    />
+
+                <RadioButton
+                    android:id="@+id/radio_fr"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/errorreport_feat_req"
+                    />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/errorreport_user2"
+                android:layout_weight="0"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                />
+
+            <EditText
+                android:id="@+id/user_text"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:gravity="top"
+                android:singleLine="false"
+                android:inputType="text|textCapSentences|textMultiLine|textAutoCorrect|textAutoComplete"
+                android:hint="@string/errorreport_user_hint"
+                android:paddingLeft="5dip"
+                android:paddingRight="5dip"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <WebView
+        android:id="@+id/web"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="@drawable/intro_bg_gradient"
+        android:visibility="gone"
+        />
+
+</FrameLayout>
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:background="#555"
+    android:gravity="center_horizontal"
+    android:paddingTop="5dip"
+    >
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/errorreport_prev"
+        android:id="@+id/prev"
+        android:minEms="5"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/errorreport_next"
+        android:id="@+id/next"
+        android:minEms="5"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/errorreport_generate"
+        android:id="@+id/generate"
+        android:minEms="5"
+        />
+
+</LinearLayout>
+
+</LinearLayout>
+

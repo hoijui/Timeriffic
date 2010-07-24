@@ -1,0 +1,165 @@
+AutoSettings Design Doc
+
+----
+20081101 Goal
+
+Goal:
+- a simple replacement to Locale that actually works for _me_.
+
+Locale pros & cons:
+- Pros: it's free and it's already there.
+- Cons: it should be in the platform, not a separate app.
+- Cons: non-standard UI for tabs, deletion and time picker.
+- Cons: does many things I don't care yet doesn't do stuff I need.
+
+Non-goal:
+- complete feature set of Locale, most of which is not useful to me.
+
+
+Desired Features (rating number: 1=important to me, 2=less important, 3=useless):
+- Location triggers:
+    [1] cell-id (coarse loc) vs [2] gps (fine loc), made explicit + update rate.
+- Time trigger:
+    [1] start/end.
+- Date trigger:
+    [2] week-of-day
+- Settings:
+    [1] silent (what power>sound off does)
+    [1] ring volume
+    [1] vibrate
+    [1] brightness
+    [2] wifi on/off
+
+For each trigger type (location, time, date), users create instances of
+these triggers (i.e. home via cell id, home via gps, night time, week-end).
+
+Triggers have an implicit "next event" timestamp. E.g. for a timer, it's the end
+of the timer, for day it's 24 hours and for cell/gps it's the update rate.
+
+A profile is composed of:
+- a list of 0 or more trigger instances (add, edit, delete)
+- a list of settings to set (add, edit, delete)
+- trigger mode: or (any) or and (all)
+- activated flag
+- exclusive flag: only one flag can be exclusive and thus only this one is
+  activated. This is for manual activation.
+
+Profile list:
+- profile can only be activated if it has 1 or more settings.
+- profile list: add, edit, delete, up, down
+- when more than one profile works, apply in the profile order.
+- when marked as exclusive, gray all other profiles
+
+There's a list of profiles, with a "default" one (cannot be deleted).
+Another default profile should be "silent".
+
+Implementation:
+- list of triggers { id, type, user-name, *value, curr-value, value-ts }
+- list of settings { id, type, *proc }
+- list of profiles { id, user-name, list trigger-id, list settings-id, activated }
+- global: exclusive profile-id
+
+- check service:
+    - for all triggers, update if value too old
+    - compute next check timestamp
+    - check profiles, if match, apply settings
+    - alarm/sleep till next check ts
+
+----
+20090120 Misc Ideas/suggestions
+
+- conditions: time range and/or cellid/gps (+rate check)
+- profile group of setting with same condition) vs (condition per setting).
+- toggles: led, gps, cellid, wifi, 2g/3g
+- levels: media/ringer volumes, brightness
+- settings for weekends vs weekdays or weekly
+- home icons for profiles
+
+----
+20091024 User feedback
+
+A summary of user requested feedback, suggestions, improvements:
+
+- AM/PM versus 24h option
++ toggle 3g/2g => control APNdroid [done]
+x toggle auto-sync => can't do in SDK
+- profile based on incoming call contact
+    - e.g. let it ring when contact X, Y or Z is calling you. Needs whitelist.
++ control notification volume [done]
++ toggle bluetooth => [done in 2.0, not 1.6]
+- backup/restore settings from sdcard and/or email
+- icon bar for profile list (+/-)
+- control calendar notification
+- display notification of profile change
+- calendar integration: change setting during a meeting
+- Hero: brightness not working if AutoBrightness on
+- Droid: brightness not working if AutoBrightness on
+- MyTouch/DRC92: brightness works up but not down (sometimes / can't repro)
+- vibrate notification not turned off (e.g. email/gmail notif vibrate)
+- UI for volume: 10% increments via drop-down or radios
+- media volume
+- control based on given days
+- Don't switch Airplane during talk. Suggest: notif to let user to it later.
+
+----
+20091207 Steps to add a new setting
+
+1- SettingsHelper: add a canControlXyz()
+2- SettingsHelper: add a changeXyz(boolean enabled)
+3- profiles.Columns: add ACTION_xyz
+4- actions.TimedActionUtils: add ACTION_xyz in computeActions()
+5- app.AutoReceiver: add ACTION_xyz in performAction()
+6- actions.EditActionUI: add private PrefToggle, using in onCreate, onPause.
+7- layout/edit_action & layout/land/more_actions: add R.id.xyzButton
+8- values-*/strings.xml: add R.string.timedaction_xyz_on/off, R.string.editaction_xyz
+
+
+----
+20100103 Redesign of the DB
+
+Typical usage is to have around a dozen rule. Heavy users might have
+a hundred rules at most.
+
+Cons of the current scheme: current usage uses SQLite, which is quite heavy
+for our needs. A typical query implies lots of string manipulations to generate
+the query.
+
+Typical operations:
+- settings check: needs to lookup the DB to find the next event to do.
+  That requires reading pretty much all profiles to find active ones, then
+  read all matching actions to get their time and associated actions.
+- finding the next action to execute is expensive if there isn't an immediate
+  hit, since it means one lookup per day of the week till we find one.
+
+The other cons of the scheme is that it doesn't allow for more triggers.
+The only trigger right now is:
+- profile is active.
+- action at a given time for some days of the week.
+
+The action part is encoded as a string, so it's already pretty flexible.
+
+New triggers we want to add:
+- docking intents
+- battery level intents
+- specific day
+
+So there are 2 parts:
+- redesign the schema to make it more flexible.
+- redesign the storage to make it easier to use.
+
+Rather than use SQLite and a Cursor/Adapter, the idea would be to have
+in-memory data, saved to a file, and the adapter would just display the
+in-memory data. Since we need the data all the time, it would be globally
+available (either as a static singleton, or in the app), and loaded on demand.
+
+We also need to import the current database into the new format the first time.
+
+Finally the file will be in the /data/data/<namespace> folder, with an
+option to save/read from the sdcard. Optionally, we could just always save
+a copy on the sdcard if available, and then at startup if there's no data
+just read the one from the sdcard. This is nice since it makes restores
+"magically" happen. We don't need to always update the sdcard one, it would be
+enough to do it in the onPause of the main UI activity.
+
+If we're going to put the file in clear on the sdcard, the parser should be
+relatively resilient and flexible for errors.

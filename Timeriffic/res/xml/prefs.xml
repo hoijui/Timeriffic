@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Project: Timeriffic
+ * Copyright (C) 2009 ralfoide gmail com,
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+>
+
+    <CheckBoxPreference
+        android:defaultValue="true"
+        android:key="enable_serv"
+        android:title="@string/prefs_enable_label"
+        android:summaryOff="@string/prefs_enable_off"
+        android:summaryOn="@string/prefs_enable_on" />
+
+    <CheckBoxPreference
+        android:key="dismiss_intro"
+        android:defaultValue="false"
+        android:title="@string/prefs_dismiss_intro_label"
+        android:summaryOff="@string/prefs_dismiss_intro_off"
+        android:summaryOn="@string/prefs_dismiss_intro_on" />
+
+    <CheckBoxPreference
+        android:key="check_service"
+        android:defaultValue="true"
+        android:title="@string/prefs_check_service_label"
+        android:summaryOff="@string/prefs_check_service_off"
+        android:summaryOn="@string/prefs_check_service_on" />
+
+    <ListPreference
+        android:entryValues="@array/prefs_globaltoggle_anim_values"
+        android:title="@string/prefs_toggle_anim_label"
+        android:summary="@string/prefs_toggle_anim_tooltip"
+        android:entries="@array/prefs_globaltoggle_anim_names"
+        android:key="globaltoggle_anim"
+        android:defaultValue="fast"
+    />
+
+</PreferenceScreen>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Project: Timeriffic
+ * Copyright (C) 2009 ralfoide gmail com,
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!--
+    Language: en.
+    Regions:  any.
+-->
+
+<resources>
+    <!-- English resources -->
+
+    <!-- Timed action hour/time display using String.format, see the
+         Date and Time section at
+           http://java.sun.com/j2se/1.5.0/docs/api/java/util/Formatter.html
+         Summary:
+           tk=hour 0-23, tl=hour 1-12, tp=am/om, tM=minutes 00-59
+     -->
+    <!-- display time on exact hour -->
+    <string name="timedaction_time_0_minute">%1$tl %1$tp</string>
+    <!-- display time: hour with minutes != 0, tM=minutes 00-59 -->
+    <string name="timedaction_time_with_minutes">%1$tl:%1$tM %1$tp</string>
+
+    <!-- toast_next_alarm_date_time uses Java SimpleDateFormat, see
+         http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html
+    -->
+    <string name="toast_next_alarm_date_time">MMMM d, yyyy h:mm a</string>
+
+    <!-- global status (information view at the top) -->
+
+    <string name="globalstatus_nextlast_date_time">MMMM d, yyyy h:mm a</string>
+
+</resources>

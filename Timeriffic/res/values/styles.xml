@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Project: Timeriffic
+ * Copyright (C) 2009 ralfoide gmail com,
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<resources>
+
+<style name="NoBackground" parent="android:Theme.Dialog">
+    <item name="android:windowIsTranslucent">true</item>
+    <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
+    <!-- item name="android:windowBackground">@null</item -->
+    <item name="android:windowBackground">@drawable/transparent_background</item>
+    <item name="android:windowNoTitle">true</item>
+    <item name="android:colorForeground">#fff</item>
+</style>
+
+<style name="ProfileHeader">
+    <item name="android:textAppearance">@android:style/TextAppearance.Medium.Inverse</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:gravity">center_vertical</item>
+    <item name="android:background">@drawable/profile_bg_selector</item>
+</style>
+
+<style name="SectionHeader">
+    <item name="android:textAppearance">@android:style/TextAppearance.Medium.Inverse</item>
+    <item name="android:textStyle">bold</item>
+    <item name="android:gravity">center_horizontal</item>
+    <item name="android:background">@drawable/action_header_bg_gradient</item>
+</style>
+
+<style name="ActionButton" parent="android:Widget.Button">
+    <item name="android:paddingTop">5sp</item>
+    <item name="android:gravity">left</item>
+    <!-- don't set item name="android:focusableInTouchMode" to true, it makes
+         the button take focus on touch instead of invoking it. -->
+</style>
+
+</resources>

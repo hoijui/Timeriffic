@@ -1,0 +1,321 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Project: Timeriffic
+ * Copyright (C) 2009 ralfoide gmail com,
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!--
+    Language: 中文（简体）.
+    Regions:  中国.
+-->
+
+<resources>
+    <!-- App title. Not translated -->
+    <string name="app_name">Timeriffic</string>
+
+    <!-- === Menu === -->
+
+    <!-- Menu - Settings: preferences. -->
+    <string name="settings">设置</string>
+    <!-- Menu - Check now: force app to recompute next alarm. -->
+    <string name="check_now">现在检查</string>
+    <!-- Menu - About: display introduction/help screen. -->
+    <string name="about">关于</string>
+    <!-- Menu - Reset: reset current profile. -->
+    <string name="reset">重置</string>
+    <!-- Menu - Report Error: display the error reporting screen. -->
+    <string name="report_error">报告错误</string>
+
+
+    <!-- === Context Menu on Profile List === -->
+
+    <!-- Context Menu - Edit (profile or timed action) -->
+    <string name="edit">编辑</string>
+    <!-- Context Menu - Rename (profile or timed action) -->
+    <string name="rename">重命名</string>
+    <!-- Context Menu - Delete (profile or timed action) -->
+    <string name="delete">删除</string>
+
+    <!-- Context Menu - Insert new timed action -->
+    <string name="insert_action">插入新动作</string>
+    <!-- Context Menu - Insert new profile -->
+    <string name="insert_profile">插入新情景</string>
+    <!-- Menu & Context Menu - Add new profile -->
+    <string name="append_profile">增加新情景</string>
+
+
+    <!-- === Settings / Preferences === -->
+
+    <!-- Settings screen title -->
+    <string name="prefs_title">Timeriffic - 设置</string>
+
+    <!-- Settings - Enable Timeriffic: toggle title -->
+    <string name="prefs_enable_label">启用Timeriffic</string>
+    <!-- Settings - Enable Timeriffic: help string when on -->
+    <string name="prefs_enable_on">Timeriffic已启用.</string>
+    <!-- Settings - Enable Timeriffic: help string when off -->
+    <string name="prefs_enable_off">Timeriffic已禁用.</string>
+
+    <!-- Settings - Skip Intro: toggle title -->
+    <string name="prefs_dismiss_intro_label">不显示介绍</string>
+    <!-- Settings - Skip Intro: help string when on -->
+    <string name="prefs_dismiss_intro_on">已跳过介绍.</string>
+    <!-- Settings - Skip Intro: help string when off -->
+    <string name="prefs_dismiss_intro_off">显示介绍.</string>
+
+    <!-- Settings - Check audio service: toggle title -->
+    <string name="prefs_check_service_label">验证声音服务</string>
+    <!-- Settings - Check audio service: help string when on -->
+    <string name="prefs_check_service_off">当前不验证声音服务.</string>
+    <!-- Settings - Check audio service: help string when off -->
+    <string name="prefs_check_service_on">当前验证声音服务.</string>
+
+    <!-- Settings - Animation of the toggle button logo: title -->
+    <string name="prefs_toggle_anim_label">开关图标的动画效果</string>
+    <!-- Settings - Animation of the toggle button logo: help string -->
+    <string name="prefs_toggle_anim_tooltip">选择开关图标的动画效果.</string>
+
+<!-- BEGIN NEW TRANSLATION -->
+    <!-- this block translated by goapk.com -->
+    <string name="save_to_sd">保存到SD卡</string>
+    <string name="restore_from_sd">从SD上还原</string>
+    <!-- Settings - Display Notification: toggle title -->
+    <string name="prefs_display_notif_label">当情景模式改变时显示通知</string>
+    <!-- Settings - Display Notification: help string when on -->
+    <string name="prefs_display_notif_on">当情景模式改变时显示一个通知信息</string>
+    <!-- Settings - Display Notification: help string when off -->
+    <string name="prefs_display_notif_off">当情景模式改变时不显示通知信息</string>
+<!--  END NEW TRANSLATION -->
+
+
+    <!-- === Intro screen === -->
+
+    <string name="intro_title">Timeriffic %s - 介绍</string>
+    <string name="intro_button_continue">继续</string>
+    <!-- I noticed in some languages (e.g. Korean) we need to set the minEms
+         of the continue button to 10 otherwise the layout doesn't make the
+         button wide enough to display its text. For most languages this
+         should stay empty, unless there's a strong need to specify it.
+         When we do use it, it should be an integer for Button.setMinEms(). -->
+    <string name="intro_button_minEms">0</string>
+    <string name="intro_checkbox_dont_display_again">不再显示</string>
+
+
+    <!-- === Profile screen === -->
+
+    <string name="profiles_empty_help">使用菜单键来增加一个新情景模式</string>
+
+    <string name="timedactioncontextmenu_title">定时动作</string>
+
+    <string name="profilecontextmenu_title">情景</string>
+
+    <string name="insertprofile_new_profile_title">新建情景</string>
+
+    <string name="deleteprofile_title">删除情景</string>
+    <string name="deleteprofile_msgbody">确认删除情景 \'%s\' 以及相关的所有动作?</string>
+    <string name="deleteprofile_button_delete">删除</string>
+    <string name="deleteprofile_button_cancel">取消</string>
+
+    <string name="deleteaction_title">删除动作</string>
+    <string name="deleteaction_msgbody">确认删除动作 \'%s\'?</string>
+    <string name="deleteaction_button_delete">删除</string>
+    <string name="deleteaction_button_cancel">取消</string>
+
+    <string name="resetprofiles_msg_confirm_delete">删除并重置 <u>所有的情景</u>? <b>此操作无法恢复!</b></string>
+    <string name="resetprofiles_button_cancel">取消</string>
+
+    <!-- summary of timed actions on profile list screen -->
+
+    <!-- special case when there's no action to execute (the action won't run) -->
+    <string name="timedaction_no_action">无动作</string>
+    <!-- special case when no days are selected (so the action won't run) -->
+    <string name="timedaction_nodays_never">从不</string>
+
+    <!-- Timed action hour/time display using String.format, see the
+         Date and Time section at
+           http://java.sun.com/j2se/1.5.0/docs/api/java/util/Formatter.html
+         Summary:
+           tk=hour 0-23, tl=hour 1-12, tp=am/om, tM=minutes 00-59
+     -->
+    <!-- display time on exact hour -->
+    <string name="timedaction_time_0_minute">%1$tk:%1$tM</string>
+    <!-- display time: hour with minutes != 0 -->
+    <string name="timedaction_time_with_minutes">%1$tk:%1$tM</string>
+
+    <string name="timedaction_airplane_on">飞行模式开启</string>
+    <string name="timedaction_airplane_off">飞行模式关闭</string>
+    <string name="timedaction_wifi_on">Wifi开启</string>
+    <string name="timedaction_wifi_off">Wifi关闭</string>
+    <string name="timedaction_bluetooth_on">蓝牙开启</string>
+    <string name="timedaction_bluetooth_off">蓝牙关闭</string>
+    <string name="timedaction_ringer_int">铃声 %d%%</string>
+    <string name="timedaction_notif_int">提醒 %d%%</string>
+    <string name="timedaction_brightness_int">亮度 %d%%</string>
+    <string name="timedaction_apndroid_on">3G/2G数据连接关闭</string>
+    <string name="timedaction_apndroid_off">3G/2G数据连接开启</string>
+<!-- BEGIN NEW TRANSLATION -->
+    <!-- this block translated by goapk.com -->
+    <string name="timedaction_media_int">媒体 %d%%</string>
+    <string name="timedaction_alarm_int">闹钟 %d%%</string>
+    <string name="timedaction_auto_brightness">自动背光</string>
+    <string name="timedaction_automatic">自动的</string>
+<!--  END NEW TRANSLATION -->
+
+    <!-- edit profile screen -->
+
+    <string name="editprofile_title">Timeriffic - 编辑情景</string>
+    <string name="editprofile_profile_name">情景名称:</string>
+    <string name="editprofile_profile_hint">情景名称</string>
+    <string name="editprofile_checkbox_enabled">启用</string>
+    <string name="editprofile_button_accept">确定</string>
+
+    <!-- edit action screen -->
+
+    <string name="editaction_title">Timeriffic - 编辑定时动作</string>
+
+    <string name="editaction_section_action">动作</string>
+    <string name="editaction_section_time_and_day">日期与时间</string>
+    <string name="editaction_section_days">日期</string>
+
+    <string name="editaction_button_label">  <b>@</b>\n  $</string>
+
+    <string name="setting_not_supported">不支持</string>
+    <string name="setting_not_installed">没有安装</string>
+
+    <string name="editaction_ringer">铃声</string>
+    <string name="editaction_vibrate">震动</string>
+    <string name="editaction_volume">主音量</string>
+    <string name="editaction_brightness">亮度</string>
+    <string name="editaction_wifi">Wifi</string>
+    <string name="editaction_airplane">飞行模式</string>
+    <string name="editaction_notif_volume">提醒音量.</string>
+<!-- BEGIN NEW TRANSLATION -->
+    <!-- this block translated by goapk.com -->
+    <string name="editaction_media_volume">媒体音量</string>
+    <string name="editaction_alarm_volume">闹钟音量</string>
+<!--  END NEW TRANSLATION -->
+    <string name="editaction_bluetooth">蓝牙</string>
+    <!-- APNdroid app name, not translated -->
+    <string name="editaction_apndroid">APNdroid</string>
+
+    <!-- percent dialog -->
+
+    <string name="percent_do_not_change">不改变.</string>
+    <string name="percent_change_to">修改为以下值:</string>
+    <string name="percent_button_unchanged">未改变</string>
+    <string name="percent_button_accept">确定</string>
+
+    <!-- enum dialog -->
+
+    <string name="enum_unchanged">未改变</string>
+
+    <!-- toggle on/off dialog -->
+
+
+    <string name="toggle_turn_on">开启</string>
+    <string name="toggle_turn_off">关闭</string>
+
+    <!-- toast to display next change time -->
+
+    <string name="toast_next_change_at_datetime">下次变动: %s</string>
+    <!-- toast_next_alarm_date_time uses Java SimpleDateFormat, see
+         http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html
+    -->
+    <string name="toast_next_alarm_date_time">yyyy/MM/dd HH:mm:ss</string>
+
+
+    <!-- global status (information view at the top) -->
+
+    <string name="globalstatus_nextlast_date_time">yyyy/MM/dd HH:mm:ss</string>
+    <string name="globalstatus_next">下次:</string>
+    <string name="globalstatus_last">上次:</string>
+    <string name="globalstatus_disabled">Timeriffic已禁用</string>
+
+    <!-- settings -->
+
+    <string name="ringermode_ring">响铃</string>
+    <string name="ringermode_mute">静音</string>
+
+    <string name="vibrateringermode_vibrate">振动</string>
+    <string name="vibrateringermode_no_vibrate">不振动</string>
+    <string name="vibrateringermode_no_ringer_vibrate">提醒振动但来电不振动</string>
+    <string name="vibrateringermode_no_notif_vibrate">来电振动但提醒不振动</string>
+
+    <!-- check services dialog -->
+
+    <string name="checkservices_dlg_title">缺少服务</string>
+    <string name="checkservices_ok_button">确定</string>
+    <string name="checkservices_skip_button">不再显示</string>
+    <string name="checkservices_warning">警告! 以下功能在本机上不能使用</string>
+    <string name="checkservices_miss_audio_service">音量与响铃</string>
+    <string name="checkservices_miss_wifi_service">开关Wifi</string>
+    <string name="checkservices_miss_airplane">飞行模式</string>
+    <string name="checkservices_miss_brightness">亮度</string>
+<!-- BEGIN NEW TRANSLATION -->
+    <!-- this block translated by goapk.com -->
+    <string name="checkservices_miss_bluetooh">蓝牙</string>
+    <string name="checkservices_miss_apndroid">APNDroid</string>
+    <string name="checkservices_miss_ringguard">RingGuard</string>
+    <string name="checkservices_explain_why">解释为什么</string>
+
+    <string name="checkservices_help_bluetooh">蓝牙控制需要 Android 2.0 或更高版本的系统。</string>
+    <string name="checkservices_help_application">想要开启这个功能，请从Android市场上下载安装软件 \'%s\'。</string>
+    <string name="install_now_button">现在安装</string>
+<!--  END NEW TRANSLATION -->
+
+    <!-- === Error Reporting === -->
+
+    <!-- Error Report UI: dialog title. -->
+    <string name="errorreport_title">Timeriffic - 报告错误</string>
+
+    <!-- Error Report UI: generate button. -->
+    <string name="errorreport_generate">生成报告</string>
+
+<!-- BEGIN - NEW TRANSLATE -->
+    <!-- Error Report UI: next button (go from page 1 to page 2). -->
+    <string name="errorreport_next">下一步 &gt;</string>
+
+    <!-- Error Report UI: previous button (go from page 2 to page 1). -->
+    <string name="errorreport_prev">&lt; 上一步</string>
+
+    <!-- Error Report UI page 1: text above "select Program Error or Feature Request" -->
+    <string name="errorreport_user1">请说明你想要报告的问题的类型：</string>
+
+    <!-- Error Report UI page 1: select user feedback type, "Program Error" or Feature Request -->
+    <string name="errorreport_program_err">程序错误</string>
+
+    <!-- Error Report UI page 1: select user feedback type, Program Error or "Feature Request" -->
+    <string name="errorreport_feat_req">功能要求</string>
+
+    <!-- Error Report UI page 1: text displayed on top of user feedback EditText -->
+    <string name="errorreport_user2">为帮助我们了解这个错误，请提供一些信息：</string>
+
+    <!-- Error Report UI page 1: text hint displayed *inside* the user feedback EditText -->
+    <string name="errorreport_user_hint">在我们继续之前，请描述一下你遇到的问题或是对功能的要求。</string>
+<!-- END - NEW TRANSLATE -->
+
+    <!-- Error Report UI: sending fail because there's no mail app. -->
+    <string name="errorreport_nomailapp">未发现电子邮件或Gmail程序.请先从电子市场安装一个K9之类电子邮件程序.</string>
+
+    <!-- Error Report UI: header of generated email (the rest of the log is in English).
+         Formatting: Spacing matters. Use "/" to insert a new line.
+    -->
+    <string name="errorreport_emailheader">这是一个Timeriffic错误报告./
+以上为自动生成的报告，请在下面手工填写报告（译者：请使用英语）。
+Automated report starts here:
+    </string>
+
+</resources>

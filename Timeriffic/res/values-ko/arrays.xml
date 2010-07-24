@@ -1,0 +1,24 @@
+<!-- Korean translation.
+    Credit: Paul Noh, Ubinuri Inc. (http://www.fingertool.com)
+-->
+
+
+<resources>
+
+<!--
+    Names for the global toggle anim pref. Order is important.
+    The toggle looks like the Timeriffic icon in the profile list screen.
+    It's animation is controled by Menu - Settings - Toggle Animation.
+-->
+<string-array name="prefs_globaltoggle_anim_names">
+    <!-- Global toggle is not animated. -->
+    <item>애니메이션 없음</item>
+
+    <!-- Global toggle is animated with a slow pulse animation. -->
+    <item>신호 느림</item>
+
+    <!-- Global toggle is animated with a slow pulse animation. -->
+    <item>신호 빠름</item>
+</string-array>
+
+</resources>
