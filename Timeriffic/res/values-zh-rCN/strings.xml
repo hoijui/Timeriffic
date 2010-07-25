@@ -88,8 +88,7 @@
     <!-- Settings - Animation of the toggle button logo: help string -->
     <string name="prefs_toggle_anim_tooltip">选择开关图标的动画效果.</string>
 
-<!-- BEGIN NEW TRANSLATION -->
-    <!-- this block translated by goapk.com -->
+<!-- this block translated by goapk.com -->
     <string name="save_to_sd">保存到SD卡</string>
     <string name="restore_from_sd">从SD上还原</string>
     <!-- Settings - Display Notification: toggle title -->
@@ -98,7 +97,6 @@
     <string name="prefs_display_notif_on">当情景模式改变时显示一个通知信息</string>
     <!-- Settings - Display Notification: help string when off -->
     <string name="prefs_display_notif_off">当情景模式改变时不显示通知信息</string>
-<!--  END NEW TRANSLATION -->
 
 
     <!-- === Intro screen === -->
@@ -166,13 +164,12 @@
     <string name="timedaction_brightness_int">亮度 %d%%</string>
     <string name="timedaction_apndroid_on">3G/2G数据连接关闭</string>
     <string name="timedaction_apndroid_off">3G/2G数据连接开启</string>
-<!-- BEGIN NEW TRANSLATION -->
-    <!-- this block translated by goapk.com -->
+
+<!-- this block translated by goapk.com -->
     <string name="timedaction_media_int">媒体 %d%%</string>
     <string name="timedaction_alarm_int">闹钟 %d%%</string>
     <string name="timedaction_auto_brightness">自动背光</string>
     <string name="timedaction_automatic">自动的</string>
-<!--  END NEW TRANSLATION -->
 
     <!-- edit profile screen -->
 
@@ -202,11 +199,11 @@
     <string name="editaction_wifi">Wifi</string>
     <string name="editaction_airplane">飞行模式</string>
     <string name="editaction_notif_volume">提醒音量.</string>
-<!-- BEGIN NEW TRANSLATION -->
-    <!-- this block translated by goapk.com -->
+
+<!-- this block translated by goapk.com -->
     <string name="editaction_media_volume">媒体音量</string>
     <string name="editaction_alarm_volume">闹钟音量</string>
-<!--  END NEW TRANSLATION -->
+
     <string name="editaction_bluetooth">蓝牙</string>
     <!-- APNdroid app name, not translated -->
     <string name="editaction_apndroid">APNdroid</string>
@@ -264,8 +261,8 @@
     <string name="checkservices_miss_wifi_service">开关Wifi</string>
     <string name="checkservices_miss_airplane">飞行模式</string>
     <string name="checkservices_miss_brightness">亮度</string>
-<!-- BEGIN NEW TRANSLATION -->
-    <!-- this block translated by goapk.com -->
+
+<!-- this block translated by goapk.com -->
     <string name="checkservices_miss_bluetooh">蓝牙</string>
     <string name="checkservices_miss_apndroid">APNDroid</string>
     <string name="checkservices_miss_ringguard">RingGuard</string>
@@ -274,7 +271,6 @@
     <string name="checkservices_help_bluetooh">蓝牙控制需要 Android 2.0 或更高版本的系统。</string>
     <string name="checkservices_help_application">想要开启这个功能，请从Android市场上下载安装软件 \'%s\'。</string>
     <string name="install_now_button">现在安装</string>
-<!--  END NEW TRANSLATION -->
 
     <!-- === Error Reporting === -->
 
@@ -284,7 +280,6 @@
     <!-- Error Report UI: generate button. -->
     <string name="errorreport_generate">生成报告</string>
 
-<!-- BEGIN - NEW TRANSLATE -->
     <!-- Error Report UI: next button (go from page 1 to page 2). -->
     <string name="errorreport_next">下一步 &gt;</string>
 
@@ -305,7 +300,6 @@
 
     <!-- Error Report UI page 1: text hint displayed *inside* the user feedback EditText -->
     <string name="errorreport_user_hint">在我们继续之前，请描述一下你遇到的问题或是对功能的要求。</string>
-<!-- END - NEW TRANSLATE -->
 
     <!-- Error Report UI: sending fail because there's no mail app. -->
     <string name="errorreport_nomailapp">未发现电子邮件或Gmail程序.请先从电子市场安装一个K9之类电子邮件程序.</string>

@@ -246,7 +246,7 @@
      <!-- Error Report UI: generate button. -->
      <string name="errorreport_generate">생성하기</string>
 
-<!-- BEGIN - NEW TRANSLATE -->
+<!-- BEGIN NEW TRANSLATION -->
     <!-- Error Report UI: next button (go from page 1 to page 2). -->
     <string name="errorreport_next">Next &gt;</string>
 
@@ -267,7 +267,7 @@
 
     <!-- Error Report UI page 1: text hint displayed *inside* the user feedback EditText -->
     <string name="errorreport_user_hint">Before we can continue, please describe here your error or your feature request.</string>
-<!-- END - NEW TRANSLATE -->
+<!-- END NEW TRANSLATION -->
 
      <!-- Error Report UI: sending fail because there's no mail app. -->
      <string name="errorreport_nomailapp">이메일/지메일을 통해 메시지를 보내려면 K9같은 어플을 설치하시기 바랍니다.</string>

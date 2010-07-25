@@ -88,7 +88,6 @@
     <!-- Settings - Animation of the toggle button logo: help string -->
     <string name="prefs_toggle_anim_tooltip">Vælg animationen af logo ikonet på profil-liste skærmen.</string>
 
-<!-- BEGIN NEW TRANSLATION -->
     <string name="save_to_sd">Gem på SD Kort</string>
     <string name="restore_from_sd">Genskab fra SD Kort</string>
     <!-- Settings - Display Notification: toggle title -->
@@ -97,7 +96,6 @@
     <string name="prefs_display_notif_on">Vis notifikation når en profil ændres</string>
     <!-- Settings - Display Notification: help string when off -->
     <string name="prefs_display_notif_off">Vis ikke notifikation når en profil ændres</string>
-<!--  END NEW TRANSLATION -->
 
 
     <!-- === Intro screen === -->
@@ -165,12 +163,10 @@
     <string name="timedaction_brightness_int">Lysstyrke %d%%</string>
     <string name="timedaction_apndroid_on">3G/2G Data Til</string>
     <string name="timedaction_apndroid_off">3G/2G Data Fra</string>
-<!-- BEGIN NEW TRANSLATION -->
     <string name="timedaction_media_int">Medie %d%%</string>
     <string name="timedaction_alarm_int">Alarm %d%%</string>
     <string name="timedaction_auto_brightness">Automatisk Lysstyrke</string>
     <string name="timedaction_automatic">Automatisk</string>
-<!--  END NEW TRANSLATION -->
 
     <!-- edit profile screen -->
 
@@ -200,10 +196,8 @@
     <string name="editaction_wifi">Wifi</string>
     <string name="editaction_airplane">Flytilstand</string>
     <string name="editaction_notif_volume">Meddelelseslyd</string>
-<!-- BEGIN NEW TRANSLATION -->
     <string name="editaction_media_volume">Medielydstyrke</string>
     <string name="editaction_alarm_volume">Alarmlydstyrke</string>
-<!--  END NEW TRANSLATION -->
     <string name="editaction_bluetooth">Bluetooth</string>
     <!-- APNdroid app name, not translated -->
     <string name="editaction_apndroid">APNdroid</string>
@@ -260,7 +254,6 @@
     <string name="checkservices_miss_wifi_service">Wifi skift</string>
     <string name="checkservices_miss_airplane">Flytilstand</string>
     <string name="checkservices_miss_brightness">Lysstyrke</string>
-<!-- BEGIN NEW TRANSLATION -->
     <string name="checkservices_miss_bluetooh">Bluetooth</string>
     <string name="checkservices_miss_apndroid">APNDroid</string>
     <string name="checkservices_miss_ringguard">RingGuard</string>
@@ -269,7 +262,6 @@
     <string name="checkservices_help_bluetooh">Bluetooth kontrol kræver Android 2.0 eller nyere.</string>
     <string name="checkservices_help_application">For at aktiver denne funktion, så installer programmet \'%s\' fra Android Marked.</string>
     <string name="install_now_button">Installer Nu</string>
-<!--  END NEW TRANSLATION -->
 
     <!-- === Error Reporting === -->
 

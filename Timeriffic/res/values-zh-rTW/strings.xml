@@ -88,7 +88,6 @@
     <!-- Settings - Animation of the toggle button logo: help string -->
     <string name="prefs_toggle_anim_tooltip">選取開關圖示的動畫效果.</string>
 
-<!-- BEGIN NEW TRANSLATION -->
     <string name="save_to_sd">儲存到SD卡</string>
     <string name="restore_from_sd">從SD上還原</string>
     <!-- Settings - Display Notification: toggle title -->
@@ -97,7 +96,6 @@
     <string name="prefs_display_notif_on">當情景模式改變時顯示一個通知訊息</string>
     <!-- Settings - Display Notification: help string when off -->
     <string name="prefs_display_notif_off">當情景模式改變時不顯示通知訊息</string>
-<!--  END NEW TRANSLATION -->
 
 
     <!-- === Intro screen === -->
@@ -165,12 +163,10 @@
     <string name="timedaction_brightness_int">亮度 %d%%</string>
     <string name="timedaction_apndroid_on">3G/2G資料連接關閉</string>
     <string name="timedaction_apndroid_off">3G/2G資料連接開啟</string>
-<!-- BEGIN NEW TRANSLATION -->
     <string name="timedaction_media_int">媒體 %d%%</string>
     <string name="timedaction_alarm_int">鬧鐘 %d%%</string>
     <string name="timedaction_auto_brightness">自動背光</string>
     <string name="timedaction_automatic">自動的</string>
-<!--  END NEW TRANSLATION -->
 
     <!-- edit profile screen -->
 
@@ -200,10 +196,8 @@
     <string name="editaction_wifi">Wifi</string>
     <string name="editaction_airplane">飛行模式</string>
     <string name="editaction_notif_volume">提醒音量.</string>
-<!-- BEGIN NEW TRANSLATION -->
     <string name="editaction_media_volume">媒體音量</string>
     <string name="editaction_alarm_volume">鬧鐘音量</string>
-<!--  END NEW TRANSLATION -->
     <string name="editaction_bluetooth">藍牙</string>
     <!-- APNdroid app name, not translated -->
     <string name="editaction_apndroid">APNdroid</string>
@@ -261,7 +255,6 @@
     <string name="checkservices_miss_wifi_service">開關Wifi</string>
     <string name="checkservices_miss_airplane">飛行模式</string>
     <string name="checkservices_miss_brightness">亮度</string>
-<!-- BEGIN NEW TRANSLATION -->
     <string name="checkservices_miss_bluetooh">藍牙</string>
     <string name="checkservices_miss_apndroid">APNDroid</string>
     <string name="checkservices_miss_ringguard">RingGuard</string>
@@ -270,7 +263,6 @@
     <string name="checkservices_help_bluetooh">藍牙控制需要 Android 2.0 或更高版本的系統。</string>
     <string name="checkservices_help_application">想要開啟這個功能，請從Android市場上下載安裝軟體 \'%s\'。</string>
     <string name="install_now_button">現在安裝</string>
-<!--  END NEW TRANSLATION -->
 
     <!-- === Error Reporting === -->
 
@@ -280,7 +272,6 @@
     <!-- Error Report UI: generate button. -->
     <string name="errorreport_generate">產生報告</string>
 
-<!-- BEGIN - NEW TRANSLATE -->
     <!-- Error Report UI: next button (go from page 1 to page 2). -->
     <string name="errorreport_next">下一步 &gt;</string>
 
@@ -301,7 +292,6 @@
 
     <!-- Error Report UI page 1: text hint displayed *inside* the user feedback EditText -->
     <string name="errorreport_user_hint">在我們繼續之前，請描述一下你遇到的問題或是對功能的要求。</string>
-<!-- END - NEW TRANSLATE -->
 
     <!-- Error Report UI: sending fail because there's no mail app. -->
     <string name="errorreport_nomailapp">未發現電子郵件或Gmail程式.請先從電子市場安裝一個K9之類別電子郵件程式.</string>

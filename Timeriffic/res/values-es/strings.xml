@@ -146,12 +146,10 @@
     <string name="timedaction_brightness_int">Brillo %d%%</string>
     <string name="timedaction_apndroid_on">Red 3G/2G activada</string>
     <string name="timedaction_apndroid_off">Red 3G/2G desactivada</string>
-<!-- BEGIN NEW TRANSLATION -->
     <string name="timedaction_media_int">Media %d%%</string>
-    <string name="timedaction_alarm_int">Alarm %d%%</string>
-    <string name="timedaction_auto_brightness">Automatic Brightness</string>
-    <string name="timedaction_automatic">Automatic</string>
-<!--  END NEW TRANSLATION -->
+    <string name="timedaction_alarm_int">Alarma %d%%</string>
+    <string name="timedaction_auto_brightness">Brillo automático</string>
+    <string name="timedaction_automatic">Automático</string>
 
     <string name="ringermode_ring">Sonar</string>
     <string name="ringermode_mute">Silencio</string>
@@ -187,10 +185,8 @@
     <string name="editaction_wifi">Wi-Fi</string>
     <string name="editaction_airplane">Modo avión</string>
     <string name="editaction_notif_volume">Vol. notificación</string>
-<!-- BEGIN NEW TRANSLATION -->
-    <string name="editaction_media_volume">Media Vol.</string>
-    <string name="editaction_alarm_volume">Alarm Vol.</string>
-<!--  END NEW TRANSLATION -->
+    <string name="editaction_media_volume">Volumen media</string>
+    <string name="editaction_alarm_volume">Volumen alarma</string>
     <string name="editaction_bluetooth">Bluetooth</string>
 
     <!-- percent dialog -->
@@ -234,16 +230,14 @@
     <string name="checkservices_miss_wifi_service">Estado de la conexión Wi-Fi</string>
     <string name="checkservices_miss_airplane">Modo avión</string>
     <string name="checkservices_miss_brightness">Cambiar el brillo</string>
-<!-- BEGIN NEW TRANSLATION -->
     <string name="checkservices_miss_bluetooh">Bluetooth</string>
     <string name="checkservices_miss_apndroid">APNDroid</string>
     <string name="checkservices_miss_ringguard">RingGuard</string>
-    <string name="checkservices_explain_why">explain why</string>
+    <string name="checkservices_explain_why">Explicar</string>
 
-    <string name="checkservices_help_bluetooh">Bluetooth control requires Android 2.0 or more.</string>
-    <string name="checkservices_help_application">To enable this feature, install the application \'%s\' from Android Market.</string>
-    <string name="install_now_button">Install Now</string>
-<!--  END NEW TRANSLATION -->
+    <string name="checkservices_help_bluetooh">Bluetooth control requiere Android 2.0 o más.</string>
+    <string name="checkservices_help_application">Para activar esta función, instale la aplicación \'%s\' de Android Market.</string>
+    <string name="install_now_button">Instalar ahora</string>
 
     <!-- === Error Reporting === -->
 
