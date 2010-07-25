@@ -36,6 +36,12 @@
         android:text="@string/percent_do_not_change"
         />
     <RadioButton
+        android:id="@+id/custom_choice"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Custom choice placeholder (do not translate)"
+        />
+    <RadioButton
         android:id="@+id/radio_change"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

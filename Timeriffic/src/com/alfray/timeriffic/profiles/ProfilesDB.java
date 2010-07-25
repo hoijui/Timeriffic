@@ -52,7 +52,7 @@ import android.widget.Toast;
  */
 public class ProfilesDB {
 
-    private static final boolean DEBUG = true;
+    private static final boolean DEBUG = false;
     public static final String TAG = "TFC-ProfDB";
 
     private static final String PROFILES_TABLE = "profiles";

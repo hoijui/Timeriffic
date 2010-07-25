@@ -19,11 +19,15 @@
 package com.alfray.timeriffic.utils;
 
 import java.lang.reflect.Method;
+import java.util.List;
 
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
 import android.media.AudioManager;
 import android.net.wifi.WifiManager;
 import android.os.Build;
@@ -64,6 +68,29 @@ public class SettingsHelper {
 
     public boolean canControlBrigthness() {
         return true;
+    }
+
+    /** android.provider.Settings.SCREEN_BRIGHTNESS_MODE, available starting with API 8. */
+    private static final String AUTO_BRIGHT_KEY = Settings.System.SCREEN_BRIGHTNESS_MODE;
+    /** Auto-brightness is supported and in "manual" mode. */
+    public static final int AUTO_BRIGHT_MANUAL = Settings.System.SCREEN_BRIGHTNESS_MODE_MANUAL;
+    /** Auto-brightness is supported and in automatic mode. */
+    public static final int AUTO_BRIGHT_AUTO = Settings.System.SCREEN_BRIGHTNESS_MODE_AUTOMATIC;
+    /** Auto-brightness is not supported. */
+    public static final int AUTO_BRIGHT_UNSUPPORTED = -1;
+
+    public boolean canControlAutoBrightness() {
+        final ContentResolver resolver = mContext.getContentResolver();
+        int mode = Settings.System.getInt(resolver,  AUTO_BRIGHT_KEY, AUTO_BRIGHT_UNSUPPORTED);
+        if (mode == AUTO_BRIGHT_UNSUPPORTED) return false;
+
+        SensorManager manager = (SensorManager) mContext.getSystemService(Context.SENSOR_SERVICE);
+        if (manager != null) {
+            List<Sensor> list = manager.getSensorList(Sensor.TYPE_LIGHT);
+            if (list != null && list.size() > 0) return true;
+        }
+
+        return false;
     }
 
     public boolean canControlAirplaneMode() {
@@ -341,6 +368,21 @@ public class SettingsHelper {
     }
 
     // --- Global Brightness --
+
+    public void changeAutoBrightness(boolean auto) {
+        final ContentResolver resolver = mContext.getContentResolver();
+        Settings.System.putInt(resolver,  AUTO_BRIGHT_KEY,
+                        auto ? AUTO_BRIGHT_AUTO : AUTO_BRIGHT_MANUAL);
+    }
+
+    /**
+     * Returns one of {@link #AUTO_BRIGHT_MANUAL}, {@link #AUTO_BRIGHT_AUTO} or
+     * {@link #AUTO_BRIGHT_UNSUPPORTED}.
+     */
+    public int getAutoBrightness() {
+        final ContentResolver resolver = mContext.getContentResolver();
+        return Settings.System.getInt(resolver,  AUTO_BRIGHT_KEY, AUTO_BRIGHT_UNSUPPORTED);
+    }
 
     /**
      * @param percent The new value in 0..100 range (will get mapped to adequate OS values)

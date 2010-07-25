@@ -205,15 +205,27 @@ public class ApplySettings {
                         }
                     }
                     break;
+                case Columns.ACTION_BRIGHTNESS:
+                    if (v == Columns.ACTION_BRIGHTNESS_AUTO) {
+                        settings.changeAutoBrightness(true);
+                        didSomething = true;
+                    } else {
+                        try {
+                            value = Integer.parseInt(action.substring(1));
+                            settings.changeAutoBrightness(false);
+                            settings.changeBrightness(value, true /*persist*/);
+                            didSomething = true;
+                        } catch (NumberFormatException e) {
+                            // pass
+                        }
+                    }
+                    didSomething = true;
+                    break;
                 default:
                     try {
                         value = Integer.parseInt(action.substring(1));
 
                         switch(code) {
-                        case Columns.ACTION_BRIGHTNESS:
-                            settings.changeBrightness(value, true /*persist*/);
-                            didSomething = true;
-                            break;
                         case Columns.ACTION_RING_VOLUME:
                             settings.changeRingerVolume(value);
                             didSomething = true;

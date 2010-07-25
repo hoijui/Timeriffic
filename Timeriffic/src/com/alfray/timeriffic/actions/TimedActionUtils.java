@@ -188,19 +188,30 @@ public class TimedActionUtils {
                             }
                         }
                         break;
+                    case Columns.ACTION_BRIGHTNESS:
+                        if (sh.canControlBrigthness()) {
+                            if (sh.canControlAutoBrightness() && v == Columns.ACTION_BRIGHTNESS_AUTO) {
+                                String str = context.getString(R.string.timedaction_auto_brightness);
+                                actions_names.add(str);
+                            } else {
+                                try {
+                                    value = Integer.parseInt(action.substring(1));
+
+                                    actions_names.add(
+                                                context.getString(
+                                                    R.string.timedaction_brightness_int,
+                                                    value));
+                                } catch (NumberFormatException e) {
+                                    // ignore
+                                }
+                            }
+                        }
+                        break;
                     default:
                         try {
                             value = Integer.parseInt(action.substring(1));
 
                             switch(code) {
-                            case Columns.ACTION_BRIGHTNESS:
-                                if (sh.canControlBrigthness()) {
-                                    actions_names.add(
-                                            context.getString(
-                                                    R.string.timedaction_brightness_int,
-                                                    value));
-                                }
-                                break;
                             case Columns.ACTION_RING_VOLUME:
                                 actions_names.add(
                                         context.getString(

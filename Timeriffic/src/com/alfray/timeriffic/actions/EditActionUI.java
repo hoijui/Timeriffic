@@ -18,8 +18,6 @@
 
 package com.alfray.timeriffic.actions;
 
-import java.util.Locale;
-
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -180,6 +178,21 @@ public class EditActionUI extends ExceptionHandlerActivity {
                         public int getPercent() {
                             return mSettingsHelper.getRingerVolume();
                         }
+
+                        @Override
+                        public int getCustomChoiceLabel() {
+                            return 0;
+                        }
+
+                        @Override
+                        public int getCustomChoiceButtonLabel() {
+                            return 0;
+                        }
+
+                        @Override
+                        public char getCustomChoiceValue() {
+                            return 0;
+                        }
                     });
             mPrefRingerVolume.setEnabled(mSettingsHelper.canControlAudio(),
                     getString(R.string.setting_not_supported));
@@ -204,6 +217,21 @@ public class EditActionUI extends ExceptionHandlerActivity {
                         public int getPercent() {
                             return mSettingsHelper.getNotificationVolume();
                         }
+
+                        @Override
+                        public int getCustomChoiceLabel() {
+                            return 0;
+                        }
+
+                        @Override
+                        public int getCustomChoiceButtonLabel() {
+                            return 0;
+                        }
+
+                        @Override
+                        public char getCustomChoiceValue() {
+                            return 0;
+                        }
                     });
             mPercentDialogMap.put(
                     mPrefNotifVolume.setDialogId(++dialogId),
@@ -224,6 +252,21 @@ public class EditActionUI extends ExceptionHandlerActivity {
                         @Override
                         public int getPercent() {
                             return mSettingsHelper.getMediaVolume();
+                        }
+
+                        @Override
+                        public int getCustomChoiceLabel() {
+                            return 0;
+                        }
+
+                        @Override
+                        public int getCustomChoiceButtonLabel() {
+                            return 0;
+                        }
+
+                        @Override
+                        public char getCustomChoiceValue() {
+                            return 0;
                         }
                     });
             mPercentDialogMap.put(
@@ -246,6 +289,21 @@ public class EditActionUI extends ExceptionHandlerActivity {
                         public int getPercent() {
                             return mSettingsHelper.getAlarmVolume();
                         }
+
+                        @Override
+                        public int getCustomChoiceLabel() {
+                            return 0;
+                        }
+
+                        @Override
+                        public int getCustomChoiceButtonLabel() {
+                            return 0;
+                        }
+
+                        @Override
+                        public char getCustomChoiceValue() {
+                            return 0;
+                        }
                     });
             mPercentDialogMap.put(
                     mPrefAlarmVolume.setDialogId(++dialogId),
@@ -267,6 +325,23 @@ public class EditActionUI extends ExceptionHandlerActivity {
                         @Override
                         public int getPercent() {
                             return mSettingsHelper.getCurrentBrightness();
+                        }
+
+                        @Override
+                        public int getCustomChoiceLabel() {
+                            if (mSettingsHelper.canControlAutoBrightness()) {
+                                return R.string.timedaction_auto_brightness;
+                            }
+                            return 0;
+                        }
+
+                        public int getCustomChoiceButtonLabel() {
+                            return R.string.timedaction_automatic;
+                        }
+
+                        @Override
+                        public char getCustomChoiceValue() {
+                            return Columns.ACTION_BRIGHTNESS_AUTO;
                         }
                     });
             mPrefBrightness.setEnabled(mSettingsHelper.canControlBrigthness(),

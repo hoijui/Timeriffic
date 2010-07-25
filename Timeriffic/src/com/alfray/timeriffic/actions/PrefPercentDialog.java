@@ -39,10 +39,26 @@ public class PrefPercentDialog extends AlertDialog
     private Accessor mAccessor;
     private RadioButton mRadioNoChange;
     private RadioButton mRadioChange;
+    private RadioButton mRadioCustomChoice;
 
+    /** Callback to communicate back with client */
     public interface Accessor {
+        /** Returns actual percentage value for this pref. */
         public int getPercent();
+        /** Live change to given value when user is dragging the seek bar. */
         public void changePercent(int percent);
+        /** Indicates whether this pref needs a custom choice.
+         * Returns <=0 to remove the custom choice, otherwise return the resource id
+         * of the string to display. */
+        public int getCustomChoiceLabel();
+        /** Returns the text used on the action UI when the custom choice has been used.
+         * Should be shorter than the radio button text returned by
+         * {@link #getCustomChoiceLabel()}. */
+        public int getCustomChoiceButtonLabel();
+        /** Returns the internal value to use for the custom choice (appended to the prefix).
+         * This has nothing to do with the actually setting value.
+         * Returns 0 if there's no custom choice. */
+        public char getCustomChoiceValue();
     }
 
     protected PrefPercentDialog(Context context, PrefPercent prefPercent) {
@@ -63,6 +79,17 @@ public class PrefPercentDialog extends AlertDialog
         mRadioChange   = (RadioButton) content.findViewById(R.id.radio_change);
         mRadioChange.setOnClickListener(this);
 
+        mRadioCustomChoice = (RadioButton) content.findViewById(R.id.custom_choice);
+        int strId = mAccessor.getCustomChoiceLabel();
+        if (strId <= 0) {
+            mRadioCustomChoice.setEnabled(false);
+            mRadioCustomChoice.setVisibility(View.GONE);
+            mRadioCustomChoice = null;
+        } else {
+            mRadioCustomChoice.setText(strId);
+            mRadioCustomChoice.setOnClickListener(this);
+        }
+
         mSeekBar = (SeekBar) content.findViewById(R.id.seekbar);
         mSeekBar.setOnSeekBarChangeListener(this);
         mSeekBar.setMax(100);
@@ -81,7 +108,13 @@ public class PrefPercentDialog extends AlertDialog
             mRadioNoChange.setChecked(false);
             mSeekBar.setProgress(percent);
             mSeekBar.setEnabled(true);
+        } else if (mRadioCustomChoice != null && percent == PrefPercent.VALUE_CUSTOM_CHOICE) {
+            mRadioCustomChoice.setChecked(true);
+            mRadioChange.setChecked(false);
+            mRadioNoChange.setChecked(false);
+            mSeekBar.setEnabled(false);
         } else {
+            // Default is PrefPercent.VALUE_UNCHANGED
             mRadioChange.setChecked(false);
             mRadioNoChange.setChecked(true);
             mSeekBar.setProgress(mInitialValue);
@@ -138,8 +171,10 @@ public class PrefPercentDialog extends AlertDialog
         // Update button with percentage selected
         if (mRadioChange.isChecked()) {
             mPrefPercent.setValue(mSeekBar.getProgress());
+        } else if (mRadioCustomChoice != null && mRadioCustomChoice.isChecked()) {
+            mPrefPercent.setValue(PrefPercent.VALUE_CUSTOM_CHOICE);
         } else {
-            mPrefPercent.setValue(-1);
+            mPrefPercent.setValue(PrefPercent.VALUE_UNCHANGED);
         }
         dismiss();
     }

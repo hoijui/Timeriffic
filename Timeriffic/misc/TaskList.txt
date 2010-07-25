@@ -70,6 +70,7 @@ DONE for 1.9
 DONE for 1.8
 
 [1.8.18]
+20100725 Added Automatic-Brightness support
 20100725 Fix: in user report, indicate we'd like the comment in English.
 20100725 Cleanup translation-block tags in XML strings files.
 20100725 Update German translation by Laias

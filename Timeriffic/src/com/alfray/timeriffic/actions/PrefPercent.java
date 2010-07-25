@@ -32,11 +32,17 @@ import com.alfray.timeriffic.actions.PrefPercentDialog.Accessor;
 
 //-----------------------------------------------
 
-class PrefPercent extends PrefBase implements View.OnClickListener {
+public class PrefPercent extends PrefBase implements View.OnClickListener {
 
     private char mActionPrefix;
     private Button mButton;
-    /** -1 if unchanged, or 0..100 */
+
+    /** Indicates the preference is set to "unchanged" */
+    public final static int VALUE_UNCHANGED = -1;
+    /** Indicates the preference is set to the custom choice */
+    public final static int VALUE_CUSTOM_CHOICE = -2;
+
+    /** One of {@link #VALUE_UNCHANGED}, {@link #VALUE_CUSTOM_CHOICE}, or 0..100 */
     private int mCurrentValue;
 
     private final String mDialogTitle;
@@ -63,7 +69,7 @@ class PrefPercent extends PrefBase implements View.OnClickListener {
         mButton.setOnClickListener(this);
         mButton.setTag(this);
 
-        mCurrentValue = -1;
+        mCurrentValue = VALUE_UNCHANGED;
         initValue(actions, actionPrefix);
         updateButtonText();
     }
@@ -97,11 +103,12 @@ class PrefPercent extends PrefBase implements View.OnClickListener {
         return mAccessor;
     }
 
-    /** -1 if unchanged, or 0..100 */
+    /** Returns one of {@link #VALUE_UNCHANGED}, {@link #VALUE_CUSTOM_CHOICE}, or 0..100 */
     public int getCurrentValue() {
         return mCurrentValue;
     }
 
+    /** Sets to one of {@link #VALUE_UNCHANGED}, {@link #VALUE_CUSTOM_CHOICE}, or 0..100 */
     public void setValue(int percent) {
         mCurrentValue = percent;
         updateButtonText();
@@ -111,19 +118,29 @@ class PrefPercent extends PrefBase implements View.OnClickListener {
 
         String currentValue = getActionValue(actions, prefix);
 
+        char customChoiceValue = mAccessor.getCustomChoiceValue();
+        if (currentValue != null &&
+                        currentValue.length() > 1 &&
+                        currentValue.charAt(1) == customChoiceValue) {
+            mCurrentValue = VALUE_CUSTOM_CHOICE;
+        }
         try {
             mCurrentValue = Integer.parseInt(currentValue);
         } catch (Exception e) {
-            mCurrentValue = -1;
+            mCurrentValue = VALUE_UNCHANGED;
         }
     }
 
     private void updateButtonText() {
         Resources r = getActivity().getResources();
 
-        String label = mCurrentValue < 0 ?
-                          r.getString(R.string.percent_button_unchanged) :
-                          String.format("%d%%", mCurrentValue);
+        String label = r.getString(R.string.percent_button_unchanged);
+        int customStrId = mAccessor.getCustomChoiceButtonLabel();
+        if (customStrId > 0 && mCurrentValue == VALUE_CUSTOM_CHOICE) {
+            label = r.getString(customStrId);
+        } else if (mCurrentValue >= 0) {
+            label = String.format("%d%%", mCurrentValue);
+        }
 
         CharSequence t = r.getText(R.string.editaction_button_label);
 
@@ -155,9 +172,13 @@ class PrefPercent extends PrefBase implements View.OnClickListener {
     }
 
     public void collectResult(StringBuilder actions) {
-        if (isEnabled() &&
-                mCurrentValue >= 0) {
-            appendAction(actions, mActionPrefix, Integer.toString(mCurrentValue));
+        if (isEnabled()) {
+            char customChoiceValue = mAccessor.getCustomChoiceValue();
+            if (customChoiceValue > 0 && mCurrentValue == VALUE_CUSTOM_CHOICE) {
+                appendAction(actions, mActionPrefix, Character.toString(customChoiceValue));
+            } else if (mCurrentValue >= 0) {
+                appendAction(actions, mActionPrefix, Integer.toString(mCurrentValue));
+            }
         }
     }
 
