@@ -18,7 +18,7 @@ v1.10 "Profile UI revamp"
 
 v1.11 "Exclusion feature"
 
-v1.12 
+v1.12
 
 T v1.8.15 => medium update, couple features + improvements based on googlecode tickets.
 . T need to add serious functional tests + UI tests framework (to make sure things don't break when I add features)
@@ -68,6 +68,18 @@ TODO (misc)
 DONE for 1.9
 
 DONE for 1.8
+
+[1.8.18]
+20100725 Fix: in user report, indicate we'd like the comment in English.
+20100725 Cleanup translation-block tags in XML strings files.
+20100725 Update German translation by Laias
+20100724 Moved to different googlecode repo.
+
+[1.8.17]
+20100710 1.8.17 in Market
+20100710 Fix missing uses-feature in manifest, should make apps visible on 1.6 devices again
+20100707 Danish translation update by Stefan Thrane Overby
+20100702 Ins deutsch übersetzt -- Update von Laias
 
 [1.8.16]
 20100702 1.8.16 in Market

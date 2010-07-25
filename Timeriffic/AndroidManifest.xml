@@ -18,7 +18,7 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.alfray.timeriffic" android:versionCode="1817" android:versionName="1.8.17">
+	package="com.alfray.timeriffic" android:versionName="1.8.18" android:versionCode="1818">
     <application
         android:label="@string/app_name"
         android:name=".app.TimerifficApp" android:icon="@drawable/app_icon">

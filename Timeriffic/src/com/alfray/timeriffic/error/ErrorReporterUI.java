@@ -143,6 +143,7 @@ public class ErrorReporterUI extends ExceptionHandlerActivity {
         mRadioGroup = (RadioGroup) findViewById(R.id.radio_group);
         mWebView = (WebView) findViewById(R.id.web);
         mUserText = (EditText) findViewById(R.id.user_text);
+        adjustUserHint(mUserText);
 
         mAppName = getString(R.string.app_name);
 
@@ -176,6 +177,23 @@ public class ErrorReporterUI extends ExceptionHandlerActivity {
 
         selectPage(mIsException ? 2 : 1);
         updateButtons();
+    }
+
+    /**
+     * Get the text hint from the text field. If we current translation has a hint2 text
+     * (which typically says "Please write comment in English" and is going to be empty
+     * in English), then we happend that text to the hint.
+     */
+    private void adjustUserHint(EditText userText) {
+        String str2 = getString(R.string.errorreport_user_hint_english);
+        if (str2 == null) return;
+        str2 = str2.trim();
+        if (str2.length() == 0) return;
+
+        String str1 = userText.getHint().toString();
+        str1 = str1.trim();
+        if (str1.length() > 0) str1 += " ";
+        userText.setHint(str1 + str2);
     }
 
     @Override

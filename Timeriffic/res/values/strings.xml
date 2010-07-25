@@ -292,6 +292,9 @@
     <!-- Error Report UI page 1: text hint displayed *inside* the user feedback EditText -->
     <string name="errorreport_user_hint">Before we can continue, please describe here your error or your feature request.</string>
 
+    <!-- Error Report UI page 1: text hint part 2 is "please write in English". DO NOT TRANSLATE -->
+    <string name="errorreport_user_hint_english">(Please write the comment in English if possible.)</string>
+
     <!-- Error Report UI: sending fail because there's no mail app. -->
     <string name="errorreport_nomailapp">No Email/Gmail app found to send the message. Please install one such as K9 from Market first.</string>
 

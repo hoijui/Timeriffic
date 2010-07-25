@@ -45,4 +45,8 @@
 
     <string name="globalstatus_nextlast_date_time">MMMM d, yyyy h:mm a</string>
 
+    <!-- Error Report UI page 1: text hint part 2 is "please write in English".
+         Empty in English. -->
+    <string name="errorreport_user_hint_english"></string>
+
 </resources>
