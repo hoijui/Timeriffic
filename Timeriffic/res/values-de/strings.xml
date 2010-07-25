@@ -116,7 +116,7 @@
 
     <string name="profiles_empty_help">Benutze das MENÜ um neue Profile hinzuzufügen.</string>
 
-    <string name="timedactioncontextmenu_title">Zeitaktion</string>
+    <string name="timedactioncontextmenu_title">Aktion</string>
 
     <string name="profilecontextmenu_title">Profil</string>
 
@@ -175,7 +175,7 @@
 
     <!-- edit action screen -->
 
-    <string name="editaction_title">Timeriffic - Zeitaktion bearbeiten</string>
+    <string name="editaction_title">Timeriffic - Aktion bearbeiten</string>
 
     <string name="editaction_section_action">Aktion</string>
     <string name="editaction_section_time_and_day">Datum und Zeit</string>
@@ -186,7 +186,7 @@
     <string name="setting_not_supported">Nicht ünterstüzt</string>
     <string name="setting_not_installed">Nicht installiert</string>
 
-    <string name="editaction_ringer">Klingeltonlaut.</string>
+    <string name="editaction_ringer">Klingelton</string>
     <string name="editaction_vibrate">Vibration</string>
     <string name="editaction_volume">Hauptlautstärke</string>
     <string name="editaction_brightness">Helligkeit</string>
@@ -228,7 +228,7 @@
 
     <!-- global status (information view at the top) -->
 
-    <string name="globalstatus_nextlast_date_time">dd.MM.yyyy HH:mm:ss</string>
+    <string name="globalstatus_nextlast_date_time">yyyy/MM/dd HH:mm:ss</string>
     <string name="globalstatus_next">Nächste:</string>
     <string name="globalstatus_last">Letzte:</string>
     <string name="globalstatus_disabled">Timeriffic ist ausgeschaltet</string>
