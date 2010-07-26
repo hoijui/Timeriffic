@@ -149,13 +149,13 @@ public class Columns implements BaseColumns {
     public static final char ACTION_VIBRATE     = 'V';
     /** Ringer volume. Integer: 0..100 */
     public static final char ACTION_RING_VOLUME = 'G';
-    /** Notification volume. Integer: 0..100 */
+    /** Notification volume. Integer: 0..100 or 'r' for uses-ring-volume */
     public static final char ACTION_NOTIF_VOLUME = 'N';
     /** Media volume. Integer: 0..100 */
     public static final char ACTION_MEDIA_VOLUME = 'M';
     /** Alarm volume. Integer: 0..100 */
     public static final char ACTION_ALARM_VOLUME = 'L';
-    /** Screen Brightness. Integer: 0..100 or -2 for automatic brightness */
+    /** Screen Brightness. Integer: 0..100 or 'a' for automatic brightness */
     public static final char ACTION_BRIGHTNESS  = 'B';
     /** Wifi. Boolean: 0..1 */
     public static final char ACTION_WIFI        = 'W';
@@ -168,6 +168,8 @@ public class Columns implements BaseColumns {
 
     /** Special value for {@link #ACTION_BRIGHTNESS} to set it to automatic. */
     public static final char ACTION_BRIGHTNESS_AUTO = 'a';
+    /** Special value for {@link #ACTION_NOTIF_VOLUME} to indicate it uses ring volume. */
+    public static final char ACTION_NOTIF_RING_VOL_SYNC = 'r';
 
     /**
      * The precomputed System.currentTimeMillis timestamp of the next event for this action.

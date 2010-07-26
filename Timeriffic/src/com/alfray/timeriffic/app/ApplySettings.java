@@ -160,7 +160,7 @@ public class ApplySettings {
             String time = mUiDateFormat.format(new Date(System.currentTimeMillis()));
 
             // Format the action description
-            String a = TimedActionUtils.computeActions(mContext, lastAction);
+            String a = TimedActionUtils.computeLabels(mContext, lastAction);
 
             synchronized (mPrefs.editLock()) {
                 Editor e = mPrefs.startEdit();
@@ -220,6 +220,24 @@ public class ApplySettings {
                     }
                     break;
 
+                case Columns.ACTION_NOTIF_VOLUME:
+                    if (v == Columns.ACTION_NOTIF_RING_VOL_SYNC) {
+                        settings.changeNotifRingVolSync(true);
+                        didSomething = true;
+
+                    } else {
+                        try {
+                            value = Integer.parseInt(action.substring(1));
+
+                            settings.changeNotifRingVolSync(false);
+                            settings.changeNotificationVolume(value);
+                            didSomething = true;
+                        } catch (NumberFormatException e) {
+                            // pass
+                        }
+                    }
+                    break;
+
                 default:
                     try {
                         value = Integer.parseInt(action.substring(1));
@@ -227,10 +245,6 @@ public class ApplySettings {
                         switch(code) {
                         case Columns.ACTION_RING_VOLUME:
                             settings.changeRingerVolume(value);
-                            didSomething = true;
-                            break;
-                        case Columns.ACTION_NOTIF_VOLUME:
-                            settings.changeNotificationVolume(value);
                             didSomething = true;
                             break;
                         case Columns.ACTION_MEDIA_VOLUME:
@@ -324,7 +338,7 @@ public class ApplySettings {
             try {
                 mPrefs.editLastScheduledAlarm(e, timeMs);
                 mPrefs.editStatusNextTS(e, s2);
-                mPrefs.editStatusNextAction(e, TimedActionUtils.computeActions(mContext, nextActions.mActions));
+                mPrefs.editStatusNextAction(e, TimedActionUtils.computeLabels(mContext, nextActions.mActions));
             } finally {
                 mPrefs.endEdit(e, TAG);
             }

@@ -43,8 +43,6 @@ TODO (misc)
 20100309 Bug: Missing WakeLock permission (can't repro, happens rarely)
 20100309 APNDroid button: don't gray, explain what to do
 20100309 BT 2.0: don't gray, explain why missing
-20100309 Ring/Notif volume: check if tied in prefs (possible?)
-20100309 Ring/Notif volume: explain it must not be tied in prefs
 20100309 Support 24
 
 20091222 Don't start Airplane mode when in talk. Delay via notification.
@@ -67,6 +65,7 @@ DONE for 1.9
 DONE for 1.8
 
 [1.8.18]
+20100725 Detect "Notificaion uses ring volume" mode, edit in notification settings
 20100725 Moved airplane, wifi, bluetooth, apndroid to new settings. Didn't touch volume + ring/vib.
 20100725 Implemented new architecture for settings
 20100725 Added Automatic-Brightness support

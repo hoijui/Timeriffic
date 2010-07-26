@@ -163,6 +163,23 @@
     <string name="timedaction_apndroid_on">3G/2G Daten An</string>
     <string name="timedaction_apndroid_off">3G/2G Daten Aus</string>
 
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="timedaction_media_int">Media %d%%</string>
+    <string name="timedaction_alarm_int">Alarm %d%%</string>
+    <string name="timedaction_auto_brightness">Automatic Brightness</string>
+    <string name="timedaction_automatic">Automatic</string>
+
+    <!-- Short description in the action list indicating that notification
+         volume uses the ring volume. -->
+    <string name="timedaction_notif_ring_sync">Notification uses ring vol.</string>
+    <!-- Radio-button in the Action>Edit>Notif Vol dialog that indicates whether
+         notification volume uses the ring volume. -->
+    <string name="editaction_notif_ring_sync">Notification uses ring volume.</string>
+    <!-- String displayed in the 2nd line of the Action>Edit>Notif Vol button
+         indicating that notification volume uses the ring volume. Must be really short. -->
+    <string name="actionlabel_notif_ring_sync">Uses ring volume</string>
+<!-- END NEW TRANSLATE -->
+
     <!-- edit profile screen -->
 
     <string name="editprofile_title">Profil erstellen/ändern</string>

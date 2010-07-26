@@ -18,24 +18,15 @@
 
 package com.alfray.timeriffic.utils;
 
-import java.lang.reflect.Method;
-import java.util.List;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
-import android.hardware.Sensor;
-import android.hardware.SensorManager;
 import android.media.AudioManager;
-import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
 
 import com.alfray.timeriffic.R;
-import com.google.code.apndroid.ApplicationConstants;
 
 /**
  * Helper class that changes settings.
@@ -55,6 +46,17 @@ public class SettingsHelper {
     private static final boolean DEBUG = true;
     public static final String TAG = "TFC-SettingsH";
 
+    /** android.provider.Settings.NOTIFICATION_USE_RING_VOLUME, available starting with API 5
+     *  but it's hidden from the SDK. The Settings.java comment says eventually this setting
+     *  will go away later once there are "profile" support, whatever that is. */
+    private static final String NOTIF_RING_VOL_KEY = "notifications_use_ring_volume";
+    /** Notification vol and ring volumes are synched. */
+    public static final int NOTIF_RING_VOL_SYNCED = 1;
+    /** Notification vol and ring volumes are not synched. */
+    public static final int NOTIF_RING_VOL_NOT_SYNCHED = 0;
+    /** No support for notification and ring volume sync. */
+    public static final int NOTIF_RING_VOL_UNSUPPORTED = -1;
+
     private final Context mContext;
 
     public SettingsHelper(Context context) {
@@ -65,6 +67,23 @@ public class SettingsHelper {
         AudioManager manager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         return manager != null;
     }
+
+    public boolean canSyncNotificationRingVol() {
+        return checkMinApiLevel(5) &&
+            getSyncNotifRingVol() != NOTIF_RING_VOL_UNSUPPORTED;
+    }
+
+    private boolean checkMinApiLevel(int minApiLevel) {
+        // Build.SDK_INT is only in API 4 and we're still compatible with API 3
+        try {
+            int n = Integer.parseInt(Build.VERSION.SDK);
+            return n >= minApiLevel;
+        } catch (Exception e) {
+            Log.d(TAG, "Failed to parse Build.VERSION.SDK=" + Build.VERSION.SDK, e);
+        }
+        return false;
+    }
+
 
     public enum RingerMode {
         /** Normal ringer: actually rings. */
@@ -291,5 +310,22 @@ public class SettingsHelper {
     public int getAlarmVolume() {
         return getVolume(AudioManager.STREAM_ALARM);
     }
+
+    public void changeNotifRingVolSync(boolean sync) {
+        ContentResolver resolver = mContext.getContentResolver();
+        Settings.System.putInt(resolver,
+                               NOTIF_RING_VOL_KEY,
+                               sync ? NOTIF_RING_VOL_SYNCED : NOTIF_RING_VOL_NOT_SYNCHED);
+    }
+
+    /**
+     * Returns one of {@link #NOTIF_RING_VOL_SYNCED}, {@link #NOTIF_RING_VOL_NOT_SYNCHED} or
+     * {@link #NOTIF_RING_VOL_UNSUPPORTED}.
+     */
+    public int getSyncNotifRingVol() {
+        final ContentResolver resolver = mContext.getContentResolver();
+        return Settings.System.getInt(resolver, NOTIF_RING_VOL_KEY, NOTIF_RING_VOL_UNSUPPORTED);
+    }
+
 
 }

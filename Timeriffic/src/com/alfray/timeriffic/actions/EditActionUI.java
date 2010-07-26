@@ -222,17 +222,17 @@ public class EditActionUI extends ExceptionHandlerActivity {
 
                         @Override
                         public int getCustomChoiceLabel() {
-                            return 0;
+                            return R.string.editaction_notif_ring_sync;
                         }
 
                         @Override
                         public int getCustomChoiceButtonLabel() {
-                            return 0;
+                            return R.string.actionlabel_notif_ring_sync;
                         }
 
                         @Override
                         public char getCustomChoiceValue() {
-                            return 0;
+                            return Columns.ACTION_NOTIF_RING_VOL_SYNC;
                         }
                     });
             mPercentDialogMap.put(

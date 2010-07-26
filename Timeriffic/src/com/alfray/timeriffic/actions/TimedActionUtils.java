@@ -30,7 +30,6 @@ import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.profiles.Columns;
 import com.alfray.timeriffic.settings.ISetting;
 import com.alfray.timeriffic.settings.SettingFactory;
-import com.alfray.timeriffic.utils.SettingsHelper;
 import com.alfray.timeriffic.utils.SettingsHelper.RingerMode;
 import com.alfray.timeriffic.utils.SettingsHelper.VibrateRingerMode;
 
@@ -74,7 +73,7 @@ public class TimedActionUtils {
 
         String desc_time = computeTime(context, hourMin);
         String desc_days = computeDays(context, days);
-        String desc_actions = computeActions(context, actions);
+        String desc_actions = computeLabels(context, actions);
 
         String description = String.format("%s %s, %s", desc_time, desc_days, desc_actions);
         return description;
@@ -161,10 +160,9 @@ public class TimedActionUtils {
         return desc_days.toString();
     }
 
-    static public String computeActions(Context context, String actions) {
+    static public String computeLabels(Context context, String actions) {
 
-        SettingsHelper sh = new SettingsHelper(context);
-        ArrayList<String> actions_names = new ArrayList<String>();
+        ArrayList<String> actions_labels = new ArrayList<String>();
 
         if (actions != null) {
             for (String action : actions.split(",")) {
@@ -177,7 +175,7 @@ public class TimedActionUtils {
                     case Columns.ACTION_RINGER:
                         for (RingerMode mode : RingerMode.values()) {
                             if (mode.getActionLetter() == v) {
-                                actions_names.add(mode.toUiString(context));   // ringer name
+                                actions_labels.add(mode.toUiString(context));   // ringer name
                                 break;
                             }
                         }
@@ -185,7 +183,7 @@ public class TimedActionUtils {
                     case Columns.ACTION_VIBRATE:
                         for (VibrateRingerMode mode : VibrateRingerMode.values()) {
                             if (mode.getActionLetter() == v) {
-                                actions_names.add(mode.toUiString(context));   // vibrate name
+                                actions_labels.add(mode.toUiString(context));   // vibrate name
                                 break;
                             }
                         }
@@ -200,7 +198,23 @@ public class TimedActionUtils {
                         if (s != null && s.isSupported(context)) {
                             String label = s.getActionLabel(context, action);
                             if (label != null) {
-                                actions_names.add(label);
+                                actions_labels.add(label);
+                            }
+                        }
+                        break;
+
+                    case Columns.ACTION_NOTIF_VOLUME:
+                        if (v == Columns.ACTION_NOTIF_RING_VOL_SYNC) {
+                            actions_labels.add(context.getString(R.string.timedaction_notif_ring_sync));
+                        } else {
+                            try {
+                                value = Integer.parseInt(action.substring(1));
+
+                                actions_labels.add(context.getString(
+                                                                R.string.timedaction_notif_int,
+                                                                value));
+                            } catch (NumberFormatException e) {
+                                // pass
                             }
                         }
                         break;
@@ -211,25 +225,19 @@ public class TimedActionUtils {
 
                             switch(code) {
                             case Columns.ACTION_RING_VOLUME:
-                                actions_names.add(
+                                actions_labels.add(
                                         context.getString(
                                                 R.string.timedaction_ringer_int,
                                                 value));
                                 break;
-                            case Columns.ACTION_NOTIF_VOLUME:
-                                actions_names.add(
-                                        context.getString(
-                                                R.string.timedaction_notif_int,
-                                                value));
-                                break;
                             case Columns.ACTION_MEDIA_VOLUME:
-                                actions_names.add(
+                                actions_labels.add(
                                         context.getString(
                                                 R.string.timedaction_media_int,
                                                 value));
                                 break;
                             case Columns.ACTION_ALARM_VOLUME:
-                                actions_names.add(
+                                actions_labels.add(
                                         context.getString(
                                                 R.string.timedaction_alarm_int,
                                                 value));
@@ -246,10 +254,10 @@ public class TimedActionUtils {
 
         StringBuilder desc_actions = new StringBuilder();
 
-        if (actions_names.size() == 0) {
+        if (actions_labels.size() == 0) {
             desc_actions.append(context.getString(R.string.timedaction_no_action));
         } else {
-            for (String name : actions_names) {
+            for (String name : actions_labels) {
                 if (desc_actions.length() > 0) desc_actions.append(", ");
                 desc_actions.append(name);
             }
