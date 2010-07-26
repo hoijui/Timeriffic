@@ -241,7 +241,7 @@
 
     <!-- global status (information view at the top) -->
 
-    <string name="globalstatus_nextlast_date_time">yyyy/MM/dd HH:mm:ss</string>
+    <string name="globalstatus_nextlast_date_time">dd.MM.yyyy HH:mm:ss</string>
     <string name="globalstatus_next">Nächste:</string>
     <string name="globalstatus_last">Letzte:</string>
     <string name="globalstatus_disabled">Timeriffic ist ausgeschaltet</string>

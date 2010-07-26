@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Project: Timeriffic
+ * Copyright (C) 2009 ralfoide gmail com,
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!--
+    Language: italian.
+    Regions:  any.
+	Translate by Neoxxx - Anddev Translate Team
+-->
+
+<resources>
+
+<!--
+    Names for the global toggle anim pref. Order is important.
+    The toggle looks like the Timeriffic icon in the profile list screen.
+    It's animation is controled by Menu - Settings - Toggle Animation.
+-->
+<string-array name="prefs_globaltoggle_anim_names">
+    <!-- Global toggle is not animated. -->
+    <item>Nessuna animazione</item>
+
+    <!-- Global toggle is animated with a slow pulse animation. -->
+    <item>Impulso lento</item>
+
+    <!-- Global toggle is animated with a slow pulse animation. -->
+    <item>Impulso veloce</item>
+</string-array>
+
+</resources>
