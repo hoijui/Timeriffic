@@ -60,11 +60,12 @@ TODO (misc)
 
 
 
-DONE for 1.9
+DONE for 1.09
 
-DONE for 1.8
-
-[1.8.18]
+[1.09.00]
+20100726 Translate new strings in ES+FR
+20100726 Updated all intro's "what's new" with a 1.09 section
+20100726 Moving on to version 1.09
 20100725 Detect "Notificaion uses ring volume" mode, edit in notification settings
 20100725 Moved airplane, wifi, bluetooth, apndroid to new settings. Didn't touch volume + ring/vib.
 20100725 Implemented new architecture for settings
@@ -73,6 +74,8 @@ DONE for 1.8
 20100725 Cleanup translation-block tags in XML strings files.
 20100725 Update German translation by Laias
 20100724 Moved to different googlecode repo.
+DONE for 1.8
+
 
 [1.8.17]
 20100710 1.8.17 in Market

@@ -151,17 +151,15 @@
     <string name="timedaction_auto_brightness">Brillo automático</string>
     <string name="timedaction_automatic">Automático</string>
 
-<!-- BEGIN NEW TRANSLATE -->
     <!-- Short description in the action list indicating that notification
          volume uses the ring volume. -->
-    <string name="timedaction_notif_ring_sync">Notification uses ring vol.</string>
+    <string name="timedaction_notif_ring_sync">Notif. utiliza vol. timbre</string>
     <!-- Radio-button in the Action>Edit>Notif Vol dialog that indicates whether
          notification volume uses the ring volume. -->
-    <string name="editaction_notif_ring_sync">Notification uses ring volume.</string>
+    <string name="editaction_notif_ring_sync">Notificaciones utilizan el volumen del timbre.</string>
     <!-- String displayed in the 2nd line of the Action>Edit>Notif Vol button
          indicating that notification volume uses the ring volume. Must be really short. -->
-    <string name="actionlabel_notif_ring_sync">Uses ring volume</string>
-<!-- END NEW TRANSLATE -->
+    <string name="actionlabel_notif_ring_sync">Utilizar vol. timbre</string>
 
     <string name="ringermode_ring">Sonar</string>
     <string name="ringermode_mute">Silencio</string>
@@ -192,7 +190,7 @@
 
     <string name="editaction_ringer">Timbre</string>
     <string name="editaction_vibrate">Vibrador</string>
-    <string name="editaction_volume">Volumen</string>
+    <string name="editaction_volume">Vol. timbre</string>
     <string name="editaction_brightness">Brillo</string>
     <string name="editaction_wifi">Wi-Fi</string>
     <string name="editaction_airplane">Modo avión</string>

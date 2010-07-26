@@ -151,17 +151,15 @@
     <string name="timedaction_auto_brightness">Luminosité automatique</string>
     <string name="timedaction_automatic">Automatique</string>
 
-<!-- BEGIN NEW TRANSLATE -->
     <!-- Short description in the action list indicating that notification
          volume uses the ring volume. -->
-    <string name="timedaction_notif_ring_sync">Notification uses ring vol.</string>
+    <string name="timedaction_notif_ring_sync">Vol. notif. comme sonnerie</string>
     <!-- Radio-button in the Action>Edit>Notif Vol dialog that indicates whether
          notification volume uses the ring volume. -->
-    <string name="editaction_notif_ring_sync">Notification uses ring volume.</string>
+    <string name="editaction_notif_ring_sync">Notifications utilisent le volume de la sonnerie.</string>
     <!-- String displayed in the 2nd line of the Action>Edit>Notif Vol button
          indicating that notification volume uses the ring volume. Must be really short. -->
-    <string name="actionlabel_notif_ring_sync">Uses ring volume</string>
-<!-- END NEW TRANSLATE -->
+    <string name="actionlabel_notif_ring_sync">Vol. sonnerie</string>
 
     <string name="ringermode_ring">Sonner</string>
     <string name="ringermode_mute">Silence</string>
@@ -192,12 +190,12 @@
 
     <string name="editaction_ringer">Sonnerie</string>
     <string name="editaction_vibrate">Vibreur</string>
-    <string name="editaction_volume">Volume</string>
+    <string name="editaction_volume">Volume sonnerie</string>
     <string name="editaction_brightness">Luminosité</string>
     <string name="editaction_wifi">Wi-Fi</string>
     <string name="editaction_airplane">Mode avion</string>
-    <string name="editaction_notif_volume">Vol. Notification</string>
-    <string name="editaction_media_volume">Volume media</string>
+    <string name="editaction_notif_volume">Vol. notification</string>
+    <string name="editaction_media_volume">Volume média</string>
     <string name="editaction_alarm_volume">Volume alarme</string>
     <string name="editaction_bluetooth">Bluetooth</string>
 

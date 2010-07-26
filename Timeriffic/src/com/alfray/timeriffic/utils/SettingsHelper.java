@@ -46,7 +46,7 @@ public class SettingsHelper {
     private static final boolean DEBUG = true;
     public static final String TAG = "TFC-SettingsH";
 
-    /** android.provider.Settings.NOTIFICATION_USE_RING_VOLUME, available starting with API 5
+    /** android.provider.Settings.NOTIFICATION_USE_RING_VOLUME, available starting with API 3
      *  but it's hidden from the SDK. The Settings.java comment says eventually this setting
      *  will go away later once there are "profile" support, whatever that is. */
     private static final String NOTIF_RING_VOL_KEY = "notifications_use_ring_volume";
@@ -69,21 +69,8 @@ public class SettingsHelper {
     }
 
     public boolean canSyncNotificationRingVol() {
-        return checkMinApiLevel(5) &&
-            getSyncNotifRingVol() != NOTIF_RING_VOL_UNSUPPORTED;
+        return getSyncNotifRingVol() != NOTIF_RING_VOL_UNSUPPORTED;
     }
-
-    private boolean checkMinApiLevel(int minApiLevel) {
-        // Build.SDK_INT is only in API 4 and we're still compatible with API 3
-        try {
-            int n = Integer.parseInt(Build.VERSION.SDK);
-            return n >= minApiLevel;
-        } catch (Exception e) {
-            Log.d(TAG, "Failed to parse Build.VERSION.SDK=" + Build.VERSION.SDK, e);
-        }
-        return false;
-    }
-
 
     public enum RingerMode {
         /** Normal ringer: actually rings. */

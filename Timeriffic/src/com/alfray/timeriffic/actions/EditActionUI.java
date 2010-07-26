@@ -222,7 +222,10 @@ public class EditActionUI extends ExceptionHandlerActivity {
 
                         @Override
                         public int getCustomChoiceLabel() {
-                            return R.string.editaction_notif_ring_sync;
+                            if (mSettingsHelper.canSyncNotificationRingVol()) {
+                                return R.string.editaction_notif_ring_sync;
+                            }
+                            return 0;
                         }
 
                         @Override
