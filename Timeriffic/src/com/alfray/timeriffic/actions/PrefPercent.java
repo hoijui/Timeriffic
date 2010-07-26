@@ -120,14 +120,15 @@ public class PrefPercent extends PrefBase implements View.OnClickListener {
 
         char customChoiceValue = mAccessor.getCustomChoiceValue();
         if (currentValue != null &&
-                        currentValue.length() > 1 &&
-                        currentValue.charAt(1) == customChoiceValue) {
+                        currentValue.length() == 1 &&
+                        currentValue.charAt(0) == customChoiceValue) {
             mCurrentValue = VALUE_CUSTOM_CHOICE;
-        }
-        try {
-            mCurrentValue = Integer.parseInt(currentValue);
-        } catch (Exception e) {
-            mCurrentValue = VALUE_UNCHANGED;
+        } else {
+            try {
+                mCurrentValue = Integer.parseInt(currentValue);
+            } catch (Exception e) {
+                mCurrentValue = VALUE_UNCHANGED;
+            }
         }
     }
 

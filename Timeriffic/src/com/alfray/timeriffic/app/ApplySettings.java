@@ -38,6 +38,8 @@ import com.alfray.timeriffic.prefs.PrefsValues;
 import com.alfray.timeriffic.profiles.Columns;
 import com.alfray.timeriffic.profiles.ProfilesDB;
 import com.alfray.timeriffic.profiles.ProfilesDB.ActionInfo;
+import com.alfray.timeriffic.settings.ISetting;
+import com.alfray.timeriffic.settings.SettingFactory;
 import com.alfray.timeriffic.utils.SettingsHelper;
 import com.alfray.timeriffic.utils.SettingsHelper.RingerMode;
 import com.alfray.timeriffic.utils.SettingsHelper.VibrateRingerMode;
@@ -205,22 +207,19 @@ public class ApplySettings {
                         }
                     }
                     break;
+
                 case Columns.ACTION_BRIGHTNESS:
-                    if (v == Columns.ACTION_BRIGHTNESS_AUTO) {
-                        settings.changeAutoBrightness(true);
+                case Columns.ACTION_AIRPLANE:
+                case Columns.ACTION_BLUETOOTH:
+                case Columns.ACTION_APN_DROID:
+                case Columns.ACTION_WIFI:
+                    ISetting s = SettingFactory.getInstance().getSetting(code);
+                    if (s != null && s.isSupported(mContext)) {
+                        s.performAction(mContext, action);
                         didSomething = true;
-                    } else {
-                        try {
-                            value = Integer.parseInt(action.substring(1));
-                            settings.changeAutoBrightness(false);
-                            settings.changeBrightness(value, true /*persist*/);
-                            didSomething = true;
-                        } catch (NumberFormatException e) {
-                            // pass
-                        }
                     }
-                    didSomething = true;
                     break;
+
                 default:
                     try {
                         value = Integer.parseInt(action.substring(1));
@@ -240,22 +239,6 @@ public class ApplySettings {
                             break;
                         case Columns.ACTION_ALARM_VOLUME:
                             settings.changeAlarmVolume(value);
-                            didSomething = true;
-                            break;
-                        case Columns.ACTION_WIFI:
-                            settings.changeWifi(value > 0);
-                            didSomething = true;
-                            break;
-                        case Columns.ACTION_AIRPLANE:
-                            settings.changeAirplaneMode(value > 0);
-                            didSomething = true;
-                            break;
-                        case Columns.ACTION_BLUETOOTH:
-                            settings.changeBluetooh(value > 0);
-                            didSomething = true;
-                            break;
-                        case Columns.ACTION_APN_DROID:
-                            settings.changeApnDroid(value > 0);
                             didSomething = true;
                             break;
                         }

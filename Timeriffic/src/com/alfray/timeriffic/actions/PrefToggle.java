@@ -23,7 +23,7 @@ import com.alfray.timeriffic.R;
 
 //-----------------------------------------------
 
-class PrefToggle extends PrefEnum {
+public class PrefToggle extends PrefEnum {
 
     public PrefToggle(Activity activity,
                     int buttonResId,

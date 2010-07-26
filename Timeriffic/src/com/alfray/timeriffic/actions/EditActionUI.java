@@ -42,6 +42,7 @@ import com.alfray.timeriffic.actions.PrefPercentDialog.Accessor;
 import com.alfray.timeriffic.error.ExceptionHandlerActivity;
 import com.alfray.timeriffic.profiles.Columns;
 import com.alfray.timeriffic.profiles.ProfilesDB;
+import com.alfray.timeriffic.settings.SettingFactory;
 import com.alfray.timeriffic.utils.AgentWrapper;
 import com.alfray.timeriffic.utils.SettingsHelper;
 
@@ -69,10 +70,10 @@ public class EditActionUI extends ExceptionHandlerActivity {
     private PrefPercent mPrefMediaVolume;
     private PrefPercent mPrefAlarmVolume;
     private PrefPercent mPrefBrightness;
-    private PrefToggle mPrefAirplane;
-    private PrefToggle mPrefWifi;
-    private PrefToggle mPrefBluetooth;
-    private PrefToggle mPrefApnDroid;
+    private Object mPrefAirplane;
+    private Object mPrefWifi;
+    private Object mPrefBluetooth;
+    private Object mPrefApnDroid;
 
     /**
      * Day checkboxes, in the same index order than {@link Columns#MONDAY_BIT_INDEX}
@@ -103,6 +104,7 @@ public class EditActionUI extends ExceptionHandlerActivity {
         }
 
         mSettingsHelper = new SettingsHelper(this);
+        SettingFactory factory = SettingFactory.getInstance();
 
         // get profiles db helper
         ProfilesDB profilesDb = new ProfilesDB();
@@ -309,82 +311,13 @@ public class EditActionUI extends ExceptionHandlerActivity {
                     mPrefAlarmVolume.setDialogId(++dialogId),
                     mPrefAlarmVolume);
 
-            mPrefBrightness = new PrefPercent(this,
-                    R.id.brightnessButton,
-                    actions,
-                    Columns.ACTION_BRIGHTNESS,
-                    getString(R.string.editaction_brightness),
-                    R.drawable.ic_menu_view_brightness,
-                    new Accessor() {
-                        @Override
-                        public void changePercent(int percent) {
-                            // disable the immediate slider feedback, it flickers too much and is very slow.
-                            // mSettingsHelper.changeBrightness(percent, false /*persist*/);
-                        }
+            mPrefBrightness = (PrefPercent) factory.getSetting(Columns.ACTION_BRIGHTNESS).createUi(this, actions);
+            mPercentDialogMap.put(mPrefBrightness.setDialogId(++dialogId), mPrefBrightness);
 
-                        @Override
-                        public int getPercent() {
-                            return mSettingsHelper.getCurrentBrightness();
-                        }
-
-                        @Override
-                        public int getCustomChoiceLabel() {
-                            if (mSettingsHelper.canControlAutoBrightness()) {
-                                return R.string.timedaction_auto_brightness;
-                            }
-                            return 0;
-                        }
-
-                        public int getCustomChoiceButtonLabel() {
-                            return R.string.timedaction_automatic;
-                        }
-
-                        @Override
-                        public char getCustomChoiceValue() {
-                            return Columns.ACTION_BRIGHTNESS_AUTO;
-                        }
-                    });
-            mPrefBrightness.setEnabled(mSettingsHelper.canControlBrigthness(),
-                    getString(R.string.setting_not_supported));
-            mPercentDialogMap.put(
-                    mPrefBrightness.setDialogId(++dialogId),
-                    mPrefBrightness);
-
-            mPrefBluetooth = new PrefToggle(this,
-                            R.id.bluetoothButton,
-                            actions,
-                            Columns.ACTION_BLUETOOTH,
-                            getString(R.string.editaction_bluetooth));
-            mPrefBluetooth.setEnabled(mSettingsHelper.canControlBluetooth(),
-                    getString(R.string.setting_not_supported));
-
-            mPrefApnDroid = new PrefToggle(this,
-                    R.id.apndroidButton,
-                    actions,
-                    Columns.ACTION_APN_DROID,
-                    getString(R.string.editaction_apndroid),
-                    new String[] {
-                        getString(R.string.timedaction_apndroid_on),
-                        getString(R.string.timedaction_apndroid_off)
-                    } );
-            mPrefApnDroid.setEnabled(mSettingsHelper.canControlApnDroid(),
-                    getString(R.string.setting_not_installed));
-
-            mPrefWifi = new PrefToggle(this,
-                            R.id.wifiButton,
-                            actions,
-                            Columns.ACTION_WIFI,
-                            getString(R.string.editaction_wifi));
-            mPrefWifi.setEnabled(mSettingsHelper.canControlWifi(),
-                    getString(R.string.setting_not_supported));
-
-            mPrefAirplane = new PrefToggle(this,
-                            R.id.airplaneButton,
-                            actions,
-                            Columns.ACTION_AIRPLANE,
-                            getString(R.string.editaction_airplane));
-            mPrefAirplane.setEnabled(mSettingsHelper.canControlAirplaneMode(),
-                    getString(R.string.setting_not_supported));
+            mPrefBluetooth = factory.getSetting(Columns.ACTION_BLUETOOTH).createUi(this, actions);
+            mPrefApnDroid  = factory.getSetting(Columns.ACTION_APN_DROID).createUi(this, actions);
+            mPrefWifi      = factory.getSetting(Columns.ACTION_WIFI).createUi(this, actions);
+            mPrefAirplane  = factory.getSetting(Columns.ACTION_AIRPLANE).createUi(this, actions);
 
             mCheckDays = new CheckBox[] {
                     (CheckBox) findViewById(R.id.dayMon),
@@ -535,6 +468,7 @@ public class EditActionUI extends ExceptionHandlerActivity {
                 }
             }
 
+            SettingFactory factory = SettingFactory.getInstance();
             StringBuilder actions = new StringBuilder();
 
             mPrefRingerMode.collectResult(actions);
@@ -543,11 +477,12 @@ public class EditActionUI extends ExceptionHandlerActivity {
             mPrefNotifVolume.collectResult(actions);
             mPrefMediaVolume.collectResult(actions);
             mPrefAlarmVolume.collectResult(actions);
-            mPrefBluetooth.collectResult(actions);
-            mPrefWifi.collectResult(actions);
-            mPrefAirplane.collectResult(actions);
-            mPrefBrightness.collectResult(actions);
-            mPrefApnDroid.collectResult(actions);
+
+            factory.getSetting(Columns.ACTION_BRIGHTNESS).collectUiResults(mPrefBrightness, actions);
+            factory.getSetting(Columns.ACTION_BLUETOOTH).collectUiResults(mPrefBluetooth, actions);
+            factory.getSetting(Columns.ACTION_APN_DROID).collectUiResults(mPrefApnDroid, actions);
+            factory.getSetting(Columns.ACTION_AIRPLANE).collectUiResults(mPrefAirplane, actions);
+            factory.getSetting(Columns.ACTION_WIFI).collectUiResults(mPrefWifi, actions);
 
             if (DEBUG) Log.d(TAG, "new actions: " + actions.toString());
 
@@ -595,5 +530,4 @@ public class EditActionUI extends ExceptionHandlerActivity {
 
         timePicker.setIs24HourView(DateFormat.is24HourFormat(this));
     }
-
 }

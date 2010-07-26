@@ -28,6 +28,8 @@ import android.content.Context;
 
 import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.profiles.Columns;
+import com.alfray.timeriffic.settings.ISetting;
+import com.alfray.timeriffic.settings.SettingFactory;
 import com.alfray.timeriffic.utils.SettingsHelper;
 import com.alfray.timeriffic.utils.SettingsHelper.RingerMode;
 import com.alfray.timeriffic.utils.SettingsHelper.VibrateRingerMode;
@@ -188,25 +190,21 @@ public class TimedActionUtils {
                             }
                         }
                         break;
-                    case Columns.ACTION_BRIGHTNESS:
-                        if (sh.canControlBrigthness()) {
-                            if (sh.canControlAutoBrightness() && v == Columns.ACTION_BRIGHTNESS_AUTO) {
-                                String str = context.getString(R.string.timedaction_auto_brightness);
-                                actions_names.add(str);
-                            } else {
-                                try {
-                                    value = Integer.parseInt(action.substring(1));
 
-                                    actions_names.add(
-                                                context.getString(
-                                                    R.string.timedaction_brightness_int,
-                                                    value));
-                                } catch (NumberFormatException e) {
-                                    // ignore
-                                }
+                    case Columns.ACTION_BRIGHTNESS:
+                    case Columns.ACTION_AIRPLANE:
+                    case Columns.ACTION_BLUETOOTH:
+                    case Columns.ACTION_APN_DROID:
+                    case Columns.ACTION_WIFI:
+                        ISetting s = SettingFactory.getInstance().getSetting(code);
+                        if (s != null && s.isSupported(context)) {
+                            String label = s.getActionLabel(context, action);
+                            if (label != null) {
+                                actions_names.add(label);
                             }
                         }
                         break;
+
                     default:
                         try {
                             value = Integer.parseInt(action.substring(1));
@@ -235,38 +233,6 @@ public class TimedActionUtils {
                                         context.getString(
                                                 R.string.timedaction_alarm_int,
                                                 value));
-                                break;
-                            case Columns.ACTION_BLUETOOTH:
-                                if (sh.canControlWifi()) {
-                                    actions_names.add(
-                                            context.getString(
-                                                    value > 0 ? R.string.timedaction_bluetooth_on :
-                                                                R.string.timedaction_bluetooth_off));
-                                }
-                                break;
-                            case Columns.ACTION_WIFI:
-                                if (sh.canControlWifi()) {
-                                    actions_names.add(
-                                            context.getString(
-                                                    value > 0 ? R.string.timedaction_wifi_on :
-                                                                R.string.timedaction_wifi_off));
-                                }
-                                break;
-                            case Columns.ACTION_AIRPLANE:
-                                if (sh.canControlAirplaneMode()) {
-                                    actions_names.add(
-                                            context.getString(
-                                                    value > 0 ? R.string.timedaction_airplane_on :
-                                                                R.string.timedaction_airplane_off));
-                                }
-                                break;
-                            case Columns.ACTION_APN_DROID:
-                                if (sh.canControlApnDroid()) {
-                                    actions_names.add(
-                                            context.getString(
-                                                    value > 0 ? R.string.timedaction_apndroid_on :
-                                                                R.string.timedaction_apndroid_off));
-                                }
                                 break;
                             }
 

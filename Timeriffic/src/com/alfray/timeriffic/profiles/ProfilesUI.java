@@ -47,15 +47,15 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.alfray.timeriffic.R;
-import com.alfray.timeriffic.app.UpdateReceiver;
 import com.alfray.timeriffic.app.IntroActivity;
 import com.alfray.timeriffic.app.TimerifficApp;
+import com.alfray.timeriffic.app.UpdateReceiver;
 import com.alfray.timeriffic.error.ErrorReporterUI;
 import com.alfray.timeriffic.error.ExceptionHandlerActivity;
 import com.alfray.timeriffic.prefs.PrefsActivity;
 import com.alfray.timeriffic.prefs.PrefsValues;
+import com.alfray.timeriffic.settings.SettingFactory;
 import com.alfray.timeriffic.utils.AgentWrapper;
-import com.alfray.timeriffic.utils.SettingsHelper;
 
 public class ProfilesUI extends ExceptionHandlerActivity {
 
@@ -481,20 +481,27 @@ public class ProfilesUI extends ExceptionHandlerActivity {
     }
 
     private String getCheckServicesMessage() {
-        SettingsHelper sh = new SettingsHelper(this);
+
+        SettingFactory factory = SettingFactory.getInstance();
         StringBuilder sb = new StringBuilder();
 
-        if (!sh.canControlAudio()) {
+        if (!factory.getSetting(Columns.ACTION_RING_VOLUME).isSupported(this)) {
             sb.append("\n- ").append(getString(R.string.checkservices_miss_audio_service));
         }
-        if (!sh.canControlWifi()) {
+        if (!factory.getSetting(Columns.ACTION_WIFI).isSupported(this)) {
             sb.append("\n- ").append(getString(R.string.checkservices_miss_wifi_service));
         }
-        if (!sh.canControlAirplaneMode()) {
+        if (!factory.getSetting(Columns.ACTION_AIRPLANE).isSupported(this)) {
             sb.append("\n- ").append(getString(R.string.checkservices_miss_airplane));
         }
-        if (!sh.canControlBrigthness()) {
+        if (!factory.getSetting(Columns.ACTION_BRIGHTNESS).isSupported(this)) {
             sb.append("\n- ").append(getString(R.string.checkservices_miss_brightness));
+        }
+        if (!factory.getSetting(Columns.ACTION_BLUETOOTH).isSupported(this)) {
+            sb.append("\n- ").append(getString(R.string.checkservices_miss_bluetooh));
+        }
+        if (!factory.getSetting(Columns.ACTION_APN_DROID).isSupported(this)) {
+            sb.append("\n- ").append(getString(R.string.checkservices_miss_apndroid));
         }
 
         if (sb.length() > 0) {

@@ -9,7 +9,6 @@ v1.9 "SD support"
 . Add froyo backup API for the file (using TS as in sample)
 
 . Notification on setting applied (optional)
-. Auto-brightness support (?)
 
 v1.10 "Profile UI revamp"
 . Don't auto-edit on actions
@@ -30,8 +29,6 @@ T v1.8.15 => medium update, couple features + improvements based on googlecode t
 . T media volume. C=Easy. Low risk.
 . T detect sound link setting. C=Medium. Low risk.
 . T warn sound linked . Ui.
-. T detect auto brightness. Medium.
-. T change auto brightness. C=Experimental. Low Risk. Try moonblink's googlecode (check license)
 . T -- publish
 
 T v1.9
@@ -70,6 +67,8 @@ DONE for 1.9
 DONE for 1.8
 
 [1.8.18]
+20100725 Moved airplane, wifi, bluetooth, apndroid to new settings. Didn't touch volume + ring/vib.
+20100725 Implemented new architecture for settings
 20100725 Added Automatic-Brightness support
 20100725 Fix: in user report, indicate we'd like the comment in English.
 20100725 Cleanup translation-block tags in XML strings files.
