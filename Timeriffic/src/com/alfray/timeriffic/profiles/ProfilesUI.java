@@ -497,12 +497,17 @@ public class ProfilesUI extends ExceptionHandlerActivity {
         if (!factory.getSetting(Columns.ACTION_BRIGHTNESS).isSupported(this)) {
             sb.append("\n- ").append(getString(R.string.checkservices_miss_brightness));
         }
-        if (!factory.getSetting(Columns.ACTION_BLUETOOTH).isSupported(this)) {
-            sb.append("\n- ").append(getString(R.string.checkservices_miss_bluetooh));
-        }
-        if (!factory.getSetting(Columns.ACTION_APN_DROID).isSupported(this)) {
-            sb.append("\n- ").append(getString(R.string.checkservices_miss_apndroid));
-        }
+
+        // Bluetooth and APNDroid are not essential settings. We can't just bug the
+        // user at start if they are missing (which is also highly probably, especially for
+        // APNDroid). So here is not the right place to check for them.
+        //
+        // if (!factory.getSetting(Columns.ACTION_BLUETOOTH).isSupported(this)) {
+        //     sb.append("\n- ").append(getString(R.string.checkservices_miss_bluetooh));
+        // }
+        // if (!factory.getSetting(Columns.ACTION_APN_DROID).isSupported(this)) {
+        //     sb.append("\n- ").append(getString(R.string.checkservices_miss_apndroid));
+        // }
 
         if (sb.length() > 0) {
             sb.insert(0, getString(R.string.checkservices_warning));

@@ -163,7 +163,8 @@ public class PrefPercent extends PrefBase implements View.OnClickListener {
         mButton.setText(sb);
 
         Drawable d = r.getDrawable(
-                mCurrentValue < 0 ? ID_DOT_UNCHANGED : ID_DOT_PERCENT);
+                        mCurrentValue == VALUE_CUSTOM_CHOICE ? ID_DOT_EXTRA :
+                            mCurrentValue < 0 ? ID_DOT_UNCHANGED : ID_DOT_PERCENT);
         mButton.setCompoundDrawablesWithIntrinsicBounds(
                 d,    // left
                 null, // top
