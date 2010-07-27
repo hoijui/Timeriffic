@@ -52,9 +52,15 @@ public class UpdateReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         ExceptionHandler handler = new ExceptionHandler(context);
         try {
-            PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
-            WakeLock wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "TimerifficReceiver");
-            wl.acquire();
+            WakeLock wl = null;
+            try {
+                PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
+                wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "TimerifficReceiver");
+                wl.acquire();
+            } catch (Exception e) {
+                // Hmm wake lock failed... not sure why. Continue anyway.
+                if (DEBUG) Log.w(TAG, "WakeLock.acquire failed");
+            }
             UpdateService.update(context, intent, wl);
             if (DEBUG) Log.d(TAG, "UpdateService requested");
         } finally {

@@ -63,6 +63,7 @@ TODO (misc)
 DONE for 1.09
 
 [1.09.00]
+20100726 Fix WakeLock exception (Issue #49)
 20100726 Translate new strings in ES+FR
 20100726 Updated all intro's "what's new" with a 1.09 section
 20100726 Moving on to version 1.09

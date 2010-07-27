@@ -49,11 +49,16 @@ public class UpdateService extends Service {
     /**
      * Starts the service.
      * This is invoked from the {@link UpdateReceiver}.
+     *
+     * @param intent Original {@link UpdateReceiver}'s intent. *Could* be null.
+     * @param wakeLock WakeLock created by {@link UpdateReceiver}. Could be null.
      */
     public static void update(Context context, Intent intent, WakeLock wakeLock) {
 
         Intent i = new Intent(context, UpdateService.class);
-        i.putExtra(EXTRA_OLD_INTENT, intent);
+        if (intent != null) {
+            i.putExtra(EXTRA_OLD_INTENT, intent);
+        }
 
         if (wakeLock != null) {
             i.putExtra(EXTRA_RELEASE_WL, true);
