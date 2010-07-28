@@ -75,8 +75,10 @@ DONE for 1.09
 20100725 Cleanup translation-block tags in XML strings files.
 20100725 Update German translation by Laias
 20100724 Moved to different googlecode repo.
-DONE for 1.8
 
+
+
+DONE for 1.8
 
 [1.8.17]
 20100710 1.8.17 in Market
