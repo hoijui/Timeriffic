@@ -24,8 +24,6 @@
 -->
 
 <resources>
-    <!-- App title. Not translated -->
-    <string name="app_name">Timeriffic</string>
 
     <!-- === Menu === -->
 

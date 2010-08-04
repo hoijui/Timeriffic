@@ -284,7 +284,7 @@
     <!-- Error Report UI: header of generated email (the rest of the log is in English).
          Formatting: Spacing matters. Use "/" to insert a new line.
     -->
-    <string name="errorreport_emailheader">Ceci est une rapport d\'erreur pour Timeriffic./
+    <string name="errorreport_emailheader">Ceci est un rapport d\'erreur pour Timeriffic./
 Le rapport automatisé commence ici.
     </string>
 
