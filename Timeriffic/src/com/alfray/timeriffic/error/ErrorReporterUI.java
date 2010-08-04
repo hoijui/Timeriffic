@@ -526,8 +526,7 @@ public class ErrorReporterUI extends ExceptionHandlerActivity {
 
             addHeader(sb, c);
             addUserFeedback(sb);
-            addAppInfo(sb);
-            addDate(sb);
+            addTopInfo(sb);
             addAndroidBuildInfo(sb);
 
             if (!mAbortReport) addProfiles(sb, c);
@@ -566,18 +565,17 @@ public class ErrorReporterUI extends ExceptionHandlerActivity {
         }
 
 
-        private void addDate(StringBuilder sb) {
+        private void addTopInfo(StringBuilder sb) {
+            sb.append(String.format("\n## App: %s %s\n",
+                    mAppName,
+                    mAppVersion));
+            sb.append(String.format("## Locale: %s\n",
+                    Locale.getDefault().toString()));
 
             SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss Z");
             String date = df.format(new Date(System.currentTimeMillis()));
 
-            sb.append(String.format("\n## Log Date: %s\n", date));
-        }
-
-        private void addAppInfo(StringBuilder sb) {
-            sb.append(String.format("\n## App: %s %s\n",
-                    mAppName,
-                    mAppVersion));
+            sb.append(String.format("## Log Date: %s\n", date));
         }
 
         private void addAndroidBuildInfo(StringBuilder sb) {

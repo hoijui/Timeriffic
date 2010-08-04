@@ -93,7 +93,7 @@ public class IntroActivity extends ExceptionHandlerActivity {
 
         @SuppressWarnings("unused")
         public String introFile() {
-            return mIntroFile;
+            return mIntroFile + " (" + Locale.getDefault().toString() + ")";
         }
     }
 
