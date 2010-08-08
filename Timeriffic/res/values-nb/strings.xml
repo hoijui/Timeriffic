@@ -181,8 +181,8 @@
     <!-- edit profile screen --> 
  
     <string name="editprofile_title">Timeriffic - Rediger Profil</string> 
-    <string name="editprofile_profile_name">Profile Navn:</string> 
-    <string name="editprofile_profile_hint">Profile Navn</string> 
+    <string name="editprofile_profile_name">Profil Navn:</string> 
+    <string name="editprofile_profile_hint">Profil Navn</string> 
     <string name="editprofile_checkbox_enabled">Aktivert</string> 
     <string name="editprofile_button_accept">Godta</string> 
  
@@ -215,7 +215,7 @@
     <!-- percent dialog --> 
  
     <string name="percent_do_not_change">Ikke foreta endringer.</string> 
-    <string name="percent_change_to">Endre følgende verdi:</string> 
+    <string name="percent_change_to">Endre til følgende verdi:</string> 
     <string name="percent_button_unchanged">Uendret</string> 
     <string name="percent_button_accept">Godta</string> 
  
