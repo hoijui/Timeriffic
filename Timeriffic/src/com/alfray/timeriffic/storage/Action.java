@@ -20,6 +20,7 @@ package com.alfray.timeriffic.storage;
 
 import com.alfray.timeriffic.serial.SerialReader;
 import com.alfray.timeriffic.serial.SerialWriter;
+import com.alfray.timeriffic.utils.Null;
 
 //-----------------------------------------------
 
@@ -29,44 +30,54 @@ public class Action extends Line {
     private int mDays;
     private String mActions;
 
-    public Action(String data) {
+    public Action(@Null String data) {
         super(data);
         if (data == null) {
             mActions = "";
         }
     }
 
+    public Action(String actions, int hourMin, int days) {
+        super(null);
+        mActions = actions;
+        mHourMin = hourMin;
+        mDays = days;
+    }
+
     public int getHourMin() {
         return mHourMin;
     }
 
-    public void setHourMin(int hourMin) {
+    public Action setHourMin(int hourMin) {
         if (hourMin != mHourMin) {
             markDirty();
             mHourMin = hourMin;
         }
+        return this;
     }
 
     public int getDays() {
         return mDays;
     }
 
-    public void setDays(int days) {
+    public Action setDays(int days) {
         if (days != mDays) {
             markDirty();
             mDays = days;
         }
+        return this;
     }
 
     public String getActions() {
         return mActions;
     }
 
-    public void setActions(String actions) {
+    public Action setActions(String actions) {
         if (mActions == null || !mActions.equals(actions)) {
             markDirty();
             mActions = actions;
         }
+        return this;
     }
 
     @Override
@@ -84,6 +95,23 @@ public class Action extends Line {
         sw.addInt("days", mDays);
         sw.addString("actions", mActions);
         return sw.encodeAsString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Action)) return false;
+        Action rhs = (Action) obj;
+        if (mDays != rhs.mDays) return false;
+        if (mHourMin != rhs.mHourMin) return false;
+        return (mActions == rhs.mActions || (mActions != null && mActions.equals(rhs.mActions)));
+    }
+
+    @Override
+    public int hashCode() {
+        long h = mDays + 31 * mHourMin;
+        if (mActions != null) h = 31*h + mActions.hashCode();
+        int i = (int)(h & 0x0FFFFFFFF) ^ (int)((h >> 32) & 0x0FFFFFFFF);
+        return i;
     }
 
 }

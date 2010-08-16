@@ -23,34 +23,66 @@ import java.util.List;
 
 import com.alfray.timeriffic.serial.SerialReader;
 import com.alfray.timeriffic.serial.SerialWriter;
+import com.alfray.timeriffic.utils.Null;
 
 //-----------------------------------------------
 
+/**
+ * A profile is a list of actions grouped together.
+ * <p/>
+ * <em>Important</em>: Serializing a profile <b>does not</b> serialize
+ * its actions! It's up to the {@link Storage} class to save and restore
+ * the actions of the a given profile. This is done for convenience and
+ * to let the {@link Storage} class decide on the optimum file format.
+ */
 public class Profile extends Line {
 
     private String mTitle;
     private boolean mEnabled;
     private final List<Action> mActions = new ArrayList<Action>();
 
-    public Profile(String data) {
+    public Profile(@Null String data) {
         super(data);
+        if (data == null) {
+            mTitle = "";
+            mEnabled = true;
+        }
+    }
+
+    public Profile(String title, boolean isEnabled,
+            @Null List<Action> actions) {
+        super(null);
+        mTitle = title;
+        mEnabled = isEnabled;
+        if (actions != null) mActions.addAll(actions);
     }
 
     public String getTitle() {
         return mTitle;
     }
 
+    public Profile setTitle(String title) {
+        mTitle = title;
+        return this;
+    }
+
     public boolean isEnabled() {
         return mEnabled;
+    }
+
+    public Profile setEnabled(boolean enabled) {
+        mEnabled = enabled;
+        return this;
     }
 
     public List<Action> getActions() {
         return mActions;
     }
 
-    public void addAction(String data) {
+    public Profile addAction(String data) {
         Action a = new Action(data);
         mActions.add(a);
+        return this;
     }
 
     @Override
@@ -66,6 +98,27 @@ public class Profile extends Line {
         sw.addBool("enable", mEnabled);
         sw.addString("title", mTitle);
         return sw.encodeAsString();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Profile)) return false;
+        Profile rhs = (Profile) obj;
+        if (mEnabled != rhs.mEnabled) return false;
+        if (!mActions.equals(rhs.mActions)) return false;
+        return mTitle == rhs.mTitle || (mTitle != null && mTitle.equals(rhs.mTitle));
+    }
+
+    @Override
+    public int hashCode() {
+        long h = mEnabled ? 1 : 0;
+        for (Action a : mActions) {
+            h = 31*h +a.hashCode();
+        }
+        if (mTitle != null) h = 31*h + mTitle.hashCode();
+
+        int i = (int)(h & 0x0FFFFFFFF) ^ (int)((h >> 32) & 0x0FFFFFFFF);
+        return i;
     }
 }
 
