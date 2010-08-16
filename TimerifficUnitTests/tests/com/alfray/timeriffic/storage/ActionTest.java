@@ -45,28 +45,23 @@ public class ActionTest {
     public void testAction_create_getData_recreate() {
         // This creates a new object with no previous data state.
         Action a = new Action(null);
-        
+        a.setActions("A0 B1");
+        a.setDays(4);
+        a.setHourMin(1234);
 
-        assertEquals("", a.getActions());
-        assertEquals(0, a.getHourMin());
-        assertEquals(0, a.getDays());
+        assertEquals("A0 B1", a.getActions());
+        assertEquals(4, a.getDays());
+        assertEquals(1234, a.getHourMin());
+
+        String data = a.getData();
+        assertNotNull(data);
+        assertTrue(data.length() > 0);
+
+        Action b = new Action(data);
+        assertEquals("A0 B1", b.getActions());
+        assertEquals(4, b.getDays());
+        assertEquals(1234, b.getHourMin());
     }
-
-    @Test
-    public void testGetHourMin() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testGetDays() {
-        fail("Not yet implemented");
-    }
-
-    @Test
-    public void testGetActions() {
-        fail("Not yet implemented");
-    }
-
 }
 
 
