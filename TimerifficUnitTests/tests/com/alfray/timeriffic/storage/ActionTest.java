@@ -12,6 +12,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import com.alfray.timeriffic.serial.SerialReader;
+
 //-----------------------------------------------
 
 public class ActionTest {
@@ -25,8 +27,29 @@ public class ActionTest {
     }
 
     @Test
-    public void testAction() {
-        fail("Not yet implemented");
+    public void testAction_null() {
+        // This creates a new object with no previous data state.
+        Action a = new Action(null);
+
+        assertEquals("", a.getActions());
+        assertEquals(0, a.getHourMin());
+        assertEquals(0, a.getDays());
+    }
+
+    @Test(expected=SerialReader.DecodeError.class)
+    public void testAction_bogusData() {
+        new Action("bogus data");
+    }
+
+    @Test
+    public void testAction_create_getData_recreate() {
+        // This creates a new object with no previous data state.
+        Action a = new Action(null);
+        
+
+        assertEquals("", a.getActions());
+        assertEquals(0, a.getHourMin());
+        assertEquals(0, a.getDays());
     }
 
     @Test
