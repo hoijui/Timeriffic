@@ -23,6 +23,7 @@ import android.util.SparseArray;
 
 /**
  * Encoder/decoder for typed data.
+ * Extracted from NerdkillAndroid.
  *
  * See {@link SerialWriter} for implementations details.
  */

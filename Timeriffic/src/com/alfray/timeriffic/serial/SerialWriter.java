@@ -23,17 +23,58 @@ import java.util.zip.CRC32;
 
 /**
  * Encoder/decoder for typed data.
+ * Extracted from NerdkillAndroid.
+ * <p/>
  *
- * Supported types:
- * - integer
- * - long
- * - bool
- * - float
- * - double
- * - string
- * - SerialWriter
+ * A {@link SerialWriter} serialized typed key/values to an int array.
+ * Each key is identified by a name -- however <em>only</em> the hashcode
+ * of the key string is used as an id, not the exact string itself. <br/>
+ * An exception {@link DuplicateKey} is thrown when trying to add a key
+ * that has the same string hashcode than an already present key. <br/>
+ * The assumption is made that string hashcodes are stable for a given
+ * interpreting machine (e.g. JVM or Dalvik).
+ * <p/>
  *
- * Encodes to an int array:
+ * <p/>
+ * Supported types: <br/>
+ * - integer        <br/>
+ * - long           <br/>
+ * - bool           <br/>
+ * - float          <br/>
+ * - double         <br/>
+ * - string         <br/>
+ * - {@link SerialWriter}
+ * <p/>
+ *
+ * The type {@link SerialWriter} can be used to embedded a struct within
+ * a struct.
+ * <p/>
+ *
+ * Users of the serialized data can either directly process the int[] array
+ * using {@link #encodeAsArray()} or can transform it to a semi-compact hexa
+ * string using {@link #encodeAsString()}. Both can later be decoded using
+ * {@link SerialReader}.
+ * <p/>
+ *
+ * A typical strategy is for a serializable struct to contain a
+ * <code>saveInto(SerialWriter)</code> method. Whatever code that does
+ * the saving can thus first create a {@link SerialWriter} and pass it
+ * to the struct so that it can save itself into the given writer.
+ * <br/>
+ * Another strategy is for the struct to have a method that creates the
+ * {@link SerialWriter}, adds all the fields and then return the writer.
+ * <br/>
+ * Both approaches are valid. The former is useful if the outer and inner
+ * methods are working in collaboration, the later is useful if both sides
+ * should be agnostic to each other.
+ * <p/>
+ *
+ * Format of the encoded int array:
+ * The serialized data starts with a header describing the data size,
+ * followed by one entry per field added in the order of the addXyz() calls.
+ * Finally there's a CRC and an EOF marker.
+ *
+ * <pre>
  * - header:
  *   - 1 int: number of ints to follow (including this and CRC + EOF marker)
  * - entries:
@@ -43,8 +84,9 @@ import java.util.zip.CRC32;
  *   - long, double: 2 int value (MSB + LSB)
  *   - string: 1 int = number of chars following, then int = c1 | c2 (0 padding as needed)
  *   - serializer: (self, starting with number of ints to follow)
- * - 1 int: CRC (of all previous ints, excluding this and EOF)
+ * - 1 int: CRC (of all previous ints including header, excluding this and EOF)
  * - 1 int: EOF
+ * </pre>
  */
 public class SerialWriter {
 

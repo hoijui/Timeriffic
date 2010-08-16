@@ -31,18 +31,42 @@ public class Action extends Line {
 
     public Action(String data) {
         super(data);
+        if (data == null) {
+            mActions = "";
+        }
     }
 
     public int getHourMin() {
         return mHourMin;
     }
 
+    public void setHourMin(int hourMin) {
+        if (hourMin != mHourMin) {
+            markDirty();
+            mHourMin = hourMin;
+        }
+    }
+
     public int getDays() {
         return mDays;
     }
 
+    public void setDays(int days) {
+        if (days != mDays) {
+            markDirty();
+            mDays = days;
+        }
+    }
+
     public String getActions() {
         return mActions;
+    }
+
+    public void setActions(String actions) {
+        if (mActions == null || !mActions.equals(actions)) {
+            markDirty();
+            mActions = actions;
+        }
     }
 
     @Override
