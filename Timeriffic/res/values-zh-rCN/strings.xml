@@ -166,6 +166,9 @@
 <!-- this block translated by goapk.com -->
     <string name="timedaction_media_int">媒体 %d%%</string>
     <string name="timedaction_alarm_int">闹钟 %d%%</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="timedaction_system_vol_int">System %d%%</string>
+<!-- END NEW TRANSLATE -->
     <string name="timedaction_auto_brightness">自动背光</string>
     <string name="timedaction_automatic">自动的</string>
 
@@ -209,6 +212,9 @@
     <string name="editaction_wifi">Wifi</string>
     <string name="editaction_airplane">飞行模式</string>
     <string name="editaction_notif_volume">提醒音量.</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="editaction_system_volume">System Volume</string>
+<!-- END NEW TRANSLATE -->
 
 <!-- this block translated by goapk.com -->
     <string name="editaction_media_volume">媒体音量</string>

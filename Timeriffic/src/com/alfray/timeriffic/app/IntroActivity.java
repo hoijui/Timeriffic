@@ -75,7 +75,15 @@ public class IntroActivity extends ExceptionHandlerActivity {
                 try {
                     pi = pm.getPackageInfo(getPackageName(), 0);
                     mVersion = pi.versionName;
-                    if (mVersion == null) mVersion = "";
+                    if (mVersion == null) {
+                        mVersion = "";
+                    } else {
+                        // Remove anything after the first space
+                        int pos = mVersion.indexOf(' ');
+                        if (pos > 0 && pos < mVersion.length() - 1) {
+                            mVersion = mVersion.substring(0, pos);
+                        }
+                    }
                 } catch (NameNotFoundException e) {
                     mVersion = ""; // failed, ignored
                 }

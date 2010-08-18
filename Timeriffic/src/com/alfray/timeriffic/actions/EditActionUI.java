@@ -69,6 +69,7 @@ public class EditActionUI extends ExceptionHandlerActivity {
     private PrefPercent mPrefNotifVolume;
     private PrefPercent mPrefMediaVolume;
     private PrefPercent mPrefAlarmVolume;
+    private PrefPercent mPrefSystemVolume;
     private PrefPercent mPrefBrightness;
     private Object mPrefAirplane;
     private Object mPrefWifi;
@@ -314,6 +315,42 @@ public class EditActionUI extends ExceptionHandlerActivity {
                     mPrefAlarmVolume.setDialogId(++dialogId),
                     mPrefAlarmVolume);
 
+            mPrefSystemVolume = new PrefPercent(this,
+                    R.id.systemVolButton,
+                    actions,
+                    Columns.ACTION_SYSTEM_VOLUME,
+                    getString(R.string.editaction_system_volume),
+                    0,
+                    new Accessor() {
+                        @Override
+                        public void changePercent(int percent) {
+                            mSettingsHelper.changeSystemVolume(percent);
+                        }
+
+                        @Override
+                        public int getPercent() {
+                            return mSettingsHelper.getSystemVolume();
+                        }
+
+                        @Override
+                        public int getCustomChoiceLabel() {
+                            return 0;
+                        }
+
+                        @Override
+                        public int getCustomChoiceButtonLabel() {
+                            return 0;
+                        }
+
+                        @Override
+                        public char getCustomChoiceValue() {
+                            return 0;
+                        }
+                    });
+            mPercentDialogMap.put(
+                    mPrefSystemVolume.setDialogId(++dialogId),
+                    mPrefSystemVolume);
+
             mPrefBrightness = (PrefPercent) factory.getSetting(Columns.ACTION_BRIGHTNESS).createUi(this, actions);
             mPercentDialogMap.put(mPrefBrightness.setDialogId(++dialogId), mPrefBrightness);
 
@@ -480,6 +517,7 @@ public class EditActionUI extends ExceptionHandlerActivity {
             mPrefNotifVolume.collectResult(actions);
             mPrefMediaVolume.collectResult(actions);
             mPrefAlarmVolume.collectResult(actions);
+            mPrefSystemVolume.collectResult(actions);
 
             factory.getSetting(Columns.ACTION_BRIGHTNESS).collectUiResults(mPrefBrightness, actions);
             factory.getSetting(Columns.ACTION_BLUETOOTH).collectUiResults(mPrefBluetooth, actions);

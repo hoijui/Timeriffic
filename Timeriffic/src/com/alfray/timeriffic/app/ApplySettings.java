@@ -255,6 +255,10 @@ public class ApplySettings {
                             settings.changeAlarmVolume(value);
                             didSomething = true;
                             break;
+                        case Columns.ACTION_SYSTEM_VOLUME:
+                            settings.changeSystemVolume(value);
+                            didSomething = true;
+                            break;
                         }
 
                     } catch (NumberFormatException e) {

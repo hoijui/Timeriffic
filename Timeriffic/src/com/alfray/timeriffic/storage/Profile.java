@@ -21,9 +21,9 @@ package com.alfray.timeriffic.storage;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.alfray.timeriffic.annotations.Null;
 import com.alfray.timeriffic.serial.SerialReader;
 import com.alfray.timeriffic.serial.SerialWriter;
-import com.alfray.timeriffic.utils.Null;
 
 //-----------------------------------------------
 

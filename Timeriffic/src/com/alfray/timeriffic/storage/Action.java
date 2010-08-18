@@ -18,9 +18,9 @@
 
 package com.alfray.timeriffic.storage;
 
+import com.alfray.timeriffic.annotations.Null;
 import com.alfray.timeriffic.serial.SerialReader;
 import com.alfray.timeriffic.serial.SerialWriter;
-import com.alfray.timeriffic.utils.Null;
 
 //-----------------------------------------------
 

@@ -20,7 +20,7 @@
 <!--
     Language: italian.
     Regions:  any.
-	Translate by Neoxxx - Anddev Translate Team
+  Translate by Neoxxx - Anddev Translate Team
 -->
 
 <resources>
@@ -164,6 +164,9 @@
     <string name="timedaction_apndroid_off">3G/2G Data Off</string>
     <string name="timedaction_media_int">Media %d%%</string>
     <string name="timedaction_alarm_int">Allarme %d%%</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="timedaction_system_vol_int">System %d%%</string>
+<!-- END NEW TRANSLATE -->
     <string name="timedaction_auto_brightness">Luminosità Automatica</string>
     <string name="timedaction_automatic">Automatica</string>
 
@@ -209,6 +212,9 @@
     <string name="editaction_media_volume">Volume Media</string>
     <string name="editaction_alarm_volume">Volume Allarme</string>
     <string name="editaction_notif_volume">Vol. Notifica</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="editaction_system_volume">System Volume</string>
+<!-- END NEW TRANSLATE -->
     <string name="editaction_bluetooth">Bluetooth</string>
     <!-- APNdroid app name, not translated -->
     <string name="editaction_apndroid">APNdroid</string>

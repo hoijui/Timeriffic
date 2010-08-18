@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.alfray.timeriffic.utils;
+package com.alfray.timeriffic.annotations;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -25,9 +25,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Marker annotation indicating that this parameter can be null.
+ * Marker annotation indicating the visibility of the method has been
+ * relaxed so that we can access it in unit tests.
  */
 @Retention(RetentionPolicy.SOURCE)
-@Target(ElementType.PARAMETER)
-public @interface Null {
+@Target(ElementType.METHOD)
+public @interface PublicForTesting {
 }

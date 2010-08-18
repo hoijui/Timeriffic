@@ -24,7 +24,7 @@
 
 <resources>
     <!-- App title. Not translated -->
-    
+
 
     <!-- === Menu === -->
 
@@ -210,6 +210,9 @@
     <string name="editaction_media_volume">Medienlaut.</string>
     <string name="editaction_alarm_volume">Alarmlautstärke</string>
     <string name="editaction_notif_volume">Nachrichtlaut.</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="editaction_system_volume">System Volume</string>
+<!-- END NEW TRANSLATE -->
     <string name="editaction_bluetooth">Bluetooth</string>
     <!-- APNdroid app name, not translated -->
     <string name="editaction_apndroid">APNdroid</string>

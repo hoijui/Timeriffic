@@ -45,11 +45,11 @@
         style="@style/ActionButton"
         />
     <Button
-        android:id="@+id/wifiButton"
+        android:id="@+id/systemVolButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="wifi"
+        android:text="sysVol"
         style="@style/ActionButton"
         />
 </LinearLayout>
@@ -70,19 +70,19 @@
         style="@style/ActionButton"
         />
     <Button
+        android:id="@+id/wifiButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="wifi"
+        style="@style/ActionButton"
+        />
+    <Button
         android:id="@+id/airplaneButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="airplane"
-        style="@style/ActionButton"
-        />
-    <Button
-        android:id="@+id/bluetoothButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="bluetooth"
         style="@style/ActionButton"
         />
 </LinearLayout>
@@ -94,6 +94,14 @@
     android:orientation="horizontal"
     >
 
+    <Button
+        android:id="@+id/bluetoothButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="bluetooth"
+        style="@style/ActionButton"
+        />
     <Button
         android:id="@+id/apndroidButton"
         android:layout_width="fill_parent"
@@ -111,6 +119,7 @@
         android:text="free1"
         style="@style/ActionButton"
         />
+    <!--
     <Button
         android:enabled="false" android:visibility="invisible"
         android:id="@+id/freeButton2"
@@ -120,6 +129,7 @@
         android:text="free2"
         style="@style/ActionButton"
         />
+     -->
 </LinearLayout>
 
 </merge>

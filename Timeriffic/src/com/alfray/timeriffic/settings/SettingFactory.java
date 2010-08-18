@@ -63,6 +63,8 @@ public class SettingFactory {
                 break;
             case Columns.ACTION_ALARM_VOLUME:
                 break;
+            case Columns.ACTION_SYSTEM_VOLUME:
+                break;
             case Columns.ACTION_BRIGHTNESS:
                 s = new BrightnessSetting();
                 break;

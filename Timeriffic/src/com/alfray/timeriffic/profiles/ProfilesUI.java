@@ -112,15 +112,7 @@ public class ProfilesUI extends ExceptionHandlerActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String version = "??";
-        try {
-            version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
-        } catch (NameNotFoundException e) {
-            // pass
-        }
-        Log.d(TAG, String.format("Started %s v%s",
-                        getClass().getSimpleName(),
-                        version));
+        Log.d(TAG, String.format("Started %s", getClass().getSimpleName()));
 
         setContentView(R.layout.profiles_screen);
         mLayoutInflater = getLayoutInflater();

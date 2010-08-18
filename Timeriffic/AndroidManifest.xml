@@ -18,7 +18,7 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.alfray.timeriffic" android:versionCode="10902" android:versionName="1.09.02">
+	package="com.alfray.timeriffic" android:versionCode="10903" android:versionName="1.09.03 // Change: Now supports System Volume">
     <application
         android:label="@string/app_name"
         android:name=".app.TimerifficApp" android:icon="@drawable/app_icon">

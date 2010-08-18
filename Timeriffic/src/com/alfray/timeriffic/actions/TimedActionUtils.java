@@ -242,6 +242,12 @@ public class TimedActionUtils {
                                                 R.string.timedaction_alarm_int,
                                                 value));
                                 break;
+                            case Columns.ACTION_SYSTEM_VOLUME:
+                                actions_labels.add(
+                                        context.getString(
+                                                R.string.timedaction_system_vol_int,
+                                                value));
+                                break;
                             }
 
                         } catch (NumberFormatException e) {

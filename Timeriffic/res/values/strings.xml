@@ -165,6 +165,9 @@
     <string name="timedaction_apndroid_off">3G/2G Data Off</string>
     <string name="timedaction_media_int">Media %d%%</string>
     <string name="timedaction_alarm_int">Alarm %d%%</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="timedaction_system_vol_int">System %d%%</string>
+<!-- END NEW TRANSLATE -->
     <string name="timedaction_auto_brightness">Automatic Brightness</string>
     <string name="timedaction_automatic">Automatic</string>
 
@@ -210,6 +213,9 @@
     <string name="editaction_media_volume">Media Volume</string>
     <string name="editaction_alarm_volume">Alarm Volume</string>
     <string name="editaction_notif_volume">Notification Vol.</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="editaction_system_volume">System Volume</string>
+<!-- END NEW TRANSLATE -->
     <string name="editaction_bluetooth">Bluetooth</string>
     <!-- APNdroid app name, not translated -->
     <string name="editaction_apndroid">APNdroid</string>

@@ -155,6 +155,15 @@ public class ErrorReporterUI extends ExceptionHandlerActivity {
             try {
                 pi = pm.getPackageInfo(getPackageName(), 0);
                 mAppVersion = pi.versionName;
+                if (mAppVersion == null) {
+                    mAppVersion = "";
+                } else {
+                    // Remove anything after the first space
+                    int pos = mAppVersion.indexOf(' ');
+                    if (pos > 0 && pos < mAppVersion.length() - 1) {
+                        mAppVersion = mAppVersion.substring(0, pos);
+                    }
+                }
             } catch (Exception ignore) {
                 // getPackageName typically throws NameNotFoundException
             }

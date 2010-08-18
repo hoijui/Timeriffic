@@ -22,7 +22,6 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
-import android.os.Build;
 import android.provider.Settings;
 import android.util.Log;
 
@@ -282,6 +281,10 @@ public class SettingsHelper {
         changeVolume(AudioManager.STREAM_ALARM, percent);
     }
 
+    public void changeSystemVolume(int percent) {
+        changeVolume(AudioManager.STREAM_SYSTEM, percent);
+    }
+
     public int getRingerVolume() {
         return getVolume(AudioManager.STREAM_RING);
     }
@@ -296,6 +299,10 @@ public class SettingsHelper {
 
     public int getAlarmVolume() {
         return getVolume(AudioManager.STREAM_ALARM);
+    }
+
+    public int getSystemVolume() {
+        return getVolume(AudioManager.STREAM_SYSTEM);
     }
 
     public void changeNotifRingVolSync(boolean sync) {
