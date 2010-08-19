@@ -23,6 +23,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
+import android.media.AudioManager;
 
 import com.alfray.timeriffic.profiles.Columns;
 
@@ -55,15 +56,22 @@ public class SettingFactory {
                 s = new VibrateSetting();
                 break;
             case Columns.ACTION_RING_VOLUME:
-                s = new VolumeSetting();
+                s = new VolumeSetting(AudioManager.STREAM_RING);
                 break;
             case Columns.ACTION_NOTIF_VOLUME:
+                s = new VolumeSetting(AudioManager.STREAM_NOTIFICATION);
                 break;
             case Columns.ACTION_MEDIA_VOLUME:
+                s = new VolumeSetting(AudioManager.STREAM_MUSIC);
                 break;
             case Columns.ACTION_ALARM_VOLUME:
+                s = new VolumeSetting(AudioManager.STREAM_ALARM);
                 break;
             case Columns.ACTION_SYSTEM_VOLUME:
+                s = new VolumeSetting(AudioManager.STREAM_SYSTEM);
+                break;
+            case Columns.ACTION_VOICE_CALL_VOLUME:
+                s = new VolumeSetting(AudioManager.STREAM_VOICE_CALL);
                 break;
             case Columns.ACTION_BRIGHTNESS:
                 s = new BrightnessSetting();

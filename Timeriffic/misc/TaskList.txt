@@ -39,6 +39,7 @@ T v1.9
 
 TODO (misc)
 
+20100817 Bug: Slider edit in landscape with 3rd choice to high on Droid, need scrollbar
 20100309 Bug: StaleData/Cursor.closed (can't repro but happens often)
 20100309 Bug: Missing WakeLock permission (can't repro, happens rarely)
 20100309 APNDroid button: don't gray, explain what to do

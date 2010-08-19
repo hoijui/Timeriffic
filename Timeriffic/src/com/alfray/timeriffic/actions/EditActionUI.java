@@ -38,7 +38,6 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 
 import com.alfray.timeriffic.R;
-import com.alfray.timeriffic.actions.PrefPercentDialog.Accessor;
 import com.alfray.timeriffic.error.ExceptionHandlerActivity;
 import com.alfray.timeriffic.profiles.Columns;
 import com.alfray.timeriffic.profiles.ProfilesDB;
@@ -165,191 +164,21 @@ public class EditActionUI extends ExceptionHandlerActivity {
             mPrefRingerVibrate.setEnabled(mSettingsHelper.canControlAudio(),
                     getString(R.string.setting_not_supported));
 
-            mPrefRingerVolume = new PrefPercent(this,
-                    R.id.ringerVolButton,
-                    actions,
-                    Columns.ACTION_RING_VOLUME,
-                    getString(R.string.editaction_volume),
-                    0,
-                    new Accessor() {
-                        @Override
-                        public void changePercent(int percent) {
-                            mSettingsHelper.changeRingerVolume(percent);
-                        }
-
-                        @Override
-                        public int getPercent() {
-                            return mSettingsHelper.getRingerVolume();
-                        }
-
-                        @Override
-                        public int getCustomChoiceLabel() {
-                            return 0;
-                        }
-
-                        @Override
-                        public int getCustomChoiceButtonLabel() {
-                            return 0;
-                        }
-
-                        @Override
-                        public char getCustomChoiceValue() {
-                            return 0;
-                        }
-                    });
-            mPrefRingerVolume.setEnabled(mSettingsHelper.canControlAudio(),
-                    getString(R.string.setting_not_supported));
+            mPrefRingerVolume = (PrefPercent) factory.getSetting(Columns.ACTION_RING_VOLUME).createUi(this, actions);
             int dialogId = DIALOG_EDIT_PERCENT;
-            mPercentDialogMap.put(
-                    mPrefRingerVolume.setDialogId(++dialogId),
-                    mPrefRingerVolume);
+            mPercentDialogMap.put(mPrefRingerVolume.setDialogId(++dialogId), mPrefRingerVolume);
 
-            mPrefNotifVolume = new PrefPercent(this,
-                    R.id.notifVolButton,
-                    actions,
-                    Columns.ACTION_NOTIF_VOLUME,
-                    getString(R.string.editaction_notif_volume),
-                    0,
-                    new Accessor() {
-                        @Override
-                        public void changePercent(int percent) {
-                            mSettingsHelper.changeNotificationVolume(percent);
-                        }
+            mPrefNotifVolume = (PrefPercent) factory.getSetting(Columns.ACTION_NOTIF_VOLUME).createUi(this, actions);
+            mPercentDialogMap.put(mPrefNotifVolume.setDialogId(++dialogId), mPrefNotifVolume);
 
-                        @Override
-                        public int getPercent() {
-                            return mSettingsHelper.getNotificationVolume();
-                        }
+            mPrefMediaVolume = (PrefPercent) factory.getSetting(Columns.ACTION_MEDIA_VOLUME).createUi(this, actions);
+            mPercentDialogMap.put(mPrefMediaVolume.setDialogId(++dialogId), mPrefMediaVolume);
 
-                        @Override
-                        public int getCustomChoiceLabel() {
-                            if (mSettingsHelper.canSyncNotificationRingVol()) {
-                                return R.string.editaction_notif_ring_sync;
-                            }
-                            return 0;
-                        }
+            mPrefAlarmVolume = (PrefPercent) factory.getSetting(Columns.ACTION_ALARM_VOLUME).createUi(this, actions);
+            mPercentDialogMap.put(mPrefAlarmVolume.setDialogId(++dialogId), mPrefAlarmVolume);
 
-                        @Override
-                        public int getCustomChoiceButtonLabel() {
-                            return R.string.actionlabel_notif_ring_sync;
-                        }
-
-                        @Override
-                        public char getCustomChoiceValue() {
-                            return Columns.ACTION_NOTIF_RING_VOL_SYNC;
-                        }
-                    });
-            mPercentDialogMap.put(
-                    mPrefNotifVolume.setDialogId(++dialogId),
-                    mPrefNotifVolume);
-
-            mPrefMediaVolume = new PrefPercent(this,
-                    R.id.mediaVolButton,
-                    actions,
-                    Columns.ACTION_MEDIA_VOLUME,
-                    getString(R.string.editaction_media_volume),
-                    0,
-                    new Accessor() {
-                        @Override
-                        public void changePercent(int percent) {
-                            mSettingsHelper.changeMediaVolume(percent);
-                        }
-
-                        @Override
-                        public int getPercent() {
-                            return mSettingsHelper.getMediaVolume();
-                        }
-
-                        @Override
-                        public int getCustomChoiceLabel() {
-                            return 0;
-                        }
-
-                        @Override
-                        public int getCustomChoiceButtonLabel() {
-                            return 0;
-                        }
-
-                        @Override
-                        public char getCustomChoiceValue() {
-                            return 0;
-                        }
-                    });
-            mPercentDialogMap.put(
-                    mPrefMediaVolume.setDialogId(++dialogId),
-                    mPrefMediaVolume);
-
-            mPrefAlarmVolume = new PrefPercent(this,
-                    R.id.alarmVolButton,
-                    actions,
-                    Columns.ACTION_ALARM_VOLUME,
-                    getString(R.string.editaction_alarm_volume),
-                    0,
-                    new Accessor() {
-                        @Override
-                        public void changePercent(int percent) {
-                            mSettingsHelper.changeAlarmVolume(percent);
-                        }
-
-                        @Override
-                        public int getPercent() {
-                            return mSettingsHelper.getAlarmVolume();
-                        }
-
-                        @Override
-                        public int getCustomChoiceLabel() {
-                            return 0;
-                        }
-
-                        @Override
-                        public int getCustomChoiceButtonLabel() {
-                            return 0;
-                        }
-
-                        @Override
-                        public char getCustomChoiceValue() {
-                            return 0;
-                        }
-                    });
-            mPercentDialogMap.put(
-                    mPrefAlarmVolume.setDialogId(++dialogId),
-                    mPrefAlarmVolume);
-
-            mPrefSystemVolume = new PrefPercent(this,
-                    R.id.systemVolButton,
-                    actions,
-                    Columns.ACTION_SYSTEM_VOLUME,
-                    getString(R.string.editaction_system_volume),
-                    0,
-                    new Accessor() {
-                        @Override
-                        public void changePercent(int percent) {
-                            mSettingsHelper.changeSystemVolume(percent);
-                        }
-
-                        @Override
-                        public int getPercent() {
-                            return mSettingsHelper.getSystemVolume();
-                        }
-
-                        @Override
-                        public int getCustomChoiceLabel() {
-                            return 0;
-                        }
-
-                        @Override
-                        public int getCustomChoiceButtonLabel() {
-                            return 0;
-                        }
-
-                        @Override
-                        public char getCustomChoiceValue() {
-                            return 0;
-                        }
-                    });
-            mPercentDialogMap.put(
-                    mPrefSystemVolume.setDialogId(++dialogId),
-                    mPrefSystemVolume);
+            mPrefSystemVolume = (PrefPercent) factory.getSetting(Columns.ACTION_SYSTEM_VOLUME).createUi(this, actions);
+            mPercentDialogMap.put(mPrefSystemVolume.setDialogId(++dialogId), mPrefSystemVolume);
 
             mPrefBrightness = (PrefPercent) factory.getSetting(Columns.ACTION_BRIGHTNESS).createUi(this, actions);
             mPercentDialogMap.put(mPrefBrightness.setDialogId(++dialogId), mPrefBrightness);

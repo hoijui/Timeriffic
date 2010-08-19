@@ -18,11 +18,9 @@
 
 package com.alfray.timeriffic.utils;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
-import android.provider.Settings;
 import android.util.Log;
 
 import com.alfray.timeriffic.R;
@@ -45,17 +43,6 @@ public class SettingsHelper {
     private static final boolean DEBUG = true;
     public static final String TAG = "TFC-SettingsH";
 
-    /** android.provider.Settings.NOTIFICATION_USE_RING_VOLUME, available starting with API 3
-     *  but it's hidden from the SDK. The Settings.java comment says eventually this setting
-     *  will go away later once there are "profile" support, whatever that is. */
-    private static final String NOTIF_RING_VOL_KEY = "notifications_use_ring_volume";
-    /** Notification vol and ring volumes are synched. */
-    public static final int NOTIF_RING_VOL_SYNCED = 1;
-    /** Notification vol and ring volumes are not synched. */
-    public static final int NOTIF_RING_VOL_NOT_SYNCHED = 0;
-    /** No support for notification and ring volume sync. */
-    public static final int NOTIF_RING_VOL_UNSUPPORTED = -1;
-
     private final Context mContext;
 
     public SettingsHelper(Context context) {
@@ -65,10 +52,6 @@ public class SettingsHelper {
     public boolean canControlAudio() {
         AudioManager manager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
         return manager != null;
-    }
-
-    public boolean canSyncNotificationRingVol() {
-        return getSyncNotifRingVol() != NOTIF_RING_VOL_UNSUPPORTED;
     }
 
     public enum RingerMode {
@@ -233,93 +216,4 @@ public class SettingsHelper {
             }
         }
     }
-
-    private void changeVolume(int stream, int percent) {
-        AudioManager manager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
-
-        if (manager == null) {
-            if (DEBUG) Log.w(TAG, "changeVolume: AUDIO_SERVICE missing!");
-            return;
-        }
-
-        if (DEBUG) Log.d(TAG, String.format("changeVolume: stream=%d, vol=%d%%", stream, percent));
-
-        int max = manager.getStreamMaxVolume(stream);
-        int vol = (max * percent) / 100;
-
-        broadcastVolumeUpdate(stream, vol, -1);
-        manager.setStreamVolume(stream, vol, 0 /*flags*/);
-    }
-
-    private int getVolume(int stream) {
-        AudioManager manager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
-
-        if (manager == null) {
-            if (DEBUG) Log.w(TAG, "getVolume: AUDIO_SERVICE missing!");
-            return 50;
-        }
-
-        int vol = manager.getStreamVolume(stream);
-        int max = manager.getStreamMaxVolume(stream);
-
-        return (vol * 100 / max);
-    }
-
-    public void changeRingerVolume(int percent) {
-        changeVolume(AudioManager.STREAM_RING, percent);
-    }
-
-    public void changeNotificationVolume(int percent) {
-        changeVolume(AudioManager.STREAM_NOTIFICATION, percent);
-    }
-
-    public void changeMediaVolume(int percent) {
-        changeVolume(AudioManager.STREAM_MUSIC, percent);
-    }
-
-    public void changeAlarmVolume(int percent) {
-        changeVolume(AudioManager.STREAM_ALARM, percent);
-    }
-
-    public void changeSystemVolume(int percent) {
-        changeVolume(AudioManager.STREAM_SYSTEM, percent);
-    }
-
-    public int getRingerVolume() {
-        return getVolume(AudioManager.STREAM_RING);
-    }
-
-    public int getNotificationVolume() {
-        return getVolume(AudioManager.STREAM_NOTIFICATION);
-    }
-
-    public int getMediaVolume() {
-        return getVolume(AudioManager.STREAM_MUSIC);
-    }
-
-    public int getAlarmVolume() {
-        return getVolume(AudioManager.STREAM_ALARM);
-    }
-
-    public int getSystemVolume() {
-        return getVolume(AudioManager.STREAM_SYSTEM);
-    }
-
-    public void changeNotifRingVolSync(boolean sync) {
-        ContentResolver resolver = mContext.getContentResolver();
-        Settings.System.putInt(resolver,
-                               NOTIF_RING_VOL_KEY,
-                               sync ? NOTIF_RING_VOL_SYNCED : NOTIF_RING_VOL_NOT_SYNCHED);
-    }
-
-    /**
-     * Returns one of {@link #NOTIF_RING_VOL_SYNCED}, {@link #NOTIF_RING_VOL_NOT_SYNCHED} or
-     * {@link #NOTIF_RING_VOL_UNSUPPORTED}.
-     */
-    public int getSyncNotifRingVol() {
-        final ContentResolver resolver = mContext.getContentResolver();
-        return Settings.System.getInt(resolver, NOTIF_RING_VOL_KEY, NOTIF_RING_VOL_UNSUPPORTED);
-    }
-
-
 }

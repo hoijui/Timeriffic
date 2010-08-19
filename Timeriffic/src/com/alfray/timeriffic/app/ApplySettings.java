@@ -185,7 +185,6 @@ public class ApplySettings {
         VibrateRingerMode vibRingerMode = null;
 
         for (String action : actions.split(",")) {
-            int value = -1;
             if (action.length() > 1) {
                 char code = action.charAt(0);
                 char v = action.charAt(1);
@@ -213,57 +212,17 @@ public class ApplySettings {
                 case Columns.ACTION_BLUETOOTH:
                 case Columns.ACTION_APN_DROID:
                 case Columns.ACTION_WIFI:
+                case Columns.ACTION_NOTIF_VOLUME:
+                case Columns.ACTION_RING_VOLUME:
+                case Columns.ACTION_MEDIA_VOLUME:
+                case Columns.ACTION_ALARM_VOLUME:
+                case Columns.ACTION_SYSTEM_VOLUME:
                     ISetting s = SettingFactory.getInstance().getSetting(code);
                     if (s != null && s.isSupported(mContext)) {
                         s.performAction(mContext, action);
                         didSomething = true;
                     }
                     break;
-
-                case Columns.ACTION_NOTIF_VOLUME:
-                    if (v == Columns.ACTION_NOTIF_RING_VOL_SYNC) {
-                        settings.changeNotifRingVolSync(true);
-                        didSomething = true;
-
-                    } else {
-                        try {
-                            value = Integer.parseInt(action.substring(1));
-
-                            settings.changeNotifRingVolSync(false);
-                            settings.changeNotificationVolume(value);
-                            didSomething = true;
-                        } catch (NumberFormatException e) {
-                            // pass
-                        }
-                    }
-                    break;
-
-                default:
-                    try {
-                        value = Integer.parseInt(action.substring(1));
-
-                        switch(code) {
-                        case Columns.ACTION_RING_VOLUME:
-                            settings.changeRingerVolume(value);
-                            didSomething = true;
-                            break;
-                        case Columns.ACTION_MEDIA_VOLUME:
-                            settings.changeMediaVolume(value);
-                            didSomething = true;
-                            break;
-                        case Columns.ACTION_ALARM_VOLUME:
-                            settings.changeAlarmVolume(value);
-                            didSomething = true;
-                            break;
-                        case Columns.ACTION_SYSTEM_VOLUME:
-                            settings.changeSystemVolume(value);
-                            didSomething = true;
-                            break;
-                        }
-
-                    } catch (NumberFormatException e) {
-                        // pass
-                    }
                 }
             }
         }
