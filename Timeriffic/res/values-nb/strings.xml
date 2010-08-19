@@ -165,6 +165,7 @@
     <string name="timedaction_alarm_int">Alarm %d%%</string>
 <!-- BEGIN NEW TRANSLATE -->
     <string name="timedaction_system_vol_int">System %d%%</string>
+    <string name="timedaction_voice_call_vol_int">Voice %d%%</string>
 <!-- END NEW TRANSLATE -->
     <string name="timedaction_auto_brightness">Automatisk Lysstyrke</string>
     <string name="timedaction_automatic">Automatisk</string>
@@ -213,6 +214,7 @@
     <string name="editaction_notif_volume">Varselvolum</string>
 <!-- BEGIN NEW TRANSLATE -->
     <string name="editaction_system_volume">System Volume</string>
+    <string name="editaction_voice_call_volume">Voice Call Volume</string>
 <!-- END NEW TRANSLATE -->
     <string name="editaction_bluetooth">Blåtann</string>
     <!-- APNdroid app name, not translated -->

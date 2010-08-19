@@ -134,6 +134,7 @@
     <string name="timedaction_media_int">Media %d%%</string>
     <string name="timedaction_alarm_int">Alarm %d%%</string>
     <string name="timedaction_system_vol_int">System %d%%</string>
+    <string name="timedaction_voice_call_vol_int">Voice %d%%</string>
     <string name="timedaction_auto_brightness">Automatic Brightness</string>
     <string name="timedaction_automatic">Automatic</string>
 <!--  END NEW TRANSLATION -->
@@ -182,6 +183,7 @@
     <string name="editaction_media_volume">Media Vol.</string>
     <string name="editaction_alarm_volume">Alarm Vol.</string>
     <string name="editaction_system_volume">System Volume</string>
+    <string name="editaction_voice_call_volume">Voice Call Volume</string>
 <!--  END NEW TRANSLATION -->
      <string name="editaction_bluetooth">블루투스</string>
      <!-- APNdroid app name, not translated -->

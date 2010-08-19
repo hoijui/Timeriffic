@@ -21,6 +21,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
 >
 
+<include layout="@layout/more_actions_2cols" />
+
+<!--
 <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
@@ -64,11 +67,11 @@
         style="@style/ActionButton"
         />
     <Button
-        android:id="@+id/brightnessButton"
+        android:id="@+id/voiceCallVolButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="brightness"
+        android:text="voiceCallVol"
         style="@style/ActionButton"
         />
 </LinearLayout>
@@ -90,11 +93,11 @@
         style="@style/ActionButton"
         />
     <Button
-        android:id="@+id/bluetoothButton"
+        android:id="@+id/brightnessButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="bluetooth"
+        android:text="brightness"
         style="@style/ActionButton"
         />
 
@@ -116,6 +119,24 @@
         style="@style/ActionButton"
         />
     <Button
+        android:id="@+id/bluetoothButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="bluetooth"
+        style="@style/ActionButton"
+        />
+
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="horizontal"
+    android:baselineAligned="false"
+    >
+    <Button
         android:id="@+id/apndroidButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -123,7 +144,6 @@
         android:text="apndroid"
         style="@style/ActionButton"
         />
-    <!--
     <Button
         android:enabled="false" android:visibility="invisible"
         android:id="@+id/nextButton"
@@ -133,7 +153,7 @@
         android:text="-"
         style="@style/ActionButton"
         />
-     -->
 </LinearLayout>
+-->
 
 </merge>

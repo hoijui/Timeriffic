@@ -21,14 +21,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
 >
 
-<include layout="@layout/more_actions_3cols" />
-
-<!--
 <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:orientation="horizontal"
+    android:baselineAligned="false"
     >
 
     <Button
@@ -62,14 +60,15 @@
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:orientation="horizontal"
+    android:baselineAligned="false"
     >
 
     <Button
-        android:id="@+id/brightnessButton"
+        android:id="@+id/voiceCallVolButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="brightness"
+        android:text="voiceCallVol"
         style="@style/ActionButton"
         />
     <Button
@@ -81,11 +80,11 @@
         style="@style/ActionButton"
         />
     <Button
-        android:id="@+id/airplaneButton"
+        android:id="@+id/brightnessButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="airplane"
+        android:text="brightness"
         style="@style/ActionButton"
         />
 </LinearLayout>
@@ -95,8 +94,17 @@
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:orientation="horizontal"
+    android:baselineAligned="false"
     >
 
+    <Button
+        android:id="@+id/airplaneButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="airplane"
+        style="@style/ActionButton"
+        />
     <Button
         android:id="@+id/bluetoothButton"
         android:layout_width="fill_parent"
@@ -113,6 +121,7 @@
         android:text="apndroid"
         style="@style/ActionButton"
         />
+    <!--
     <Button
         android:enabled="false" android:visibility="invisible"
         android:id="@+id/freeButton1"
@@ -122,7 +131,6 @@
         android:text="free1"
         style="@style/ActionButton"
         />
-    <!- -
     <Button
         android:enabled="false" android:visibility="invisible"
         android:id="@+id/freeButton2"
@@ -132,8 +140,7 @@
         android:text="free2"
         style="@style/ActionButton"
         />
-     - ->
+     -->
 </LinearLayout>
--->
 
 </merge>

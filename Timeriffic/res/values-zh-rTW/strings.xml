@@ -165,6 +165,7 @@
     <string name="timedaction_alarm_int">鬧鐘 %d%%</string>
 <!-- BEGIN NEW TRANSLATE -->
     <string name="timedaction_system_vol_int">System %d%%</string>
+    <string name="timedaction_voice_call_vol_int">Voice %d%%</string>
 <!-- END NEW TRANSLATE -->
     <string name="timedaction_auto_brightness">自動背光</string>
     <string name="timedaction_automatic">自動的</string>
@@ -213,6 +214,7 @@
     <string name="editaction_alarm_volume">鬧鐘音量</string>
 <!-- BEGIN NEW TRANSLATE -->
     <string name="editaction_system_volume">System Volume</string>
+    <string name="editaction_voice_call_volume">Voice Call Volume</string>
 <!-- END NEW TRANSLATE -->
     <string name="editaction_bluetooth">藍牙</string>
     <!-- APNdroid app name, not translated -->

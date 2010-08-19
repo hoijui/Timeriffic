@@ -69,6 +69,7 @@ public class EditActionUI extends ExceptionHandlerActivity {
     private PrefPercent mPrefMediaVolume;
     private PrefPercent mPrefAlarmVolume;
     private PrefPercent mPrefSystemVolume;
+    private PrefPercent mPrefVoiceVolume;
     private PrefPercent mPrefBrightness;
     private Object mPrefAirplane;
     private Object mPrefWifi;
@@ -179,6 +180,9 @@ public class EditActionUI extends ExceptionHandlerActivity {
 
             mPrefSystemVolume = (PrefPercent) factory.getSetting(Columns.ACTION_SYSTEM_VOLUME).createUi(this, actions);
             mPercentDialogMap.put(mPrefSystemVolume.setDialogId(++dialogId), mPrefSystemVolume);
+
+            mPrefVoiceVolume = (PrefPercent) factory.getSetting(Columns.ACTION_VOICE_CALL_VOLUME).createUi(this, actions);
+            mPercentDialogMap.put(mPrefVoiceVolume.setDialogId(++dialogId), mPrefVoiceVolume);
 
             mPrefBrightness = (PrefPercent) factory.getSetting(Columns.ACTION_BRIGHTNESS).createUi(this, actions);
             mPercentDialogMap.put(mPrefBrightness.setDialogId(++dialogId), mPrefBrightness);
@@ -347,6 +351,7 @@ public class EditActionUI extends ExceptionHandlerActivity {
             mPrefMediaVolume.collectResult(actions);
             mPrefAlarmVolume.collectResult(actions);
             mPrefSystemVolume.collectResult(actions);
+            mPrefVoiceVolume.collectResult(actions);
 
             factory.getSetting(Columns.ACTION_BRIGHTNESS).collectUiResults(mPrefBrightness, actions);
             factory.getSetting(Columns.ACTION_BLUETOOTH).collectUiResults(mPrefBluetooth, actions);

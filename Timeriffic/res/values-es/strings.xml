@@ -149,7 +149,8 @@
     <string name="timedaction_media_int">Media %d%%</string>
     <string name="timedaction_alarm_int">Alarma %d%%</string>
 <!-- BEGIN NEW TRANSLATE -->
-    <string name="timedaction_system_vol_int">System %d%%</string>
+    <string name="timedaction_system_vol_int">Sistema %d%%</string>
+    <string name="timedaction_voice_call_vol_int">Voz %d%%</string>
 <!-- END NEW TRANSLATE -->
     <string name="timedaction_auto_brightness">Brillo automático</string>
     <string name="timedaction_automatic">Automático</string>
@@ -201,7 +202,8 @@
     <string name="editaction_media_volume">Volumen media</string>
     <string name="editaction_alarm_volume">Volumen alarma</string>
 <!-- BEGIN NEW TRANSLATE -->
-    <string name="editaction_system_volume">System Volume</string>
+    <string name="editaction_system_volume">Volumem sistema</string>
+    <string name="editaction_voice_call_volume">Volumen de llamada voz</string>
 <!-- END NEW TRANSLATE -->
     <string name="editaction_bluetooth">Bluetooth</string>
 

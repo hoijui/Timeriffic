@@ -21,14 +21,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
 >
 
-<include layout="@layout/more_actions_3cols" />
-
-<!--
 <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:orientation="horizontal"
+    android:baselineAligned="false"
     >
 
     <Button
@@ -47,12 +45,30 @@
         android:text="alarmVol"
         style="@style/ActionButton"
         />
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="horizontal"
+    android:baselineAligned="false"
+    >
+
     <Button
         android:id="@+id/systemVolButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:text="sysVol"
+        style="@style/ActionButton"
+        />
+    <Button
+        android:id="@+id/voiceCallVolButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="voiceCallVol"
         style="@style/ActionButton"
         />
 </LinearLayout>
@@ -62,16 +78,9 @@
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:orientation="horizontal"
+    android:baselineAligned="false"
     >
 
-    <Button
-        android:id="@+id/brightnessButton"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="brightness"
-        style="@style/ActionButton"
-        />
     <Button
         android:id="@+id/wifiButton"
         android:layout_width="fill_parent"
@@ -81,13 +90,14 @@
         style="@style/ActionButton"
         />
     <Button
-        android:id="@+id/airplaneButton"
+        android:id="@+id/brightnessButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="airplane"
+        android:text="brightness"
         style="@style/ActionButton"
         />
+
 </LinearLayout>
 
 <LinearLayout
@@ -95,8 +105,16 @@
     android:layout_height="wrap_content"
     android:layout_weight="1"
     android:orientation="horizontal"
+    android:baselineAligned="false"
     >
-
+    <Button
+        android:id="@+id/airplaneButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="airplane"
+        style="@style/ActionButton"
+        />
     <Button
         android:id="@+id/bluetoothButton"
         android:layout_width="fill_parent"
@@ -105,6 +123,16 @@
         android:text="bluetooth"
         style="@style/ActionButton"
         />
+
+</LinearLayout>
+
+<LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_weight="1"
+    android:orientation="horizontal"
+    android:baselineAligned="false"
+    >
     <Button
         android:id="@+id/apndroidButton"
         android:layout_width="fill_parent"
@@ -115,25 +143,13 @@
         />
     <Button
         android:enabled="false" android:visibility="invisible"
-        android:id="@+id/freeButton1"
+        android:id="@+id/nextButton"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="free1"
+        android:text="-"
         style="@style/ActionButton"
         />
-    <!- -
-    <Button
-        android:enabled="false" android:visibility="invisible"
-        android:id="@+id/freeButton2"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_weight="1"
-        android:text="free2"
-        style="@style/ActionButton"
-        />
-     - ->
 </LinearLayout>
--->
 
 </merge>

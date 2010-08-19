@@ -166,7 +166,6 @@ public class TimedActionUtils {
 
         if (actions != null) {
             for (String action : actions.split(",")) {
-                int value = -1;
                 if (action.length() > 1) {
                     char code = action.charAt(0);
                     char v = action.charAt(1);
@@ -194,6 +193,12 @@ public class TimedActionUtils {
                     case Columns.ACTION_BLUETOOTH:
                     case Columns.ACTION_APN_DROID:
                     case Columns.ACTION_WIFI:
+                    case Columns.ACTION_NOTIF_VOLUME:
+                    case Columns.ACTION_RING_VOLUME:
+                    case Columns.ACTION_MEDIA_VOLUME:
+                    case Columns.ACTION_ALARM_VOLUME:
+                    case Columns.ACTION_SYSTEM_VOLUME:
+                    case Columns.ACTION_VOICE_CALL_VOLUME:
                         ISetting s = SettingFactory.getInstance().getSetting(code);
                         if (s != null && s.isSupported(context)) {
                             String label = s.getActionLabel(context, action);
@@ -203,56 +208,6 @@ public class TimedActionUtils {
                         }
                         break;
 
-                    case Columns.ACTION_NOTIF_VOLUME:
-                        if (v == Columns.ACTION_NOTIF_RING_VOL_SYNC) {
-                            actions_labels.add(context.getString(R.string.timedaction_notif_ring_sync));
-                        } else {
-                            try {
-                                value = Integer.parseInt(action.substring(1));
-
-                                actions_labels.add(context.getString(
-                                                                R.string.timedaction_notif_int,
-                                                                value));
-                            } catch (NumberFormatException e) {
-                                // pass
-                            }
-                        }
-                        break;
-
-                    default:
-                        try {
-                            value = Integer.parseInt(action.substring(1));
-
-                            switch(code) {
-                            case Columns.ACTION_RING_VOLUME:
-                                actions_labels.add(
-                                        context.getString(
-                                                R.string.timedaction_ringer_int,
-                                                value));
-                                break;
-                            case Columns.ACTION_MEDIA_VOLUME:
-                                actions_labels.add(
-                                        context.getString(
-                                                R.string.timedaction_media_int,
-                                                value));
-                                break;
-                            case Columns.ACTION_ALARM_VOLUME:
-                                actions_labels.add(
-                                        context.getString(
-                                                R.string.timedaction_alarm_int,
-                                                value));
-                                break;
-                            case Columns.ACTION_SYSTEM_VOLUME:
-                                actions_labels.add(
-                                        context.getString(
-                                                R.string.timedaction_system_vol_int,
-                                                value));
-                                break;
-                            }
-
-                        } catch (NumberFormatException e) {
-                            // pass
-                        }
                     }
                 }
             }

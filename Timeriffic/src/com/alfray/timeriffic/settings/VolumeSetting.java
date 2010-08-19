@@ -85,13 +85,12 @@ public class VolumeSetting implements ISetting {
                         R.id.systemVolButton,
                         R.string.editaction_system_volume,
                         R.string.timedaction_system_vol_int));
-/*
+
         sStreamInfo.put(AudioManager.STREAM_VOICE_CALL,
                 new StreamInfo(Columns.ACTION_VOICE_CALL_VOLUME,
                         R.id.voiceCallVolButton,
                         R.string.editaction_voice_call_volume,
-                        R.string.timedaction_voice_call_int));
-*/
+                        R.string.timedaction_voice_call_vol_int));
         }
 
     public VolumeSetting(int stream) {

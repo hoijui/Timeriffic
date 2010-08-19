@@ -233,6 +233,9 @@
                 />
         </LinearLayout>
 
+        <include layout="@layout/more_actions" />
+
+        <!--
         <LinearLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -328,7 +331,7 @@
                 style="@style/ActionButton"
                 />
         </LinearLayout>
-
+        -->
         <!--
             <Button
                 android:enabled="false" android:visibility="invisible"
