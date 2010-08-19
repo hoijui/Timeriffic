@@ -90,7 +90,6 @@ public class BrightnessSetting implements ISetting {
                             @Override
                             public void changePercent(int percent) {
                                 // disable the immediate slider feedback, it flickers too much and is very slow.
-                                // mSettingsHelper.changeBrightness(percent, false /*persist*/);
                             }
 
                             @Override
@@ -156,7 +155,7 @@ public class BrightnessSetting implements ISetting {
             try {
                 int value = Integer.parseInt(action.substring(1));
                 changeAutoBrightness(context, false);
-                changeBrightness(context, value, true /*persist*/);
+                changeBrightness(context, value);
             } catch (NumberFormatException e) {
                 // pass
             }
@@ -182,10 +181,8 @@ public class BrightnessSetting implements ISetting {
 
     /**
      * @param percent The new value in 0..100 range (will get mapped to adequate OS values)
-     * @param persistent True if the setting should be made persistent, e.g. written to system pref.
-     *  If false, only the current hardware value is changed.
      */
-    private void changeBrightness(Context context, int percent, boolean persistent) {
+    private void changeBrightness(Context context, int percent) {
         // Reference:
         // http://android.git.kernel.org/?p=platform/packages/apps/Settings.git;a=blob;f=src/com/android/settings/BrightnessPreference.java
         // The source indicates
@@ -195,7 +192,14 @@ public class BrightnessSetting implements ISetting {
         // - To get value: Settings.System.getInt(getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS);
         // - To set value: Settings.System.putInt(getContext().getContentResolver(), Settings.System.SCREEN_BRIGHTNESS, v);
 
-        Log.d(TAG, "changeBrightness: " + Integer.toString(percent));
+
+        int actual = getCurrentBrightness(context);
+        if (actual == percent) {
+            Log.d(TAG, "NOT changed, already " + Integer.toString(percent));
+            return;
+        }
+
+        Log.d(TAG, "SET to " + Integer.toString(percent));
 
         Intent i = new Intent(context, ChangeBrightnessActivity.class);
         i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);

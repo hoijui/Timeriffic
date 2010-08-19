@@ -19,6 +19,7 @@
 package com.alfray.timeriffic.settings;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
@@ -36,11 +37,19 @@ import com.alfray.timeriffic.profiles.Columns;
 
 public class VolumeSetting implements ISetting {
 
+    private static final String EXTRA_OI_VOLUME = "org.openintents.audio.extra_volume_index";
+    private static final String EXTRA_OI_STREAM = "org.openintents.audio.extra_stream_type";
     private static final boolean DEBUG = true;
     private static final String TAG = "VolumeSetting";
+
+    private static final String INTENT_OI_VOL_UPDATE = "org.openintents.audio.action_volume_update";
+
+    private static BroadcastReceiver sBroadcastReceiver;
+
+    private final int mStream;
+
     private boolean mCheckSupported = true;
     private boolean mIsSupported = false;
-    private final int mStream;
 
     /** android.provider.Settings.NOTIFICATION_USE_RING_VOLUME, available starting with API 3
      *  but it's hidden from the SDK. The Settings.java comment says eventually this setting
@@ -240,8 +249,10 @@ public class VolumeSetting implements ISetting {
         int max = manager.getStreamMaxVolume(mStream);
         int vol = (max * percent) / 100;
 
-        broadcastVolumeUpdate(context, vol);
-        manager.setStreamVolume(mStream, vol, 0 /*flags*/);
+        int actual = manager.getStreamVolume(mStream);
+        if (actual != vol) {
+            broadcastVolumeUpdate(context, vol);
+        }
     }
 
     /**
@@ -255,13 +266,63 @@ public class VolumeSetting implements ISetting {
      */
     private void broadcastVolumeUpdate(Context context, int volume) {
         try {
-            Intent intent = new Intent("org.openintents.audio.action_volume_update");
-            intent.putExtra("org.openintents.audio.extra_stream_type", mStream);
-            intent.putExtra("org.openintents.audio.extra_volume_index", volume);
-            //--Log.d(TAG, "Notify RingGuard: " + intent.toString() + intent.getExtras().toString());
-            context.sendBroadcast(intent);
+            Intent intent = new Intent(INTENT_OI_VOL_UPDATE);
+            intent.putExtra(EXTRA_OI_STREAM, mStream);
+            intent.putExtra(EXTRA_OI_VOLUME, volume);
+
+            if (sBroadcastReceiver == null) {
+                synchronized (VolumeSetting.class) {
+                    if (sBroadcastReceiver == null) {
+                        sBroadcastReceiver = new ApplyVolumeReceiver();
+                    }
+                }
+            }
+
+            context.sendOrderedBroadcast(intent,
+                    null, //receiverPermission
+                    sBroadcastReceiver,
+                    null, //scheduler
+                    Activity.RESULT_OK, //initialCode
+                    null, //initialData
+                    intent.getExtras() //initialExtras
+                    );
+
         } catch (Exception e) {
             Log.w(TAG, e);
+        }
+    }
+
+    private static class ApplyVolumeReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            int stream = intent.getIntExtra(EXTRA_OI_STREAM, -1);
+            int vol = intent.getIntExtra(EXTRA_OI_VOLUME, -1);
+
+            if (DEBUG) Log.d(TAG, String.format("applyVolume: stream=%d, vol=%d%%", stream, vol));
+
+            if (stream >= 0 && vol >= 0) {
+                AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+                if (manager != null) {
+                    if (DEBUG) Log.d(TAG, String.format("current=%d%%", manager.getStreamVolume(stream)));
+
+                    manager.setStreamVolume(stream, vol, 0 /*flags*/);
+
+                    try {
+                        Thread.sleep(1 /*ms*/);
+                    } catch (InterruptedException e) {
+                        // ignore
+                    }
+
+                    int actual = manager.getStreamVolume(stream);
+                    if (actual == vol) {
+                        if (DEBUG) Log.d(TAG,
+                                String.format("Vol change OK, stream %d, vol %d", stream, vol));
+                    } else {
+                        if (DEBUG) Log.d(TAG,
+                                String.format("Vol change FAIL, stream %d, vol %d, actual %d", stream, vol, actual));
+                    }
+                }
+            }
         }
     }
 

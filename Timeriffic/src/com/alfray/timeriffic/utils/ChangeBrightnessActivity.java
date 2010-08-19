@@ -107,9 +107,14 @@ public class ChangeBrightnessActivity extends ExceptionHandlerActivity {
 
         // A bit unfortunate but it seems the brightness change hack
         // doesn't work on some devices when the screen is turned off.
-        PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
-        WakeLock wl = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "TFCChangeBrightness");
-        wl.acquire(1002); // we need 1000 ms below, so randomly choose 1002 here
+        try {
+            PowerManager pm = (PowerManager) getSystemService(Context.POWER_SERVICE);
+            WakeLock wl = pm.newWakeLock(PowerManager.SCREEN_BRIGHT_WAKE_LOCK, "TFCChangeBrightness");
+            wl.acquire(1010); // we need 1000 ms below, so randomly choose a bit more here
+        } catch (Exception e) {
+            // Wake lock failed. Still continue.
+            Log.d(TAG, "WakeLock.acquire failed");
+        }
 
         setContentView(R.layout.empty);
 
