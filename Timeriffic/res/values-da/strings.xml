@@ -145,7 +145,7 @@
          Date and Time section at
            http://java.sun.com/j2se/1.5.0/docs/api/java/util/Formatter.html
          Summary:
-           tk=hour 0-23, tl=hour 1-12, tp=am/om, tM=minutes 00-59
+           tk=hour 0-23, tl=hour 1-12, tp=am/pm, tM=minutes 00-59
      -->
     <!-- display time on exact hour -->
     <string name="timedaction_time_0_minute">%1$tk:%1$tM</string>
@@ -172,17 +172,15 @@
     <string name="timedaction_auto_brightness">Automatisk Lysstyrke</string>
     <string name="timedaction_automatic">Automatisk</string>
 
-<!-- BEGIN NEW TRANSLATE -->
     <!-- Short description in the action list indicating that notification
          volume uses the ring volume. -->
-    <string name="timedaction_notif_ring_sync">Notification uses ring vol.</string>
+    <string name="timedaction_notif_ring_sync">Meddelelse bruger opkaldslyd.</string>
     <!-- Radio-button in the Action>Edit>Notif Vol dialog that indicates whether
          notification volume uses the ring volume. -->
-    <string name="editaction_notif_ring_sync">Notification uses ring volume.</string>
+    <string name="editaction_notif_ring_sync">Meddelelse bruger opkaldslydstyrke.</string>
     <!-- String displayed in the 2nd line of the Action>Edit>Notif Vol button
          indicating that notification volume uses the ring volume. Must be really short. -->
-    <string name="actionlabel_notif_ring_sync">Uses ring volume</string>
-<!-- END NEW TRANSLATE -->
+    <string name="actionlabel_notif_ring_sync">Bruger opkaldslyd</string>
 
     <!-- edit profile screen -->
 
@@ -214,8 +212,8 @@
     <string name="editaction_notif_volume">Meddelelseslyd</string>
     <string name="editaction_media_volume">Medielydstyrke</string>
     <string name="editaction_alarm_volume">Alarmlydstyrke</string>
+    <string name="editaction_system_volume">System Lydstyrke</string>
 <!-- BEGIN NEW TRANSLATE -->
-    <string name="editaction_system_volume">System Volume</string>
     <string name="editaction_voice_call_volume">Voice Call Volume</string>
 <!-- END NEW TRANSLATE -->
     <string name="editaction_bluetooth">Bluetooth</string>
