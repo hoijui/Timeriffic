@@ -18,7 +18,7 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.alfray.timeriffic" android:versionCode="10903" android:versionName="1.09.03 // Changes: Now supports System + Voice Call Volume. Fixed volume slider in landscape.">
+    package="com.alfray.timeriffic" android:versionCode="10903" android:versionName="1.09.03 // Changes: Now supports System + Voice Call Volume. Fixed volume slider in landscape. Removed unused permissions.">
     <application
         android:label="@string/app_name"
         android:name=".app.TimerifficApp" android:icon="@drawable/app_icon">
