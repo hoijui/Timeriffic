@@ -5,6 +5,5 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="lib" path="libs/apndroid_api.jar"/>
-	<classpathentry kind="lib" path="libs/Agent.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

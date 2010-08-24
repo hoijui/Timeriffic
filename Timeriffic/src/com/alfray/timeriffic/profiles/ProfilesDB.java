@@ -417,19 +417,19 @@ public class ProfilesDB {
             String[] selectionArgs,
             String sortOrder) {
 
-    	SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
-    	qb.setTables(PROFILES_TABLE);
+        SQLiteQueryBuilder qb = new SQLiteQueryBuilder();
+        qb.setTables(PROFILES_TABLE);
 
-    	if (id >= 0) {
-        	qb.appendWhere(String.format("%s=%d", Columns._ID, id));
+        if (id >= 0) {
+            qb.appendWhere(String.format("%s=%d", Columns._ID, id));
         }
 
         if (sortOrder == null || sortOrder.length() == 0) sortOrder = Columns.DEFAULT_SORT_ORDER;
 
         Cursor c = qb.query(mDb, projection, selection, selectionArgs,
-        		null, // groupBy
-        		null, // having,
-        		sortOrder);
+                null, // groupBy
+                null, // having,
+                sortOrder);
         return c;
     }
 
@@ -568,10 +568,10 @@ public class ProfilesDB {
         public DatabaseHelper(Context context,
                 String db_name,
                 int version) {
-			super(context, db_name, null /* cursor factory */, version);
-		}
+            super(context, db_name, null /* cursor factory */, version);
+        }
 
-		@Override
+        @Override
         public void onCreate(SQLiteDatabase db) {
             SQLiteDatabase old_mDb = mDb;
             mDb = db;
@@ -683,33 +683,13 @@ public class ProfilesDB {
         long action = insertTimedAction(pindex, 0,
                 9*60+0,             //hourMin
                 Columns.MONDAY + Columns.TUESDAY + Columns.WEDNESDAY + Columns.THURSDAY + Columns.FRIDAY + Columns.SATURDAY + Columns.SUNDAY,
-                "RR,VV,B75,U1",     //actions
+                "RR,VV,M75,Ba",     //actions
                 0                   //nextMs
                 );
         insertTimedAction(pindex, action,
                 21*60+0,             //hourMin
                 Columns.MONDAY + Columns.TUESDAY + Columns.WEDNESDAY + Columns.THURSDAY + Columns.FRIDAY + Columns.SATURDAY + Columns.SUNDAY,
-                "RM,VN,B1,U0",      //actions
-                0                   //nextMs
-                );
-
-        pindex = insertProfile(0, "Ring Volume", true /*isEnabled*/);
-        action = insertTimedAction(pindex, 0,
-                13*60+30,           //hourMin
-                Columns.SATURDAY + Columns.SUNDAY,
-                "G25",              //actions
-                0                   //nextMs
-                );
-        action = insertTimedAction(pindex, action,
-                16*60+0,            //hourMin
-                Columns.SATURDAY + Columns.SUNDAY,
-                "G85",              //actions
-                0                   //nextMs
-                );
-        insertTimedAction(pindex, action,
-                10*60+0,            //hourMin
-                Columns.MONDAY,
-                "G100",             //actions
+                "RM,VN,M0,B0,U0",      //actions
                 0                   //nextMs
                 );
 

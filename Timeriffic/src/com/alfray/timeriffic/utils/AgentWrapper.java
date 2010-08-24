@@ -29,7 +29,8 @@ import android.util.Log;
  */
 public class AgentWrapper {
 
-    private static final boolean DEBUG = true;
+    private static final boolean ENABLE = false;
+    private static final boolean DEBUG = false;
     public static final String TAG = "TFC-Agent";
 
     private static Class<?> mAgentClazz;
@@ -52,6 +53,7 @@ public class AgentWrapper {
 
     public void start(Context context) {
 
+        if (!ENABLE) return;
         if (mAgentClazz == null) {
             String ks[] = null;
 
@@ -99,6 +101,7 @@ public class AgentWrapper {
     }
 
     public void event(Event event) {
+        if (!ENABLE) return;
         if (mAgentClazz != null) {
             try {
                 Method m = mAgentClazz.getMethod("onEvent", new Class<?>[] { String.class });
@@ -110,6 +113,7 @@ public class AgentWrapper {
     }
 
     public void stop(Context context) {
+        if (!ENABLE) return;
         if (mAgentClazz != null) {
             try {
                 Method m = mAgentClazz.getMethod("onEndSession", new Class<?>[] { Context.class });

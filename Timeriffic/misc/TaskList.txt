@@ -63,6 +63,7 @@ TODO (misc)
 DONE for 1.09
 
 [1.09.03]
+20100821 Remove Flurry Agent.jar
 20100818 Refactor more_actions.xml layouts
 20100818 Support Voice Call volume
 20100818 Bug: Slider edit in landscape with 3rd choice to high on Droid, need scrollbar
