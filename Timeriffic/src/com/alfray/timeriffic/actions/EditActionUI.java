@@ -388,6 +388,13 @@ public class EditActionUI extends ExceptionHandlerActivity {
 
 
     private int getTimePickerHourMin(TimePicker timePicker) {
+
+        // If the user was manually editing one of the time picker fields,
+        // the internal time picker values might not have been properly
+        // updated yet. Requesting a focus on the time picker forces it
+        // to update by side-effect.
+        timePicker.requestFocus();
+
         int hours = timePicker.getCurrentHour();
         int minutes = timePicker.getCurrentMinute();
 
