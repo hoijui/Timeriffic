@@ -37,19 +37,19 @@ public class ApnDroidSetting implements ISetting {
     private static final boolean DEBUG = true;
     private static final String TAG = "ApnDroidSetting";
 
-    private boolean mCheckSupported = true;
-    private boolean mIsSupported = false;
-
     @Override
     public boolean isSupported(Context context) {
-        if (mCheckSupported) {
-            PackageManager pm = context.getPackageManager();
-            Intent intent = new Intent(ApplicationConstants.CHANGE_STATUS_REQUEST);
-            ResolveInfo ri = pm.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
-            mIsSupported = ri != null;
-            mCheckSupported = false;
-        }
-        return mIsSupported;
+        // We don't want to cache the state here -- each time we create the
+        // UI we want to check whether the app is installed. That's because
+        // the instance has an app-lifetime scope and it's entirely possible
+        // for the user to start the app, notice apndroid is missing, install
+        // it and come back. The alternative is to listen for app (un)installs
+        // but I rather not do that.
+
+        PackageManager pm = context.getPackageManager();
+        Intent intent = new Intent(ApplicationConstants.CHANGE_STATUS_REQUEST);
+        ResolveInfo ri = pm.resolveActivity(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        return ri != null;
     }
 
     @Override

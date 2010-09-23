@@ -39,6 +39,8 @@ T v1.9
 
 TODO (misc)
 
+20100922 Fix focus issue in time widget (edit action screen)
+
 20100826 AM/PM: make the default 24h then customize res/string for main countries with 12hAM/PM
 20100826 AM/PM: override in prefs (auto, forced AM/PM, forced 24h) (low priority)
 
@@ -69,7 +71,10 @@ TODO (misc)
 DONE for 1.09
 
 [1.09.03]
-20100824
+
+20100922 APNDroid: fix inverted open/closed strings in zh-CN & zh-TW
+20100922 APNDroid: refresh action state when opening the edit action
+
 20100821 Remove Flurry Agent.jar
 20100818 Refactor more_actions.xml layouts
 20100818 Support Voice Call volume

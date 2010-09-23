@@ -160,8 +160,8 @@
     <string name="timedaction_ringer_int">铃声 %d%%</string>
     <string name="timedaction_notif_int">提醒 %d%%</string>
     <string name="timedaction_brightness_int">亮度 %d%%</string>
-    <string name="timedaction_apndroid_on">3G/2G数据连接关闭</string>
-    <string name="timedaction_apndroid_off">3G/2G数据连接开启</string>
+    <string name="timedaction_apndroid_on">3G/2G数据连接开启</string>
+    <string name="timedaction_apndroid_off">3G/2G数据连接关闭</string>
 
 <!-- this block translated by goapk.com -->
     <string name="timedaction_media_int">媒体 %d%%</string>

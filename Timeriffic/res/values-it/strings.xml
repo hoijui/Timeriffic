@@ -160,8 +160,10 @@
     <string name="timedaction_ringer_int">Suoneria %d%%</string>
     <string name="timedaction_notif_int">Notifica %d%%</string>
     <string name="timedaction_brightness_int">Luminosità %d%%</string>
+<!-- BEGIN NEW TRANSLATE -->
     <string name="timedaction_apndroid_on">3G/2G Data On</string>
     <string name="timedaction_apndroid_off">3G/2G Data Off</string>
+<!-- END NEW TRANSLATE -->
     <string name="timedaction_media_int">Media %d%%</string>
     <string name="timedaction_alarm_int">Allarme %d%%</string>
 <!-- BEGIN NEW TRANSLATE -->

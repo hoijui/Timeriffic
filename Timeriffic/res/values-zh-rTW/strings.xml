@@ -159,8 +159,8 @@
     <string name="timedaction_ringer_int">鈴聲 %d%%</string>
     <string name="timedaction_notif_int">提醒 %d%%</string>
     <string name="timedaction_brightness_int">亮度 %d%%</string>
-    <string name="timedaction_apndroid_on">3G/2G資料連接關閉</string>
-    <string name="timedaction_apndroid_off">3G/2G資料連接開啟</string>
+    <string name="timedaction_apndroid_on">3G/2G資料連接開啟</string>
+    <string name="timedaction_apndroid_off">3G/2G資料連接關閉</string>
     <string name="timedaction_media_int">媒體 %d%%</string>
     <string name="timedaction_alarm_int">鬧鐘 %d%%</string>
 <!-- BEGIN NEW TRANSLATE -->
