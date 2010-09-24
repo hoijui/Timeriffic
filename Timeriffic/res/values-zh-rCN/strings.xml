@@ -18,8 +18,13 @@
 -->
 
 <!--
-    Language: 中文（简体）.
+    Language: 中文（简体）
     Regions:  中国.
+    zh-CN
+
+    Translation:
+        Wenle Bao <baowenle gmail com>
+        Also Valerie from http://goapk.com
 -->
 
 <resources>
@@ -223,8 +228,6 @@
     <string name="editaction_alarm_volume">闹钟音量</string>
 
     <string name="editaction_bluetooth">蓝牙</string>
-    <!-- APNdroid app name, not translated -->
-    <string name="editaction_apndroid">APNdroid</string>
 
     <!-- percent dialog -->
 
@@ -282,8 +285,6 @@
 
 <!-- this block translated by goapk.com -->
     <string name="checkservices_miss_bluetooh">蓝牙</string>
-    <string name="checkservices_miss_apndroid">APNDroid</string>
-    <string name="checkservices_miss_ringguard">RingGuard</string>
     <string name="checkservices_explain_why">解释为什么</string>
 
     <string name="checkservices_help_bluetooh">蓝牙控制需要 Android 2.0 或更高版本的系统。</string>

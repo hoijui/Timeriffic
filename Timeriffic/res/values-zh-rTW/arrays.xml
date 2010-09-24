@@ -18,8 +18,12 @@
 -->
 
 <!--
-    Language: 中文（正體）
+    Language: 中文（正體）.
     Regions:  中國.
+    zh-TW.
+
+    Translation:
+        Valerie http://goapk.com
 -->
 
 <resources>
@@ -27,7 +31,7 @@
 <!--
     Names for the global toggle anim pref. Order is important.
     The toggle looks like the Timeriffic icon in the profile list screen.
-    It's animation is controled by Menu - Settings - Toggle Animation.
+    Its animation is controled by Menu - Settings - Toggle Animation.
 -->
 <string-array name="prefs_globaltoggle_anim_names">
     <!-- Global toggle is not animated. -->

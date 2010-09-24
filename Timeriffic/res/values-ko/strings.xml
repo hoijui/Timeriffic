@@ -1,5 +1,28 @@
-<!-- Korean translation.
-    Credit: Paul Noh, Ubinuri Inc. (http://www.fingertool.com)
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Project: Timeriffic
+ * Copyright (C) 2009 ralfoide gmail com,
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!--
+    Language: korean (ko).
+    Regions:  any.
+
+    Translation:
+        Paul Noh, Ubinuri Inc. <http://www.fingertool.com>
 -->
 
 <resources>
@@ -186,8 +209,6 @@
     <string name="editaction_voice_call_volume">Voice Call Volume</string>
 <!--  END NEW TRANSLATION -->
      <string name="editaction_bluetooth">블루투스</string>
-     <!-- APNdroid app name, not translated -->
-     <string name="editaction_apndroid">APNdroid</string>
 
      <!-- percent dialog -->
 
@@ -243,8 +264,6 @@
      <string name="checkservices_miss_brightness">밝기</string>
 <!-- BEGIN NEW TRANSLATION -->
     <string name="checkservices_miss_bluetooh">Bluetooth</string>
-    <string name="checkservices_miss_apndroid">APNDroid</string>
-    <string name="checkservices_miss_ringguard">RingGuard</string>
     <string name="checkservices_explain_why">explain why</string>
 
     <string name="checkservices_help_bluetooh">Bluetooth control requires Android 2.0 or more.</string>

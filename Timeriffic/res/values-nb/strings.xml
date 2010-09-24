@@ -18,8 +18,11 @@
 -->
 
 <!--
-    Language: no.
+    Language: Norwegian/Norsk (nb, not no).
     Regions:  any.
+
+    Translation:
+        Jan Kåre Mikkelsen <jankaremikkelsen gmail com>
 -->
 
 <resources>
@@ -29,13 +32,13 @@
     <!-- Menu - Settings: preferences. -->
     <string name="settings">Innstillinger</string>
     <!-- Menu - Check now: force app to recompute next alarm. -->
-    <string name="check_now">Sjekk Nå</string>
+    <string name="check_now">Sjekk nå</string>
     <!-- Menu - About: display introduction/help screen. -->
     <string name="about">Om</string>
     <!-- Menu - Reset: reset current profile. -->
     <string name="reset">Nullstill</string>
     <!-- Menu - Report Error: display the error reporting screen. -->
-    <string name="report_error">Rapporter Feil</string>
+    <string name="report_error">Rapporter feil</string>
 
 
     <!-- === Context Menu on Profile List === -->
@@ -43,16 +46,16 @@
     <!-- Context Menu - Edit (profile or timed action) -->
     <string name="edit">Rediger</string>
     <!-- Context Menu - Rename (profile or timed action) -->
-    <string name="rename">Gi Nytt Navn</string>
+    <string name="rename">Gi nytt navn</string>
     <!-- Context Menu - Delete (profile or timed action) -->
     <string name="delete">Slett</string>
 
     <!-- Context Menu - Insert new timed action -->
-    <string name="insert_action">Sett Inn Ny Handling</string>
+    <string name="insert_action">Sett inn ny handling</string>
     <!-- Context Menu - Insert new profile -->
-    <string name="insert_profile">Sett Inn Ny Profil</string>
+    <string name="insert_profile">Sett inn ny profil</string>
     <!-- Menu & Context Menu - Add new profile -->
-    <string name="append_profile">Ny Profil</string>
+    <string name="append_profile">Ny profil</string>
 
 
     <!-- === Settings / Preferences === -->
@@ -82,7 +85,7 @@
     <string name="prefs_check_service_on">Validering av lydtjeneste er slått på.</string>
 
     <!-- Settings - Animation of the toggle button logo: title -->
-    <string name="prefs_toggle_anim_label">Timeglass Animasjon</string>
+    <string name="prefs_toggle_anim_label">Timeglassanimasjon</string>
     <!-- Settings - Animation of the toggle button logo: help string -->
     <string name="prefs_toggle_anim_tooltip">Velg animasjon for timeglassikonet på profillisten.</string>
 
@@ -113,11 +116,11 @@
 
     <string name="profiles_empty_help">Bruk MENU-knappen for å legge til ny profil.</string>
 
-    <string name="timedactioncontextmenu_title">Tidsaktivert Handling</string>
+    <string name="timedactioncontextmenu_title">Tidsaktivert handling</string>
 
     <string name="profilecontextmenu_title">Profil</string>
 
-    <string name="insertprofile_new_profile_title">Ny Profil</string>
+    <string name="insertprofile_new_profile_title">Ny profil</string>
 
     <string name="deleteprofile_title">Slett profil</string>
     <string name="deleteprofile_msgbody">Er du sikker på at du vil slette profilen \'%s\' og alle dens handlinger?</string>
@@ -163,14 +166,11 @@
     <string name="timedaction_apndroid_off">3G/2G Datatrafikk Av</string>
     <string name="timedaction_media_int">Media %d%%</string>
     <string name="timedaction_alarm_int">Alarm %d%%</string>
-<!-- BEGIN NEW TRANSLATE -->
     <string name="timedaction_system_vol_int">System %d%%</string>
-    <string name="timedaction_voice_call_vol_int">Voice %d%%</string>
-<!-- END NEW TRANSLATE -->
-    <string name="timedaction_auto_brightness">Automatisk Lysstyrke</string>
+    <string name="timedaction_voice_call_vol_int">Stemme %d%%</string>
+    <string name="timedaction_auto_brightness">Automatisk lysstyrke</string>
     <string name="timedaction_automatic">Automatisk</string>
 
-<!-- BEGIN NEW TRANSLATE -->
     <!-- Short description in the action list indicating that notification
          volume uses the ring volume. -->
     <string name="timedaction_notif_ring_sync">Varsel bruker ringevol.</string>
@@ -180,19 +180,18 @@
     <!-- String displayed in the 2nd line of the Action>Edit>Notif Vol button
          indicating that notification volume uses the ring volume. Must be really short. -->
     <string name="actionlabel_notif_ring_sync">Bruker ringevol.</string>
-<!-- END NEW TRANSLATE -->
 
     <!-- edit profile screen -->
 
-    <string name="editprofile_title">Timeriffic - Rediger Profil</string>
-    <string name="editprofile_profile_name">Profil Navn:</string>
-    <string name="editprofile_profile_hint">Profil Navn</string>
+    <string name="editprofile_title">Timeriffic - Rediger profil</string>
+    <string name="editprofile_profile_name">Profilnavn:</string>
+    <string name="editprofile_profile_hint">Profilnavn</string>
     <string name="editprofile_checkbox_enabled">Aktivert</string>
     <string name="editprofile_button_accept">Godta</string>
 
     <!-- edit action screen -->
 
-    <string name="editaction_title">Timeriffic - Rediger Tidsaktivert Handling</string>
+    <string name="editaction_title">Timeriffic - Rediger tidsaktivert handling</string>
 
     <string name="editaction_section_action">Handling</string>
     <string name="editaction_section_time_and_day">Tid og Dag</string>
@@ -200,8 +199,8 @@
 
     <string name="editaction_button_label">  <b>@</b>\n  $</string>
 
-    <string name="setting_not_supported">Ikke Støttet</string>
-    <string name="setting_not_installed">Ikke Installert</string>
+    <string name="setting_not_supported">Ikke støttet</string>
+    <string name="setting_not_installed">Ikke installert</string>
 
     <string name="editaction_ringer">Ringelyd</string>
     <string name="editaction_vibrate">Vibrering</string>
@@ -209,16 +208,12 @@
     <string name="editaction_brightness">Lysstyrke</string>
     <string name="editaction_wifi">Wi-Fi</string>
     <string name="editaction_airplane">Flymodus</string>
+    <string name="editaction_notif_volume">Varselvolum</string>
     <string name="editaction_media_volume">Mediavolum</string>
     <string name="editaction_alarm_volume">Alarmvolum</string>
-    <string name="editaction_notif_volume">Varselvolum</string>
-<!-- BEGIN NEW TRANSLATE -->
-    <string name="editaction_system_volume">System Volume</string>
-    <string name="editaction_voice_call_volume">Voice Call Volume</string>
-<!-- END NEW TRANSLATE -->
+    <string name="editaction_system_volume">Systemvolum</string>
+    <string name="editaction_voice_call_volume">Stemmevolum</string>
     <string name="editaction_bluetooth">Blåtann</string>
-    <!-- APNdroid app name, not translated -->
-    <string name="editaction_apndroid">APNdroid</string>
 
     <!-- percent dialog -->
 
@@ -238,7 +233,7 @@
 
     <!-- toast to display next change time -->
 
-    <string name="toast_next_change_at_datetime">Neste Endring: %s</string>
+    <string name="toast_next_change_at_datetime">Neste endring: %s</string>
     <!-- toast_next_alarm_date_time uses Java SimpleDateFormat, see
          http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html
     -->
@@ -264,22 +259,20 @@
 
     <!-- check services dialog -->
 
-    <string name="checkservices_dlg_title">Manglende Tjenester</string>
+    <string name="checkservices_dlg_title">Manglende tjenester</string>
     <string name="checkservices_ok_button">OK</string>
     <string name="checkservices_skip_button">Ikke vis igjen</string>
-    <string name="checkservices_warning">Advarsel! Den følgende funksjonen er ikke tilgjengelig på denne telefonen:</string>
+    <string name="checkservices_warning">Advarsel! Følgende funksjon er ikke tilgjengelig på denne telefonen:</string>
     <string name="checkservices_miss_audio_service">Lydvolum og ringing</string>
     <string name="checkservices_miss_wifi_service">Wi-Fi Aktivering</string>
     <string name="checkservices_miss_airplane">Flymodus</string>
     <string name="checkservices_miss_brightness">Lysstyrke</string>
     <string name="checkservices_miss_bluetooh">Blåtann</string>
-    <string name="checkservices_miss_apndroid">APNDroid</string>
-    <string name="checkservices_miss_ringguard">RingGuard</string>
     <string name="checkservices_explain_why">forklar hvorfor</string>
 
     <string name="checkservices_help_bluetooh">Blåtannkontroll krever Android 2.0 eller høyere.</string>
     <string name="checkservices_help_application">For å aktivere denne funksjonen, installer applikasjonen \'%s\' fra Android Marked.</string>
-    <string name="install_now_button">Innstaller Nå</string>
+    <string name="install_now_button">Innstaller nå</string>
 
     <!-- === Error Reporting === -->
 
@@ -317,7 +310,7 @@
          Formatting: Spacing matters. Use "/" to insert a new line.
     -->
     <string name="errorreport_emailheader">Dette er en feilrapport for Timeriffic./
-Denautomatiserte rapporten starter her.
+Den automatiserte rapporten starter her.
     </string>
 
 </resources>

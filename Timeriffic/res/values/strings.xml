@@ -275,7 +275,9 @@
     <string name="checkservices_miss_airplane">Airplane mode</string>
     <string name="checkservices_miss_brightness">Brightness</string>
     <string name="checkservices_miss_bluetooh">Bluetooth</string>
+    <!-- APNdroid app name, not translated -->
     <string name="checkservices_miss_apndroid">APNDroid</string>
+    <!-- RingGuard app name, not translated -->
     <string name="checkservices_miss_ringguard">RingGuard</string>
     <string name="checkservices_explain_why">explain why</string>
 

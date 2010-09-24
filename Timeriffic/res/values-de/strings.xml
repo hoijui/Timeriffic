@@ -20,6 +20,9 @@
 <!--
     Language: german.
     Regions:  any.
+
+    Translation:
+        Phileas V. <pv.laias gmail com>
 -->
 
 <resources>
@@ -163,24 +166,22 @@
     <string name="timedaction_apndroid_on">3G/2G Daten An</string>
     <string name="timedaction_apndroid_off">3G/2G Daten Aus</string>
 
-<!-- BEGIN NEW TRANSLATE -->
     <string name="timedaction_media_int">Media %d%%</string>
     <string name="timedaction_alarm_int">Alarm %d%%</string>
     <string name="timedaction_system_vol_int">System %d%%</string>
-    <string name="timedaction_voice_call_vol_int">Voice %d%%</string>
-    <string name="timedaction_auto_brightness">Automatic Brightness</string>
-    <string name="timedaction_automatic">Automatic</string>
+    <string name="timedaction_voice_call_vol_int">Anruf %d%%</string>
+    <string name="timedaction_auto_brightness">Automatische Helligkeit</string>
+    <string name="timedaction_automatic">Automatisch</string>
 
     <!-- Short description in the action list indicating that notification
          volume uses the ring volume. -->
-    <string name="timedaction_notif_ring_sync">Notification uses ring vol.</string>
+    <string name="timedaction_notif_ring_sync">Nachrichtenlaut. nach Anruflaut.</string>
     <!-- Radio-button in the Action>Edit>Notif Vol dialog that indicates whether
          notification volume uses the ring volume. -->
-    <string name="editaction_notif_ring_sync">Notification uses ring volume.</string>
+    <string name="editaction_notif_ring_sync">Nachrichtenlaut. nach Anruflaut.</string>
     <!-- String displayed in the 2nd line of the Action>Edit>Notif Vol button
          indicating that notification volume uses the ring volume. Must be really short. -->
-    <string name="actionlabel_notif_ring_sync">Uses ring volume</string>
-<!-- END NEW TRANSLATE -->
+    <string name="actionlabel_notif_ring_sync">Benutzt Anruflautstärke</string>
 
     <!-- edit profile screen -->
 
@@ -212,13 +213,9 @@
     <string name="editaction_media_volume">Medienlaut.</string>
     <string name="editaction_alarm_volume">Alarmlautstärke</string>
     <string name="editaction_notif_volume">Nachrichtlaut.</string>
-<!-- BEGIN NEW TRANSLATE -->
-    <string name="editaction_system_volume">System Volume</string>
-    <string name="editaction_voice_call_volume">Voice Call Volume</string>
-<!-- END NEW TRANSLATE -->
+    <string name="editaction_system_volume">Systemlaut.</string>
+    <string name="editaction_voice_call_volume">Anruflautstärke</string>
     <string name="editaction_bluetooth">Bluetooth</string>
-    <!-- APNdroid app name, not translated -->
-    <string name="editaction_apndroid">APNdroid</string>
 
     <!-- percent dialog -->
 
@@ -274,8 +271,6 @@
     <string name="checkservices_miss_brightness">Helligkeit</string>
 
     <string name="checkservices_miss_bluetooh">Bluetooth</string>
-    <string name="checkservices_miss_apndroid">APNDroid</string>
-    <string name="checkservices_miss_ringguard">RingGuard</string>
     <string name="checkservices_explain_why">explain why</string>
 
     <string name="checkservices_help_bluetooh">Bluetoothänderungen benötigen Android 2.0 oder neuer.</string>
