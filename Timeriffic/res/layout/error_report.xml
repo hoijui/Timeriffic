@@ -77,6 +77,7 @@
                     android:id="@+id/radio_err"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="true"
                     android:text="@string/errorreport_program_err"
                     />
 
@@ -84,6 +85,7 @@
                     android:id="@+id/radio_fr"
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
+                    android:focusable="true"
                     android:text="@string/errorreport_feat_req"
                     />
 
@@ -105,7 +107,7 @@
                 android:layout_weight="1"
                 android:gravity="top"
                 android:singleLine="false"
-                android:inputType="text|textCapSentences|textMultiLine|textAutoCorrect|textAutoComplete"
+                android:inputType="textLongMessage|textMultiLine|textCapSentences|textAutoCorrect"
                 android:hint="@string/errorreport_user_hint"
                 android:paddingLeft="5dip"
                 android:paddingRight="5dip"

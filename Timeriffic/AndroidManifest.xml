@@ -83,7 +83,7 @@
 
         <activity android:theme="@android:style/Theme.Dialog"
              android:label="@string/errorreport_title"
-             android:name=".error.ErrorReporterUI"/>
+             android:name=".error.ErrorReporterUI" android:windowSoftInputMode="adjustPan"/>
 
         <service android:name=".app.UpdateService"></service>
     </application>
