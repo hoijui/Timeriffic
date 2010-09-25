@@ -206,7 +206,7 @@
     <string name="editaction_alarm_volume">Volume alarme</string>
 <!-- BEGIN NEW TRANSLATE -->
     <string name="editaction_system_volume">Volume système</string>
-    <string name="editaction_voice_call_volume">Volume voix appel</string>
+    <string name="editaction_voice_call_volume">Vol. voix appel</string>
 <!-- END NEW TRANSLATE -->
     <string name="editaction_bluetooth">Bluetooth</string>
 

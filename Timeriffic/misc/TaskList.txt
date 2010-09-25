@@ -43,7 +43,6 @@ TODO (misc)
 20100826 AM/PM: override in prefs (auto, forced AM/PM, forced 24h) (low priority)
 
 20100824 Error report feedback: Fix scrollview w/ IME showing
-20100824 Error report feedback: Fix IME flags to have auto-completion
 
 20100309 Bug: StaleData/Cursor.closed (can't repro but happens often)
 20100309 Bug: Missing WakeLock permission (can't repro, happens rarely)
@@ -70,6 +69,10 @@ DONE for 1.09
 
 [1.09.03]
 
+20100924 Fix IME auto-suggest in Error report feedback
+20100924 Fixed string length for volume buttons in FR, ES, EN.
+
+20100923 Updated translated strings for DA, DE and NB.
 20100922 Fix focus issue in time widget (edit action screen)
 20100922 APNDroid: fix inverted open/closed strings in zh-CN & zh-TW
 20100922 APNDroid: refresh action state when opening the edit action

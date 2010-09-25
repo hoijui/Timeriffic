@@ -203,8 +203,8 @@
     <string name="editaction_notif_volume">Vol. notificación</string>
     <string name="editaction_media_volume">Volumen media</string>
     <string name="editaction_alarm_volume">Volumen alarma</string>
-    <string name="editaction_system_volume">Volumem sistema</string>
-    <string name="editaction_voice_call_volume">Volumen de llamada voz</string>
+    <string name="editaction_system_volume">Vol. sistema</string>
+    <string name="editaction_voice_call_volume">Vol. llamada voz</string>
     <string name="editaction_bluetooth">Bluetooth</string>
 
     <!-- percent dialog -->

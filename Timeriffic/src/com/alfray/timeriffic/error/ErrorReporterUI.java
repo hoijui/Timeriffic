@@ -49,6 +49,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
+import android.widget.ScrollView;
 import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
@@ -133,6 +134,9 @@ public class ErrorReporterUI extends ExceptionHandlerActivity {
 
         setContentView(R.layout.error_report);
 
+        mAppName = getString(R.string.app_name);
+        setTitle(getString(R.string.errorreport_title).replaceAll("\\$APP", mAppName));
+
         Intent i = getIntent();
         mIsException = i == null ? false : i.getBooleanExtra(EXTRA_IS_EXCEPTION, false);
 
@@ -143,11 +147,8 @@ public class ErrorReporterUI extends ExceptionHandlerActivity {
         mRadioGroup = (RadioGroup) findViewById(R.id.radio_group);
         mWebView = (WebView) findViewById(R.id.web);
         mUserText = (EditText) findViewById(R.id.user_text);
+
         adjustUserHint(mUserText);
-
-        mAppName = getString(R.string.app_name);
-
-        setTitle(getString(R.string.errorreport_title).replaceAll("\\$APP", mAppName));
 
         PackageManager pm = getPackageManager();
         if (pm != null) {
@@ -184,14 +185,15 @@ public class ErrorReporterUI extends ExceptionHandlerActivity {
         setupListeners();
         setupHandler();
 
-        selectPage(mIsException ? 2 : 1);
+        int page = mIsException ? 2 : 1;
+        selectPage(page);
         updateButtons();
     }
 
     /**
      * Get the text hint from the text field. If we current translation has a hint2 text
      * (which typically says "Please write comment in English" and is going to be empty
-     * in English), then we happend that text to the hint.
+     * in English), then we append that text to the hint.
      */
     private void adjustUserHint(EditText userText) {
         String str2 = getString(R.string.errorreport_user_hint_english);

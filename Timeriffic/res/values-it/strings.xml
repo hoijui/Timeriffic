@@ -176,7 +176,6 @@
     <string name="timedaction_auto_brightness">Luminosità Automatica</string>
     <string name="timedaction_automatic">Automatica</string>
 
-<!-- BEGIN NEW TRANSLATE -->
     <!-- Short description in the action list indicating that notification
          volume uses the ring volume. -->
     <string name="timedaction_notif_ring_sync">Notifica utilizza vol. suoneria</string>
@@ -186,7 +185,6 @@
     <!-- String displayed in the 2nd line of the Action>Edit>Notif Vol button
          indicating that notification volume uses the ring volume. Must be really short. -->
     <string name="actionlabel_notif_ring_sync">Come vol. suoneria</string>
-<!-- END NEW TRANSLATE -->
 
     <!-- edit profile screen -->
 
@@ -219,8 +217,8 @@
     <string name="editaction_alarm_volume">Volume Allarme</string>
     <string name="editaction_notif_volume">Vol. Notifica</string>
 <!-- BEGIN NEW TRANSLATE -->
-    <string name="editaction_system_volume">System Volume</string>
-    <string name="editaction_voice_call_volume">Voice Call Volume</string>
+    <string name="editaction_system_volume">Volume System</string>
+    <string name="editaction_voice_call_volume">Vol. Voice Call</string>
 <!-- END NEW TRANSLATE -->
     <string name="editaction_bluetooth">Bluetooth</string>
 
