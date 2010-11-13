@@ -36,7 +36,7 @@ import android.os.Environment;
 
 //-----------------------------------------------
 
-public class Storage {
+/* package */ class Storage {
 
     private static final String FILENAME = "timeriffic_profiles.txt";
     private static final String HEADER = "TFC.1";

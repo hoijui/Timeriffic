@@ -56,6 +56,17 @@ public class BluetoothSetting implements ISetting {
                 Object result = getter.invoke(null);
                 mIsSupported = result != null;
 
+                if (!mIsSupported) {
+                    String fp = Build.FINGERPRINT;
+                    if (fp != null &&
+                            fp.startsWith("generic/sdk/generic/:") &&
+                            fp.endsWith(":eng/test-keys")) {
+                        // This looks like an emulator that has no BT emulation.
+                        // Just enable it anyway.
+                        mIsSupported = true;
+                    }
+                }
+
             } catch (Exception e) {
                 Log.d(TAG, "Missing BTA API");
             } finally {
