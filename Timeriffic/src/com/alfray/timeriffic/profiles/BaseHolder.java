@@ -24,6 +24,7 @@ import java.util.GregorianCalendar;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
@@ -39,6 +40,8 @@ import com.alfray.timeriffic.profiles.ProfilesUI.ColIndexes;
  * and the common widgets of the two derived holders.
  */
 abstract class BaseHolder {
+
+    private static final String TAG = BaseHolder.class.getSimpleName();
 
     /**
      * The text view that holds the title or description as well
@@ -148,10 +151,14 @@ abstract class BaseHolder {
     }
 
     protected void editAction(Cursor cursor) {
-        ColIndexes colIndexes = mActivity.getColIndexes();
-        long action_id = cursor.getLong(colIndexes.mProfIdColIndex);
+        try {
+            ColIndexes colIndexes = mActivity.getColIndexes();
+            long action_id = cursor.getLong(colIndexes.mProfIdColIndex);
 
-        startEditActivity(EditActionUI.class, EditActionUI.EXTRA_ACTION_ID, action_id);
+            startEditActivity(EditActionUI.class, EditActionUI.EXTRA_ACTION_ID, action_id);
+        } catch (Throwable t) {
+            Log.e(TAG, "editAction", t);
+        }
     }
 
 }

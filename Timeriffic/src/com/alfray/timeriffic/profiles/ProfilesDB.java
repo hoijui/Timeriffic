@@ -30,6 +30,7 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDoneException;
+import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.database.sqlite.SQLiteStatement;
@@ -71,7 +72,22 @@ public class ProfilesDB {
     public boolean onCreate(Context context) {
         mContext = context;
         mDbHelper = new DatabaseHelper(context, DB_NAME, DB_VERSION);
-        mDb = mDbHelper.getWritableDatabase();
+
+        for (int i = 0; i < 10; i++) {
+            try {
+                mDb = mDbHelper.getWritableDatabase();
+                break;
+            } catch (SQLiteException e) {
+                Log.e(TAG, "DBHelper.getWritableDatabase", e);
+
+                try {
+                    Thread.sleep(100 /*ms*/);
+                } catch (InterruptedException e1) {
+                    // ignore
+                }
+            }
+        }
+
         boolean created = mDb != null;
         return created;
     }
@@ -80,7 +96,20 @@ public class ProfilesDB {
     public void onDestroy() {
         mContext = null;
         if (mDbHelper != null) {
-            mDbHelper.close();
+            for (int i = 0; i < 10; i++) {
+                try {
+                    mDbHelper.close();
+                    break;
+                } catch (SQLiteException e) {
+                    Log.e(TAG, "DBHelper.close", e);
+
+                    try {
+                        Thread.sleep(100 /*ms*/);
+                    } catch (InterruptedException e1) {
+                        // ignore
+                    }
+                }
+            }
             mDbHelper = null;
         }
     }
