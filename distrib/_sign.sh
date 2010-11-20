@@ -16,7 +16,7 @@ function process() {
 	SRC="$1"
 
 	BASE="${SRC/.apk/}"
-	BASE="${SRC/Pub/}"
+	BASE="${BASE/Pub/}"
 	
 	DATE=`date +%Y%m%d`
 	N=1
