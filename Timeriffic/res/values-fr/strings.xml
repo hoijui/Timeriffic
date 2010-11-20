@@ -30,32 +30,32 @@
     <!-- === Menu === -->
 
     <!-- Menu - Settings: preferences. -->
-    <string name="settings">Paramètres</string>
+    <string name="menu_settings">Paramètres</string>
     <!-- Menu - Check now: force app to recompute next alarm. -->
-    <string name="check_now">Appliquer</string>
+    <string name="menu_check_now">Appliquer</string>
     <!-- Menu - About: display introduction/help screen. -->
-    <string name="about">A propos de...</string>
+    <string name="menu_about">A propos de...</string>
     <!-- Menu - Reset: reset current profile. -->
-    <string name="reset">Tout effacer</string>
+    <string name="menu_reset">Tout effacer</string>
     <!-- Menu - Report Error: display the error reporting screen. -->
-    <string name="report_error">Reporter une erreur</string>
+    <string name="menu_report_error">Reporter une erreur</string>
 
 
     <!-- === Context Menu on Profile List === -->
 
     <!-- Context Menu - Edit (profile or timed action) -->
-    <string name="edit">Editer</string>
+    <string name="menu_edit">Editer</string>
     <!-- Context Menu - Rename (profile or timed action) -->
-    <string name="rename">Renommer</string>
+    <string name="menu_rename">Renommer</string>
     <!-- Context Menu - Delete (profile or timed action) -->
-    <string name="delete">Effacer</string>
+    <string name="menu_delete">Effacer</string>
 
     <!-- Context Menu - Insert new timed action -->
-    <string name="insert_action">Insérer une action</string>
+    <string name="menu_insert_action">Insérer une action</string>
     <!-- Context Menu - Insert new profile -->
-    <string name="insert_profile">Insérer un profil</string>
+    <string name="menu_insert_profile">Insérer un profil</string>
     <!-- Menu & Context Menu - Add new profile -->
-    <string name="append_profile">Ajouter un profil</string>
+    <string name="menu_append_profile">Ajouter un profil</string>
 
 
     <!-- === Settings / Preferences === -->
@@ -151,10 +151,8 @@
     <string name="timedaction_apndroid_off">Data 3G/2G désactivé</string>
     <string name="timedaction_media_int">Media %d%%</string>
     <string name="timedaction_alarm_int">Alarme %d%%</string>
-<!-- BEGIN NEW TRANSLATE -->
     <string name="timedaction_system_vol_int">Système %d%%</string>
     <string name="timedaction_voice_call_vol_int">Voix %d%%</string>
-<!-- END NEW TRANSLATE -->
     <string name="timedaction_auto_brightness">Luminosité automatique</string>
     <string name="timedaction_automatic">Automatique</string>
 
@@ -204,10 +202,8 @@
     <string name="editaction_notif_volume">Vol. notification</string>
     <string name="editaction_media_volume">Volume média</string>
     <string name="editaction_alarm_volume">Volume alarme</string>
-<!-- BEGIN NEW TRANSLATE -->
     <string name="editaction_system_volume">Volume système</string>
     <string name="editaction_voice_call_volume">Vol. voix appel</string>
-<!-- END NEW TRANSLATE -->
     <string name="editaction_bluetooth">Bluetooth</string>
 
     <!-- percent dialog -->

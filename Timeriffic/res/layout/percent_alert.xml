@@ -56,34 +56,19 @@
             />
     </RadioGroup>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-
         <SeekBar
             android:id="@+id/seekbar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:max="100"
-            android:layout_margin="3dip"
             android:layout_gravity="center_vertical"
+        android:paddingTop="10dip"
+        android:paddingBottom="10dip"
+        android:paddingLeft="15dip"
+        android:paddingRight="15dip"
             android:secondaryProgress="0"
             />
-
-        <TextView
-            android:id="@+id/percent"
-            android:text="- -"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_horizontal"
-            android:minEms="2"
-            />
-
-    </LinearLayout>
 
 </LinearLayout>
 

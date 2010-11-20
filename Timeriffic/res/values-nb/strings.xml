@@ -30,32 +30,32 @@
     <!-- === Menu === -->
 
     <!-- Menu - Settings: preferences. -->
-    <string name="settings">Innstillinger</string>
+    <string name="menu_settings">Innstillinger</string>
     <!-- Menu - Check now: force app to recompute next alarm. -->
-    <string name="check_now">Sjekk nå</string>
+    <string name="menu_check_now">Sjekk nå</string>
     <!-- Menu - About: display introduction/help screen. -->
-    <string name="about">Om</string>
+    <string name="menu_about">Om</string>
     <!-- Menu - Reset: reset current profile. -->
-    <string name="reset">Nullstill</string>
+    <string name="menu_reset">Nullstill</string>
     <!-- Menu - Report Error: display the error reporting screen. -->
-    <string name="report_error">Rapporter feil</string>
+    <string name="menu_report_error">Rapporter feil</string>
 
 
     <!-- === Context Menu on Profile List === -->
 
     <!-- Context Menu - Edit (profile or timed action) -->
-    <string name="edit">Rediger</string>
+    <string name="menu_edit">Rediger</string>
     <!-- Context Menu - Rename (profile or timed action) -->
-    <string name="rename">Gi nytt navn</string>
+    <string name="menu_rename">Gi nytt navn</string>
     <!-- Context Menu - Delete (profile or timed action) -->
-    <string name="delete">Slett</string>
+    <string name="menu_delete">Slett</string>
 
     <!-- Context Menu - Insert new timed action -->
-    <string name="insert_action">Sett inn ny handling</string>
+    <string name="menu_insert_action">Sett inn ny handling</string>
     <!-- Context Menu - Insert new profile -->
-    <string name="insert_profile">Sett inn ny profil</string>
+    <string name="menu_insert_profile">Sett inn ny profil</string>
     <!-- Menu & Context Menu - Add new profile -->
-    <string name="append_profile">Ny profil</string>
+    <string name="menu_append_profile">Ny profil</string>
 
 
     <!-- === Settings / Preferences === -->
@@ -89,8 +89,6 @@
     <!-- Settings - Animation of the toggle button logo: help string -->
     <string name="prefs_toggle_anim_tooltip">Velg animasjon for timeglassikonet på profillisten.</string>
 
-    <string name="save_to_sd">Lagre til SD-kort</string>
-    <string name="restore_from_sd">Last fra SD-kort</string>
     <!-- Settings - Display Notification: toggle title -->
     <string name="prefs_display_notif_label">Vis varsel ved profilbytte</string>
     <!-- Settings - Display Notification: help string when on -->

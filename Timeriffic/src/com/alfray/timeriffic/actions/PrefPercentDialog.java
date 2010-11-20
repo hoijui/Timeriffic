@@ -24,7 +24,6 @@ import android.content.DialogInterface;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.SeekBar;
-import android.widget.TextView;
 
 import com.alfray.timeriffic.R;
 
@@ -35,11 +34,11 @@ public class PrefPercentDialog extends AlertDialog
     private final int mInitialValue;
     private final PrefPercent mPrefPercent;
     private SeekBar mSeekBar;
-    private TextView mPercentLabel;
     private Accessor mAccessor;
     private RadioButton mRadioNoChange;
     private RadioButton mRadioChange;
     private RadioButton mRadioCustomChoice;
+    private String mRadioChangeText;
 
     /** Callback to communicate back with client */
     public interface Accessor {
@@ -94,8 +93,6 @@ public class PrefPercentDialog extends AlertDialog
         mSeekBar.setOnSeekBarChangeListener(this);
         mSeekBar.setMax(100);
 
-        mPercentLabel = (TextView) content.findViewById(R.id.percent);
-
         setOnDismissListener(this);
 
         setButton(context.getResources().getString(R.string.percent_button_accept), this);
@@ -126,7 +123,14 @@ public class PrefPercentDialog extends AlertDialog
 
     private void updatePercentLabel(int percent) {
         if (percent < 0) percent = mSeekBar.getProgress();
-        mPercentLabel.setText(String.format("%d%%", percent));
+
+        if (mRadioChangeText == null) {
+            mRadioChangeText = mRadioChange.getText().toString();
+            if (mRadioChangeText == null) mRadioChangeText = ":";
+            if (!mRadioChangeText.trim().endsWith(":")) mRadioChangeText += ":";
+        }
+
+        mRadioChange.setText(String.format("%s %3d%% ", mRadioChangeText, percent));
     }
 
     @Override

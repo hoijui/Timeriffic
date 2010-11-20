@@ -1,42 +1,3 @@
-TODO (approximate version plan)
-
-v1.9 "SD support"
-. Migrate db to new format, keep in memory
-. Specify format to be extensible but don't add features yet. Must be sortable.
-. Write-through to text file (start..end commit changes)
-. Also store to SD
-. Menu reset profiles > revert from SD (manual)
-. Add froyo backup API for the file (using TS as in sample)
-
-. Notification on setting applied (optional)
-
-v1.10 "Profile UI revamp"
-. Don't auto-edit on actions
-. Selectable profile/actions
-. On select, display button bar: up/down, edit, add, remove
-
-v1.11 "Exclusion feature"
-
-v1.12
-
-T v1.8.15 => medium update, couple features + improvements based on googlecode tickets.
-. T need to add serious functional tests + UI tests framework (to make sure things don't break when I add features)
- (Note: "risk" below means potential impact of bugs on usability and probability of inserting regressions)
-. T merge the rest of AndroidAppLib
-. T make action buttons dynamic. C=Medium.
-. T generic help for action buttons including disabled buttons. C=Medium
-. T use action buttons' help to explain volume/brigthness issue + why no bluetooth < 2.0). Need new UI + I18n.
-. T media volume. C=Easy. Low risk.
-. T detect sound link setting. C=Medium. Low risk.
-. T warn sound linked . Ui.
-. T -- publish
-
-T v1.9
-. T remove DB, C=high, risky. need extra testing.
-. T save restore SD. C=medium. Needs tests.
-. T -- publish
-
-
 TODO (misc)
 
 20100826 AM/PM: make strings depend on the current Locale setting
@@ -63,9 +24,17 @@ TODO (misc)
 20090305 Provide actions using options menu (mirror long press => context)
 20090305 Gray text color depending on global toggle
 
+20101018 Setting: Adjust Display Timeout
+20100928 Deleting all profiles, doesn't update next/prev fields
 
 
 DONE for 1.09
+
+[1.09.04]
+
+20101115 Fix: Adjust text progress bar in percentage dialog for action screen
+20101114 Bug: DBHelper.open/close failing (can't repro, tried blind workaround)
+
 
 [1.09.03]
 

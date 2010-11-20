@@ -32,32 +32,32 @@
     <!-- === Menu === -->
 
     <!-- Menu - Settings: preferences. -->
-    <string name="settings">Einstellungen</string>
+    <string name="menu_settings">Einstellungen</string>
     <!-- Menu - Check now: force app to recompute next alarm. -->
-    <string name="check_now">Jetzt prüfen</string>
+    <string name="menu_check_now">Jetzt prüfen</string>
     <!-- Menu - About: display introduction/help screen. -->
-    <string name="about">Über</string>
+    <string name="menu_about">Über</string>
     <!-- Menu - Reset: reset current profile. -->
-    <string name="reset">Reset</string>
+    <string name="menu_reset">Reset</string>
     <!-- Menu - Report Error: display the error reporting screen. -->
-    <string name="report_error">Fehler melden</string>
+    <string name="menu_report_error">Fehler melden</string>
 
 
     <!-- === Context Menu on Profile List === -->
 
     <!-- Context Menu - Edit (profile or timed action) -->
-    <string name="edit">Bearbeiten</string>
+    <string name="menu_edit">Bearbeiten</string>
     <!-- Context Menu - Rename (profile or timed action) -->
-    <string name="rename">Umbenennen</string>
+    <string name="menu_rename">Umbenennen</string>
     <!-- Context Menu - Delete (profile or timed action) -->
-    <string name="delete">Löschen</string>
+    <string name="menu_delete">Löschen</string>
 
     <!-- Context Menu - Insert new timed action -->
-    <string name="insert_action">Aktion einfügen</string>
+    <string name="menu_insert_action">Aktion einfügen</string>
     <!-- Context Menu - Insert new profile -->
-    <string name="insert_profile">Profil einfügen</string>
+    <string name="menu_insert_profile">Profil einfügen</string>
     <!-- Menu & Context Menu - Add new profile -->
-    <string name="append_profile">Neues Profil</string>
+    <string name="menu_append_profile">Neues Profil</string>
 
 
     <!-- === Settings / Preferences === -->
@@ -90,8 +90,6 @@
     <string name="prefs_toggle_anim_label">Animation de/aktivieren</string>
     <!-- Settings - Animation of the toggle button logo: help string -->
     <string name="prefs_toggle_anim_tooltip">Wähle eine Animation des An/Aus-Icons in der Profilliste.</string>
-    <string name="save_to_sd">Sichern auf die SD-Karte</string>
-    <string name="restore_from_sd">Wiederherstellen von der SD-Karte</string>
     <!-- Settings - Display Notification: toggle title -->
     <string name="prefs_display_notif_label">Zeige Benachrichtigung bei Profiländerung</string>
     <!-- Settings - Display Notification: help string when on -->

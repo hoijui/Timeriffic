@@ -31,32 +31,32 @@
     <!-- === Menu === -->
 
     <!-- Menu - Settings: preferences. -->
-    <string name="settings">Ajustes</string>
+    <string name="menu_settings">Ajustes</string>
     <!-- Menu - Check now: force app to recompute next alarm. -->
-    <string name="check_now">Comprobar ahora</string>
+    <string name="menu_check_now">Comprobar ahora</string>
     <!-- Menu - About: display introduction/help screen. -->
-    <string name="about">Información</string>
+    <string name="menu_about">Información</string>
     <!-- Menu - Reset: reset current profile. -->
-    <string name="reset">Borrar todo</string>
+    <string name="menu_reset">Borrar todo</string>
     <!-- Menu - Report Error: display the error reporting screen. -->
-    <string name="report_error">Informar de error</string>
+    <string name="menu_report_error">Informar de error</string>
 
 
     <!-- === Context Menu on Profile List === -->
 
     <!-- Context Menu - Edit (profile or timed action) -->
-    <string name="edit">Editar</string>
+    <string name="menu_edit">Editar</string>
     <!-- Context Menu - Rename (profile or timed action) -->
-    <string name="rename">Cambiar nombre</string>
+    <string name="menu_rename">Cambiar nombre</string>
     <!-- Context Menu - Delete (profile or timed action) -->
-    <string name="delete">Eliminar</string>
+    <string name="menu_delete">Eliminar</string>
 
     <!-- Context Menu - Insert new timed action -->
-    <string name="insert_action">Insertar una acción</string>
+    <string name="menu_insert_action">Insertar una acción</string>
     <!-- Context Menu - Insert new profile -->
-    <string name="insert_profile">Insertar un perfil</string>
+    <string name="menu_insert_profile">Insertar un perfil</string>
     <!-- Menu & Context Menu - Add new profile -->
-    <string name="append_profile">Agregar un perfil</string>
+    <string name="menu_append_profile">Agregar un perfil</string>
 
 
     <!-- === Settings / Preferences === -->

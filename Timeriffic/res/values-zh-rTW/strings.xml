@@ -31,32 +31,31 @@
     <!-- === Menu === -->
 
     <!-- Menu - Settings: preferences. -->
-    <string name="settings">設定</string>
+    <string name="menu_settings">設定</string>
     <!-- Menu - Check now: force app to recompute next alarm. -->
-    <string name="check_now">現在檢查</string>
+    <string name="menu_check_now">現在檢查</string>
     <!-- Menu - About: display introduction/help screen. -->
-    <string name="about">關於</string>
+    <string name="menu_about">關於</string>
     <!-- Menu - Reset: reset current profile. -->
-    <string name="reset">重設</string>
+    <string name="menu_reset">重設</string>
     <!-- Menu - Report Error: display the error reporting screen. -->
-    <string name="report_error">報告錯誤</string>
-
+    <string name="menu_report_error">報告錯誤</string>
 
     <!-- === Context Menu on Profile List === -->
 
     <!-- Context Menu - Edit (profile or timed action) -->
-    <string name="edit">編輯</string>
+    <string name="menu_edit">編輯</string>
     <!-- Context Menu - Rename (profile or timed action) -->
-    <string name="rename">重新命名</string>
+    <string name="menu_rename">重新命名</string>
     <!-- Context Menu - Delete (profile or timed action) -->
-    <string name="delete">刪除</string>
+    <string name="menu_delete">刪除</string>
 
     <!-- Context Menu - Insert new timed action -->
-    <string name="insert_action">插入新動作</string>
+    <string name="menu_insert_action">插入新動作</string>
     <!-- Context Menu - Insert new profile -->
-    <string name="insert_profile">插入新情景</string>
+    <string name="menu_insert_profile">插入新情景</string>
     <!-- Menu & Context Menu - Add new profile -->
-    <string name="append_profile">增加新情景</string>
+    <string name="menu_append_profile">增加新情景</string>
 
 
     <!-- === Settings / Preferences === -->
@@ -90,8 +89,6 @@
     <!-- Settings - Animation of the toggle button logo: help string -->
     <string name="prefs_toggle_anim_tooltip">選取開關圖示的動畫效果.</string>
 
-    <string name="save_to_sd">儲存到SD卡</string>
-    <string name="restore_from_sd">從SD上還原</string>
     <!-- Settings - Display Notification: toggle title -->
     <string name="prefs_display_notif_label">當情景模式改變時顯示通知</string>
     <!-- Settings - Display Notification: help string when on -->

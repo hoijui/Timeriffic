@@ -32,32 +32,32 @@
     <!-- === Menu === -->
 
     <!-- Menu - Settings: preferences. -->
-    <string name="settings">设置</string>
+    <string name="menu_settings">设置</string>
     <!-- Menu - Check now: force app to recompute next alarm. -->
-    <string name="check_now">现在检查</string>
+    <string name="menu_check_now">现在检查</string>
     <!-- Menu - About: display introduction/help screen. -->
-    <string name="about">关于</string>
+    <string name="menu_about">关于</string>
     <!-- Menu - Reset: reset current profile. -->
-    <string name="reset">重置</string>
+    <string name="menu_reset">重置</string>
     <!-- Menu - Report Error: display the error reporting screen. -->
-    <string name="report_error">报告错误</string>
+    <string name="menu_report_error">报告错误</string>
 
 
     <!-- === Context Menu on Profile List === -->
 
     <!-- Context Menu - Edit (profile or timed action) -->
-    <string name="edit">编辑</string>
+    <string name="menu_edit">编辑</string>
     <!-- Context Menu - Rename (profile or timed action) -->
-    <string name="rename">重命名</string>
+    <string name="menu_rename">重命名</string>
     <!-- Context Menu - Delete (profile or timed action) -->
-    <string name="delete">删除</string>
+    <string name="menu_delete">删除</string>
 
     <!-- Context Menu - Insert new timed action -->
-    <string name="insert_action">插入新动作</string>
+    <string name="menu_insert_action">插入新动作</string>
     <!-- Context Menu - Insert new profile -->
-    <string name="insert_profile">插入新情景</string>
+    <string name="menu_insert_profile">插入新情景</string>
     <!-- Menu & Context Menu - Add new profile -->
-    <string name="append_profile">增加新情景</string>
+    <string name="menu_append_profile">增加新情景</string>
 
 
     <!-- === Settings / Preferences === -->
@@ -92,8 +92,6 @@
     <string name="prefs_toggle_anim_tooltip">选择开关图标的动画效果.</string>
 
 <!-- this block translated by goapk.com -->
-    <string name="save_to_sd">保存到SD卡</string>
-    <string name="restore_from_sd">从SD上还原</string>
     <!-- Settings - Display Notification: toggle title -->
     <string name="prefs_display_notif_label">当情景模式改变时显示通知</string>
     <!-- Settings - Display Notification: help string when on -->

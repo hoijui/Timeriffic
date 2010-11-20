@@ -30,32 +30,32 @@
      <!-- === Menu === -->
 
      <!-- Menu - Settings: preferences. -->
-     <string name="settings">설정</string>
+     <string name="menu_settings">설정</string>
      <!-- Menu - Check now: force app to recompute next alarm. -->
-     <string name="check_now">지금 확인</string>
+     <string name="menu_check_now">지금 확인</string>
      <!-- Menu - About: display introduction/help screen. -->
-     <string name="about">정보</string>
+     <string name="menu_about">정보</string>
      <!-- Menu - Reset: reset current profile. -->
-     <string name="reset">초기화</string>
+     <string name="menu_reset">초기화</string>
      <!-- Menu - Report Error: display the error reporting screen. -->
-     <string name="report_error">리포트 오류</string>
+     <string name="menu_report_error">리포트 오류</string>
 
 
      <!-- === Context Menu on Profile List === -->
 
      <!-- Context Menu - Edit (profile or timed action) -->
-     <string name="edit">편집</string>
+     <string name="menu_edit">편집</string>
      <!-- Context Menu - Rename (profile or timed action) -->
-     <string name="rename">이름 변경</string>
+     <string name="menu_rename">이름 변경</string>
      <!-- Context Menu - Delete (profile or timed action) -->
-     <string name="delete">삭제</string>
+     <string name="menu_delete">삭제</string>
 
      <!-- Context Menu - Insert new timed action -->
-     <string name="insert_action">새 액션 입력</string>
+     <string name="menu_insert_action">새 액션 입력</string>
      <!-- Context Menu - Insert new profile -->
-     <string name="insert_profile">새 프로필 입력</string>
+     <string name="menu_insert_profile">새 프로필 입력</string>
      <!-- Menu & Context Menu - Add new profile -->
-     <string name="append_profile">새 프로필 추가</string>
+     <string name="menu_append_profile">새 프로필 추가</string>
 
 
      <!-- === Settings / Preferences === -->
