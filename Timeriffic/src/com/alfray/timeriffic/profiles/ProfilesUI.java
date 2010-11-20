@@ -607,12 +607,18 @@ public class ProfilesUI extends ExceptionHandlerActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        menu.add(0, R.string.append_profile,  0, R.string.append_profile).setIcon(R.drawable.ic_menu_add);
-        menu.add(0, R.string.settings,  0, R.string.settings).setIcon(R.drawable.ic_menu_preferences);
-        menu.add(0, R.string.about,  0, R.string.about).setIcon(R.drawable.ic_menu_help);
-        menu.add(0, R.string.report_error,  0, R.string.report_error).setIcon(R.drawable.ic_menu_report);
-        menu.add(0, R.string.check_now,  0, R.string.check_now).setIcon(R.drawable.ic_menu_rotate);
-        menu.add(0, R.string.reset,  0, R.string.reset).setIcon(R.drawable.ic_menu_revert);
+        menu.add(0, R.string.menu_append_profile,
+                 0, R.string.menu_append_profile).setIcon(R.drawable.ic_menu_add);
+        menu.add(0, R.string.menu_settings,
+                 0, R.string.menu_settings).setIcon(R.drawable.ic_menu_preferences);
+        menu.add(0, R.string.menu_about,
+                 0, R.string.menu_about).setIcon(R.drawable.ic_menu_help);
+        menu.add(0, R.string.menu_report_error,
+                 0, R.string.menu_report_error).setIcon(R.drawable.ic_menu_report);
+        menu.add(0, R.string.menu_check_now,
+                 0, R.string.menu_check_now).setIcon(R.drawable.ic_menu_rotate);
+        menu.add(0, R.string.menu_reset,
+                 0, R.string.menu_reset).setIcon(R.drawable.ic_menu_revert);
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -620,25 +626,25 @@ public class ProfilesUI extends ExceptionHandlerActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
-        case R.string.settings:
+        case R.string.menu_settings:
             mAgentWrapper.event(AgentWrapper.Event.MenuSettings);
             showPrefs();
             break;
-        case R.string.check_now:
+        case R.string.menu_check_now:
             requestSettingsCheck(UpdateReceiver.TOAST_ALWAYS);
             break;
-        case R.string.about:
+        case R.string.menu_about:
             mAgentWrapper.event(AgentWrapper.Event.MenuAbout);
             showIntro(true /*force*/, false /* checkService */);
             break;
-        case R.string.reset:
+        case R.string.menu_reset:
             mAgentWrapper.event(AgentWrapper.Event.MenuReset);
             showResetChoices();
             break;
-        case R.string.append_profile:
+        case R.string.menu_append_profile:
             appendNewProfile();
             break;
-        case R.string.report_error:
+        case R.string.menu_report_error:
             showErrorReport();
             break;
         default:

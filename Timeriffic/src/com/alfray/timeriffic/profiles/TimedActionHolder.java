@@ -63,9 +63,12 @@ public class TimedActionHolder extends BaseHolder {
     public void onCreateContextMenu(ContextMenu menu) {
         menu.setHeaderTitle(R.string.timedactioncontextmenu_title);
 
-        menu.add(0, R.string.insert_action, 0, R.string.insert_action);
-        menu.add(0, R.string.delete, 0, R.string.delete);
-        menu.add(0, R.string.edit, 0, R.string.edit);
+        menu.add(0, R.string.menu_insert_action,
+                 0, R.string.menu_insert_action);
+        menu.add(0, R.string.menu_delete,
+                 0, R.string.menu_delete);
+        menu.add(0, R.string.menu_edit,
+                 0, R.string.menu_edit);
     }
 
     @Override
@@ -78,15 +81,15 @@ public class TimedActionHolder extends BaseHolder {
     @Override
     public void onContextMenuSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case R.string.insert_action:
+        case R.string.menu_insert_action:
             if (DEBUG) Log.d(TAG, "action - insert_action");
             insertNewAction(mActivity.getCursor());
             break;
-        case R.string.delete:
+        case R.string.menu_delete:
             if (DEBUG) Log.d(TAG, "action - delete");
             deleteTimedAction(mActivity.getCursor());
             break;
-        case R.string.edit:
+        case R.string.menu_edit:
             if (DEBUG) Log.d(TAG, "action - edit");
             editAction(mActivity.getCursor());
             break;

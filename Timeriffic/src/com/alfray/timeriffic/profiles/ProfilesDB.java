@@ -18,10 +18,9 @@
 
 package com.alfray.timeriffic.profiles;
 
+import java.io.File;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
-
-import com.alfray.timeriffic.actions.TimedActionUtils;
 
 import android.content.ContentProvider;
 import android.content.ContentValues;
@@ -36,6 +35,8 @@ import android.database.sqlite.SQLiteQueryBuilder;
 import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.alfray.timeriffic.actions.TimedActionUtils;
 
 //-----------------------------------------------
 
@@ -114,6 +115,10 @@ public class ProfilesDB {
         }
     }
 
+    public static File getDatabaseFile(Context context) {
+        return context.getDatabasePath(DB_NAME);
+    }
+
     // ----------------------------------
 
     /**
@@ -140,8 +145,9 @@ public class ProfilesDB {
     // ----------------------------------
 
     public long getProfileIdForRowId(long row_id) {
+        SQLiteStatement sql = null;
         try {
-            SQLiteStatement sql = mDb.compileStatement(
+            sql = mDb.compileStatement(
                     String.format("SELECT %s FROM %s WHERE %s=%d;",
                             Columns.PROFILE_ID,
                             PROFILES_TABLE,
@@ -150,6 +156,8 @@ public class ProfilesDB {
         } catch (SQLiteDoneException e) {
             // no profiles
             return 0;
+        } finally {
+            if (sql != null) sql.close();
         }
     }
 
@@ -164,6 +172,7 @@ public class ProfilesDB {
      * Returns 0 if there is no such index.
      */
     public long getMaxProfileIndex(long maxProfileIndex) {
+        SQLiteStatement sql = null;
         try {
             String testMaxProfId = "";
             if (maxProfileIndex > 0) {
@@ -171,7 +180,8 @@ public class ProfilesDB {
                         Columns.PROFILE_ID, maxProfileIndex << Columns.PROFILE_SHIFT);
             }
             // e.g. SELECT MAX(prof_id) FROM profiles WHERE type=1 [ AND prof_id < 65536 ]
-            SQLiteStatement sql = mDb.compileStatement(
+
+            sql = mDb.compileStatement(
                     String.format("SELECT MAX(%s) FROM %s WHERE %s=%d %s;",
                             Columns.PROFILE_ID,
                             PROFILES_TABLE,
@@ -182,6 +192,8 @@ public class ProfilesDB {
         } catch (SQLiteDoneException e) {
             // no profiles
             return 0;
+        } finally {
+            if (sql != null) sql.close();
         }
     }
 
@@ -194,12 +206,13 @@ public class ProfilesDB {
      * returns -1.
      */
     public long getMinActionIndex(long profileIndex, long minActionIndex) {
+        SQLiteStatement sql = null;
         try {
             long pid = (profileIndex << Columns.PROFILE_SHIFT) + minActionIndex;
             long maxPid = (profileIndex + 1) << Columns.PROFILE_SHIFT;
 
             // e.g. SELECT MIN(prof_id) FROM profiles WHERE type=2 AND prof_id > 32768+256 AND prof_id < 65536
-            SQLiteStatement sql = mDb.compileStatement(
+            sql = mDb.compileStatement(
                     String.format("SELECT MIN(%s) FROM %s WHERE %s=%d AND %s>%d AND %s<%d;",
                             Columns.PROFILE_ID,
                             PROFILES_TABLE,
@@ -211,6 +224,8 @@ public class ProfilesDB {
             if (result > pid && result < maxPid) return result & Columns.ACTION_MASK;
         } catch (SQLiteDoneException e) {
             // no actions
+        } finally {
+            if (sql != null) sql.close();
         }
         return -1;
     }
@@ -220,12 +235,13 @@ public class ProfilesDB {
      * Returns -1 if there are not actions.
      */
     public long getMaxActionIndex(long profileIndex) {
+        SQLiteStatement sql = null;
         try {
             long pid = (profileIndex << Columns.PROFILE_SHIFT);
             long maxPid = (profileIndex + 1) << Columns.PROFILE_SHIFT;
 
             // e.g. SELECT MAX(prof_id) FROM profiles WHERE type=2 AND prof_id > 32768 AND prof_id < 65536
-            SQLiteStatement sql = mDb.compileStatement(
+            sql = mDb.compileStatement(
                     String.format("SELECT MAX(%s) FROM %s WHERE %s=%d AND %s>%d AND %s<%d;",
                             Columns.PROFILE_ID,
                             PROFILES_TABLE,
@@ -237,6 +253,8 @@ public class ProfilesDB {
             if (result > pid && result < maxPid) return result & Columns.ACTION_MASK;
         } catch (SQLiteDoneException e) {
             // no actions
+        } finally {
+            if (sql != null) sql.close();
         }
         return -1;
     }

@@ -53,10 +53,14 @@ public class ProfileHeaderHolder extends BaseHolder {
     public void onCreateContextMenu(ContextMenu menu) {
         menu.setHeaderTitle(R.string.profilecontextmenu_title);
 
-        menu.add(0, R.string.insert_profile, 0, R.string.insert_profile);
-        menu.add(0, R.string.insert_action, 0, R.string.insert_action);
-        menu.add(0, R.string.delete, 0, R.string.delete);
-        menu.add(0, R.string.rename, 0, R.string.rename);
+        menu.add(0, R.string.menu_insert_profile,
+                 0, R.string.menu_insert_profile);
+        menu.add(0, R.string.menu_insert_action,
+                 0, R.string.menu_insert_action);
+        menu.add(0, R.string.menu_delete,
+                 0, R.string.menu_delete);
+        menu.add(0, R.string.menu_rename,
+                 0, R.string.menu_rename);
     }
 
     @Override
@@ -84,19 +88,19 @@ public class ProfileHeaderHolder extends BaseHolder {
     @Override
     public void onContextMenuSelected(MenuItem item) {
         switch (item.getItemId()) {
-        case R.string.insert_profile:
+        case R.string.menu_insert_profile:
             if (DEBUG) Log.d(TAG, "profile - insert_profile");
             insertNewProfile(mActivity.getCursor());
             break;
-        case R.string.insert_action:
+        case R.string.menu_insert_action:
             if (DEBUG) Log.d(TAG, "profile - insert_action");
             insertNewAction(mActivity.getCursor());
             break;
-        case R.string.delete:
+        case R.string.menu_delete:
             if (DEBUG) Log.d(TAG, "profile - delete");
             deleteProfile(mActivity.getCursor());
             break;
-        case R.string.rename:
+        case R.string.menu_rename:
             if (DEBUG) Log.d(TAG, "profile - rename");
             editProfile(mActivity.getCursor());
             break;
