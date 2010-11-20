@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Project: Timeriffic
+ * Copyright (C) 2009 ralfoide gmail com,
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!--
+    Language: IW (Hebrew).
+    Regions:  -.
+-->
+
+<resources>
+
+    <!-- === Menu === -->
+
+    <!-- Menu - Settings: preferences. -->
+    <string name="menu_settings">הגדרות</string>
+    <!-- Menu - Check now: force app to recompute next alarm. -->
+    <string name="menu_check_now">בדוק עכשיו</string>
+    <!-- Menu - About: display introduction/help screen. -->
+    <string name="menu_about">אודות</string>
+    <!-- Menu - Reset: reset current profile. -->
+    <string name="menu_reset">הפעל פרופיל מחדש</string>
+    <!-- Menu - Report Error: display the error reporting screen. -->
+    <string name="menu_report_error">דווח על תקלה</string>
+
+
+    <!-- === Context Menu on Profile List === -->
+
+    <!-- Context Menu - Edit (profile or timed action) -->
+    <string name="menu_edit">ערוך</string>
+    <!-- Context Menu - Rename (profile or timed action) -->
+    <string name="menu_rename">הכנס שם חדש</string>
+    <!-- Context Menu - Delete (profile or timed action) -->
+    <string name="menu_delete">מחק</string>
+
+    <!-- Context Menu - Insert new timed action -->
+    <string name="menu_insert_action">הכנס פעולה חדשה</string>
+    <!-- Context Menu - Insert new profile -->
+    <string name="menu_insert_profile">הכנס פרופיל חדש</string>
+    <!-- Menu & Context Menu - Add new profile -->
+    <string name="menu_append_profile">הוסף פרופיל חדש</string>
+
+
+    <!-- === Settings / Preferences === -->
+
+    <!-- Settings screen title -->
+    <string name="prefs_title">Timeriffic - העדפות</string>
+
+    <!-- Settings - Enable Timeriffic: toggle title -->
+    <string name="prefs_enable_label">הפעל את Timeriffic</string>
+    <!-- Settings - Enable Timeriffic: help string when on -->
+    <string name="prefs_enable_on">Timeriffic מופעל.</string>
+    <!-- Settings - Enable Timeriffic: help string when off -->
+    <string name="prefs_enable_off">Timeriffic מבוטל.</string>
+
+    <!-- Settings - Skip Intro: toggle title -->
+    <string name="prefs_dismiss_intro_label">אל תציג הקדמה</string>
+    <!-- Settings - Skip Intro: help string when on -->
+    <string name="prefs_dismiss_intro_on">דילגת על ההקדמה.</string>
+    <!-- Settings - Skip Intro: help string when off -->
+    <string name="prefs_dismiss_intro_off">הקדמה מאופשרת.</string>
+
+    <!-- Settings - Check audio service: toggle title -->
+    <string name="prefs_check_service_label">אמת שרותי אודיו</string>
+    <!-- Settings - Check audio service: help string when on -->
+    <string name="prefs_check_service_off">אל תאמת שירות אודיו קיים.</string>
+    <!-- Settings - Check audio service: help string when off -->
+    <string name="prefs_check_service_on">אמת שירותי אודיו קיימים.</string>
+
+    <!-- Settings - Animation of the toggle button logo: title -->
+    <string name="prefs_toggle_anim_label">אנימציית מתג</string>
+    <!-- Settings - Animation of the toggle button logo: help string -->
+    <string name="prefs_toggle_anim_tooltip">בחר אנימצייה לאייקון המתג המסך רשימת הפרופילים.</string>
+
+
+    <!-- Settings - Display Notification: toggle title -->
+    <string name="prefs_display_notif_label">הצג התראה בשינוי פורפיל</string>
+    <!-- Settings - Display Notification: help string when on -->
+    <string name="prefs_display_notif_on">הצג התראה כאשר פרופיל משתנה</string>
+    <!-- Settings - Display Notification: help string when off -->
+    <string name="prefs_display_notif_off">אל תציג התראה כאשר פרופיל משתנה</string>
+
+
+    <!-- === Intro screen === -->
+
+    <string name="intro_title">Timeriffic %s - הקדמה</string>
+    <string name="intro_button_continue">המשך</string>
+    <!-- I noticed in some languages (e.g. Korean) we need to set the minEms
+         of the continue button to 10 otherwise the layout doesn't make the
+         button wide enough to display its text. For most languages this
+         should stay empty, unless there's a strong need to specify it.
+         When we do use it, it should be an integer for Button.setMinEms(). -->
+    <string name="intro_button_minEms">0</string>
+    <string name="intro_checkbox_dont_display_again">אל תציג שוב פעם</string>
+
+
+    <!-- === Profile screen === -->
+
+    <string name="profiles_empty_help">השתמש בכפתור הMENU בשביל להוסיף פרופיל חדש.</string>
+
+    <string name="timedactioncontextmenu_title">פעולה מתוזמנת</string>
+
+    <string name="profilecontextmenu_title">פרופיל</string>
+
+    <string name="insertprofile_new_profile_title">פרופיל חדש</string>
+
+    <string name="deleteprofile_title">מחק פרופיל</string>
+    <string name="deleteprofile_msgbody">האם אתה רוצה למחוק את הפרופיל \'%s\' וכל פעולותיו?</string>
+    <string name="deleteprofile_button_delete">מחק</string>
+    <string name="deleteprofile_button_cancel">ביטול</string>
+
+    <string name="deleteaction_title">מחק פעולה</string>
+    <string name="deleteaction_msgbody">האם אתה בטוח שאתה רוצה למחוק את הפעולה \'%s\'?</string>
+    <string name="deleteaction_button_delete">מחק</string>
+    <string name="deleteaction_button_cancel">ביטול</string>
+
+    <string name="resetprofiles_msg_confirm_delete">מחק והפעל מחדש <u> את כל הפרופילים</u>? <b>לא חזור אחורה!</b></string>
+    <string name="resetprofiles_button_cancel">Cancel</string>
+
+    <!-- summary of timed actions on profile list screen -->
+
+    <!-- special case when there's no action to execute (the action won't run) -->
+    <string name="timedaction_no_action">אין פעולה</string>
+    <!-- special case when no days are selected (so the action won't run) -->
+    <string name="timedaction_nodays_never">אף פעם</string>
+
+    <!-- Timed action hour/time display using String.format, see the
+         Date and Time section at
+           http://java.sun.com/j2se/1.5.0/docs/api/java/util/Formatter.html
+         Summary:
+           tk=hour 0-23, tl=hour 1-12, tp=am/pm, tM=minutes 00-59
+     -->
+    <!-- display time on exact hour -->
+    <string name="timedaction_time_0_minute">%1$tk:%1$tM</string>
+    <!-- display time: hour with minutes != 0 -->
+    <string name="timedaction_time_with_minutes">%1$tk:%1$tM</string>
+
+    <string name="timedaction_airplane_on">מצב טיסה מופעל</string>
+    <string name="timedaction_airplane_off">מצב טיסה מכובה</string>
+    <string name="timedaction_wifi_on">הדלק WIFI</string>
+    <string name="timedaction_wifi_off">כבה WIFI</string>
+    <string name="timedaction_bluetooth_on">הפעל Bluetooth</string>
+    <string name="timedaction_bluetooth_off">כבה Bluetooth</string>
+    <string name="timedaction_ringer_int">צלצול %d%%</string>
+    <string name="timedaction_notif_int">התראות %d%%</string>
+    <string name="timedaction_brightness_int">בהירות %d%%</string>
+    <string name="timedaction_apndroid_on">3G/2G Data מופעל</string>
+    <string name="timedaction_apndroid_off">3G/2G Data מכובה</string>
+    <string name="timedaction_media_int">מדיה %d%%</string>
+    <string name="timedaction_alarm_int">שעון מעורר %d%%</string>
+    <string name="timedaction_system_vol_int">מערכת %d%%</string>
+    <string name="timedaction_voice_call_vol_int">קול %d%%</string>
+    <string name="timedaction_auto_brightness">בהירות אוטומטית</string>
+    <string name="timedaction_automatic">אוטומטי</string>
+
+    <!-- Short description in the action list indicating that notification
+         volume uses the ring volume. -->
+    <string name="timedaction_notif_ring_sync">התראות משתמשות בעוצמת צלצול.</string>
+    <!-- Radio-button in the Action>Edit>Notif Vol dialog that indicates whether
+         notification volume uses the ring volume. -->
+    <string name="editaction_notif_ring_sync">התראות משתמשות בעוצמת צלצול.</string>
+    <!-- String displayed in the 2nd line of the Action>Edit>Notif Vol button
+         indicating that notification volume uses the ring volume. Must be really short. -->
+    <string name="actionlabel_notif_ring_sync">השתמש בעוצמת צלצול</string>
+
+    <!-- edit profile screen -->
+
+    <string name="editprofile_title">Timeriffic - ערוך פרופיל</string>
+    <string name="editprofile_profile_name">שם פרופיל:</string>
+    <string name="editprofile_profile_hint">שם פרופיל</string>
+    <string name="editprofile_checkbox_enabled">מאופשר</string>
+    <string name="editprofile_button_accept">הסכם</string>
+
+    <!-- edit action screen -->
+
+    <string name="editaction_title">Timeriffic - ערוך פעולה מתוזמנת</string>
+
+    <string name="editaction_section_action">פעולה</string>
+    <string name="editaction_section_time_and_day">תאריך ושעה</string>
+    <string name="editaction_section_days">ימים</string>
+
+    <string name="editaction_button_label">  <b>@</b>\n  $</string>
+
+    <string name="setting_not_supported">לא נתמך</string>
+    <string name="setting_not_installed">לא מותקן</string>
+
+    <string name="editaction_ringer">צלצול</string>
+    <string name="editaction_vibrate">רטט</string>
+    <string name="editaction_volume">עוצמת צלצול</string>
+    <string name="editaction_brightness">בהירות</string>
+    <string name="editaction_wifi">Wifi</string>
+    <string name="editaction_airplane">מצב טיסה</string>
+    <string name="editaction_media_volume">עוצמת מדיה</string>
+    <string name="editaction_alarm_volume">עוצמת שעון מעורר</string>
+    <string name="editaction_notif_volume">עוצמת התראות</string>
+    <string name="editaction_system_volume">עוצמת מערכת</string>
+    <string name="editaction_voice_call_volume">עוצמת שמע בשיחה</string>
+    <string name="editaction_bluetooth">Bluetooth</string>
+
+    <!-- percent dialog -->
+
+    <string name="percent_do_not_change">אל תשנה.</string>
+    <string name="percent_change_to">שענה לערך הבא:</string>
+    <string name="percent_button_unchanged">לא השתנה</string>
+    <string name="percent_button_accept">הסכם</string>
+
+    <!-- enum dialog -->
+
+    <string name="enum_unchanged">לא השתנה</string>
+
+    <!-- toggle on/off dialog -->
+
+    <string name="toggle_turn_on">הדלק</string>
+    <string name="toggle_turn_off">כבה</string>
+
+    <!-- toast to display next change time -->
+
+    <string name="toast_next_change_at_datetime">השינוי הבא: %s</string>
+    <!-- toast_next_alarm_date_time uses Java SimpleDateFormat, see
+         http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html
+    -->
+    <string name="toast_next_alarm_date_time">yyyy/MM/dd HH:mm:ss</string>
+
+
+    <!-- global status (information view at the top) -->
+
+    <string name="globalstatus_nextlast_date_time">yyyy/MM/dd HH:mm:ss</string>
+    <string name="globalstatus_next">Next:</string>
+    <string name="globalstatus_last">Last:</string>
+    <string name="globalstatus_disabled">Timeriffic מכובה</string>
+
+    <!-- settings -->
+
+    <string name="ringermode_ring">צלצול</string>
+    <string name="ringermode_mute">מושתק</string>
+
+    <string name="vibrateringermode_vibrate">רטט</string>
+    <string name="vibrateringermode_no_vibrate">בלי רטט</string>
+    <string name="vibrateringermode_no_ringer_vibrate">רטט להתראות אבל לא לצלצול</string>
+    <string name="vibrateringermode_no_notif_vibrate">רטט לצלצול אבל לא להתראות</string>
+
+    <!-- check services dialog -->
+
+    <string name="checkservices_dlg_title">שירות חסר</string>
+    <string name="checkservices_ok_button">OK</string>
+    <string name="checkservices_skip_button">אל תראה שוב פעם</string>
+    <string name="checkservices_warning">זהירות! הפעולה הבאה לא זמינה לטלפון המסוים הזה:</string>
+    <string name="checkservices_miss_audio_service">Audio volume and ringer</string>
+    <string name="checkservices_miss_wifi_service">מתג Wifi</string>
+    <string name="checkservices_miss_airplane">מצב טיסה</string>
+    <string name="checkservices_miss_brightness">בהירות</string>
+    <string name="checkservices_miss_bluetooh">Bluetooth</string>
+    <string name="checkservices_explain_why">הסבר למה</string>
+
+    <string name="checkservices_help_bluetooh">שליטה בBluetooth דורשת Android 2.0 ומעלה.</string>
+    <string name="checkservices_help_application">בשביל לאפשר את התכונה הזו , עלייך להתקין את האפליקציה \'%s\' מהAndroid Market.</string>
+    <string name="install_now_button">התקן עכשיו</string>
+
+    <!-- === Error Reporting === -->
+
+    <!-- Error Report UI: dialog title. -->
+    <string name="errorreport_title">Timeriffic - דיווח על תקלות</string>
+
+    <!-- Error Report UI: generate button. -->
+    <string name="errorreport_generate">שלח</string>
+
+    <!-- Error Report UI: next button (go from page 1 to page 2). -->
+    <string name="errorreport_next">הבא &gt;</string>
+
+    <!-- Error Report UI: previous button (go from page 2 to page 1). -->
+    <string name="errorreport_prev">&lt; הקודם</string>
+
+    <!-- Error Report UI page 1: text above "select Program Error or Feature Request" -->
+    <string name="errorreport_user1">בבקשה תאר את הבעיה עלייה אתה רוצה לדווח:</string>
+
+    <!-- Error Report UI page 1: select user feedback type, "Program Error" or Feature Request -->
+    <string name="errorreport_program_err">שגיאה בתוכנה</string>
+
+    <!-- Error Report UI page 1: select user feedback type, Program Error or "Feature Request" -->
+    <string name="errorreport_feat_req">בקשת תכונה חדשה</string>
+
+    <!-- Error Report UI page 1: text displayed on top of user feedback EditText -->
+    <string name="errorreport_user2">בשביל לעזור לנו להבין את הבעיה, אנא ספק כמה תגובות:</string>
+
+    <!-- Error Report UI page 1: text hint displayed *inside* the user feedback EditText -->
+    <string name="errorreport_user_hint">לפני שתוכל להמשיך, אנא תאר כאן את הבעיה או את הבקשה.</string>
+
+    <!-- Error Report UI page 1: text hint part 2 is "please write in English". DO NOT TRANSLATE -->
+    <string name="errorreport_user_hint_english">(אנא רשום את התגובה באנגלית אם אפשרי.)</string>
+
+    <!-- Error Report UI: sending fail because there's no mail app. -->
+    <string name="errorreport_nomailapp">לא נמצאה אפליקציית Email/Gmail בשביל לשלוח את הבקשה. בבקשה התקן אחת כמו  K9 מהמרקט קודם.</string>
+
+    <!-- Error Report UI: header of generated email (the rest of the log is in English).
+         Formatting: Spacing matters. Use "/" to insert a new line.
+    -->
+    <string name="errorreport_emailheader">זה דיווח על באג לTimeriffic./
+הדיווח האוטמטי מתחיל פה.
+    </string>
+
+</resources>
+
