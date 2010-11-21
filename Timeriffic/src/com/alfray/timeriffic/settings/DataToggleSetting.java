@@ -29,6 +29,7 @@ import android.util.Log;
 import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.actions.PrefToggle;
 import com.alfray.timeriffic.profiles.Columns;
+import com.android.internal.telephony.ITelephony;
 
 //-----------------------------------------------
 
@@ -57,35 +58,17 @@ public class DataToggleSetting implements ISetting {
 
                 Object t = getIT.invoke(manager, context);
 
-                // it = (com.android.internal.telephony.ITelephony) t;  // <-- TODO
+                ITelephony it = (com.android.internal.telephony.ITelephony) t;
 
-                // then:
+                // just check we can call one of the method. we don't need the info
+                it.isDataConnectivityPossible();
 
-                // it..enableApnType("default");
-                // it.enableDataConnectivity();
-                // it.disableDataConnectivity();
-                // it.disableApnType("default");
+                it.enableApnType("default");
+                it.enableDataConnectivity();
+                it.disableDataConnectivity();
+                it.disableApnType("default");
 
-
-
-                // Is a bluetooth adapter actually available?
-                Class<?> btaClass = Class.forName("android.bluetooth.BluetoothAdapter");
-
-                Method getter = btaClass.getMethod("getDefaultAdapter");
-                Object result = getter.invoke(null);
-                mIsSupported = result != null;
-
-                if (!mIsSupported) {
-                    String fp = Build.FINGERPRINT;
-                    if (fp != null &&
-                            fp.startsWith("generic/sdk/generic/:") &&
-                            fp.endsWith(":eng/test-keys")) {
-                        // This looks like an emulator that has no BT emulation.
-                        // Just enable it anyway.
-                        mIsSupported = true;
-                    }
-                }
-
+                mIsSupported = true;
             } catch (Exception e) {
                 Log.d(TAG, "Missing BTA API");
             } finally {
