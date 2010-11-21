@@ -32,6 +32,7 @@ DONE for 1.09
 
 [1.09.04]
 
+20101120 Updated to Market
 20101120 Translated to Hebrew (iw_ or iw_IL) by Shaked H.
 20101119 Fix BT OFF bug (missing BT uses-perm)
 20101115 Fix: Adjust text progress bar in percentage dialog for action screen
