@@ -18,7 +18,6 @@
 
 package com.alfray.timeriffic.settings;
 
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import android.app.Activity;
@@ -35,6 +34,11 @@ import com.android.internal.telephony.ITelephony;
 
 //-----------------------------------------------
 
+/**
+ * An attempt to toggle data off by directly accessing ITelephony.enableDataConnectivity().
+ * Requires permission android.permission.MODIFY_PHONE_STATE which is
+ * unfortunately not granted (probably a signatureOrSystem permission).
+ */
 public class DataSetting implements ISetting {
 
     private static final boolean DEBUG = true;
@@ -58,6 +62,11 @@ public class DataSetting implements ISetting {
                 mIsSupported =
                     (it.getClass().getDeclaredMethod("disableDataConnectivity", (Class[]) null) != null) &&
                     (it.getClass().getDeclaredMethod("enableDataConnectivity",  (Class[]) null) != null);
+
+                // Requires permission android.permission.MODIFY_PHONE_STATE which is
+                // unfortunately not granted (probably a signatureOrSystem permission)
+                // so right now this will never work.
+                mIsSupported = false;
 
             } catch (Throwable e) {
                 Log.d(TAG, "Missing Data toggle API");
@@ -151,7 +160,7 @@ public class DataSetting implements ISetting {
     }
 
     private void change(Context context, boolean enabled) {
-        // This requires permission android.permission.BLUETOOTH_ADMIN
+        // This requires permission android.permission.MODIFY_PHONE_STATE
 
         try {
             ITelephony it = getITelephony(context);
