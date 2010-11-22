@@ -119,4 +119,5 @@
         android:resizeable="true"
         android:normalScreens="true"
     />
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"></uses-permission>
 </manifest>

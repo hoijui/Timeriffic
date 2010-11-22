@@ -18,11 +18,13 @@
 
 package com.alfray.timeriffic.settings;
 
+import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Build;
+import android.os.ServiceManager;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
@@ -33,10 +35,10 @@ import com.android.internal.telephony.ITelephony;
 
 //-----------------------------------------------
 
-public class DataToggleSetting implements ISetting {
+public class DataSetting implements ISetting {
 
     private static final boolean DEBUG = true;
-    private static final String TAG = "DataToggleSetting";
+    public static final String TAG = DataSetting.class.getSimpleName();
 
     private boolean mCheckSupported = true;
     private boolean mIsSupported = false;
@@ -45,32 +47,20 @@ public class DataToggleSetting implements ISetting {
     public boolean isSupported(Context context) {
         if (mCheckSupported) {
             try {
-                TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
-                if (manager == null) return false;
-
                 if (!checkMinApiLevel(8)) return false;
 
-                Class<? extends TelephonyManager> c = manager.getClass();
-                Class<?> c2 = Class.forName(c.getName());
-
-                Method getIT = c2.getDeclaredMethod("getITelephony", (Class[]) null);
-                getIT.setAccessible(true);
-
-                Object t = getIT.invoke(manager, context);
-
-                ITelephony it = (com.android.internal.telephony.ITelephony) t;
+                ITelephony it = getITelephony(context);
 
                 // just check we can call one of the method. we don't need the info
-                it.isDataConnectivityPossible();
+                boolean p = it.isDataConnectivityPossible();
 
-                it.enableApnType("default");
-                it.enableDataConnectivity();
-                it.disableDataConnectivity();
-                it.disableApnType("default");
+                // check we have the methods we want to call
+                mIsSupported =
+                    (it.getClass().getDeclaredMethod("disableDataConnectivity", (Class[]) null) != null) &&
+                    (it.getClass().getDeclaredMethod("enableDataConnectivity",  (Class[]) null) != null);
 
-                mIsSupported = true;
-            } catch (Exception e) {
-                Log.d(TAG, "Missing BTA API");
+            } catch (Throwable e) {
+                Log.d(TAG, "Missing Data toggle API");
             } finally {
                 mCheckSupported = false;
             }
@@ -81,10 +71,10 @@ public class DataToggleSetting implements ISetting {
     @Override
     public Object createUi(Activity activity, String[] currentActions) {
         PrefToggle p = new PrefToggle(activity,
-                        R.id.bluetoothButton,
+                        R.id.dataButton,
                         currentActions,
-                        Columns.ACTION_BLUETOOTH,
-                        activity.getString(R.string.editaction_bluetooth));
+                        Columns.ACTION_DATA,
+                        activity.getString(R.string.editaction_data));
         p.setEnabled(isSupported(activity), activity.getString(R.string.setting_not_supported));
         return p;
     }
@@ -100,8 +90,8 @@ public class DataToggleSetting implements ISetting {
     public String getActionLabel(Context context, String action) {
         try {
             int value = Integer.parseInt(action.substring(1));
-            return context.getString(value > 0 ? R.string.timedaction_bluetooth_on :
-                                                 R.string.timedaction_bluetooth_off);
+            return context.getString(value > 0 ? R.string.timedaction_data_on :
+                                                 R.string.timedaction_data_off);
 
         } catch (NumberFormatException e) {
             // ignore
@@ -113,13 +103,41 @@ public class DataToggleSetting implements ISetting {
     public void performAction(Context context, String action) {
         try {
             int value = Integer.parseInt(action.substring(1));
-            change(value > 0);
+            change(context, value > 0);
         } catch (NumberFormatException e) {
             if (DEBUG) Log.d(TAG, "Perform action failed for " + action);
         }
     }
 
     // ----
+
+    private ITelephony getITelephony(Context context) {
+        try {
+            // Get the internal ITelephony proxy directly.
+            ITelephony it = ITelephony.Stub.asInterface(ServiceManager.getService(Context.TELEPHONY_SERVICE));
+            if (it != null) return it;
+        } catch (Throwable t) {
+            // Ignore any error, we'll retry differently below.
+        }
+
+        try {
+            // Let's try harder, although this is unlikely to work if the previous one failed.
+            TelephonyManager manager = (TelephonyManager) context.getSystemService(Context.TELEPHONY_SERVICE);
+            if (manager == null) return null;
+
+            Class<? extends TelephonyManager> c = manager.getClass();
+
+            Method getIT = c.getDeclaredMethod("getITelephony", (Class[]) null);
+            getIT.setAccessible(true);
+            Object t = getIT.invoke(manager, (Object[]) null);
+            return (ITelephony) t;
+
+        } catch (Throwable t) {
+            Log.d(TAG, "Missing Data toggle API");
+        }
+
+        return null;
+    }
 
     private boolean checkMinApiLevel(int minApiLevel) {
         // Build.SDK_INT is only in API 4 and we're still compatible with API 3
@@ -132,30 +150,23 @@ public class DataToggleSetting implements ISetting {
         return false;
     }
 
-    private void change(boolean enabled) {
+    private void change(Context context, boolean enabled) {
         // This requires permission android.permission.BLUETOOTH_ADMIN
 
         try {
-            Class<?> btaClass = Class.forName("android.bluetooth.BluetoothAdapter");
-
-            Method getter = btaClass.getMethod("getDefaultAdapter");
-            Object bt = getter.invoke(null);
-
-            if (bt == null) {
-                if (DEBUG) Log.w(TAG, "changeBluetooh: BluetoothAdapter null!");
-                return;
+            ITelephony it = getITelephony(context);
+            if (it != null) {
+                if (enabled) {
+                    it.enableApnType("default");
+                    it.enableDataConnectivity();
+                } else {
+                    it.disableDataConnectivity();
+                    it.disableApnType("default");
+                }
             }
-
-            if (DEBUG) Log.d(TAG, "changeBluetooh: " + (enabled ? "on" : "off"));
-
-            if (enabled) {
-                bt.getClass().getMethod("enable").invoke(bt);
-            } else {
-                bt.getClass().getMethod("disable").invoke(bt);
-            }
-
-        } catch (Exception e) {
-            if (DEBUG) Log.d(TAG, "Missing BTA API");
+        } catch (Throwable e) {
+            // We're not supposed to get here since isSupported() should return false.
+            if (DEBUG) Log.d(TAG, "Missing Data toggle API", e);
         }
     }
 }
