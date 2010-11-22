@@ -160,8 +160,8 @@
     <string name="timedaction_ringer_int">鈴聲 %d%%</string>
     <string name="timedaction_notif_int">提醒 %d%%</string>
     <string name="timedaction_brightness_int">亮度 %d%%</string>
-    <string name="timedaction_apndroid_on">3G/2G資料連接開啟</string>
-    <string name="timedaction_apndroid_off">3G/2G資料連接關閉</string>
+    <string name="timedaction_data_on">3G/2G資料連接開啟</string>
+    <string name="timedaction_data_off">3G/2G資料連接關閉</string>
     <string name="timedaction_media_int">媒體 %d%%</string>
     <string name="timedaction_alarm_int">鬧鐘 %d%%</string>
 <!-- BEGIN NEW TRANSLATE -->
@@ -170,6 +170,10 @@
 <!-- END NEW TRANSLATE -->
     <string name="timedaction_auto_brightness">自動背光</string>
     <string name="timedaction_automatic">自動的</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="timedaction_apndroid_on">APNDroid開啟</string>
+    <string name="timedaction_apndroid_off">APNDroid關閉</string>
+<!-- END NEW TRANSLATE -->
 
 <!-- BEGIN NEW TRANSLATE -->
     <!-- Short description in the action list indicating that notification
@@ -218,6 +222,9 @@
     <string name="editaction_voice_call_volume">Voice Call Volume</string>
 <!-- END NEW TRANSLATE -->
     <string name="editaction_bluetooth">藍牙</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="editaction_data">Data</string>
+<!-- END NEW TRANSLATE -->
 
     <!-- percent dialog -->
 

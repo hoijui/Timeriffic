@@ -29,12 +29,12 @@ import android.util.SparseArray;
  */
 public class SerialReader {
 
+    public static final String TAG = SerialReader.class.getSimpleName();
+
     public static class DecodeError extends RuntimeException {
         private static final long serialVersionUID = -8603565615795418588L;
         public DecodeError(String message) { super(message); }
     }
-
-    // private static final String TAG = "SerialReader";
 
     static final int TYPE_INT = SerialWriter.TYPE_INT;
     static final int TYPE_LONG = SerialWriter.TYPE_LONG;

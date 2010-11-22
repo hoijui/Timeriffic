@@ -55,7 +55,7 @@ import com.alfray.timeriffic.actions.TimedActionUtils;
 public class ProfilesDB {
 
     private static final boolean DEBUG = false;
-    public static final String TAG = "TFC-ProfDB";
+    public static final String TAG = ProfilesDB.class.getSimpleName();
 
     private static final String PROFILES_TABLE = "profiles";
     private static final String DB_NAME = "profiles.db";

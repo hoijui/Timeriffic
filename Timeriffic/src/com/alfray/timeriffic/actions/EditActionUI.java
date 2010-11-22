@@ -48,7 +48,7 @@ import com.alfray.timeriffic.utils.SettingsHelper;
 public class EditActionUI extends ExceptionHandlerActivity {
 
     private static boolean DEBUG = true;
-    public static String TAG = "TFC-EditActionUI";
+    public static final String TAG = EditActionUI.class.getSimpleName();
 
     /** Extra long with the action prof_id (not index) to edit. */
     public static final String EXTRA_ACTION_ID = "action_id";
@@ -75,6 +75,7 @@ public class EditActionUI extends ExceptionHandlerActivity {
     private Object mPrefWifi;
     private Object mPrefBluetooth;
     private Object mPrefApnDroid;
+    private Object mPrefData;
 
     /**
      * Day checkboxes, in the same index order than {@link Columns#MONDAY_BIT_INDEX}
@@ -189,6 +190,7 @@ public class EditActionUI extends ExceptionHandlerActivity {
 
             mPrefBluetooth = factory.getSetting(Columns.ACTION_BLUETOOTH).createUi(this, actions);
             mPrefApnDroid  = factory.getSetting(Columns.ACTION_APN_DROID).createUi(this, actions);
+            mPrefData      = factory.getSetting(Columns.ACTION_DATA).createUi(this, actions);
             mPrefWifi      = factory.getSetting(Columns.ACTION_WIFI).createUi(this, actions);
             mPrefAirplane  = factory.getSetting(Columns.ACTION_AIRPLANE).createUi(this, actions);
 
@@ -356,6 +358,7 @@ public class EditActionUI extends ExceptionHandlerActivity {
             factory.getSetting(Columns.ACTION_BRIGHTNESS).collectUiResults(mPrefBrightness, actions);
             factory.getSetting(Columns.ACTION_BLUETOOTH).collectUiResults(mPrefBluetooth, actions);
             factory.getSetting(Columns.ACTION_APN_DROID).collectUiResults(mPrefApnDroid, actions);
+            factory.getSetting(Columns.ACTION_DATA).collectUiResults(mPrefData, actions);
             factory.getSetting(Columns.ACTION_AIRPLANE).collectUiResults(mPrefAirplane, actions);
             factory.getSetting(Columns.ACTION_WIFI).collectUiResults(mPrefWifi, actions);
 

@@ -31,7 +31,7 @@ import android.util.Log;
 public class UpdateReceiver extends BroadcastReceiver {
 
     private final static boolean DEBUG = true;
-    public final static String TAG = "TFC-UpdReceiver";
+    public final static String TAG = UpdateReceiver.class.getSimpleName();
 
     /** Name of intent to broadcast to activate this receiver when doing
      *  alarm-based apply-state. */

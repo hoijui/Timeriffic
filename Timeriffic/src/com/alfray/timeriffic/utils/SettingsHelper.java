@@ -41,7 +41,7 @@ import com.alfray.timeriffic.R;
 public class SettingsHelper {
 
     private static final boolean DEBUG = true;
-    public static final String TAG = "TFC-SettingsH";
+    public static final String TAG = SettingsHelper.class.getSimpleName();
 
     private final Context mContext;
 

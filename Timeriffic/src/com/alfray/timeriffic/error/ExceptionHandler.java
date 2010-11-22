@@ -41,7 +41,7 @@ public class ExceptionHandler {
     /** Exception Notification ID. 'ExcH' as an int. */
     private static final int EXCEPTION_NOTIF_ID = 'E' << 24 + 'x' << 16 + 'c' << 8 + 'H';
 
-    public static final String TAG = "TFC-Exception";
+    public static final String TAG = ExceptionHandler.class.getSimpleName();
 
     public static final String SEP_START = "{[ ";
     public static final String SEP_END = "} /*end*/ \n";

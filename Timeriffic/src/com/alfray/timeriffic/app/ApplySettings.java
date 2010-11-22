@@ -48,7 +48,8 @@ import com.alfray.timeriffic.utils.SettingsHelper.VibrateRingerMode;
 public class ApplySettings {
 
     private final static boolean DEBUG = true;
-    public final static String TAG = "TFC-ApplySettings";
+    public final static String TAG = ApplySettings.class.getSimpleName();
+
     private final Context mContext;
     private final PrefsValues mPrefs;
     private final SimpleDateFormat mUiDateFormat;
@@ -207,16 +208,7 @@ public class ApplySettings {
                     }
                     break;
 
-                case Columns.ACTION_BRIGHTNESS:
-                case Columns.ACTION_AIRPLANE:
-                case Columns.ACTION_BLUETOOTH:
-                case Columns.ACTION_APN_DROID:
-                case Columns.ACTION_WIFI:
-                case Columns.ACTION_NOTIF_VOLUME:
-                case Columns.ACTION_RING_VOLUME:
-                case Columns.ACTION_MEDIA_VOLUME:
-                case Columns.ACTION_ALARM_VOLUME:
-                case Columns.ACTION_SYSTEM_VOLUME:
+                default:
                     ISetting s = SettingFactory.getInstance().getSetting(code);
                     if (s != null && s.isSupported(mContext)) {
                         s.performAction(mContext, action);
@@ -246,12 +238,11 @@ public class ApplySettings {
     /**
      * Schedule an alarm to happen at nextEventMin minutes from now.
      *
-     * @param context App context to get alarm service.
-     * @param prefs Access to prefs (for status update)
      * @param now The time that was used at the beginning of the update.
      * @param nextEventMin The number of minutes ( > 0) after "now" where to set the alarm.
      * @param nextActions
-     * @param displayToast One of {@link #TOAST_NONE}, {@link #TOAST_IF_CHANGED} or {@link #TOAST_ALWAYS}
+     * @param displayToast One of {@link UpdateReceiver#TOAST_NONE},
+     *             {@link UpdateReceiver#TOAST_IF_CHANGED} or {@link UpdateReceiver#TOAST_ALWAYS}
      */
     private void scheduleAlarm(
             Calendar now,

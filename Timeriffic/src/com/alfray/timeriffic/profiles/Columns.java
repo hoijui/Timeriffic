@@ -169,6 +169,8 @@ public class Columns implements BaseColumns {
     public static final char ACTION_BLUETOOTH   = 'U';
     /** APN Droid. Boolean: 0..1 */
     public static final char ACTION_APN_DROID   = 'D';
+    /** Data toggle. Boolean: 0..1 */
+    public static final char ACTION_DATA        = 'd';
     /** Sync. Boolean: 0..1 */
     public static final char ACTION_SYNC        = 'Y';
 

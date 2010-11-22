@@ -134,6 +134,14 @@
     android:baselineAligned="false"
     >
     <Button
+        android:id="@+id/dataButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="data"
+        style="@style/ActionButton"
+        />
+    <Button
         android:id="@+id/apndroidButton"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -141,7 +149,7 @@
         android:text="apndroid"
         style="@style/ActionButton"
         />
-    <Button
+    <!-- Button
         android:enabled="false" android:visibility="invisible"
         android:id="@+id/nextButton"
         android:layout_width="fill_parent"
@@ -149,7 +157,7 @@
         android:layout_weight="1"
         android:text="-"
         style="@style/ActionButton"
-        />
+        / -->
 </LinearLayout>
 
 </merge>

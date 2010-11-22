@@ -39,9 +39,9 @@ import com.alfray.timeriffic.profiles.ProfilesUI.ColIndexes;
  * A base holder class that keeps tracks of the current cursor
  * and the common widgets of the two derived holders.
  */
-abstract class BaseHolder {
+public abstract class BaseHolder {
 
-    private static final String TAG = BaseHolder.class.getSimpleName();
+    public static final String TAG = BaseHolder.class.getSimpleName();
 
     /**
      * The text view that holds the title or description as well

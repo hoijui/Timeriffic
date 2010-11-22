@@ -162,8 +162,10 @@
     <string name="timedaction_notif_int">Notifica %d%%</string>
     <string name="timedaction_brightness_int">Luminosità %d%%</string>
 <!-- BEGIN NEW TRANSLATE -->
-    <string name="timedaction_apndroid_on">3G/2G Data On</string>
-    <string name="timedaction_apndroid_off">3G/2G Data Off</string>
+    <string name="timedaction_data_on">3G/2G Data On</string>
+    <string name="timedaction_data_off">3G/2G Data Off</string>
+    <string name="timedaction_apndroid_on">APNDroid On</string>
+    <string name="timedaction_apndroid_off">APNDroid Off</string>
 <!-- END NEW TRANSLATE -->
     <string name="timedaction_media_int">Media %d%%</string>
     <string name="timedaction_alarm_int">Allarme %d%%</string>
@@ -219,6 +221,9 @@
     <string name="editaction_voice_call_volume">Vol. Voice Call</string>
 <!-- END NEW TRANSLATE -->
     <string name="editaction_bluetooth">Bluetooth</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="editaction_data">Data</string>
+<!-- END NEW TRANSLATE -->
 
     <!-- percent dialog -->
 

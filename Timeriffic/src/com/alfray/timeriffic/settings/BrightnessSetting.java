@@ -39,7 +39,7 @@ import com.alfray.timeriffic.utils.ChangeBrightnessActivity;
 
 public class BrightnessSetting implements ISetting {
 
-    private static final String TAG = "BrightnessSetting";
+    public static final String TAG = BrightnessSetting.class.getSimpleName();
 
     private boolean mCheckAutoSupported = true;
     private boolean mIsAutoSupported = false;
@@ -210,7 +210,7 @@ public class BrightnessSetting implements ISetting {
     /**
      * Returns screen brightness in range 0..100%.
      * <p/>
-     * See comments in {@link #changeBrightness(int)}. The real range is 0..255,
+     * See comments in {@link #changeBrightness(Context, int)}. The real range is 0..255,
      * maps it 0..100.
      */
     private int getCurrentBrightness(Context context) {

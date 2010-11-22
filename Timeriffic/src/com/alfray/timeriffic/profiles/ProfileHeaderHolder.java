@@ -33,7 +33,7 @@ import com.alfray.timeriffic.profiles.ProfilesUI.ColIndexes;
 public class ProfileHeaderHolder extends BaseHolder {
 
     private static boolean DEBUG = false;
-    public static String TAG = "TFC-PHHolder";
+    public static final String TAG = ProfileHeaderHolder.class.getSimpleName();
 
     public ProfileHeaderHolder(ProfilesUI activity, View view) {
         super(activity, view);

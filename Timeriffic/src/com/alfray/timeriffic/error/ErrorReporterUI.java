@@ -49,7 +49,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioGroup;
-import android.widget.ScrollView;
 import android.widget.Toast;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
@@ -60,11 +59,23 @@ import com.alfray.timeriffic.app.IntroActivity;
 import com.alfray.timeriffic.app.UpdateReceiver;
 import com.alfray.timeriffic.app.UpdateService;
 import com.alfray.timeriffic.prefs.PrefsValues;
+import com.alfray.timeriffic.profiles.BaseHolder;
 import com.alfray.timeriffic.profiles.EditProfileUI;
 import com.alfray.timeriffic.profiles.ProfileHeaderHolder;
 import com.alfray.timeriffic.profiles.ProfilesDB;
 import com.alfray.timeriffic.profiles.ProfilesUI;
 import com.alfray.timeriffic.profiles.TimedActionHolder;
+import com.alfray.timeriffic.serial.SerialReader;
+import com.alfray.timeriffic.settings.AirplaneSetting;
+import com.alfray.timeriffic.settings.ApnDroidSetting;
+import com.alfray.timeriffic.settings.BluetoothSetting;
+import com.alfray.timeriffic.settings.BrightnessSetting;
+import com.alfray.timeriffic.settings.DataSetting;
+import com.alfray.timeriffic.settings.RingerSetting;
+import com.alfray.timeriffic.settings.SettingFactory;
+import com.alfray.timeriffic.settings.VibrateSetting;
+import com.alfray.timeriffic.settings.VolumeSetting;
+import com.alfray.timeriffic.settings.WifiSetting;
 import com.alfray.timeriffic.utils.AgentWrapper;
 import com.alfray.timeriffic.utils.ChangeBrightnessActivity;
 import com.alfray.timeriffic.utils.SettingsHelper;
@@ -75,7 +86,7 @@ import com.alfray.timeriffic.utils.SettingsHelper;
 public class ErrorReporterUI extends ExceptionHandlerActivity {
 
     private static final boolean DEBUG = true;
-    public static final String TAG = "TFC-ErrorUI";
+    public static final String TAG = ErrorReporterUI.class.getSimpleName();
 
     /** Boolean extra: True if this is generated from an exception, false
      * if generated from a user request. */
@@ -666,27 +677,48 @@ public class ErrorReporterUI extends ExceptionHandlerActivity {
                     "logcat",
                     "-d",       // dump log and exits
 
-                    ProfilesUI.TAG + ":D",
-                    EditProfileUI.TAG + ":D",
+                    // actions package
                     EditActionUI.TAG + ":D",
-                    IntroActivity.TAG + ":D",
-                    ErrorReporterUI.TAG + ":D",
-                    ChangeBrightnessActivity.TAG + ":D",
 
-                    ProfilesDB.TAG + ":D",
-                    ProfileHeaderHolder.TAG + ":D",
-                    TimedActionHolder.TAG + ":D",
-
+                    // app package
                     ApplySettings.TAG + ":D",
+                    IntroActivity.TAG + ":D",
                     UpdateReceiver.TAG + ":D",
                     UpdateService.TAG + ":D",
-                    SettingsHelper.TAG + ":D",
+
+                    // error package
+                    ErrorReporterUI.TAG + ":D",
                     ExceptionHandler.TAG + ":D",
+
+                    // profiles package
+                    BaseHolder.TAG + ":D",
+                    EditProfileUI.TAG + ":D",
+                    ProfileHeaderHolder.TAG + ":D",
+                    ProfilesDB.TAG + ":D",
+                    ProfilesUI.TAG + ":D",
+                    TimedActionHolder.TAG + ":D",
+
+                    // serial package
+                    SerialReader.TAG + ":D",
+
+                    // settings package
+                    AirplaneSetting.TAG + ":D",
+                    ApnDroidSetting.TAG + ":D",
+                    BluetoothSetting.TAG + ":D",
+                    BrightnessSetting.TAG + ":D",
+                    DataSetting.TAG + ":D",
+                    RingerSetting.TAG + ":D",
+                    SettingFactory.TAG + ":D",
+                    VibrateSetting.TAG + ":D",
+                    VolumeSetting.TAG + ":D",
+                    WifiSetting.TAG + ":D",
+
+                    // utils package
                     AgentWrapper.TAG + ":D",
+                    ChangeBrightnessActivity.TAG + ":D",
+                    SettingsHelper.TAG + ":D",
 
-                    "WindowManager:W",
                     "FlurryAgent:W",
-
 
                     //-- too verbose --"*:I",      // all other tags in info mode or better
                     "*:S",      // silence all tags we don't want

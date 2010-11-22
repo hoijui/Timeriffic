@@ -33,7 +33,7 @@ import android.util.Log;
 public class AirplaneSetting implements ISetting {
 
     private static final boolean DEBUG = true;
-    private static final String TAG = "AirplaneSetting";
+    public static final String TAG = AirplaneSetting.class.getSimpleName();
 
     @Override
     public boolean isSupported(Context context) {

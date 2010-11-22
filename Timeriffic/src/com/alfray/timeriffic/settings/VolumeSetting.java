@@ -39,8 +39,9 @@ public class VolumeSetting implements ISetting {
 
     private static final String EXTRA_OI_VOLUME = "org.openintents.audio.extra_volume_index";
     private static final String EXTRA_OI_STREAM = "org.openintents.audio.extra_stream_type";
+
     private static final boolean DEBUG = true;
-    private static final String TAG = "VolumeSetting";
+    public static final String TAG = VolumeSetting.class.getSimpleName();
 
     private static final String INTENT_OI_VOL_UPDATE = "org.openintents.audio.action_volume_update";
 
@@ -258,10 +259,11 @@ public class VolumeSetting implements ISetting {
     /**
      * Notify ring-guard app types that the volume change was automated
      * and intentional.
+     *<p/>
+     * See http://code.google.com/p/autosettings/issues/detail?id=4  </br>
+     * See http://www.openintents.org/en/node/380
      *
-     * @see http://code.google.com/p/autosettings/issues/detail?id=4
-     * @see http://www.openintents.org/en/node/380
-     * @param stream One of AudioManager.STREAM_xyz
+     * @param context App context
      * @param volume The new volume level or -1 for a ringer/mute change
      */
     private void broadcastVolumeUpdate(Context context, int volume) {

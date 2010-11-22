@@ -188,17 +188,7 @@ public class TimedActionUtils {
                         }
                         break;
 
-                    case Columns.ACTION_BRIGHTNESS:
-                    case Columns.ACTION_AIRPLANE:
-                    case Columns.ACTION_BLUETOOTH:
-                    case Columns.ACTION_APN_DROID:
-                    case Columns.ACTION_WIFI:
-                    case Columns.ACTION_NOTIF_VOLUME:
-                    case Columns.ACTION_RING_VOLUME:
-                    case Columns.ACTION_MEDIA_VOLUME:
-                    case Columns.ACTION_ALARM_VOLUME:
-                    case Columns.ACTION_SYSTEM_VOLUME:
-                    case Columns.ACTION_VOICE_CALL_VOLUME:
+                    default:
                         ISetting s = SettingFactory.getInstance().getSetting(code);
                         if (s != null && s.isSupported(context)) {
                             String label = s.getActionLabel(context, action);

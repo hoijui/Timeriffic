@@ -158,8 +158,12 @@
     <string name="timedaction_ringer_int">צלצול %d%%</string>
     <string name="timedaction_notif_int">התראות %d%%</string>
     <string name="timedaction_brightness_int">בהירות %d%%</string>
-    <string name="timedaction_apndroid_on">3G/2G Data מופעל</string>
-    <string name="timedaction_apndroid_off">3G/2G Data מכובה</string>
+    <string name="timedaction_data_on">3G/2G Data מופעל</string>
+    <string name="timedaction_data_off">3G/2G Data מכובה</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="timedaction_apndroid_on">APNDroid מופעל</string>
+    <string name="timedaction_apndroid_off">APNDroid מכובה</string>
+<!-- END NEW TRANSLATE -->
     <string name="timedaction_media_int">מדיה %d%%</string>
     <string name="timedaction_alarm_int">שעון מעורר %d%%</string>
     <string name="timedaction_system_vol_int">מערכת %d%%</string>
@@ -210,6 +214,9 @@
     <string name="editaction_system_volume">עוצמת מערכת</string>
     <string name="editaction_voice_call_volume">עוצמת שמע בשיחה</string>
     <string name="editaction_bluetooth">Bluetooth</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="editaction_data">Data</string>
+<!-- END NEW TRANSLATE -->
 
     <!-- percent dialog -->
 

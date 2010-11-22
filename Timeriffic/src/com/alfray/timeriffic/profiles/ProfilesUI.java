@@ -60,7 +60,7 @@ import com.alfray.timeriffic.utils.AgentWrapper;
 public class ProfilesUI extends ExceptionHandlerActivity {
 
     private static final boolean DEBUG = true;
-    public static final String TAG = "TFC-ProfilesUI";
+    public static final String TAG = ProfilesUI.class.getSimpleName();
 
     static final int DATA_CHANGED = 42;
     static final int SETTINGS_UPDATED = 43;

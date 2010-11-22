@@ -148,14 +148,16 @@
     <string name="timedaction_ringer_int">Timbre %d%%</string>
     <string name="timedaction_notif_int">Notificación %d%%</string>
     <string name="timedaction_brightness_int">Brillo %d%%</string>
-    <string name="timedaction_apndroid_on">Red 3G/2G activada</string>
-    <string name="timedaction_apndroid_off">Red 3G/2G desactivada</string>
+    <string name="timedaction_data_on">Red 3G/2G activada</string>
+    <string name="timedaction_data_off">Red 3G/2G desactivada</string>
     <string name="timedaction_media_int">Media %d%%</string>
     <string name="timedaction_alarm_int">Alarma %d%%</string>
     <string name="timedaction_system_vol_int">Sistema %d%%</string>
     <string name="timedaction_voice_call_vol_int">Voz %d%%</string>
     <string name="timedaction_auto_brightness">Brillo automático</string>
     <string name="timedaction_automatic">Automático</string>
+    <string name="timedaction_apndroid_on">APNDroid activado</string>
+    <string name="timedaction_apndroid_off">APNDroid desactivado</string>
 
     <!-- Short description in the action list indicating that notification
          volume uses the ring volume. -->
@@ -206,6 +208,9 @@
     <string name="editaction_system_volume">Vol. sistema</string>
     <string name="editaction_voice_call_volume">Vol. llamada voz</string>
     <string name="editaction_bluetooth">Bluetooth</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="editaction_data">Red 3G/2G</string>
+<!-- END NEW TRANSLATE -->
 
     <!-- percent dialog -->
 

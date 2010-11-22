@@ -26,6 +26,8 @@ import android.media.AudioManager;
 
 public class RingerSetting implements ISetting {
 
+    public static final String TAG = RingerSetting.class.getSimpleName();
+
     private boolean mCheckSupported = true;
     private boolean mIsSupported = false;
 

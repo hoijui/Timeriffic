@@ -151,15 +151,17 @@
      <string name="timedaction_ringer_int">벨소리 %d%%</string>
      <string name="timedaction_notif_int">알리미 %d%%</string>
      <string name="timedaction_brightness_int">밝기 %d%%</string>
-     <string name="timedaction_apndroid_on">3G망 사용 On</string>
-     <string name="timedaction_apndroid_off">3G망 사용 Off</string>
+     <string name="timedaction_data_on">3G망 사용 On</string>
+     <string name="timedaction_data_off">3G망 사용 Off</string>
 <!-- BEGIN NEW TRANSLATION -->
-    <string name="timedaction_media_int">Media %d%%</string>
-    <string name="timedaction_alarm_int">Alarm %d%%</string>
-    <string name="timedaction_system_vol_int">System %d%%</string>
-    <string name="timedaction_voice_call_vol_int">Voice %d%%</string>
-    <string name="timedaction_auto_brightness">Automatic Brightness</string>
-    <string name="timedaction_automatic">Automatic</string>
+     <string name="timedaction_apndroid_on">APNDroid On</string>
+     <string name="timedaction_apndroid_off">APNDroid Off</string>
+     <string name="timedaction_media_int">Media %d%%</string>
+     <string name="timedaction_alarm_int">Alarm %d%%</string>
+     <string name="timedaction_system_vol_int">System %d%%</string>
+     <string name="timedaction_voice_call_vol_int">Voice %d%%</string>
+     <string name="timedaction_auto_brightness">Automatic Brightness</string>
+     <string name="timedaction_automatic">Automatic</string>
 <!--  END NEW TRANSLATION -->
 
 <!-- BEGIN NEW TRANSLATE -->
@@ -209,6 +211,9 @@
     <string name="editaction_voice_call_volume">Voice Call Volume</string>
 <!--  END NEW TRANSLATION -->
      <string name="editaction_bluetooth">블루투스</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="editaction_data">Data</string>
+<!-- END NEW TRANSLATE -->
 
      <!-- percent dialog -->
 

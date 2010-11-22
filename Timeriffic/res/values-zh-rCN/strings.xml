@@ -163,8 +163,12 @@
     <string name="timedaction_ringer_int">铃声 %d%%</string>
     <string name="timedaction_notif_int">提醒 %d%%</string>
     <string name="timedaction_brightness_int">亮度 %d%%</string>
-    <string name="timedaction_apndroid_on">3G/2G数据连接开启</string>
-    <string name="timedaction_apndroid_off">3G/2G数据连接关闭</string>
+    <string name="timedaction_data_on">3G/2G数据连接开启</string>
+    <string name="timedaction_data_off">3G/2G数据连接关闭</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="timedaction_apndroid_on">APNDroid开启</string>
+    <string name="timedaction_apndroid_off">APNDroid关闭f</string>
+<!-- END NEW TRANSLATE -->
 
 <!-- this block translated by goapk.com -->
     <string name="timedaction_media_int">媒体 %d%%</string>
@@ -219,6 +223,7 @@
 <!-- BEGIN NEW TRANSLATE -->
     <string name="editaction_system_volume">System Volume</string>
     <string name="editaction_voice_call_volume">Voice Call Volume</string>
+    <string name="editaction_data">Data</string>
 <!-- END NEW TRANSLATE -->
 
 <!-- this block translated by goapk.com -->

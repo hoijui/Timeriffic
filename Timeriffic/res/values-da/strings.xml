@@ -162,14 +162,18 @@
     <string name="timedaction_ringer_int">Ringetone %d%%</string>
     <string name="timedaction_notif_int">Meddelelse %d%%</string>
     <string name="timedaction_brightness_int">Lysstyrke %d%%</string>
-    <string name="timedaction_apndroid_on">3G/2G Data Til</string>
-    <string name="timedaction_apndroid_off">3G/2G Data Fra</string>
+    <string name="timedaction_data_on">3G/2G Data Til</string>
+    <string name="timedaction_data_off">3G/2G Data Fra</string>
     <string name="timedaction_media_int">Medie %d%%</string>
     <string name="timedaction_alarm_int">Alarm %d%%</string>
     <string name="timedaction_system_vol_int">System %d%%</string>
     <string name="timedaction_voice_call_vol_int">Stemme %d%%</string>
     <string name="timedaction_auto_brightness">Automatisk Lysstyrke</string>
     <string name="timedaction_automatic">Automatisk</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="timedaction_apndroid_on">APNDroid Til</string>
+    <string name="timedaction_apndroid_off">APNDroid Fra</string>
+<!-- END NEW TRANSLATE -->
 
     <!-- Short description in the action list indicating that notification
          volume uses the ring volume. -->
@@ -214,6 +218,9 @@
     <string name="editaction_system_volume">System Lydstyrke</string>
     <string name="editaction_voice_call_volume">Stemme Lydstyrke</string>
     <string name="editaction_bluetooth">Bluetooth</string>
+<!-- BEGIN NEW TRANSLATE -->
+    <string name="editaction_data">Data</string>
+<!-- END NEW TRANSLATE -->
 
     <!-- percent dialog -->
 

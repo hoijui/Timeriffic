@@ -53,7 +53,7 @@ import com.alfray.timeriffic.utils.AgentWrapper;
 public class IntroActivity extends ExceptionHandlerActivity {
 
     private static final boolean DEBUG = true;
-    public static final String TAG = "TFC-IntroUI";
+    public static final String TAG = IntroActivity.class.getSimpleName();
 
     public static final String EXTRA_NO_CONTROLS = "no-controls";
 

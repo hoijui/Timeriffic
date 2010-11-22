@@ -76,7 +76,7 @@ public class ChangeBrightnessActivity extends ExceptionHandlerActivity {
  * - And voila, the window manager restores the brightness to the *new* default.
  */
 
-    public static final String TAG = "TFC-ChgBright";
+    public static final String TAG = "ChangeBright";
 
     /** Using 0 will actually turn the screen off! */
     private static final int BR_MIN = 1;

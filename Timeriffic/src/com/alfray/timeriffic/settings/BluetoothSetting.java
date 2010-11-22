@@ -35,7 +35,7 @@ import com.alfray.timeriffic.profiles.Columns;
 public class BluetoothSetting implements ISetting {
 
     private static final boolean DEBUG = true;
-    private static final String TAG = "BluetoothSetting";
+    public static final String TAG = BluetoothSetting.class.getSimpleName();
 
     private boolean mCheckSupported = true;
     private boolean mIsSupported = false;

@@ -31,6 +31,8 @@ import com.alfray.timeriffic.profiles.Columns;
 
 public class SettingFactory {
 
+    public static final String TAG = SettingFactory.class.getSimpleName();
+
     private static final SettingFactory sInstance = new SettingFactory();
     private final Map<Character, ISetting> mSettings = new HashMap<Character, ISetting>();
 
@@ -87,6 +89,9 @@ public class SettingFactory {
                 break;
             case Columns.ACTION_APN_DROID:
                 s = new ApnDroidSetting();
+                break;
+            case Columns.ACTION_DATA:
+                s = new DataSetting();
                 break;
         }
 

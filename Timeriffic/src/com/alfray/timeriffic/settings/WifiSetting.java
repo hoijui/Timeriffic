@@ -32,7 +32,7 @@ import android.util.Log;
 public class WifiSetting implements ISetting {
 
     private static final boolean DEBUG = true;
-    private static final String TAG = "WifiSetting";
+    public static final String TAG = WifiSetting.class.getSimpleName();
 
     private boolean mCheckSupported = true;
     private boolean mIsSupported = false;

@@ -26,6 +26,8 @@ import android.media.AudioManager;
 
 public class VibrateSetting implements ISetting {
 
+    public static final String TAG = VibrateSetting.class.getSimpleName();
+
     private boolean mCheckSupported = true;
     private boolean mIsSupported = false;
 

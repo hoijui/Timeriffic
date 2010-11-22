@@ -31,7 +31,7 @@ public class AgentWrapper {
 
     private static final boolean ENABLE = false;
     private static final boolean DEBUG = false;
-    public static final String TAG = "TFC-Agent";
+    public static final String TAG = AgentWrapper.class.getSimpleName();
 
     private static Class<?> mAgentClazz;
     private static String mK;

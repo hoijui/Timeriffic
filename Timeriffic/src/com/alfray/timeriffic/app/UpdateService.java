@@ -32,7 +32,7 @@ import com.alfray.timeriffic.prefs.PrefsValues;
 
 public class UpdateService extends Service {
 
-    public static final String TAG = "TFC-UpdServ";
+    public static final String TAG = UpdateService.class.getSimpleName();
     private static final boolean DEBUG = true;
 
     private static final String EXTRA_RELEASE_WL = "releaseWL";
