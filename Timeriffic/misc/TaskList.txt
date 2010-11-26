@@ -31,13 +31,16 @@ TODO (misc)
 
 DONE for 1.10
 
-[1.10.00]
+
+
+DONE for 1.09
+
+
+[1.09.05]
 
 20101121 Cleanup TAGs used by ErrorReport log extractor
 20101121 Experimental Data Toggle (using internal API)
 
-
-DONE for 1.09
 
 [1.09.04]
 

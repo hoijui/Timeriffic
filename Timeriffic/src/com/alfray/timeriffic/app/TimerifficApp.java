@@ -22,6 +22,10 @@ import android.app.Application;
 
 
 public class TimerifficApp extends Application {
+
+    @SuppressWarnings("unused")
+    private static final String TAG = TimerifficApp.class.getSimpleName();
+
     private boolean mFirstStart = true;
     private Runnable mDataListener;
 

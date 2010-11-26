@@ -18,10 +18,13 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.alfray.timeriffic" android:versionCode="11000" android:versionName="1.10.00">
+    package="com.alfray.timeriffic"
+    android:versionCode="10905"
+    android:versionName="1.09.05">
     <application
         android:label="@string/app_name"
-        android:name=".app.TimerifficApp" android:icon="@drawable/app_icon">
+        android:name=".app.TimerifficApp"
+        android:icon="@drawable/app_icon">
 
         <receiver android:name=".app.UpdateReceiver">
             <intent-filter>
@@ -81,11 +84,13 @@
 
         <service android:name=".app.PhoneStateService"/>
 
-        <activity android:theme="@android:style/Theme.Dialog"
+        <activity
+            android:theme="@android:style/Theme.Dialog"
              android:label="@string/errorreport_title"
-             android:name=".error.ErrorReporterUI" android:windowSoftInputMode="adjustPan"/>
+            android:name=".error.ErrorReporterUI"
+            android:windowSoftInputMode="adjustPan" />
 
-        <service android:name=".app.UpdateService"></service>
+        <service android:name=".app.UpdateService" />
     </application>
 
     <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="4"/>
@@ -100,6 +105,8 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS"/>
+    <!-- For Data. Not working yet. -->
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"></uses-permission>
 
     <!--  these are only needed by the stats agent, currently deactivated.
     <uses-permission android:name="android.permission.INTERNET"/>
@@ -119,5 +126,4 @@
         android:resizeable="true"
         android:normalScreens="true"
     />
-    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"></uses-permission>
 </manifest>

@@ -750,9 +750,10 @@ public class ProfilesDB {
      */
     public String[] getResetLabels() {
         return new String[] {
-            "Fun Profiles",
-            "Empty Profiles",
-            "Ralf Profiles"
+            mContext.getString(R.string.reset_profiles_default),
+            mContext.getString(R.string.reset_profiles_ralf),
+            mContext.getString(R.string.reset_profiles_empty),
+            mContext.getString(R.string.restore_from_sd),
         };
     }
 
