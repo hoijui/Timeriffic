@@ -36,6 +36,7 @@ import android.database.sqlite.SQLiteStatement;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.actions.TimedActionUtils;
 
 //-----------------------------------------------

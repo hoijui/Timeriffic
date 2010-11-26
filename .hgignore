@@ -4,3 +4,4 @@ gen
 Thumbs.db
 
 *.bak
+*.orig

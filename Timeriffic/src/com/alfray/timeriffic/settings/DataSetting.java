@@ -20,8 +20,10 @@ package com.alfray.timeriffic.settings;
 
 import java.lang.reflect.Method;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.ServiceManager;
 import android.telephony.TelephonyManager;
@@ -53,20 +55,23 @@ public class DataSetting implements ISetting {
             try {
                 if (!checkMinApiLevel(8)) return false;
 
-                ITelephony it = getITelephony(context);
-
-                // just check we can call one of the method. we don't need the info
-                boolean p = it.isDataConnectivityPossible();
-
-                // check we have the methods we want to call
-                mIsSupported =
-                    (it.getClass().getDeclaredMethod("disableDataConnectivity", (Class[]) null) != null) &&
-                    (it.getClass().getDeclaredMethod("enableDataConnectivity",  (Class[]) null) != null);
-
                 // Requires permission android.permission.MODIFY_PHONE_STATE which is
-                // unfortunately not granted (probably a signatureOrSystem permission)
-                // so right now this will never work.
-                mIsSupported = false;
+                // usually not granted (a signatureOrSystem permission.)
+                boolean hasPermission = context.getPackageManager().checkPermission(
+                        Manifest.permission.MODIFY_PHONE_STATE,
+                        context.getPackageName()) == PackageManager.PERMISSION_GRANTED;
+
+                if (hasPermission) {
+                    ITelephony it = getITelephony(context);
+
+                    // just check we can call one of the method. we don't need the info
+                    it.isDataConnectivityPossible();
+
+                    // check we have the methods we want to call
+                    mIsSupported =
+                        (it.getClass().getDeclaredMethod("disableDataConnectivity", (Class[]) null) != null) &&
+                        (it.getClass().getDeclaredMethod("enableDataConnectivity",  (Class[]) null) != null);
+                }
 
             } catch (Throwable e) {
                 Log.d(TAG, "Missing Data toggle API");
