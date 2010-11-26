@@ -299,4 +299,16 @@
 El informe automatizado comienza aquí./
     </string>
 
+    <!-- === Backup/Restore SDCard === -->
+
+<!-- BEGIN NEW TRANSLATION -->
+    <string name="menu_save_to_sd">Save Profiles to SD Card</string>
+
+    <string name="restore_from_sd">Restore from SD Card</string>
+
+    <string name="reset_profiles_default">Fun Profiles</string>
+    <string name="reset_profiles_ralf">Ralf Profiles</string>
+    <string name="reset_profiles_empty">Empty Profile</string>
+<!-- END NEW TRANSLATION -->
+
 </resources>

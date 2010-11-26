@@ -325,4 +325,16 @@
 以上為自動產生的報告，請在下面手工填寫報告（譯者：請使用英語）。
     </string>
 
+    <!-- === Backup/Restore SDCard === -->
+
+<!-- BEGIN NEW TRANSLATION -->
+    <string name="menu_save_to_sd">儲存到SD卡</string>
+
+    <string name="restore_from_sd">從SD上還原</string>
+
+    <string name="reset_profiles_default">Fun Profiles</string>
+    <string name="reset_profiles_ralf">Ralf Profiles</string>
+    <string name="reset_profiles_empty">Empty Profile</string>
+<!-- END NEW TRANSLATION -->
+
 </resources>

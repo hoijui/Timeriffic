@@ -334,4 +334,16 @@
 Automated report starts here:
     </string>
 
+    <!-- === Backup/Restore SDCard === -->
+
+<!-- BEGIN NEW TRANSLATION -->
+    <string name="menu_save_to_sd">保存到SD卡</string>
+
+    <string name="restore_from_sd">从SD上还原</string>
+
+    <string name="reset_profiles_default">Fun Profiles</string>
+    <string name="reset_profiles_ralf">Ralf Profiles</string>
+    <string name="reset_profiles_empty">Empty Profile</string>
+<!-- END NEW TRANSLATION -->
+
 </resources>
