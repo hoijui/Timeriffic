@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Project: Timeriffic
+ * Copyright (C) 2009 ralfoide gmail com,
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!--
+    Language: cs
+    Regions:  CZ
+-->
+
+<resources>
+
+    <!-- === Menu === -->
+
+    <!-- Menu - Settings: preferences. -->
+    <string name="menu_settings">Nastavení</string>
+    <!-- Menu - Check now: force app to recompute next alarm. -->
+    <string name="menu_check_now">Zkontrolovat</string>
+    <!-- Menu - About: display introduction/help screen. -->
+    <string name="menu_about">O aplikaci</string>
+    <!-- Menu - Reset: reset current profile. -->
+    <string name="menu_reset">Vymazat profily</string>
+    <!-- Menu - Report Error: display the error reporting screen. -->
+    <string name="menu_report_error">Nahlásit chybu</string>
+
+
+    <!-- === Context Menu on Profile List === -->
+
+    <!-- Context Menu - Edit (profile or timed action) -->
+    <string name="menu_edit">Upravit</string>
+    <!-- Context Menu - Rename (profile or timed action) -->
+    <string name="menu_rename">Přejmenovat</string>
+    <!-- Context Menu - Delete (profile or timed action) -->
+    <string name="menu_delete">Odstranit</string>
+
+    <!-- Context Menu - Insert new timed action -->
+    <string name="menu_insert_action">Vložit novou akci</string>
+    <!-- Context Menu - Insert new profile -->
+    <string name="menu_insert_profile">Vložit nový profil</string>
+    <!-- Menu & Context Menu - Add new profile -->
+    <string name="menu_append_profile">Vytvořit nový profil</string>
+
+
+    <!-- === Settings / Preferences === -->
+
+    <!-- Settings screen title -->
+    <string name="prefs_title">Timeriffic - Nastavení</string>
+
+    <!-- Settings - Enable Timeriffic: toggle title -->
+    <string name="prefs_enable_label">Povolit Timeriffic</string>
+    <!-- Settings - Enable Timeriffic: help string when on -->
+    <string name="prefs_enable_on">Timeriffic je povolen.</string>
+    <!-- Settings - Enable Timeriffic: help string when off -->
+    <string name="prefs_enable_off">Timeriffic je zakázán.</string>
+
+    <!-- Settings - Skip Intro: toggle title -->
+    <string name="prefs_dismiss_intro_label">Nezobrazovat úvodní informace</string>
+    <!-- Settings - Skip Intro: help string when on -->
+    <string name="prefs_dismiss_intro_on">Úvodní informace nebudou zobrazeny.</string>
+    <!-- Settings - Skip Intro: help string when off -->
+    <string name="prefs_dismiss_intro_off">Úvodní informace budou zobrazeny.</string>
+
+    <!-- Settings - Check audio service: toggle title -->
+    <string name="prefs_check_service_label">Ověřit audio službu</string>
+    <!-- Settings - Check audio service: help string when on -->
+    <string name="prefs_check_service_off">Neověřovat jestli je audio služba přítomna.</string>
+    <!-- Settings - Check audio service: help string when off -->
+    <string name="prefs_check_service_on">Ověřovat jestli je audio služba přítomna.</string>
+
+    <!-- Settings - Animation of the toggle button logo: title -->
+    <string name="prefs_toggle_anim_label">Přepnout animaci</string>
+    <!-- Settings - Animation of the toggle button logo: help string -->
+    <string name="prefs_toggle_anim_tooltip">Zvolte animaci ikony na obrazovce se seznamem profilů.</string>
+
+
+    <!-- Settings - Display Notification: toggle title -->
+    <string name="prefs_display_notif_label">Nastavení upozornění při změně profilu</string>
+    <!-- Settings - Display Notification: help string when on -->
+    <string name="prefs_display_notif_on">Zobrazovat upozornění při změně profilu</string>
+    <!-- Settings - Display Notification: help string when off -->
+    <string name="prefs_display_notif_off">Nezobrazovat upozornění při změně profilu</string>
+
+
+    <!-- === Intro screen === -->
+
+    <string name="intro_title">Timeriffic %s - úvodní informace</string>
+    <string name="intro_button_continue">Pokračovat</string>
+    <!-- I noticed in some languages (e.g. Korean) we need to set the minEms
+         of the continue button to 10 otherwise the layout doesn't make the
+         button wide enough to display its text. For most languages this
+         should stay empty, unless there's a strong need to specify it.
+         When we do use it, it should be an integer for Button.setMinEms(). -->
+    <string name="intro_button_minEms">0</string>
+    <string name="intro_checkbox_dont_display_again">Příště nezobrazovat</string>
+
+
+    <!-- === Profile screen === -->
+
+    <string name="profiles_empty_help">Nový profil vytvoříte stisknutím tlačítka MENU.</string>
+
+    <string name="timedactioncontextmenu_title">Časovaná akce</string>
+
+    <string name="profilecontextmenu_title">Profil</string>
+
+    <string name="insertprofile_new_profile_title">Nový profil</string>
+
+    <string name="deleteprofile_title">Odstranit profil</string>
+    <string name="deleteprofile_msgbody">Opravdu chcete odstranit profil \'%s\' a všechny jeho akce?</string>
+    <string name="deleteprofile_button_delete">Odstranit</string>
+    <string name="deleteprofile_button_cancel">Storno</string>
+
+    <string name="deleteaction_title">Odstranit akci</string>
+    <string name="deleteaction_msgbody">Opravdu chcete odstranit akci \'%s\'?</string>
+    <string name="deleteaction_button_delete">Odstranit</string>
+    <string name="deleteaction_button_cancel">Storno</string>
+
+    <string name="resetprofiles_msg_confirm_delete">Odstranit a resetovat <u>všechny profily</u>? <b>Tuto akci nelze vrátit zpět!</b></string>
+    <string name="resetprofiles_button_cancel">Storno</string>
+
+    <!-- summary of timed actions on profile list screen -->
+
+    <!-- special case when there's no action to execute (the action won't run) -->
+    <string name="timedaction_no_action">Žádné akce</string>
+    <!-- special case when no days are selected (so the action won't run) -->
+    <string name="timedaction_nodays_never">Nikdy</string>
+
+    <!-- Timed action hour/time display using String.format, see the
+         Date and Time section at
+           http://java.sun.com/j2se/1.5.0/docs/api/java/util/Formatter.html
+         Summary:
+           tk=hour 0-23, tl=hour 1-12, tp=am/pm, tM=minutes 00-59
+     -->
+    <!-- display time on exact hour -->
+    <string name="timedaction_time_0_minute">%1$tk:%1$tM</string>
+    <!-- display time: hour with minutes != 0 -->
+    <string name="timedaction_time_with_minutes">%1$tk:%1$tM</string>
+
+    <string name="timedaction_airplane_on">Režim Letadlo zap.</string>
+    <string name="timedaction_airplane_off">Režim Letadlo vyp.</string>
+    <string name="timedaction_wifi_on">Wifi zap.</string>
+    <string name="timedaction_wifi_off">Wifi vyp.</string>
+    <string name="timedaction_bluetooth_on">Bluetooth zap.</string>
+    <string name="timedaction_bluetooth_off">Bluetooth vyp.</string>
+    <string name="timedaction_ringer_int">Hlasitost vyzvánění %d%%</string>
+    <string name="timedaction_notif_int">Hlasitost upozornění %d%%</string>
+    <string name="timedaction_brightness_int">Jas %d%%</string>
+    <string name="timedaction_apndroid_on">3G/2G Data zap.</string>
+    <string name="timedaction_apndroid_off">3G/2G Data vyp.</string>
+    <string name="timedaction_media_int">Hlasitost médií %d%%</string>
+    <string name="timedaction_alarm_int">Hlasitost budíku %d%%</string>
+    <string name="timedaction_system_vol_int">Hlasitost systému %d%%</string>
+    <string name="timedaction_voice_call_vol_int">Hlasitost volání %d%%</string>
+    <string name="timedaction_auto_brightness">Automatický jas</string>
+    <string name="timedaction_automatic">Automaticky</string>
+
+    <!-- Short description in the action list indicating that notification
+         volume uses the ring volume. -->
+    <string name="timedaction_notif_ring_sync">Upozornění použije hlasitost vyzvánění</string>
+    <!-- Radio-button in the Action>Edit>Notif Vol dialog that indicates whether
+         notification volume uses the ring volume. -->
+    <string name="editaction_notif_ring_sync">Upozornění použije hlasitost vyzvánění.</string>
+    <!-- String displayed in the 2nd line of the Action>Edit>Notif Vol button
+         indicating that notification volume uses the ring volume. Must be really short. -->
+    <string name="actionlabel_notif_ring_sync">Podle vyzvánění</string>
+
+    <!-- edit profile screen -->
+
+    <string name="editprofile_title">Timeriffic - Upravit profil</string>
+    <string name="editprofile_profile_name">Jméno profilu:</string>
+    <string name="editprofile_profile_hint">Jeméno profilu</string>
+    <string name="editprofile_checkbox_enabled">Povoleno</string>
+    <string name="editprofile_button_accept">Potvrdit</string>
+
+    <!-- edit action screen -->
+
+    <string name="editaction_title">Timeriffic - Upravit časovanou akci</string>
+
+    <string name="editaction_section_action">Akce</string>
+    <string name="editaction_section_time_and_day">Den a čas</string>
+    <string name="editaction_section_days">Dny</string>
+
+    <string name="editaction_button_label">  <b>@</b>\n  $</string>
+
+    <string name="setting_not_supported">Není podporováno</string>
+    <string name="setting_not_installed">Není nainstalováno</string>
+
+    <string name="editaction_ringer">Vyzvánění</string>
+    <string name="editaction_vibrate">Vibrace</string>
+    <string name="editaction_volume">Hlasitost vyzvánění</string>
+    <string name="editaction_brightness">Jas</string>
+    <string name="editaction_wifi">Wifi</string>
+    <string name="editaction_airplane">Režim Letadlo</string>
+    <string name="editaction_media_volume">Hlasitost médií</string>
+    <string name="editaction_alarm_volume">Alarm Volume</string>
+    <string name="editaction_notif_volume">Hlasitost upozornění</string>
+    <string name="editaction_system_volume">Systémová hlasitost</string>
+    <string name="editaction_voice_call_volume">Hlasitost volání</string>
+    <string name="editaction_bluetooth">Bluetooth</string>
+
+    <!-- percent dialog -->
+
+    <string name="percent_do_not_change">Neměnit.</string>
+    <string name="percent_change_to">Změnit na hodnotu:</string>
+    <string name="percent_button_unchanged">Nezměněno</string>
+    <string name="percent_button_accept">Potvrdit</string>
+
+    <!-- enum dialog -->
+
+    <string name="enum_unchanged">Nezměněno</string>
+
+    <!-- toggle on/off dialog -->
+
+    <string name="toggle_turn_on">Zapnout</string>
+    <string name="toggle_turn_off">Vypnout</string>
+
+    <!-- toast to display next change time -->
+
+    <string name="toast_next_change_at_datetime">Příští změna: %s</string>
+    <!-- toast_next_alarm_date_time uses Java SimpleDateFormat, see
+         http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html
+    -->
+    <string name="toast_next_alarm_date_time">dd.MM.yyyy HH:mm:ss</string>
+
+
+    <!-- global status (information view at the top) -->
+
+    <string name="globalstatus_nextlast_date_time">dd.MM.yyyy HH:mm:ss</string>
+    <string name="globalstatus_next">Příští:</string>
+    <string name="globalstatus_last">Poslední:</string>
+    <string name="globalstatus_disabled">Timeriffic není aktivní</string>
+
+    <!-- settings -->
+
+    <string name="ringermode_ring">Zvonit</string>
+    <string name="ringermode_mute">Ztišit</string>
+
+    <string name="vibrateringermode_vibrate">Vibrace</string>
+    <string name="vibrateringermode_no_vibrate">Bez vibrací</string>
+    <string name="vibrateringermode_no_ringer_vibrate">Vibrace pro notifikace ale ne vyzvánění</string>
+    <string name="vibrateringermode_no_notif_vibrate">Vibrace pro vyzvánění ale ne notifikace</string>
+
+    <!-- check services dialog -->
+
+    <string name="checkservices_dlg_title">Chybějící služby</string>
+    <string name="checkservices_ok_button">OK</string>
+    <string name="checkservices_skip_button">Příště nezobrazovat</string>
+    <string name="checkservices_warning">Upozornění! Na tomto telefonu nejsou k dispozici následující služby:</string>
+    <string name="checkservices_miss_audio_service">Hlasitost médií a vyzvánění</string>
+    <string name="checkservices_miss_wifi_service">Přepínání WiFi</string>
+    <string name="checkservices_miss_airplane">Režim Letadlo</string>
+    <string name="checkservices_miss_brightness">Jas</string>
+    <string name="checkservices_miss_bluetooh">Bluetooth</string>
+    <string name="checkservices_explain_why">explain why</string>
+
+    <string name="checkservices_help_bluetooh">Ovládání Bluetooth vyžaduje Android 2.0 nebo vyšší.</string>
+    <string name="checkservices_help_application">K povolení této vlastnosti musíte nainstalovat aplikaci \'%s\' pomocí Android Marketu.</string>
+    <string name="install_now_button">Nainstalovat teď</string>
+
+    <!-- === Error Reporting === -->
+
+    <!-- Error Report UI: dialog title. -->
+    <string name="errorreport_title">Timeriffic - Hlášení chyb</string>
+
+    <!-- Error Report UI: generate button. -->
+    <string name="errorreport_generate">Vygenerovat</string>
+
+    <!-- Error Report UI: next button (go from page 1 to page 2). -->
+    <string name="errorreport_next">Další &gt;</string>
+
+    <!-- Error Report UI: previous button (go from page 2 to page 1). -->
+    <string name="errorreport_prev">&lt; Předchozí</string>
+
+    <!-- Error Report UI page 1: text above "select Program Error or Feature Request" -->
+    <string name="errorreport_user1">Zvolte prosím typ problému, který chcete ohlásit:</string>
+
+    <!-- Error Report UI page 1: select user feedback type, "Program Error" or Feature Request -->
+    <string name="errorreport_program_err">Chyba programu</string>
+
+    <!-- Error Report UI page 1: select user feedback type, Program Error or "Feature Request" -->
+    <string name="errorreport_feat_req">Požadavek na vylepšení</string>
+
+    <!-- Error Report UI page 1: text displayed on top of user feedback EditText -->
+    <string name="errorreport_user2">Abyste nám pomohli pochopit problém, poskytněte, prosím, komentář:</string>
+
+    <!-- Error Report UI page 1: text hint displayed *inside* the user feedback EditText -->
+    <string name="errorreport_user_hint">Než bude možné přejít dále, popište, prosím, problém a nebo návrh na vylepšení.</string>
+
+    <!-- Error Report UI page 1: text hint part 2 is "please write in English". DO NOT TRANSLATE -->
+    <string name="errorreport_user_hint_english">(Please write the comment in English if possible.)</string>
+
+    <!-- Error Report UI: sending fail because there's no mail app. -->
+    <string name="errorreport_nomailapp">E-mail/GMail klient nebyl nalezen. Nainstalujte, prosím, nějakého klienta (např. K9) pomocí Marketu.</string>
+
+    <!-- Error Report UI: header of generated email (the rest of the log is in English).
+         Formatting: Spacing matters. Use "/" to insert a new line.
+    -->
+    <string name="errorreport_emailheader">Toto je bug report pro Timeriffic./
+Automaticky generovaná zpráva následuje.
+    </string>
+
+</resources>
