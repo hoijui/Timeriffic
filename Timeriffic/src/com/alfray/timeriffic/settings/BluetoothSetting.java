@@ -24,6 +24,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Build;
+import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.alfray.timeriffic.R;
@@ -108,13 +109,24 @@ public class BluetoothSetting implements ISetting {
     }
 
     @Override
-    public void performAction(Context context, String action) {
+    public boolean performAction(Context context, String action) {
         try {
+            Object t = context.getSystemService(Context.TELEPHONY_SERVICE);
+            if (t instanceof TelephonyManager) {
+                if (((TelephonyManager) t).getCallState() != TelephonyManager.CALL_STATE_IDLE) {
+                    // There's an ongoing call or a ringing one.
+                    // Either way, not a good time to switch bluetooth on or off.
+                    return false;
+                }
+            }
+
             int value = Integer.parseInt(action.substring(1));
             change(value > 0);
-        } catch (NumberFormatException e) {
-            if (DEBUG) Log.d(TAG, "Perform action failed for " + action);
+        } catch (Throwable e) {
+            if (DEBUG) Log.e(TAG, "Perform action failed for " + action, e);
         }
+
+        return true;
     }
 
     // ----

@@ -56,7 +56,8 @@ public class RingerSetting implements ISetting {
     }
 
     @Override
-    public void performAction(Context context, String action) {
+    public boolean performAction(Context context, String action) {
+        return true;
     }
 
 }

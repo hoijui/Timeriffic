@@ -114,13 +114,15 @@ public class DataSetting implements ISetting {
     }
 
     @Override
-    public void performAction(Context context, String action) {
+    public boolean performAction(Context context, String action) {
         try {
             int value = Integer.parseInt(action.substring(1));
             change(context, value > 0);
-        } catch (NumberFormatException e) {
-            if (DEBUG) Log.d(TAG, "Perform action failed for " + action);
+        } catch (Throwable e) {
+            if (DEBUG) Log.e(TAG, "Perform action failed for " + action, e);
         }
+
+        return true;
     }
 
     // ----

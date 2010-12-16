@@ -200,12 +200,12 @@ public class VolumeSetting implements ISetting {
     }
 
     @Override
-    public void performAction(Context context, String action) {
+    public boolean performAction(Context context, String action) {
         if (mStream == AudioManager.STREAM_NOTIFICATION) {
             char v = action.charAt(1);
             if (v == Columns.ACTION_NOTIF_RING_VOL_SYNC) {
                 changeNotifRingVolSync(context, true);
-                return;
+                return true;
             }
         }
         try {
@@ -216,9 +216,11 @@ public class VolumeSetting implements ISetting {
             }
 
             change(context, value);
-        } catch (NumberFormatException e) {
-            if (DEBUG) Log.d(TAG, "Perform action failed for " + action);
+        } catch (Throwable e) {
+            if (DEBUG) Log.e(TAG, "Perform action failed for " + action, e);
         }
+
+        return true;
     }
 
     // -----

@@ -126,8 +126,8 @@ public class SettingFactory {
         }
 
         @Override
-        public void performAction(Context context, String action) {
-            // pass
+        public boolean performAction(Context context, String action) {
+            return true;
         }
 
     }

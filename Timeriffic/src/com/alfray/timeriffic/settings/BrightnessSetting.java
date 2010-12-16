@@ -61,9 +61,18 @@ public class BrightnessSetting implements ISetting {
     public boolean isAutoBrightnessSupported(Context context) {
         if (!mCheckAutoSupported) return mIsAutoSupported;
 
+        int mode = AUTO_BRIGHT_UNSUPPORTED;
         try {
-            final ContentResolver resolver = context.getContentResolver();
-            int mode = Settings.System.getInt(resolver,  AUTO_BRIGHT_KEY, AUTO_BRIGHT_UNSUPPORTED);
+            mode = getAutoBrightness(context);
+        } catch (Throwable e) {
+            // There's no good reason for this to crash but it's been
+            // shown to fail when trying to perform it at boot. So in this
+            // case return false but do not mark it as checked so that we
+            // can retry later.
+            return false;
+        }
+
+        try {
             if (mode == AUTO_BRIGHT_UNSUPPORTED) return false;
 
             SensorManager manager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
@@ -146,24 +155,30 @@ public class BrightnessSetting implements ISetting {
     }
 
     @Override
-    public void performAction(Context context, String action) {
-        if (action.length() < 2) return;
+    public boolean performAction(Context context, String action) {
+        if (action.length() < 2) return true;
         char v = action.charAt(1);
-        if (v == Columns.ACTION_BRIGHTNESS_AUTO) {
-            changeAutoBrightness(context, true);
-        } else {
-            try {
+        try {
+            if (v == Columns.ACTION_BRIGHTNESS_AUTO) {
+                changeAutoBrightness(context, true);
+            } else {
                 int value = Integer.parseInt(action.substring(1));
                 changeAutoBrightness(context, false);
                 changeBrightness(context, value);
-            } catch (NumberFormatException e) {
-                // pass
             }
+        } catch (NumberFormatException e) {
+            // pass
+
+        } catch (Throwable e) {
+            // Shouldn't happen. Offer to retry later.
+            return false;
         }
+
+        return true;
     }
 
     private void changeAutoBrightness(Context context, boolean auto) {
-        final ContentResolver resolver = context.getContentResolver();
+        ContentResolver resolver = context.getContentResolver();
         Settings.System.putInt(resolver,
                                AUTO_BRIGHT_KEY,
                                auto ? AUTO_BRIGHT_AUTO : AUTO_BRIGHT_MANUAL);
@@ -173,9 +188,8 @@ public class BrightnessSetting implements ISetting {
      * Returns one of {@link #AUTO_BRIGHT_MANUAL}, {@link #AUTO_BRIGHT_AUTO} or
      * {@link #AUTO_BRIGHT_UNSUPPORTED}.
      */
-    @SuppressWarnings("unused")
     private int getAutoBrightness(Context context) {
-        final ContentResolver resolver = context.getContentResolver();
+        ContentResolver resolver = context.getContentResolver();
         return Settings.System.getInt(resolver, AUTO_BRIGHT_KEY, AUTO_BRIGHT_UNSUPPORTED);
     }
 
