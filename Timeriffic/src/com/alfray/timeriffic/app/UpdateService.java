@@ -48,7 +48,8 @@ public class UpdateService extends Service {
 
     /**
      * Starts the service.
-     * This is invoked from the {@link UpdateReceiver}.
+     * This is invoked from the {@link UpdateReceiver} so code should be
+     * at its minimum. No logging or DB access here.
      *
      * @param intent Original {@link UpdateReceiver}'s intent. *Could* be null.
      * @param wakeLock WakeLock created by {@link UpdateReceiver}. Could be null.

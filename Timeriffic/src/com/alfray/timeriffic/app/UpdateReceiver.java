@@ -48,6 +48,10 @@ public class UpdateReceiver extends BroadcastReceiver {
     public final static int TOAST_IF_CHANGED = 1;
     public final static int TOAST_ALWAYS = 2;
 
+    /**
+     * Starts the {@link UpdateService}.
+     * Code should be at its minimum. No logging or DB access here.
+     */
     @Override
     public void onReceive(Context context, Intent intent) {
         ExceptionHandler handler = new ExceptionHandler(context);
