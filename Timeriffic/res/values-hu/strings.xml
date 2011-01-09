@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* Project: Timeriffic
+* Copyright (C) 2009 ralfoide gmail com,
+*
+*  This program is free software: you can redistribute it and/or modify
+*  it under the terms of the GNU General Public License as published by
+*  the Free Software Foundation, either version 3 of the License, or
+*  (at your option) any later version.
+*
+*  This program is distributed in the hope that it will be useful,
+*  but WITHOUT ANY WARRANTY; without even the implied warranty of
+*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+*  GNU General Public License for more details.
+*
+*  You should have received a copy of the GNU General Public License
+*  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!--
+    Language: hu.
+    Regions:  any.
+
+    Translation:
+        Peressényi Róbert <robert peressenyi hu>
+-->
+
+<resources>
+
+    <!-- === Menu === -->
+
+    <!-- Menu - Settings: preferences. -->
+    <string name="menu_settings">Beállítások</string>
+    <!-- Menu - Check now: force app to recompute next alarm. -->
+    <string name="menu_check_now">Ellenőrzés most</string>
+    <!-- Menu - About: display introduction/help screen. -->
+    <string name="menu_about">Névjegy</string>
+    <!-- Menu - Reset: reset current profile. -->
+    <string name="menu_reset">Profilok visszaállítása</string>
+    <!-- Menu - Report Error: display the error reporting screen. -->
+    <string name="menu_report_error">Hibajelentés</string>
+
+
+    <!-- === Context Menu on Profile List === -->
+
+    <!-- Context Menu - Edit (profile or timed action) -->
+    <string name="menu_edit">Szerkesztés</string>
+    <!-- Context Menu - Rename (profile or timed action) -->
+    <string name="menu_rename">Átnevezés</string>
+    <!-- Context Menu - Delete (profile or timed action) -->
+    <string name="menu_delete">Törlés</string>
+
+    <!-- Context Menu - Insert new timed action -->
+    <string name="menu_insert_action">Új esemény</string>
+    <!-- Context Menu - Insert new profile -->
+    <string name="menu_insert_profile">Új profil</string>
+    <!-- Menu & Context Menu - Add new profile -->
+    <string name="menu_append_profile">Új profil hozzáadása</string>
+
+
+    <!-- === Settings / Preferences === -->
+
+    <!-- Settings screen title -->
+    <string name="prefs_title">Timeriffic - Beállítások</string>
+
+    <!-- Settings - Enable Timeriffic: toggle title -->
+    <string name="prefs_enable_label">Timeriffic bekapcsolása</string>
+    <!-- Settings - Enable Timeriffic: help string when on -->
+    <string name="prefs_enable_on">Timeriffic bekapcsolva.</string>
+    <!-- Settings - Enable Timeriffic: help string when off -->
+    <string name="prefs_enable_off">Timeriffic kikapcsolva.</string>
+
+    <!-- Settings - Skip Intro: toggle title -->
+    <string name="prefs_dismiss_intro_label">Bevezető elrejtése</string>
+    <!-- Settings - Skip Intro: help string when on -->
+    <string name="prefs_dismiss_intro_on">Bevezető átugorva.</string>
+    <!-- Settings - Skip Intro: help string when off -->
+    <string name="prefs_dismiss_intro_off">Bevezető látható.</string>
+
+    <!-- Settings - Check audio service: toggle title -->
+    <string name="prefs_check_service_label">Audió szolgáltatás érvényesítése</string>
+    <!-- Settings - Check audio service: help string when on -->
+    <string name="prefs_check_service_off">Audió szolgáltatás érvényesítése kikapcsolva.</string>
+    <!-- Settings - Check audio service: help string when off -->
+    <string name="prefs_check_service_on">Audió szolgáltatás érvényesítése bekapcsolva.</string>
+
+    <!-- Settings - Animation of the toggle button logo: title -->
+    <string name="prefs_toggle_anim_label">Kapcsoló animációja</string>
+    <!-- Settings - Animation of the toggle button logo: help string -->
+    <string name="prefs_toggle_anim_tooltip">Animáció választása a kapcsoló ikonhoz a profil lista képernyőn.</string>
+
+
+    <!-- Settings - Display Notification: toggle title -->
+    <string name="prefs_display_notif_label">Figyelmeztetés megjelenítése profil váltáskor.</string>
+    <!-- Settings - Display Notification: help string when on -->
+    <string name="prefs_display_notif_on">Figyelmeztetés megjelenítése mikor profilt vált.</string>
+    <!-- Settings - Display Notification: help string when off -->
+    <string name="prefs_display_notif_off">Nem jelenít meg figyelmeztetést mikor profilt vált.</string>
+
+
+    <!-- === Intro screen === -->
+
+    <string name="intro_title">Timeriffic %s - Bevezetés</string>
+    <string name="intro_button_continue">Folytatás</string>
+    <!-- I noticed in some languages (e.g. Korean) we need to set the minEms
+    of the continue button to 10 otherwise the layout doesn't make the
+    button wide enough to display its text. For most languages this
+    should stay empty, unless there's a strong need to specify it.
+    When we do use it, it should be an integer for Button.setMinEms(). -->
+    <string name="intro_button_minEms">0</string>
+    <string name="intro_checkbox_dont_display_again">Ne mutassa ismét</string>
+
+
+    <!-- === Profile screen === -->
+
+    <string name="profiles_empty_help">Használja a MENÜ gombot új profil hozzáadásához.</string>
+
+    <string name="timedactioncontextmenu_title">Időzített esemény</string>
+
+    <string name="profilecontextmenu_title">Profil</string>
+
+    <string name="insertprofile_new_profile_title">Új profil</string>
+
+    <string name="deleteprofile_title">Profil törlése</string>
+    <string name="deleteprofile_msgbody">Biztos, hogy törli a(z) \'%s\' profilt és minden eseményét?</string>
+    <string name="deleteprofile_button_delete">Törlés</string>
+    <string name="deleteprofile_button_cancel">Mégse</string>
+
+    <string name="deleteaction_title">Esemény törlése</string>
+    <string name="deleteaction_msgbody">Biztos, hogy törli a(z) \'%s\' eseményt?</string>
+    <string name="deleteaction_button_delete">Törlés</string>
+    <string name="deleteaction_button_cancel">Mégse</string>
+
+    <string name="resetprofiles_msg_confirm_delete">Töröl <u>minden profilt</u>? <b>Nincs visszavonás!</b></string>
+    <string name="resetprofiles_button_cancel">Mégse</string>
+
+    <!-- summary of timed actions on profile list screen -->
+
+    <!-- special case when there's no action to execute (the action won't run) -->
+    <string name="timedaction_no_action">Nincs esemény</string>
+    <!-- special case when no days are selected (so the action won't run) -->
+    <string name="timedaction_nodays_never">Soha</string>
+
+    <!-- Timed action hour/time display using String.format, see the
+    Date and Time section at
+    http://java.sun.com/j2se/1.5.0/docs/api/java/util/Formatter.html
+    Summary:
+    tk=hour 0-23, tl=hour 1-12, tp=am/pm, tM=minutes 00-59
+    -->
+    <!-- display time on exact hour -->
+    <string name="timedaction_time_0_minute">%1$tk:%1$tM</string>
+    <!-- display time: hour with minutes != 0 -->
+    <string name="timedaction_time_with_minutes">%1$tk:%1$tM</string>
+
+    <string name="timedaction_airplane_on">Repülőgép üzemmód be</string>
+    <string name="timedaction_airplane_off">Repülőgép üzemmód ki</string>
+    <string name="timedaction_wifi_on">Wifi be</string>
+    <string name="timedaction_wifi_off">Wifi ki</string>
+    <string name="timedaction_bluetooth_on">Bluetooth be</string>
+    <string name="timedaction_bluetooth_off">Bluetooth ki</string>
+    <string name="timedaction_ringer_int">Csengő %d%%</string>
+    <string name="timedaction_notif_int">Figyelmeztetés %d%%</string>
+    <string name="timedaction_brightness_int">Fényerő %d%%</string>
+    <string name="timedaction_data_on">Adat be</string>
+    <string name="timedaction_data_off">Adat ki</string>
+    <string name="timedaction_media_int">Média %d%%</string>
+    <string name="timedaction_alarm_int">Ébresztő %d%%</string>
+    <string name="timedaction_system_vol_int">Rendszer %d%%</string>
+    <string name="timedaction_voice_call_vol_int">Hang %d%%</string>
+    <string name="timedaction_auto_brightness">Automatikus fényerő</string>
+    <string name="timedaction_automatic">Automatikus</string>
+    <!-- BEGIN NEW TRANSLATE -->
+    <string name="timedaction_apndroid_on">APNDroid be</string>
+    <string name="timedaction_apndroid_off">APNDroid ki</string>
+    <!-- END NEW TRANSLATE -->
+
+    <!-- Short description in the action list indicating that notification
+    volume uses the ring volume. -->
+    <string name="timedaction_notif_ring_sync">A figyelmeztetés használja a csengő hangerőt.</string>
+    <!-- Radio-button in the Action>Edit>Notif Vol dialog that indicates whether
+    notification volume uses the ring volume. -->
+    <string name="editaction_notif_ring_sync">A figyelmeztetés használja a csengő hangerőt.</string>
+    <!-- String displayed in the 2nd line of the Action>Edit>Notif Vol button
+    indicating that notification volume uses the ring volume. Must be really short. -->
+    <string name="actionlabel_notif_ring_sync">Csengő hangerő használata</string>
+
+    <!-- edit profile screen -->
+
+    <string name="editprofile_title">Timeriffic - Profil szerkesztése</string>
+    <string name="editprofile_profile_name">Profil neve:</string>
+    <string name="editprofile_profile_hint">Profil neve</string>
+    <string name="editprofile_checkbox_enabled">Elérhető</string>
+    <string name="editprofile_button_accept">Elfogadás</string>
+
+    <!-- edit action screen -->
+
+    <string name="editaction_title">Timeriffic - Időzített esemény szerkesztése</string>
+
+    <string name="editaction_section_action">Esemény</string>
+    <string name="editaction_section_time_and_day">Idő és nap</string>
+    <string name="editaction_section_days">Napok</string>
+
+    <string name="editaction_button_label">  <b>@</b>n  $</string>
+
+    <string name="setting_not_supported">Nem támogatott</string>
+    <string name="setting_not_installed">Nincs telepítve</string>
+
+    <string name="editaction_ringer">Csengés</string>
+    <string name="editaction_vibrate">Rezgés</string>
+    <string name="editaction_volume">Csengés hangerő</string>
+    <string name="editaction_brightness">Fényerő</string>
+    <string name="editaction_wifi">Wifi</string>
+    <string name="editaction_airplane">Repülőgép üzemmód</string>
+    <string name="editaction_media_volume">Média hangerő</string>
+    <string name="editaction_alarm_volume">Ébresztő hangerő</string>
+    <string name="editaction_notif_volume">Figyelmeztetés hangerő</string>
+    <string name="editaction_system_volume">Rendszer hangerő</string>
+    <string name="editaction_voice_call_volume">Hang hívás hangerő</string>
+    <string name="editaction_bluetooth">Bluetooth</string>
+    <!-- APNdroid app name, not translated -->
+    <string name="editaction_apndroid">APNdroid</string>
+    <string name="editaction_data">Adat</string>
+
+    <!-- percent dialog -->
+
+    <string name="percent_do_not_change">Nincs változás.</string>
+    <string name="percent_change_to">A következő értékek változnak:</string>
+    <string name="percent_button_unchanged">Változatlan</string>
+    <string name="percent_button_accept">Elfogadás</string>
+
+    <!-- enum dialog -->
+
+    <string name="enum_unchanged">Változatlan</string>
+
+    <!-- toggle on/off dialog -->
+
+    <string name="toggle_turn_on">Bekapcsolás</string>
+    <string name="toggle_turn_off">Kikapcsolás</string>
+
+    <!-- toast to display next change time -->
+
+    <string name="toast_next_change_at_datetime">Következő változtatás: %s</string>
+    <!-- toast_next_alarm_date_time uses Java SimpleDateFormat, see
+    http://java.sun.com/j2se/1.5.0/docs/api/java/text/SimpleDateFormat.html
+    -->
+    <string name="toast_next_alarm_date_time">yyyy/MM/dd HH:mm:ss</string>
+
+
+    <!-- global status (information view at the top) -->
+
+    <string name="globalstatus_nextlast_date_time">yyyy/MM/dd HH:mm:ss</string>
+    <string name="globalstatus_next">Következő:</string>
+    <string name="globalstatus_last">Legutóbbi:</string>
+    <string name="globalstatus_disabled">Timeriffic kikapcsolva</string>
+
+    <!-- settings -->
+
+    <string name="ringermode_ring">Csengés</string>
+    <string name="ringermode_mute">Néma</string>
+
+    <string name="vibrateringermode_vibrate">Rezgő</string>
+    <string name="vibrateringermode_no_vibrate">Rezgő kikapcsolva</string>
+    <string name="vibrateringermode_no_ringer_vibrate">Rezgés a figyelmeztetéshez, de nem a csengéshez</string>
+    <string name="vibrateringermode_no_notif_vibrate">Rezgés a csengéshez, de nem a figyelmeztetéshez</string>
+
+    <!-- check services dialog -->
+
+    <string name="checkservices_dlg_title">Hiányzó szolgáltatások</string>
+    <string name="checkservices_ok_button">OK</string>
+    <string name="checkservices_skip_button">Ne mutassa ismét</string>
+    <string name="checkservices_warning">Figyelem! A következő funkció nem érhető el ezen az adott telefon:</string>
+    <string name="checkservices_miss_audio_service">Audió hangerő és csengés</string>
+    <string name="checkservices_miss_wifi_service">Wifi kapcsoló</string>
+    <string name="checkservices_miss_airplane">Repülőgép üzemmód</string>
+    <string name="checkservices_miss_brightness">Fényerő</string>
+    <string name="checkservices_miss_bluetooh">Bluetooth</string>
+    <!-- APNdroid app name, not translated -->
+    <string name="checkservices_miss_apndroid">APNDroid</string>
+    <!-- RingGuard app name, not translated -->
+    <string name="checkservices_miss_ringguard">RingGuard</string>
+    <string name="checkservices_explain_why">magyarázat, hogy miért</string>
+
+    <string name="checkservices_help_bluetooh">Bluetooth vezérlés igényli az Android 2.0 vagy újabbat.</string>
+    <string name="checkservices_help_application">Ennek a funkciónak az eléréséhez, telepítse a(z) \'%s\' alkalmazást az Android Market-ből.</string>
+    <string name="install_now_button">Telepítés most</string>
+
+    <!-- === Error Reporting === -->
+
+    <!-- Error Report UI: dialog title. -->
+    <string name="errorreport_title">Timeriffic - Hiba jelentés</string>
+
+    <!-- Error Report UI: generate button. -->
+    <string name="errorreport_generate">Generálás</string>
+
+    <!-- Error Report UI: next button (go from page 1 to page 2). -->
+    <string name="errorreport_next">Következő &gt;</string>
+
+    <!-- Error Report UI: previous button (go from page 2 to page 1). -->
+    <string name="errorreport_prev">&lt; Előző</string>
+
+    <!-- Error Report UI page 1: text above "select Program Error or Feature Request" -->
+    <string name="errorreport_user1">Kérjük, jelezze a bejelentendő probléma fajtáját:</string>
+
+    <!-- Error Report UI page 1: select user feedback type, "Program Error" or Feature Request -->
+    <string name="errorreport_program_err">Program hiba</string>
+
+    <!-- Error Report UI page 1: select user feedback type, Program Error or "Feature Request" -->
+    <string name="errorreport_feat_req">Funkció igénylése</string>
+
+    <!-- Error Report UI page 1: text displayed on top of user feedback EditText -->
+    <string name="errorreport_user2">A hiba megértéséhez, kérjük adjon leírást</string>
+
+    <!-- Error Report UI page 1: text hint displayed *inside* the user feedback EditText -->
+    <string name="errorreport_user_hint">Mielőtt folytatni tudjuk, kérjük adja meg a hiba vagy az igény leírását.</string>
+
+    <!-- Error Report UI page 1: text hint part 2 is "please write in English". DO NOT TRANSLATE -->
+    <string name="errorreport_user_hint_english">(Kérjük, megjegyzését írja angolul, ha lehetséges.)</string>
+
+    <!-- Error Report UI: sending fail because there's no mail app. -->
+    <string name="errorreport_nomailapp">Nem található Email/Gmail alkalmazás a levél elküldéséhez. Kérjük, telepítsen egyet a Market-ből (pl. K-9).</string>
+
+    <!-- Error Report UI: header of generated email (the rest of the log is in English).
+    Formatting: Spacing matters. Use "/" to insert a new line.
+    -->
+    <string name="errorreport_emailheader">This is a bug report for Timeriffic./
+    The automated report starts here.
+    </string>
+
+</resources>
