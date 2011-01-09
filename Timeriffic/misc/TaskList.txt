@@ -2,12 +2,10 @@ TODO (misc)
 
 20110108 Notification when action was not executed, to carry it later
 
-20110108 Import Slovak translation
-20110108 Add Slovak author to translator spreadsheet
+20110108 Import Slovak translation (no files yet)
+20110108 Add Slovak author to translator spreadsheet (no files yet)
+
 20110108 Import Hungarian translation
-20110108 Add Hungarian author to translator spreadsheet
-20110108 Import Czech translation
-20110108 Add Czech author to translator spreadsheet
 20110108 Merge latest update from zh_CN/TW by Wenle
 
 20110108 Check Ringdroid works
@@ -50,8 +48,13 @@ DONE for 1.09
 
 [1.09.05]
 
+20110109 Add Hungarian author to translator spreadsheet
+20110109 Add Czech author to translator spreadsheet
+
 20101215 Cleanup unused permissions
 20101215 Don't perform Airplane or BT toggle during phone call
+
+20101202 Import Czech translation
 
 20101121 Cleanup TAGs used by ErrorReport log extractor
 20101121 Experimental Data Toggle (using internal API)
@@ -64,6 +67,7 @@ DONE for 1.09
 20101119 Fix BT OFF bug (missing BT uses-perm)
 20101115 Fix: Adjust text progress bar in percentage dialog for action screen
 20101114 Bug: DBHelper.open/close failing (can't repro, tried blind workaround)
+
 
 [1.09.03]
 
