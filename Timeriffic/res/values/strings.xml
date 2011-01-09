@@ -23,8 +23,7 @@
 -->
 
 <resources>
-    <!-- App title. Not translated -->
-    <string name="app_name">Timeriffic</string>
+    <!-- string name="app_name" : App title. Not translated -->
 
     <!-- === Menu === -->
 
@@ -216,8 +215,7 @@
     <string name="editaction_system_volume">System Volume</string>
     <string name="editaction_voice_call_volume">Voice Call Vol.</string>
     <string name="editaction_bluetooth">Bluetooth</string>
-    <!-- APNdroid app name, not translated -->
-    <string name="editaction_apndroid">APNdroid</string>
+    <!-- string name="editaction_apndroid": APNdroid app name, not translated -->
     <string name="editaction_data">Data</string>
 
     <!-- percent dialog -->
@@ -273,10 +271,8 @@
     <string name="checkservices_miss_airplane">Airplane mode</string>
     <string name="checkservices_miss_brightness">Brightness</string>
     <string name="checkservices_miss_bluetooh">Bluetooth</string>
-    <!-- APNdroid app name, not translated -->
-    <string name="checkservices_miss_apndroid">APNDroid</string>
-    <!-- RingGuard app name, not translated -->
-    <string name="checkservices_miss_ringguard">RingGuard</string>
+    <!-- string name="checkservices_miss_apndroid": APNdroid app name, not translated -->
+    <!-- string name="checkservices_miss_ringguard": RingGuard app name, not translated -->
     <string name="checkservices_explain_why">explain why</string>
 
     <string name="checkservices_help_bluetooh">Bluetooth control requires Android 2.0 or more.</string>

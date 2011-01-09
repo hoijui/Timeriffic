@@ -23,21 +23,16 @@
 -->
 
 <resources>
+    <!-- App title. Not translated -->
+    <string name="app_name">Timeriffic</string>
 
-<!--
-    Names for the global toggle anim pref. Order is important.
-    The toggle looks like the Timeriffic icon in the profile list screen.
-    It's animation is controled by Menu - Settings - Toggle Animation.
--->
-<string-array name="prefs_globaltoggle_anim_names">
-    <!-- Global toggle is not animated. -->
-    <item>No animation</item>
+    <!-- APNdroid app name, not translated -->
+    <string name="editaction_apndroid">APNdroid</string>
 
-    <!-- Global toggle is animated with a slow pulse animation. -->
-    <item>Slow pulse</item>
+    <!-- APNdroid app name, not translated -->
+    <string name="checkservices_miss_apndroid">APNDroid</string>
 
-    <!-- Global toggle is animated with a slow pulse animation. -->
-    <item>Fast pulse</item>
-</string-array>
+    <!-- RingGuard app name, not translated -->
+    <string name="checkservices_miss_ringguard">RingGuard</string>
 
 </resources>

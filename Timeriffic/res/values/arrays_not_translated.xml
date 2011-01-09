@@ -25,19 +25,14 @@
 <resources>
 
 <!--
-    Names for the global toggle anim pref. Order is important.
-    The toggle looks like the Timeriffic icon in the profile list screen.
-    It's animation is controled by Menu - Settings - Toggle Animation.
+    Values for the global toggle anim pref.
+    Order is important and must match prefs_globaltoggle_anim_names in arrays.xml.
+    Must NOT be translated.
 -->
-<string-array name="prefs_globaltoggle_anim_names">
-    <!-- Global toggle is not animated. -->
-    <item>No animation</item>
-
-    <!-- Global toggle is animated with a slow pulse animation. -->
-    <item>Slow pulse</item>
-
-    <!-- Global toggle is animated with a slow pulse animation. -->
-    <item>Fast pulse</item>
+<string-array name="prefs_globaltoggle_anim_values">
+    <item>no_anim</item>
+    <item>slow</item>
+    <item>fast</item>
 </string-array>
 
 </resources>
