@@ -1,5 +1,21 @@
 TODO (misc)
 
+20110108 Notification when action was not executed, to carry it later
+
+20110108 Import Slovak translation
+20110108 Add Slovak author to translator spreadsheet
+20110108 Import Hungarian translation
+20110108 Add Hungarian author to translator spreadsheet
+20110108 Import Czech translation
+20110108 Add Czech author to translator spreadsheet
+20110108 Merge latest update from zh_CN/TW by Wenle
+
+20110108 Check Ringdroid works
+20110108 Check Ringguard still works
+20110108 Check APNDroid still works
+
+20110108 Check: suspect alarms are reset when app is upgraded from Market
+
 20100826 AM/PM: make strings depend on the current Locale setting
 20100826 AM/PM: override in prefs (auto, forced AM/PM, forced 24h) (low priority)
 
@@ -29,14 +45,13 @@ TODO (misc)
 
 
 
-DONE for 1.10
-
-
-
 DONE for 1.09
 
 
 [1.09.05]
+
+20101215 Cleanup unused permissions
+20101215 Don't perform Airplane or BT toggle during phone call
 
 20101121 Cleanup TAGs used by ErrorReport log extractor
 20101121 Experimental Data Toggle (using internal API)
