@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+ * Project: Timeriffic
+ * Copyright (C) 2009 ralfoide gmail com,
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<!--
+    Language: italian.
+    Regions:  any.
+
+    Translation:
+        Neoxxx - Anddev Translate Team
+        <http://www.anddev.it/index.php?action=profile;u=323>
+-->
+
+<resources>
+
+<!-- BEGIN NEW TRANSLATE -->
+
+    <!-- === Backup/Restore SDCard === -->
+
+    <string name="menu_save_to_sd">Salva sulla Scheda SD</string>
+
+    <string name="restore_from_sd">Ripristina da Scheda SD</string>
+
+    <string name="reset_profiles_default">Fun Profiles</string>
+    <string name="reset_profiles_ralf">Ralf Profiles</string>
+    <string name="reset_profiles_empty">Empty Profile</string>
+
+    <!-- sync -->
+
+    <string name="timedaction_sync_on">Sync On</string>
+    <string name="timedaction_sync_off">Sync Off</string>
+
+    <string name="editaction_sync">Auto Sync</string>
+
+<!-- END NEW TRANSLATE -->
+
+
+</resources>

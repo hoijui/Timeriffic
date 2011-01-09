@@ -318,16 +318,4 @@
 Den automatiserte rapporten starter her.
     </string>
 
-    <!-- === Backup/Restore SDCard === -->
-
-<!-- BEGIN NEW TRANSLATION -->
-    <string name="menu_save_to_sd">Lagre til SD-kort</string>
-
-    <string name="restore_from_sd">Last fra SD-kort</string>
-
-    <string name="reset_profiles_default">Fun Profiles</string>
-    <string name="reset_profiles_ralf">Ralf Profiles</string>
-    <string name="reset_profiles_empty">Empty Profile</string>
-<!-- END NEW TRANSLATION -->
-
 </resources>
