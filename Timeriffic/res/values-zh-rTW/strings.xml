@@ -164,10 +164,8 @@
     <string name="timedaction_data_off">3G/2G資料連接關閉</string>
     <string name="timedaction_media_int">媒體 %d%%</string>
     <string name="timedaction_alarm_int">鬧鐘 %d%%</string>
-<!-- BEGIN NEW TRANSLATE -->
-    <string name="timedaction_system_vol_int">System %d%%</string>
-    <string name="timedaction_voice_call_vol_int">Voice %d%%</string>
-<!-- END NEW TRANSLATE -->
+    <string name="timedaction_system_vol_int">系統 %d%%</string>
+    <string name="timedaction_voice_call_vol_int">通話 %d%%</string>
     <string name="timedaction_auto_brightness">自動背光</string>
     <string name="timedaction_automatic">自動的</string>
 <!-- BEGIN NEW TRANSLATE -->
@@ -175,17 +173,15 @@
     <string name="timedaction_apndroid_off">APNDroid關閉</string>
 <!-- END NEW TRANSLATE -->
 
-<!-- BEGIN NEW TRANSLATE -->
     <!-- Short description in the action list indicating that notification
          volume uses the ring volume. -->
-    <string name="timedaction_notif_ring_sync">Notification uses ring vol.</string>
+    <string name="timedaction_notif_ring_sync">通知音量與來電音量相同.</string>
     <!-- Radio-button in the Action>Edit>Notif Vol dialog that indicates whether
          notification volume uses the ring volume. -->
-    <string name="editaction_notif_ring_sync">Notification uses ring volume.</string>
+    <string name="editaction_notif_ring_sync">通知音量與來電音量相同.</string>
     <!-- String displayed in the 2nd line of the Action>Edit>Notif Vol button
          indicating that notification volume uses the ring volume. Must be really short. -->
-    <string name="actionlabel_notif_ring_sync">Uses ring volume</string>
-<!-- END NEW TRANSLATE -->
+    <string name="actionlabel_notif_ring_sync">同來電音量</string>
 
     <!-- edit profile screen -->
 
@@ -217,10 +213,8 @@
     <string name="editaction_notif_volume">提醒音量.</string>
     <string name="editaction_media_volume">媒體音量</string>
     <string name="editaction_alarm_volume">鬧鐘音量</string>
-<!-- BEGIN NEW TRANSLATE -->
-    <string name="editaction_system_volume">System Volume</string>
-    <string name="editaction_voice_call_volume">Voice Call Volume</string>
-<!-- END NEW TRANSLATE -->
+    <string name="editaction_system_volume">系統音量</string>
+    <string name="editaction_voice_call_volume">通話音量</string>
     <string name="editaction_bluetooth">藍牙</string>
 <!-- BEGIN NEW TRANSLATE -->
     <string name="editaction_data">Data</string>
@@ -228,14 +222,14 @@
 
     <!-- percent dialog -->
 
-    <string name="percent_do_not_change">不改變.</string>
+    <string name="percent_do_not_change">不改變</string>
     <string name="percent_change_to">修改為以下值:</string>
-    <string name="percent_button_unchanged">未改變</string>
+    <string name="percent_button_unchanged">不改變</string>
     <string name="percent_button_accept">確定</string>
 
     <!-- enum dialog -->
 
-    <string name="enum_unchanged">未改變</string>
+    <string name="enum_unchanged">不改變</string>
 
     <!-- toggle on/off dialog -->
 

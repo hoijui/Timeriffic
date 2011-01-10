@@ -173,24 +173,20 @@
 <!-- this block translated by goapk.com -->
     <string name="timedaction_media_int">媒体 %d%%</string>
     <string name="timedaction_alarm_int">闹钟 %d%%</string>
-<!-- BEGIN NEW TRANSLATE -->
-    <string name="timedaction_system_vol_int">System %d%%</string>
-    <string name="timedaction_voice_call_vol_int">Voice %d%%</string>
-<!-- END NEW TRANSLATE -->
+    <string name="timedaction_system_vol_int">系统 %d%%</string>
+    <string name="timedaction_voice_call_vol_int">语音 %d%%</string>
     <string name="timedaction_auto_brightness">自动背光</string>
     <string name="timedaction_automatic">自动的</string>
 
-<!-- BEGIN NEW TRANSLATE -->
     <!-- Short description in the action list indicating that notification
          volume uses the ring volume. -->
-    <string name="timedaction_notif_ring_sync">Notification uses ring vol.</string>
+    <string name="timedaction_notif_ring_sync">将响铃音量用作通知音量.</string>
     <!-- Radio-button in the Action>Edit>Notif Vol dialog that indicates whether
          notification volume uses the ring volume. -->
-    <string name="editaction_notif_ring_sync">Notification uses ring volume.</string>
+    <string name="editaction_notif_ring_sync">将响铃音量用作通知音量.</string>
     <!-- String displayed in the 2nd line of the Action>Edit>Notif Vol button
          indicating that notification volume uses the ring volume. Must be really short. -->
-    <string name="actionlabel_notif_ring_sync">Uses ring volume</string>
-<!-- END NEW TRANSLATE -->
+    <string name="actionlabel_notif_ring_sync">同响铃音量</string>
 
     <!-- edit profile screen -->
 
@@ -219,12 +215,9 @@
     <string name="editaction_brightness">亮度</string>
     <string name="editaction_wifi">Wifi</string>
     <string name="editaction_airplane">飞行模式</string>
-    <string name="editaction_notif_volume">提醒音量.</string>
-<!-- BEGIN NEW TRANSLATE -->
-    <string name="editaction_system_volume">System Volume</string>
-    <string name="editaction_voice_call_volume">Voice Call Volume</string>
-    <string name="editaction_data">Data</string>
-<!-- END NEW TRANSLATE -->
+    <string name="editaction_notif_volume">提醒音量</string>
+    <string name="editaction_system_volume">系统音量</string>
+    <string name="editaction_voice_call_volume">通话音量</string>
 
 <!-- this block translated by goapk.com -->
     <string name="editaction_media_volume">媒体音量</string>
@@ -234,14 +227,14 @@
 
     <!-- percent dialog -->
 
-    <string name="percent_do_not_change">不改变.</string>
+    <string name="percent_do_not_change">不改变</string>
     <string name="percent_change_to">修改为以下值:</string>
-    <string name="percent_button_unchanged">未改变</string>
+    <string name="percent_button_unchanged">不改变</string>
     <string name="percent_button_accept">确定</string>
 
     <!-- enum dialog -->
 
-    <string name="enum_unchanged">未改变</string>
+    <string name="enum_unchanged">不改变</string>
 
     <!-- toggle on/off dialog -->
 
