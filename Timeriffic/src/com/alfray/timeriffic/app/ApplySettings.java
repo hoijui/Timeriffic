@@ -24,11 +24,13 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import android.app.AlarmManager;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences.Editor;
 import android.util.Log;
+import android.util.SparseArray;
 import android.widget.Toast;
 
 import com.alfray.timeriffic.R;
@@ -87,6 +89,15 @@ public class ApplySettings {
         notifyDataChanged();
     }
 
+    public void retryActions(String actions) {
+        SettingsHelper settings = new SettingsHelper(mContext);
+        if (performAction(settings, actions, null /*failedActions*/)) {
+            showToast("Timeriffic retried the actions", Toast.LENGTH_LONG);
+        } else {
+            showToast("Timeriffic found no action to retry", Toast.LENGTH_LONG);
+        }
+    }
+
     private void checkProfiles(boolean applyState, int displayToast) {
         ProfilesDB profilesDb = new ProfilesDB();
         try {
@@ -137,12 +148,13 @@ public class ApplySettings {
         String logActions = null;
         String lastAction = null;
         SettingsHelper settings = null;
+        SparseArray<String> failedActions = new SparseArray<String>();
 
         for (ActionInfo info : actions) {
             try {
                 if (settings == null) settings = new SettingsHelper(mContext);
 
-                if (performAction(settings, info.mActions)) {
+                if (performAction(settings, info.mActions, failedActions)) {
                     lastAction = info.mActions;
                     if (logActions == null) {
                         logActions = lastAction;
@@ -176,9 +188,16 @@ public class ApplySettings {
 
             addToDebugLog(logActions);
         }
+
+        if (failedActions.size() > 0) {
+            notifyFailedActions(failedActions);
+        }
     }
 
-    private boolean performAction(SettingsHelper settings, String actions) {
+    private boolean performAction(
+            SettingsHelper settings,
+            String actions,
+            SparseArray<String> failedActions) {
         if (actions == null) return false;
         boolean didSomething = false;
 
@@ -211,8 +230,14 @@ public class ApplySettings {
                 default:
                     ISetting s = SettingFactory.getInstance().getSetting(code);
                     if (s != null && s.isSupported(mContext)) {
-                        s.performAction(mContext, action);
-                        didSomething = true;
+                        if (!s.performAction(mContext, action)) {
+                            // Record failed action
+                            if (failedActions != null) {
+                                failedActions.put(code, action);
+                            }
+                        } else {
+                            didSomething = true;
+                        }
                     }
                     break;
                 }
@@ -292,7 +317,8 @@ public class ApplySettings {
             try {
                 mPrefs.editLastScheduledAlarm(e, timeMs);
                 mPrefs.editStatusNextTS(e, s2);
-                mPrefs.editStatusNextAction(e, TimedActionUtils.computeLabels(mContext, nextActions.mActions));
+                mPrefs.editStatusNextAction(e,
+                        TimedActionUtils.computeLabels(mContext, nextActions.mActions));
             } finally {
                 mPrefs.endEdit(e, TAG);
             }
@@ -382,4 +408,21 @@ public class ApplySettings {
 
         return 0;
     }
+
+
+    /**
+     * Send a notification indicating the given actions have failed.
+     */
+    private void notifyFailedActions(SparseArray<String> failedActions) {
+        StringBuilder sb = new StringBuilder();
+        for (int n = failedActions.size(), i = 0; i < n; i++) {
+            if (i > 0) sb.append(',');
+            sb.append(failedActions.valueAt(i));
+        }
+        String actions = sb.toString();
+        String details = TimedActionUtils.computeLabels(mContext, actions);
+
+        UpdateService.createRetryNotification(mContext, actions, details);
+    }
+
 }

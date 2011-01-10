@@ -65,7 +65,7 @@ public class UpdateReceiver extends BroadcastReceiver {
                 // Hmm wake lock failed... not sure why. Continue anyway.
                 if (DEBUG) Log.w(TAG, "WakeLock.acquire failed");
             }
-            UpdateService.update(context, intent, wl);
+            UpdateService.startFromReceiver(context, intent, wl);
             if (DEBUG) Log.d(TAG, "UpdateService requested");
         } finally {
             handler.detach();

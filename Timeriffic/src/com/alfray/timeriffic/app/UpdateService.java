@@ -18,6 +18,9 @@
 
 package com.alfray.timeriffic.app;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
@@ -27,6 +30,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.alfray.timeriffic.R;
+import com.alfray.timeriffic.error.ErrorReporterUI;
 import com.alfray.timeriffic.error.ExceptionHandler;
 import com.alfray.timeriffic.prefs.PrefsValues;
 
@@ -37,6 +41,10 @@ public class UpdateService extends Service {
 
     private static final String EXTRA_RELEASE_WL = "releaseWL";
     private static final String EXTRA_OLD_INTENT = "old_intent";
+    private static final String EXTRA_RETRY_ACTIONS = "retry_actions";
+
+    /** Failed Actions Notification ID. 'FaiL' as an int. */
+    private static final int FAILED_ACTION_NOTIF_ID = 'F' << 24 + 'a' << 16 + 'i' << 8 + 'L';
 
     private static WakeLock sWakeLock = null;
 
@@ -47,14 +55,14 @@ public class UpdateService extends Service {
     }
 
     /**
-     * Starts the service.
+     * Starts the service from the {@link UpdateReceiver}.
      * This is invoked from the {@link UpdateReceiver} so code should be
      * at its minimum. No logging or DB access here.
      *
      * @param intent Original {@link UpdateReceiver}'s intent. *Could* be null.
      * @param wakeLock WakeLock created by {@link UpdateReceiver}. Could be null.
      */
-    public static void update(Context context, Intent intent, WakeLock wakeLock) {
+    public static void startFromReceiver(Context context, Intent intent, WakeLock wakeLock) {
 
         Intent i = new Intent(context, UpdateService.class);
         if (intent != null) {
@@ -77,6 +85,42 @@ public class UpdateService extends Service {
         context.startService(i);
     }
 
+
+    public static void createRetryNotification(
+            Context context,
+            String actions,
+            String details) {
+
+        NotificationManager ns =
+            (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (ns == null) return;
+
+        Intent i = new Intent(context, UpdateService.class);
+        i.putExtra(EXTRA_RETRY_ACTIONS, actions);
+
+        PendingIntent pi = PendingIntent.getService(
+                context, 0 /*requestCode*/, i, PendingIntent.FLAG_UPDATE_CURRENT);
+
+        Notification notif = new Notification(
+            R.drawable.app_icon,            // icon
+            "Timeriffic actions failed",   // status bar tickerText
+            System.currentTimeMillis()      // when to show it
+            );
+        notif.flags |= Notification.FLAG_AUTO_CANCEL;
+        notif.defaults = Notification.DEFAULT_ALL;
+
+        notif.setLatestEventInfo(context,
+            "Some Timeriffic actions failed",           // contentTitle
+            "Click here to retry: " + details,          // contentText
+            pi                                          // contentIntent
+            );
+
+        ns.notify(FAILED_ACTION_NOTIF_ID, notif);
+    }
+
+
+    //----
+
     @Override
     public void onStart(Intent intent, int startId) {
         if (DEBUG) Log.d(TAG, "Start service");
@@ -85,16 +129,16 @@ public class UpdateService extends Service {
             try {
                 super.onStart(intent, startId);
 
+                String actions = intent.getStringExtra(EXTRA_RETRY_ACTIONS);
+                if (actions != null) {
+                    retryActions(actions);
+                    return;
+                }
+
                 Intent i = intent.getParcelableExtra(EXTRA_OLD_INTENT);
-                if (i == null) {
-                    // Not supposed to happen.
-                    String msg = "Missing old_intent in UpdateService.onStart";
-                    PrefsValues prefs = new PrefsValues(this);
-                    ApplySettings as = new ApplySettings(this, prefs);
-                    as.addToDebugLog(msg);
-                    Log.e(TAG, msg);
-                } else {
+                if (i != null) {
                     applyUpdate(i);
+                    return;
                 }
 
             } finally {
@@ -105,9 +149,9 @@ public class UpdateService extends Service {
 
         } finally {
             handler.detach();
+            if (DEBUG) Log.d(TAG, "Stopping service");
+            stopSelf();
         }
-        if (DEBUG) Log.d(TAG, "Stopping service");
-        stopSelf();
     }
 
     @Override
@@ -172,6 +216,26 @@ public class UpdateService extends Service {
         }
 
         as.apply(applyState, displayToast);
+    }
+
+    private void retryActions(String actions) {
+        PrefsValues prefs = new PrefsValues(this);
+        ApplySettings as = new ApplySettings(this, prefs);
+
+        if (!prefs.isServiceEnabled()) {
+            String debug = "[Retry] Checking disabled";
+            as.addToDebugLog(debug);
+            Log.d(TAG, debug);
+
+            // Since this comes from user intervention clicking on a
+            // notifcation, it's OK to display a status via a toast UI.
+            showToast(this, prefs,
+                    R.string.globalstatus_disabled,
+                    Toast.LENGTH_LONG);
+            return;
+        }
+
+        as.retryActions(actions);
     }
 
     private void showToast(Context context, PrefsValues pv, int id, int duration) {
