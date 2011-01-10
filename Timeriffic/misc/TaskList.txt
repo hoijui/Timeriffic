@@ -5,7 +5,6 @@ TODO (misc)
 20110108 Import Slovak translation (no files yet)
 20110108 Add Slovak author to translator spreadsheet (no files yet)
 
-20110108 Import Hungarian translation
 20110108 Merge latest update from zh_CN/TW by Wenle
 
 20110108 Check Ringdroid works
@@ -48,6 +47,7 @@ DONE for 1.09
 
 [1.09.05]
 
+20110109 Import Hungarian translation
 20110109 Add Hungarian author to translator spreadsheet
 20110109 Add Czech author to translator spreadsheet
 
