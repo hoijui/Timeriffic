@@ -3,6 +3,7 @@
 	<name>TimerifficUnitTests</name>
 	<comment></comment>
 	<projects>
+		<project>TimerifficPub</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

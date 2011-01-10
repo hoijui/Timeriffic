@@ -31,6 +31,7 @@ import com.alfray.timeriffic.error.ErrorReporterUI;
 import com.alfray.timeriffic.prefs.PrefsActivity;
 import com.alfray.timeriffic.prefs.PrefsValues;
 import com.alfray.timeriffic.profiles.ProfilesUI;
+import com.jayway.android.robotium.solo.Solo;
 
 //-----------------------------------------------
 
@@ -40,6 +41,8 @@ public class ProfilesUiTest extends ActivityInstrumentationTestCase2<ProfilesUI>
 
     private TimerifficApp mApplication;
     private PrefsValues mPV;
+
+    private Solo mSolo;
 
     public ProfilesUiTest() {
         super(ProfilesUI.class.getPackage().getName(), ProfilesUI.class);
@@ -53,6 +56,14 @@ public class ProfilesUiTest extends ActivityInstrumentationTestCase2<ProfilesUI>
 
     @Override
     protected void tearDown() throws Exception {
+        try {
+            if (mSolo != null) {
+                mSolo.finalize();
+                mSolo = null;
+            }
+        } catch (Throwable e) {
+            Log.e(TAG, "tearDown solo failed", e);
+        }
 
         if (mApplication != null) {
             mApplication.onTerminate();
@@ -105,6 +116,12 @@ public class ProfilesUiTest extends ActivityInstrumentationTestCase2<ProfilesUI>
         mPV.setIntroDismissed(!showAutoIntro);
 
         return mApplication;
+    }
+
+    private ProfilesUI getSoloActivity() {
+        ProfilesUI pui = super.getActivity();
+        mSolo = new Solo(getInstrumentation(), pui);
+        return pui;
     }
 
     // ------------
@@ -172,7 +189,7 @@ public class ProfilesUiTest extends ActivityInstrumentationTestCase2<ProfilesUI>
         getInstrumentation().addMonitor(monitor);
         assertEquals(0, monitor.getHits());
 
-        boolean ok = getInstrumentation().invokeMenuActionSync(a, R.string.about, 0);
+        boolean ok = getInstrumentation().invokeMenuActionSync(a, R.string.menu_about, 0);
         assertTrue(ok);
         getInstrumentation().waitForMonitorWithTimeout(monitor, 1000);
 
@@ -191,7 +208,7 @@ public class ProfilesUiTest extends ActivityInstrumentationTestCase2<ProfilesUI>
         getInstrumentation().addMonitor(monitor);
         assertEquals(0, monitor.getHits());
 
-        boolean ok = getInstrumentation().invokeMenuActionSync(a, R.string.settings, 0);
+        boolean ok = getInstrumentation().invokeMenuActionSync(a, R.string.menu_settings, 0);
         assertTrue(ok);
         getInstrumentation().waitForMonitorWithTimeout(monitor, 1000);
         assertEquals(1, monitor.getHits());
@@ -211,7 +228,7 @@ public class ProfilesUiTest extends ActivityInstrumentationTestCase2<ProfilesUI>
         ProfilesUI a = getActivity();
         assertNotNull(a);
 
-        boolean ok = getInstrumentation().invokeMenuActionSync(a, R.string.about, 0);
+        boolean ok = getInstrumentation().invokeMenuActionSync(a, R.string.menu_about, 0);
         assertTrue(ok);
         getInstrumentation().waitForIdleSync();
         getInstrumentation().waitForMonitorWithTimeout(monitor, 1000);
@@ -232,7 +249,7 @@ public class ProfilesUiTest extends ActivityInstrumentationTestCase2<ProfilesUI>
         ProfilesUI a = getActivity();
         assertNotNull(a);
 
-        boolean ok = getInstrumentation().invokeMenuActionSync(a, R.string.report_error, 0);
+        boolean ok = getInstrumentation().invokeMenuActionSync(a, R.string.menu_report_error, 0);
         assertTrue(ok);
         getInstrumentation().waitForIdleSync();
         getInstrumentation().waitForMonitorWithTimeout(monitor, 1000);
