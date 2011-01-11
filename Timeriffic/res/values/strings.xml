@@ -250,6 +250,9 @@
     <string name="globalstatus_last">Last:</string>
     <string name="globalstatus_disabled">Timeriffic is disabled</string>
 
+    <!-- Help displayed on the main screen: Tells user to touch the gray icon to enable it. -->
+    <string name="help_to_enable">«« Touch the gray icon to enable.</string>
+
     <!-- settings -->
 
     <string name="ringermode_ring">Ring</string>

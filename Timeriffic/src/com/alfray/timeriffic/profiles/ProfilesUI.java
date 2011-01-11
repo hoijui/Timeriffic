@@ -600,7 +600,7 @@ public class ProfilesUI extends ExceptionHandlerActivity {
             mGlobalStatus.setTextNextDesc(mPrefsValues.getStatusNextAction());
         } else {
             mGlobalStatus.setTextNextTs(getString(R.string.globalstatus_disabled));
-            mGlobalStatus.setTextNextDesc("");
+            mGlobalStatus.setTextNextDesc(getString(R.string.help_to_enable));
         }
         mGlobalStatus.invalidate();
     }

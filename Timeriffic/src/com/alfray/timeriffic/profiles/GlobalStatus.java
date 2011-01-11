@@ -94,7 +94,7 @@ public class GlobalStatus extends View {
         mTextLast = context.getString(R.string.globalstatus_last);
         mTextNext = context.getString(R.string.globalstatus_next);
 
-        // use witdh from globble toggle anim to align text
+        // use width from global toggle anim to align text
         Bitmap logoAnim = getResBitmap(R.drawable.globaltoggle_frame1);
         mXLastNext = logoAnim.getWidth();
         mXTsDesc = mXLastNext + 5 +

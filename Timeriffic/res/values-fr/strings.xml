@@ -242,6 +242,11 @@
     <string name="globalstatus_last">Dernier:</string>
     <string name="globalstatus_disabled">Timeriffic est désactivé</string>
 
+<!-- BEGIN NEW TRANSLATION -->
+    <!-- Help displayed on the main screen: Tells user to touch the gray icon to enable it. -->
+    <string name="help_to_enable">«« Touch the gray icon to enable.</string>
+<!-- END NEW TRANSLATION -->
+
     <!-- check services dialog -->
 
     <string name="checkservices_dlg_title">Services Manquants</string>

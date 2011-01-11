@@ -247,6 +247,11 @@
      <string name="globalstatus_last">마지막:</string>
      <string name="globalstatus_disabled">Timeriffic "사용안함" 상태</string>
 
+<!-- BEGIN NEW TRANSLATION -->
+    <!-- Help displayed on the main screen: Tells user to touch the gray icon to enable it. -->
+    <string name="help_to_enable">«« Touch the gray icon to enable.</string>
+<!-- END NEW TRANSLATION -->
+
      <!-- settings -->
 
      <string name="ringermode_ring">벨</string>
