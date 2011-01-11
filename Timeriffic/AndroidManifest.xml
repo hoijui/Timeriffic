@@ -86,7 +86,7 @@
 
         <activity
             android:theme="@android:style/Theme.Dialog"
-             android:label="@string/errorreport_title"
+            android:label="@string/errorreport_title"
             android:name=".error.ErrorReporterUI"
             android:windowSoftInputMode="adjustPan" />
 
@@ -105,8 +105,10 @@
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_LOGS"/>
+    <!-- Vibrate is used by NotificationManager.notify() -->
+    <uses-permission android:name="android.permission.VIBRATE" />
     <!-- For Data. Not working yet. -->
-    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.MODIFY_PHONE_STATE"/>
 
     <!--  these are only needed by the stats agent, currently deactivated.
     <uses-permission android:name="android.permission.INTERNET"/>

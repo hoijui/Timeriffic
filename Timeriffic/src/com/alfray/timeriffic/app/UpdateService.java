@@ -30,7 +30,6 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.alfray.timeriffic.R;
-import com.alfray.timeriffic.error.ErrorReporterUI;
 import com.alfray.timeriffic.error.ExceptionHandler;
 import com.alfray.timeriffic.prefs.PrefsValues;
 
@@ -88,34 +87,41 @@ public class UpdateService extends Service {
 
     public static void createRetryNotification(
             Context context,
+            PrefsValues prefs,
             String actions,
             String details) {
+        if (DEBUG) Log.d(TAG, "create retry notif: " + actions);
 
-        NotificationManager ns =
-            (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        if (ns == null) return;
+        try {
+            NotificationManager ns =
+                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            if (ns == null) return;
 
-        Intent i = new Intent(context, UpdateService.class);
-        i.putExtra(EXTRA_RETRY_ACTIONS, actions);
+            Intent i = new Intent(context, UpdateService.class);
+            i.putExtra(EXTRA_RETRY_ACTIONS, actions);
 
-        PendingIntent pi = PendingIntent.getService(
-                context, 0 /*requestCode*/, i, PendingIntent.FLAG_UPDATE_CURRENT);
+            PendingIntent pi = PendingIntent.getService(
+                    context, 0 /*requestCode*/, i, PendingIntent.FLAG_UPDATE_CURRENT);
 
-        Notification notif = new Notification(
-            R.drawable.app_icon,            // icon
-            "Timeriffic actions failed",   // status bar tickerText
-            System.currentTimeMillis()      // when to show it
-            );
-        notif.flags |= Notification.FLAG_AUTO_CANCEL;
-        notif.defaults = Notification.DEFAULT_ALL;
+            Notification notif = new Notification(
+                R.drawable.app_icon,            // icon
+                "Timeriffic actions failed",   // status bar tickerText
+                System.currentTimeMillis()      // when to show it
+                );
+            notif.flags |= Notification.FLAG_AUTO_CANCEL;
+            notif.defaults = Notification.DEFAULT_ALL;
 
-        notif.setLatestEventInfo(context,
-            "Some Timeriffic actions failed",           // contentTitle
-            "Click here to retry: " + details,          // contentText
-            pi                                          // contentIntent
-            );
+            notif.setLatestEventInfo(context,
+                "Timeriffic actions failed",           // contentTitle
+                "Click here to retry: " + details,          // contentText
+                pi                                          // contentIntent
+                );
 
-        ns.notify(FAILED_ACTION_NOTIF_ID, notif);
+            ns.notify(FAILED_ACTION_NOTIF_ID, notif);
+        } catch (Throwable t) {
+            Log.e(TAG, "Notification crashed", t);
+            ExceptionHandler.addToLog(prefs, t);
+        }
     }
 
 

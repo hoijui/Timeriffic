@@ -754,7 +754,8 @@ public class ProfilesDB {
             mContext.getString(R.string.reset_profiles_default),
             mContext.getString(R.string.reset_profiles_ralf),
             mContext.getString(R.string.reset_profiles_empty),
-            mContext.getString(R.string.restore_from_sd),
+            // Disabled: not implemented yet.
+            // mContext.getString(R.string.restore_from_sd),
         };
     }
 

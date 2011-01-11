@@ -24,7 +24,6 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 
 import android.app.AlarmManager;
-import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
@@ -83,18 +82,22 @@ public class ApplySettings {
     }
 
     public void apply(boolean applyState, int displayToast) {
-        Log.d(TAG, "Checking enabled");
+        if (DEBUG) Log.d(TAG, "Checking enabled");
 
         checkProfiles(applyState, displayToast);
         notifyDataChanged();
     }
 
     public void retryActions(String actions) {
+        if (DEBUG) Log.d(TAG, "Retry actions: " + actions);
+
         SettingsHelper settings = new SettingsHelper(mContext);
         if (performAction(settings, actions, null /*failedActions*/)) {
             showToast("Timeriffic retried the actions", Toast.LENGTH_LONG);
+            if (DEBUG) Log.d(TAG, "Retry succeed");
         } else {
             showToast("Timeriffic found no action to retry", Toast.LENGTH_LONG);
+            if (DEBUG) Log.d(TAG, "Retry no-op");
         }
     }
 
@@ -402,7 +405,7 @@ public class ApplySettings {
             return count;
 
         } catch (Exception e) {
-            Log.d(TAG, "getNumActionsInLog failed", e);
+            Log.w(TAG, "getNumActionsInLog failed", e);
             ExceptionHandler.addToLog(new PrefsValues(context), e);
         }
 
@@ -422,7 +425,7 @@ public class ApplySettings {
         String actions = sb.toString();
         String details = TimedActionUtils.computeLabels(mContext, actions);
 
-        UpdateService.createRetryNotification(mContext, actions, details);
+        UpdateService.createRetryNotification(mContext, mPrefs, actions, details);
     }
 
 }
