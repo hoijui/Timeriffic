@@ -19,14 +19,14 @@
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.alfray.timeriffic"
-    android:versionCode="10905"
-    android:versionName="1.09.05">
+    android:versionCode="0"
+    android:versionName="0.00.00">
     <application
         android:label="@string/app_name"
-        android:name="app.pub.TimerifficApp"
+        android:name=".app.TimerifficApp"
         android:icon="@drawable/app_icon">
 
-        <receiver android:name="app.pub.UpdateReceiver">
+        <receiver android:name=".app.UpdateReceiver">
             <intent-filter>
                 <!-- this triggers an apply state too -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -87,10 +87,10 @@
         <activity
             android:theme="@android:style/Theme.Dialog"
             android:label="@string/errorreport_title"
-            android:name="error.ErrorReporterUI"
+            android:name=".error.ErrorReporterUI"
             android:windowSoftInputMode="adjustPan" />
 
-        <service android:name="app.pub.UpdateService" />
+        <service android:name=".app.UpdateService" />
     </application>
 
     <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="4"/>

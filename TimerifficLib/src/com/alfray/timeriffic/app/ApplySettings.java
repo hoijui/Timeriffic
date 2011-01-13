@@ -34,6 +34,7 @@ import android.widget.Toast;
 
 import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.actions.TimedActionUtils;
+import com.alfray.timeriffic.app.TimerifficApp;
 import com.alfray.timeriffic.error.ExceptionHandler;
 import com.alfray.timeriffic.prefs.PrefsValues;
 import com.alfray.timeriffic.profiles.Columns;

@@ -48,8 +48,8 @@ import android.widget.AdapterView.OnItemClickListener;
 
 import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.app.IntroActivity;
-import com.alfray.timeriffic.app.TimerifficApp;
 import com.alfray.timeriffic.app.UpdateReceiver;
+import com.alfray.timeriffic.app.TimerifficApp;
 import com.alfray.timeriffic.error.ErrorReporterUI;
 import com.alfray.timeriffic.error.ExceptionHandlerActivity;
 import com.alfray.timeriffic.prefs.PrefsActivity;

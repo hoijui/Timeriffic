@@ -18,6 +18,8 @@
 
 package com.alfray.timeriffic.app;
 
+import com.alfray.timeriffic.app.TimerifficApp;
+
 import android.app.Application;
 
 
