@@ -19,6 +19,9 @@
 package com.alfray.timeriffic.profiles;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 
@@ -33,18 +36,20 @@ import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteQueryBuilder;
 import android.database.sqlite.SQLiteStatement;
+import android.os.Environment;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.actions.TimedActionUtils;
+import com.alfray.timeriffic.app.TimerifficBackupAgent;
 
 //-----------------------------------------------
 
 /*
  * Debug Tip; to view content of database, use:
  * $ cd /cygdrive/c/.../android-sdk_..._windows/tools
- * $ ./adb shell 'echo ".dump" | sqlite3 data/data/com.alfray.timeriffic/databases/games.db'
+ * $ ./adb shell 'echo ".dump" | sqlite3 data/data/com.alfray.timeriffic/databases/profiles.db'
  */
 
 /**
@@ -52,6 +57,8 @@ import com.alfray.timeriffic.actions.TimedActionUtils;
  * <p/>
  * The interface is similar to a {@link ContentProvider}, which should make it
  * easy to use only later.
+ * <p/>
+ * To be depreciated
  */
 public class ProfilesDB {
 
@@ -768,29 +775,182 @@ public class ProfilesDB {
 
         if (DEBUG) Log.d(TAG, "Reset profiles: " + Integer.toString(labelIndex));
 
-        beginTransaction();
-        try {
-            // empty tables
-            onResetTables();
+        switch(labelIndex) {
+        case 0:
+            // default profiles
+            beginTransaction();
+            try {
+                // empty tables
+                onResetTables();
 
-            switch(labelIndex) {
-            case 0:
                 initDefaultProfiles();
-                break;
-            case 1:
-                // empty profiles list, already done.
-                // pass
-                break;
-            case 2:
-                initRalfProfiles();
-                break;
-            }
 
-            setTransactionSuccessful();
-        } finally {
-            endTransaction();
+                setTransactionSuccessful();
+            } finally {
+                endTransaction();
+            }
+            break;
+        case 1:
+            // ralf profiles
+            beginTransaction();
+            try {
+                // empty tables
+                onResetTables();
+
+                initRalfProfiles();
+
+                setTransactionSuccessful();
+            } finally {
+                endTransaction();
+            }
+            break;
+        case 2:
+            // empty profile
+            beginTransaction();
+            try {
+                // empty tables
+                onResetTables();
+
+                setTransactionSuccessful();
+            } finally {
+                endTransaction();
+            }
+            break;
+        case 3:
+            // restore... must not be done in a transaction
+            restoreFromSd();
         }
     }
+
+    public void saveToSd() {
+
+        File source = mContext.getDatabasePath(DB_NAME);
+
+        if (source.isFile()) {
+            String result = "SDCard not accessible. Cannot save database.";
+            if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+
+                File dest = Environment.getExternalStorageDirectory();
+                dest = new File(dest, "Timeriffic");
+                if (!dest.isDirectory() && !dest.mkdirs()) {
+                    result = "Failed to create database directory on SDCard: " + dest.getAbsolutePath();
+                } else {
+                    dest = new File(dest, DB_NAME);
+
+                    synchronized (TimerifficBackupAgent.getBackupLock()) {
+                        // save the context and remove the current database connection
+                        Context context = mContext;
+                        onDestroy();
+
+                        // Copy from source to dest. Can fail for a variety of reasons.
+                        if (copyFile(source, dest)) {
+                            result = "Database copied to " + dest.getAbsolutePath();
+                        } else {
+                            result = "Failed to duplicate database on SDCard.";
+                        }
+
+                        // Reopen the database
+                        onCreate(context);
+                    }
+                }
+            }
+
+            Toast.makeText(mContext, result, Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void restoreFromSd() {
+
+        String result = null;
+
+        if (!Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+            result = "SDCard not accessible. Cannot restore database.";
+        } else {
+            File source = Environment.getExternalStorageDirectory();
+            source = new File(source, "Timeriffic");
+            source = new File(source, DB_NAME);
+
+            if (!source.isFile()) {
+                result = "SDCard backup file not found. Nothing to restore.";
+            } else {
+                File dest = mContext.getDatabasePath(DB_NAME);
+
+                if (!dest.isFile()) {
+                    File destDir = dest.getParentFile();
+                    if (!destDir.isDirectory()) {
+                        if (!destDir.mkdirs()) {
+                            result = "Failed to restore database";
+                        }
+                    }
+                }
+
+                if (result == null) {
+                    synchronized (TimerifficBackupAgent.getBackupLock()) {
+                        // save the context and remove the current database connection
+                        Context context = mContext;
+                        onDestroy();
+
+                        if (copyFile(source, dest)) {
+                            result = "Database restored successfully";
+                        } else {
+                            result = "Failed to restore database from SDCard.";
+                        }
+
+                        // Reopen the database
+                        onCreate(context);
+                    }
+                }
+            }
+        }
+
+        Toast.makeText(mContext, result, Toast.LENGTH_LONG).show();
+    }
+
+    /**
+     * Copy file from source path to dest.
+     *
+     * @return True if file was copied successfully.
+     */
+    private boolean copyFile(File source, File dest) {
+        FileInputStream fis = null;
+        FileOutputStream fos = null;
+        try {
+            fis = new FileInputStream(source);
+            fos = new FileOutputStream(dest);
+
+            byte[] buffer = new byte[1024];
+            int n;
+
+            while ((n = fis.read(buffer)) >= 0) {
+                if (n > 0) {
+                    fos.write(buffer, 0, n);
+                }
+            }
+
+            return true;
+
+        } catch (Exception e) {
+            Log.e(TAG, "copyFile failed", e);
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    // ignore
+                }
+            }
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    // ignore
+                }
+            }
+        }
+
+        return false;
+    }
+
 
     // --------------
 
