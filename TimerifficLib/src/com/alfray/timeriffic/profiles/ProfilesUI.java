@@ -47,6 +47,7 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.alfray.timeriffic.R;
+import com.alfray.timeriffic.app.BackupWrapper;
 import com.alfray.timeriffic.app.IntroActivity;
 import com.alfray.timeriffic.app.UpdateReceiver;
 import com.alfray.timeriffic.app.TimerifficApp;
@@ -101,6 +102,7 @@ public class ProfilesUI extends ExceptionHandlerActivity {
     };
 
     private ColIndexes mColIndexes = new ColIndexes();
+    private BackupWrapper mBackupWrapper;
 
     /**
      * Called when the activity is created.
@@ -439,6 +441,9 @@ public class ProfilesUI extends ExceptionHandlerActivity {
         mAdapter = null;
         initProfileList();
         updateGlobalState();
+
+        if (mBackupWrapper == null) mBackupWrapper = new BackupWrapper(this);
+        mBackupWrapper.dataChanged();
     }
 
     @Override
@@ -619,6 +624,7 @@ public class ProfilesUI extends ExceptionHandlerActivity {
                  0, R.string.menu_check_now).setIcon(R.drawable.ic_menu_rotate);
         menu.add(0, R.string.menu_reset,
                  0, R.string.menu_reset).setIcon(R.drawable.ic_menu_revert);
+		// TODO save to sd
 
         return super.onCreateOptionsMenu(menu);
     }
@@ -641,6 +647,7 @@ public class ProfilesUI extends ExceptionHandlerActivity {
             mAgentWrapper.event(AgentWrapper.Event.MenuReset);
             showResetChoices();
             break;
+		// TODO save to sd
         case R.string.menu_append_profile:
             appendNewProfile();
             break;
@@ -677,6 +684,8 @@ public class ProfilesUI extends ExceptionHandlerActivity {
     protected void showResetChoices() {
         showDialog(DIALOG_RESET_CHOICES);
     }
+
+    // TODO save to sd
 
     private Dialog createDialogResetChoices() {
         Builder d = new AlertDialog.Builder(this);

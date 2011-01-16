@@ -82,7 +82,7 @@ fi
 VERS="$1"
 if [ -z "$VERS" ]; then
     # Try to use AAPT on first APK to guess the version number
-    AAPT=( ~/sdk/platforms/*/tools/aapt.exe )
+    AAPT=( ~/sdk/platform-tools/aapt.exe )
     AAPT="${AAPT}"  # convert first's array value into its own value
     if [ ! -x "$AAPT" ]; then
         die "Failed to find aapt.exe"

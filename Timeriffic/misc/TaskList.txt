@@ -20,7 +20,6 @@ TODO (misc)
 20100309 BT 2.0: don't gray, explain why missing
 20100309 Support 24
 
-20091222 Don't start Airplane mode when in talk. Delay via notification.
 20091207 Store profiles as text in shared prefs
 20091207 Export profiles to SD card
 20091207 Import profiles from SD card
@@ -43,6 +42,7 @@ DONE for 1.09
 
 [1.09.05]
 
+20110115 Use Froyo Backup API (again)
 20110109 Notification when action was not executed, to carry it later
 
 20110109 Merge latest update from zh_CN/TW by Wenle
