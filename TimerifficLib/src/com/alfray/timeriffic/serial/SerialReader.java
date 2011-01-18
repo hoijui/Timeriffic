@@ -18,6 +18,8 @@
 
 package com.alfray.timeriffic.serial;
 
+import java.util.Iterator;
+
 import android.util.SparseArray;
 
 
@@ -27,7 +29,25 @@ import android.util.SparseArray;
  *
  * See {@link SerialWriter} for implementations details.
  */
-public class SerialReader {
+public class SerialReader implements Iterable<SerialReader.Entry> {
+
+    public class Entry {
+        private final int mKey;
+        private final Object mValue;
+
+        public Entry(int key, Object value) {
+            mKey = key;
+            mValue = value;
+        }
+        
+        public int getKey() {
+            return mKey;
+        }
+        
+        public Object getValue() {
+            return mValue;
+        }
+    }
 
     public static final String TAG = SerialReader.class.getSimpleName();
 
@@ -45,7 +65,8 @@ public class SerialReader {
     static final int TYPE_SERIAL = SerialWriter.TYPE_SERIAL;
     static final int EOF = SerialWriter.EOF;
 
-    SparseArray<Object> mData = new SparseArray<Object>();
+    private final SparseArray<Object> mData = new SparseArray<Object>();
+    private final SerialKey mKeyer = new SerialKey();
 
     public SerialReader(String data) {
         decodeString(data);
@@ -71,12 +92,12 @@ public class SerialReader {
     }
 
     public boolean hasName(String name) {
-        int id = name.hashCode();
+        int id = mKeyer.encodeKey(name);
         return mData.indexOfKey(id) >= 0;
     }
 
     public int getInt(String name) {
-        int id = name.hashCode();
+        int id = mKeyer.encodeKey(name);
         Object d = mData.get(id);
         if (d == null) return 0;
         if (d instanceof Integer) return ((Integer) d).intValue();
@@ -84,7 +105,7 @@ public class SerialReader {
     }
 
     public long getLong(String name) {
-        int id = name.hashCode();
+        int id = mKeyer.encodeKey(name);
         Object d = mData.get(id);
         if (d == null) return 0;
         if (d instanceof Long) return ((Long) d).longValue();
@@ -92,7 +113,7 @@ public class SerialReader {
     }
 
     public boolean getBool(String name) {
-        int id = name.hashCode();
+        int id = mKeyer.encodeKey(name);
         Object d = mData.get(id);
         if (d == null) return false;
         if (d instanceof Boolean) return ((Boolean) d).booleanValue();
@@ -100,7 +121,7 @@ public class SerialReader {
     }
 
     public float getFloat(String name) {
-        int id = name.hashCode();
+        int id = mKeyer.encodeKey(name);
         Object d = mData.get(id);
         if (d == null) return 0;
         if (d instanceof Float) return ((Float) d).floatValue();
@@ -108,7 +129,7 @@ public class SerialReader {
     }
 
     public double getDouble(String name) {
-        int id = name.hashCode();
+        int id = mKeyer.encodeKey(name);
         Object d = mData.get(id);
         if (d == null) return 0;
         if (d instanceof Double) return ((Double) d).doubleValue();
@@ -116,7 +137,7 @@ public class SerialReader {
     }
 
     public String getString(String name) {
-        int id = name.hashCode();
+        int id = mKeyer.encodeKey(name);
         Object d = mData.get(id);
         if (d == null) return null;
         if (d instanceof String) return (String) d;
@@ -124,13 +145,39 @@ public class SerialReader {
     }
 
     public SerialReader getSerial(String name) {
-        int id = name.hashCode();
+        int id = mKeyer.encodeKey(name);
         Object d = mData.get(id);
         if (d == null) return null;
         if (d instanceof SerialReader) return (SerialReader) d;
         throw new ClassCastException("SerialReader expected, got " + d.getClass().getSimpleName());
     }
 
+    @Override
+    public Iterator<Entry> iterator() {
+        return new Iterator<Entry>() {
+            final int n = mData.size();
+            int index = 0;
+
+            @Override
+            public boolean hasNext() {
+                return index < n;
+            }
+
+            @Override
+            public Entry next() {
+                Entry e = new Entry(mData.keyAt(index), mData.valueAt(index));
+                index++;
+                return e;
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException(
+                        "Remove is not supported by " + 
+                        SerialReader.class.getSimpleName());
+            }
+        };
+    }
 
     //---
 
@@ -311,6 +358,5 @@ public class SerialReader {
             }
         }
     }
-
 
 }

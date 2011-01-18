@@ -18,8 +18,9 @@
 
 package com.alfray.timeriffic.serial;
 
-import java.util.HashMap;
 import java.util.zip.CRC32;
+
+import com.alfray.timeriffic.serial.SerialKey.DuplicateKey;
 
 /**
  * Encoder/decoder for typed data.
@@ -90,18 +91,13 @@ import java.util.zip.CRC32;
  */
 public class SerialWriter {
 
-    public static class DuplicateKey extends RuntimeException {
-        private static final long serialVersionUID = -1735763023714511003L;
-        public DuplicateKey(String message) { super(message); }
-    }
-
     public static class CantAddData extends RuntimeException {
         private static final long serialVersionUID = 8074293730213951679L;
         public CantAddData(String message) { super(message); }
     }
 
-    private HashMap<Integer, String> mUsedKeys = null;
-
+    private final SerialKey mKeyer = new SerialKey();
+    
     private int[] mData;
     private int mSize;
     private boolean mCantAdd;
@@ -164,28 +160,62 @@ public class SerialWriter {
         return new String(cs, 0, j);
     }
 
+    //--
+    
     public void addInt(String name, int intValue) {
-        _addInt(getKey(name), TYPE_INT, intValue);
+        addInt(mKeyer.encodeUniqueKey(name), intValue);
     }
 
     public void addLong(String name, long longValue) {
-        _addLong(getKey(name), TYPE_LONG, longValue);
+        addLong(mKeyer.encodeUniqueKey(name), longValue);
     }
 
     public void addBool(String name, boolean boolValue) {
-        _addInt(getKey(name), TYPE_BOOL, boolValue ? 1 : 0);
+        addBool(mKeyer.encodeUniqueKey(name), boolValue);
     }
 
     public void addFloat(String name, float floatValue) {
-        _addInt(getKey(name), TYPE_FLOAT, Float.floatToIntBits(floatValue));
+        addFloat(mKeyer.encodeUniqueKey(name), Float.floatToIntBits(floatValue));
     }
 
     public void addDouble(String name, double doubleValue) {
-        _addLong(getKey(name), TYPE_DOUBLE, Double.doubleToLongBits(doubleValue));
+        addDouble(mKeyer.encodeUniqueKey(name),  Double.doubleToLongBits(doubleValue));
     }
 
     /** Add a string. Doesn't add a null value. */
     public void addString(String name, String strValue) {
+        addString(mKeyer.encodeUniqueKey(name), strValue);
+    }
+
+    /** Add a Serial. Doesn't add a null value. */
+    public void addSerial(String name, SerialWriter serialValue) {
+        addSerial(mKeyer.encodeUniqueKey(name), serialValue);
+    }
+
+    //--
+
+    public void addInt(int key, int intValue) {
+        _addInt(key, TYPE_INT, intValue);
+    }
+
+    public void addLong(int key, long longValue) {
+        _addLong(key, TYPE_LONG, longValue);
+    }
+
+    public void addBool(int key, boolean boolValue) {
+        _addInt(key, TYPE_BOOL, boolValue ? 1 : 0);
+    }
+
+    public void addFloat(int key, float floatValue) {
+        _addInt(key, TYPE_FLOAT, Float.floatToIntBits(floatValue));
+    }
+
+    public void addDouble(int key, double doubleValue) {
+        _addLong(key, TYPE_DOUBLE, Double.doubleToLongBits(doubleValue));
+    }
+
+    /** Add a string. Doesn't add a null value. */
+    public void addString(int key, String strValue) {
         if (strValue == null) return;
 
         int n = strValue.length();
@@ -193,7 +223,7 @@ public class SerialWriter {
 
         int pos = alloc(2 + m + 1);
         mData[pos++] = TYPE_STRING;
-        mData[pos++] = getKey(name);
+        mData[pos++] = key;
         mData[pos++] = n;
 
         for (int i = 0; i < n;) {
@@ -207,7 +237,7 @@ public class SerialWriter {
     }
 
     /** Add a Serial. Doesn't add a null value. */
-    public void addSerial(String name, SerialWriter serialValue) {
+    public void addSerial(int key, SerialWriter serialValue) {
         if (serialValue == null) return;
 
         int[] a = serialValue.encodeAsArray();
@@ -215,7 +245,7 @@ public class SerialWriter {
 
         int pos = alloc(2 + n);
         mData[pos++] = TYPE_SERIAL;
-        mData[pos++] = getKey(name);
+        mData[pos++] = key;
 
         System.arraycopy(a, 0, mData, pos, n);
         pos += n;
@@ -224,21 +254,6 @@ public class SerialWriter {
     }
 
     //---
-
-    private int getKey(String name) {
-        if (mUsedKeys == null) mUsedKeys = new HashMap<Integer, String>();
-
-        int key = name.hashCode();
-
-        if (mUsedKeys.containsKey(key)) {
-            throw new DuplicateKey(
-                    String.format("Key name collision: '%1$s' has the same hash than previously used '%2$s'",
-                            name, mUsedKeys.get(key)));
-        }
-
-        mUsedKeys.put(key, name);
-        return key;
-    }
 
     private int alloc(int numInts) {
 

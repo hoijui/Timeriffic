@@ -23,4 +23,8 @@ import com.alfray.timeriffic.app.TimerifficApp;
 
 public class TimerifficAppPub extends TimerifficApp {
 
+    
+    public TimerifficAppPub() {
+        // TODO Auto-generated constructor stub
+    }
 }

@@ -18,6 +18,8 @@
 
 package com.alfray.timeriffic.serial;
 
+import com.alfray.timeriffic.serial.SerialKey.DuplicateKey;
+
 import junit.framework.TestCase;
 
 /**
@@ -43,7 +45,7 @@ public class SerialWriterTest extends TestCase {
         try {
             m.addInt("foo", 42);
             m.addBool("foo", false);
-        } catch (SerialWriter.DuplicateKey e) {
+        } catch (DuplicateKey e) {
             // that's expected
             return;
         }

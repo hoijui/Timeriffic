@@ -18,9 +18,9 @@
 
 package com.alfray.timeriffic.app;
 
-import com.alfray.timeriffic.app.TimerifficApp;
-
 import android.app.Application;
+
+import com.alfray.timeriffic.prefs.PrefsStorage;
 
 
 public class TimerifficApp extends Application {
@@ -30,7 +30,9 @@ public class TimerifficApp extends Application {
 
     private boolean mFirstStart = true;
     private Runnable mDataListener;
-
+    
+    private PrefsStorage mPrefsStorage;
+    
     @Override
     public void onCreate() {
         super.onCreate();
