@@ -364,10 +364,11 @@ public class ProfilesUI extends ExceptionHandlerActivity {
             app.setDataListener(new Runnable() {
                 @Override
                 public void run() {
-                    onDataChanged();
+                    onDataChanged(true /*backup*/);
                 }
             });
-            onDataChanged();
+            // No backup on the first init
+            onDataChanged(false /*backup*/);
         }
     }
 
@@ -424,7 +425,7 @@ public class ProfilesUI extends ExceptionHandlerActivity {
 
         switch(requestCode) {
         case DATA_CHANGED:
-            onDataChanged();
+            onDataChanged(true /*backup*/);
             requestSettingsCheck(UpdateReceiver.TOAST_IF_CHANGED);
             break;
         case SETTINGS_UPDATED:
@@ -436,14 +437,16 @@ public class ProfilesUI extends ExceptionHandlerActivity {
         }
     }
 
-    private void onDataChanged() {
+    private void onDataChanged(boolean backup) {
         if (mCursor != null) mCursor.requery();
         mAdapter = null;
         initProfileList();
         updateGlobalState();
 
-        if (mBackupWrapper == null) mBackupWrapper = new BackupWrapper(this);
-        mBackupWrapper.dataChanged();
+        if (backup) {
+            if (mBackupWrapper == null) mBackupWrapper = new BackupWrapper(this);
+            mBackupWrapper.dataChanged();
+        }
     }
 
     @Override
@@ -693,14 +696,13 @@ public class ProfilesUI extends ExceptionHandlerActivity {
         d.setCancelable(true);
         d.setTitle(R.string.resetprofiles_msg_confirm_delete);
         d.setIcon(R.drawable.app_icon);
-        //d.setMessage("Are you sure you want to delete all profiles?");
         d.setItems(mProfilesDb.getResetLabels(),
             new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mProfilesDb.resetProfiles(which);
                     removeDialog(DIALOG_RESET_CHOICES);
-                    onDataChanged();
+                    onDataChanged(true /*backup*/);
                     requestSettingsCheck(UpdateReceiver.TOAST_IF_CHANGED);
                 }
         });
@@ -765,7 +767,7 @@ public class ProfilesUI extends ExceptionHandlerActivity {
                 int count = mProfilesDb.deleteProfile(row_id);
                 if (count > 0) {
                     mAdapter.notifyDataSetChanged();
-                    onDataChanged();
+                    onDataChanged(true /*backup*/);
                 }
                 removeDialog(DIALOG_DELETE_PROFILE);
             }
@@ -806,7 +808,7 @@ public class ProfilesUI extends ExceptionHandlerActivity {
                 int count = mProfilesDb.deleteAction(row_id);
                 if (count > 0) {
                     mAdapter.notifyDataSetChanged();
-                    onDataChanged();
+                    onDataChanged(true /*backup*/);
                 }
                 removeDialog(DIALOG_DELETE_ACTION);
             }

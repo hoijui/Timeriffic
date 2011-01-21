@@ -22,6 +22,7 @@ import android.util.Log;
 public class BackupWrapper {
 
     private static final String TAG = BackupWrapper.class.getSimpleName();
+    private static final boolean DEBUG = true;
 
     private final BackupWrapperImpl mImpl;
 
@@ -31,7 +32,7 @@ public class BackupWrapper {
             // Try to load the actual implementation. This may fail.
             b = new BackupWrapperImpl(context);
         } catch (Exception e) {
-            Log.d(TAG, "BackupWrapperImpl failed to load", e);
+            if (DEBUG) Log.w(TAG, "BackupWrapperImpl failed to load", e);
         }
         mImpl = b;
     }
@@ -39,6 +40,7 @@ public class BackupWrapper {
     public void dataChanged() {
         if (mImpl != null) {
             mImpl.dataChanged();
+            if (DEBUG) Log.d(TAG, "Backup dataChanged");
         }
     }
 }
