@@ -40,6 +40,11 @@ import com.alfray.timeriffic.profiles.ProfilesDB;
  * This class is never referenced directly except by a class name reference
  * in the &lt;application&gt; tag of the manifest.
  * <p/>
+ * Implementation detail: since {@link TimerifficBackupAgent} depends
+ * on the BackupAgent class, it is not available on platform < API 8.
+ * This means any direct access to this class must be avoided. E.g. to
+ * get the lock, callers must use the {@link BackupWrapper} instead.
+ * <p/>
  * TODO exclude from Proguard
  */
 public class TimerifficBackupAgent extends BackupAgentHelper {
@@ -121,7 +126,7 @@ public class TimerifficBackupAgent extends BackupAgentHelper {
             BackupDataOutput data,
             ParcelFileDescriptor newState) throws IOException {
         // Hold the lock while the helper performs the backup operation
-        synchronized (getBackupLock()) {
+        synchronized (BackupWrapper.getBackupLock()) {
             super.onBackup(oldState, data, newState);
             Log.d(TAG, "onBackup");
         }
@@ -134,22 +139,10 @@ public class TimerifficBackupAgent extends BackupAgentHelper {
             ParcelFileDescriptor newState) throws IOException {
         // Hold the lock while the helper restores the file from
         // the data provided here.
-        synchronized (getBackupLock()) {
+        synchronized (BackupWrapper.getBackupLock()) {
             super.onRestore(data, appVersionCode, newState);
             Log.d(TAG, "onRestore");
         }
-    }
-
-    /**
-     * This lock must be used by all parties that want to manipulate
-     * directly the files being backup/restored. This ensures that the
-     * backup agent isn't trying to backup or restore whilst the other
-     * party is modifying them directly.
-     * <p/>
-     * In our case, this MUST be used by the save/restore from SD operations.
-     */
-    public static Object getBackupLock() {
-        return TimerifficBackupAgent.class;
     }
 
     /**

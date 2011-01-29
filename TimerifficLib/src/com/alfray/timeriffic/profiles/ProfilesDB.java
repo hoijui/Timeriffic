@@ -42,7 +42,7 @@ import android.widget.Toast;
 
 import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.actions.TimedActionUtils;
-import com.alfray.timeriffic.app.TimerifficBackupAgent;
+import com.alfray.timeriffic.app.BackupWrapper;
 
 //-----------------------------------------------
 
@@ -837,7 +837,7 @@ public class ProfilesDB {
                 } else {
                     dest = new File(dest, DB_NAME);
 
-                    synchronized (TimerifficBackupAgent.getBackupLock()) {
+                    synchronized (BackupWrapper.getBackupLock()) {
                         // save the context and remove the current database connection
                         Context context = mContext;
                         onDestroy();
@@ -885,7 +885,7 @@ public class ProfilesDB {
                 }
 
                 if (result == null) {
-                    synchronized (TimerifficBackupAgent.getBackupLock()) {
+                    synchronized (BackupWrapper.getBackupLock()) {
                         // save the context and remove the current database connection
                         Context context = mContext;
                         onDestroy();

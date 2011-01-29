@@ -35,6 +35,7 @@ public class BackupWrapper {
 
     private static final String TAG = BackupWrapper.class.getSimpleName();
     private static final boolean DEBUG = true;
+    private static Object[] sLock = new Object[0];
 
     private final BackupWrapperImpl mImpl;
 
@@ -43,8 +44,12 @@ public class BackupWrapper {
         try {
             // Try to load the actual implementation. This may fail.
             b = new BackupWrapperImpl(context);
-        } catch (Exception e) {
-            if (DEBUG) Log.w(TAG, "BackupWrapperImpl failed to load", e);
+        } catch (VerifyError e) {
+            // No need to log an error, this is expected if API < 8.
+            if (DEBUG) Log.w(TAG, "BackupWrapperImpl failed to load: VerifyError.");
+        } catch (Throwable e) {
+            // This is not expected.
+            if (DEBUG) Log.e(TAG, "BackupWrapperImpl failed to load", e);
         }
         mImpl = b;
     }
@@ -54,5 +59,21 @@ public class BackupWrapper {
             mImpl.dataChanged();
             if (DEBUG) Log.d(TAG, "Backup dataChanged");
         }
+    }
+
+    /**
+     * This lock must be used by all parties that want to manipulate
+     * directly the files being backup/restored. This ensures that the
+     * backup agent isn't trying to backup or restore whilst the other
+     * party is modifying them directly.
+     * <p/>
+     * In our case, this MUST be used by the save/restore from SD operations.
+     * <p/>
+     * Implementation detail: since {@link TimerifficBackupAgent} depends
+     * on the BackupAgent class, it is not available on platform < API 8.
+     * This means any direct access to this class must be avoided.
+     */
+    public static Object getBackupLock() {
+        return sLock;
     }
 }
