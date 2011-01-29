@@ -1,6 +1,6 @@
 /*
  * Project:  Timeriffic
- * Copyright (C) 2010 ralfoide gmail com,
+ * Copyright (C) 2011 ralfoide gmail com,
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -42,7 +42,7 @@ public class SerialKey {
      * the same encoded integer. If this is the case and the key is different
      * then a {@link DuplicateKey} is thrown. It is ok to register twice the
      * same key name, which will result in the same value being returned.
-     * 
+     *
      * @param name The name of the key. Must not be empty nor null.
      * @return The integer associated with that key name.
      * @throws DuplicateKey if the key collides with a different one.
@@ -52,7 +52,7 @@ public class SerialKey {
 
         int key = encodeKey(name);
         int index = mUsedKeys.indexOfKey(key);
-        
+
         if (index >= 0) {
             String previous = mUsedKeys.valueAt(index);
             if (!name.equals(previous)) {
@@ -70,7 +70,7 @@ public class SerialKey {
     /**
      * Encode a key name into an integer and makes sure the key name is unique
      * and has never be registered before.
-     * 
+     *
      * @param name The name of the key. Must not be empty nor null.
      * @return The integer associated with that key name.
      * @throws DuplicateKey if the key had already been registered.
@@ -80,7 +80,7 @@ public class SerialKey {
 
         int key = encodeKey(name);
         int index = mUsedKeys.indexOfKey(key);
-        
+
         if (index >= 0) {
             String previous = mUsedKeys.valueAt(index);
             throw new DuplicateKey(
@@ -97,7 +97,7 @@ public class SerialKey {
      * <p/>
      * Unlike {@link #encodeNewKey(String)}, this does not check whether the key has already
      * been used.
-     * 
+     *
      * @param name The name of the key. Must not be empty nor null.
      * @return The integer associated with that key name.
      */
