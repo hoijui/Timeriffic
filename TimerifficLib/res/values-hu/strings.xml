@@ -200,7 +200,7 @@
     <string name="editaction_section_time_and_day">Idő és nap</string>
     <string name="editaction_section_days">Napok</string>
 
-    <string name="editaction_button_label">  <b>@</b>n  $</string>
+    <string name="editaction_button_label">  <b>@</b>\n  $</string>
 
     <string name="setting_not_supported">Nem támogatott</string>
     <string name="setting_not_installed">Nincs telepítve</string>
