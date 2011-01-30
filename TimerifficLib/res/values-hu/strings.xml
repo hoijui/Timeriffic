@@ -224,7 +224,7 @@
     <!-- percent dialog -->
 
     <string name="percent_do_not_change">Nincs változás.</string>
-    <string name="percent_change_to">A következő értékek változnak:</string>
+	<string name="percent_change_to">Módosítás a következő értékre:</string>
     <string name="percent_button_unchanged">Változatlan</string>
     <string name="percent_button_accept">Elfogadás</string>
 
@@ -265,8 +265,8 @@
 
     <string name="vibrateringermode_vibrate">Rezgő</string>
     <string name="vibrateringermode_no_vibrate">Rezgő kikapcsolva</string>
-    <string name="vibrateringermode_no_ringer_vibrate">Rezgés a figyelmeztetéshez, de nem a csengéshez</string>
-    <string name="vibrateringermode_no_notif_vibrate">Rezgés a csengéshez, de nem a figyelmeztetéshez</string>
+	<string name="vibrateringermode_no_ringer_vibrate">Rezgés a figyelmeztetéshez, de a csengéshez nem</string>
+	<string name="vibrateringermode_no_notif_vibrate">Rezgés a csengéshez, de a figyelmeztetéshez nem</string>
 
     <!-- check services dialog -->
 
