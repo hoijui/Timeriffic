@@ -42,6 +42,10 @@ DONE for 1.09
 
 [1.09.05]
 
+20110129 Update intro for 05
+20110129 Fix typo in hungarian strings
+20110129 Fix error report activity in manifest
+20110120 Fix Froyo Backup API
 20110115 Use Froyo Backup API (again)
 20110109 Notification when action was not executed, to carry it later
 
