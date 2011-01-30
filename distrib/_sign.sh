@@ -49,8 +49,9 @@ function process() {
 	
 	echo "$DEST has been signed and zipaligned (added $((SIZE2-SIZE1)) bytes)" 
 
-    hg add "$DEST"
-    hg commit -m "Binary for version ${VERS/_/}" "$DEST"
+    # don't generate a commit automatically, it's actually annoying
+    # hg add "$DEST"
+    # hg commit -m "Binary for version ${VERS/_/}" "$DEST"
 }
 
 function update() {
