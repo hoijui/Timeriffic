@@ -30,9 +30,10 @@ public class TimerifficApp extends Application {
 
     private boolean mFirstStart = true;
     private Runnable mDataListener;
-    
+
+    @SuppressWarnings("unused")
     private PrefsStorage mPrefsStorage;
-    
+
     @Override
     public void onCreate() {
         super.onCreate();

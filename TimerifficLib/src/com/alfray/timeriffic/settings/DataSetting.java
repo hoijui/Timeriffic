@@ -46,7 +46,7 @@ public class DataSetting implements ISetting {
     private static final boolean DEBUG = true;
     public static final String TAG = DataSetting.class.getSimpleName();
 
-    private boolean mCheckSupported = true;
+    private boolean mCheckSupported = false; // TODO disabled, not worky
     private boolean mIsSupported = false;
 
     @Override

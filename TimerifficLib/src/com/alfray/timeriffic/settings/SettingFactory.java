@@ -35,12 +35,21 @@ public class SettingFactory {
 
     private static final SettingFactory sInstance = new SettingFactory();
     private final Map<Character, ISetting> mSettings = new HashMap<Character, ISetting>();
+    private IExtraFctory mExtraFactory;
+
+    public interface IExtraFctory {
+        public ISetting getSetting(char code);
+    }
 
     public static SettingFactory getInstance() {
         return sInstance;
     }
 
     private SettingFactory() {
+    }
+
+    public void registerExtraFactory(IExtraFctory extraFactory) {
+        mExtraFactory = extraFactory;
     }
 
     /**
@@ -93,6 +102,10 @@ public class SettingFactory {
             case Columns.ACTION_DATA:
                 s = new DataSetting();
                 break;
+        }
+
+        if (s == null && mExtraFactory != null) {
+            s = mExtraFactory.getSetting(code);
         }
 
         if (s == null) {

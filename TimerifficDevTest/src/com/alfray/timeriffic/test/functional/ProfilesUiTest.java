@@ -27,7 +27,7 @@ import android.util.Log;
 import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.app.IntroActivity;
 import com.alfray.timeriffic.app.TimerifficApp;
-import com.alfray.timeriffic.app.pub.TimerifficAppPub;
+import com.alfray.timeriffic.app.t1.TimerifficApp1;
 import com.alfray.timeriffic.error.ErrorReporterUI;
 import com.alfray.timeriffic.prefs.PrefsActivity;
 import com.alfray.timeriffic.prefs.PrefsValues;
@@ -40,7 +40,7 @@ public class ProfilesUiTest extends ActivityInstrumentationTestCase2<ProfilesUI>
 
     private static final String TAG = "ProfilesUiTest";
 
-    private TimerifficAppPub mApplication;
+    private TimerifficApp1 mApplication;
     private PrefsValues mPV;
 
     private Solo mSolo;
@@ -85,8 +85,8 @@ public class ProfilesUiTest extends ActivityInstrumentationTestCase2<ProfilesUI>
         if (mApplication == null) {
             Context ac = getInstrumentation().getTargetContext().getApplicationContext();
 
-            if (ac instanceof TimerifficAppPub) {
-                mApplication = (TimerifficAppPub) ac;
+            if (ac instanceof TimerifficApp1) {
+                mApplication = (TimerifficApp1) ac;
                 Log.d(TAG, String.format("Reuse context application: %s=%s",
                         mApplication.getClass().getSimpleName(),
                         mApplication.toString()));
@@ -96,8 +96,8 @@ public class ProfilesUiTest extends ActivityInstrumentationTestCase2<ProfilesUI>
 
         try {
             if (mApplication == null) {
-                mApplication = (TimerifficAppPub) Instrumentation.newApplication(
-                                TimerifficAppPub.class,
+                mApplication = (TimerifficApp1) Instrumentation.newApplication(
+                                TimerifficApp1.class,
                                 getInstrumentation().getTargetContext());
                 Log.d(TAG, String.format("Start application: %s=%s",
                         mApplication.getClass().getSimpleName(),

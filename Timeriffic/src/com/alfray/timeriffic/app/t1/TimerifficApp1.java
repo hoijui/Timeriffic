@@ -16,15 +16,15 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.alfray.timeriffic.app.pub;
+package com.alfray.timeriffic.app.t1;
 
 import com.alfray.timeriffic.app.TimerifficApp;
 
 
-public class TimerifficAppPub extends TimerifficApp {
+public class TimerifficApp1 extends TimerifficApp {
 
-    
-    public TimerifficAppPub() {
-        // TODO Auto-generated constructor stub
+
+    public TimerifficApp1() {
+        super();
     }
 }
