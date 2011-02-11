@@ -19,4 +19,5 @@
 
 <resources>
     <item type="id" name="time" />
+    <item type="id" name="syncButton"></item>
 </resources>
