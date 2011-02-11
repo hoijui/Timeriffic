@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.alfray.timeriffic.prefs;
 
@@ -37,7 +37,7 @@ import com.alfray.timeriffic.serial.SerialWriter;
  * <p/>
  * Values cannot be null.
  * Affecting a value to null is equivalent to removing it from the storage map.
- * 
+ *
  */
 public class PrefsStorage {
 
@@ -56,12 +56,12 @@ public class PrefsStorage {
     private final SerialKey mKeyer = new SerialKey();
     private final SparseArray<Object> mData = new SparseArray<Object>();
     private final String mFilename;
-    private Context mContext;
-    
+    private ThreadWithResult mLoadThread;
+
     /**
      * Opens a serial prefs for "filename.sprefs" in the app's dir.
      * Caller must still read the file before anything happens.
-     * 
+     *
      * @param filename Filename. Must not be null or empty.
      */
     public PrefsStorage(String filename) {
@@ -71,32 +71,46 @@ public class PrefsStorage {
     /**
      * Starts reading an existing prefs file asynchronously.
      * Callers <em>must</em> call {@link #endReadAsync()}.
-     * 
+     *
      * @param context The {@link Context} to use.
      */
     public void beginReadAsync(Context context) {
-        mContext = context.getApplicationContext();
-        // TODO
+
+        final Context appContext = context.getApplicationContext();
+
+        mLoadThread = new ThreadWithResult() {
+            @Override
+            public void run() {
+                setResult(false);
+                FileInputStream fis = null;
+                try {
+                    fis = appContext.openFileInput(mFilename);
+                    setResult(loadStream(fis));
+                } catch (Exception e) {
+                    Log.d(TAG, "endReadAsync failed", e);
+                } finally {
+                    try {
+                        fis.close();
+                    } catch (IOException e) {
+                        // ignore
+                    }
+                }
+            }
+        };
     }
-    
+
     public boolean endReadAsync() {
-        FileInputStream fis = null;
-        try {
-            fis = mContext.openFileInput(mFilename);
-            return loadStream(fis);
-        } catch (Exception e) {
-            Log.d(TAG, "endReadAsync failed", e);
-            return false;
-        } finally {
-            mContext = null;
+        ThreadWithResult t = mLoadThread;
+        if (t != null) {
             try {
-                fis.close();
-            } catch (IOException e) {
-                // ignore
+                t.wait();
+            } catch (InterruptedException e) {
+                Log.w(TAG, e);
             }
         }
+        return t == null ? false : t.getResult();
     }
-    
+
     public boolean flushSync(Context context) {
         FileOutputStream fos = null;
         try {
@@ -113,9 +127,9 @@ public class PrefsStorage {
             }
         }
     }
-    
+
     // --- put
-    
+
     public void putInt(String key, int value) {
         mData.put(mKeyer.encodeNewKey(key), Integer.valueOf(value));
     }
@@ -133,7 +147,7 @@ public class PrefsStorage {
     public boolean hasKey(String key) {
         return mData.indexOfKey(mKeyer.encodeKey(key)) >= 0;
     }
-    
+
     public boolean hasInt(String key) {
         Object o = mData.get(mKeyer.encodeKey(key));
         return o instanceof Integer;
@@ -150,7 +164,7 @@ public class PrefsStorage {
     }
 
     // --- get
-    
+
     public int getInt(String key, int defValue) {
         Object o = mData.get(mKeyer.encodeKey(key));
         if (o instanceof Integer) {
@@ -180,8 +194,20 @@ public class PrefsStorage {
         }
         return defValue;
     }
-    
+
     // ----
+
+    private static class ThreadWithResult extends Thread {
+        private boolean mResult;
+
+        public void setResult(boolean result) {
+            mResult = result;
+        }
+
+        public boolean getResult() {
+            return mResult;
+        }
+    }
 
     private boolean loadStream(InputStream is) {
         try {
@@ -199,7 +225,7 @@ public class PrefsStorage {
             SerialReader sr = new SerialReader(line);
 
             mData.clear();
-            
+
             for (SerialReader.Entry entry : sr) {
                 mData.append(entry.getKey(), entry.getValue());
             }
@@ -209,7 +235,7 @@ public class PrefsStorage {
                 Log.d(TAG, "Invalid file format, footer missing.");
                 return false;
             }
-            
+
             return true;
 
         } catch(Exception e) {
@@ -229,14 +255,14 @@ public class PrefsStorage {
             bw.newLine();
 
             SerialWriter sw = new SerialWriter();
-            
+
             for (int n = mData.size(), i = 0; i < n; i++) {
                 int key = mData.keyAt(i);
                 Object value = mData.valueAt(i);
 
                 // no need to store null values.
                 if (value == null) continue;
-                
+
                 if (value instanceof Integer) {
                     sw.addInt(key, ((Integer) value).intValue());
                 } else if (value instanceof Boolean) {
@@ -250,7 +276,7 @@ public class PrefsStorage {
                             value.getClass().getSimpleName());
                 }
             }
-            
+
             bw.write(sw.encodeAsString());
 
             bw.write(FOOTER);
@@ -270,5 +296,5 @@ public class PrefsStorage {
 
         return false;
     }
-    
+
 }
