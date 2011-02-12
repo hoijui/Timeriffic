@@ -97,13 +97,14 @@ public class PrefsStorage {
                 }
             }
         };
+        mLoadThread.start();
     }
 
     public boolean endReadAsync() {
         ThreadWithResult t = mLoadThread;
         if (t != null) {
             try {
-                t.wait();
+                t.join();
             } catch (InterruptedException e) {
                 Log.w(TAG, e);
             }
