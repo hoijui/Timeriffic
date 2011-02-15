@@ -117,6 +117,11 @@ public class TimerifficApp extends Application {
         if (id == null) {
             // generate a random code with 6 unique symbols out of 34
             // (0-9 + A-Z). We avoid letter O and I which look like 0 and 1.
+            //
+            // How many combinations do we have, since we do not allow repetitions?
+            // => http://en.wikipedia.org/wiki/Combination
+            // k=6, n=34, n!/(k!.(n-k)!)=1,344,904
+
             Random r = new Random();
             char c[] = new char[6];
             long used = 0;
