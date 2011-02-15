@@ -40,6 +40,11 @@ TODO (misc)
 DONE for 1.09
 
 
+[1.09.06]
+
+20110214 Index for issue report
+
+
 [1.09.05]
 
 20110129 Update intro for 05
@@ -90,7 +95,7 @@ DONE for 1.09
 20100817 Support System volume
 
 [1.09.02]
-Translation
+Translation Italian + Norwegian
 
 [1.09.00]
 20100726 Fix WakeLock exception (Issue #49)

@@ -6,6 +6,7 @@ package com.alfray.timeriffic.prefs;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -56,7 +57,9 @@ public class PrefsStorage {
     private final SerialKey mKeyer = new SerialKey();
     private final SparseArray<Object> mData = new SparseArray<Object>();
     private final String mFilename;
-    private ThreadWithResult mLoadThread;
+    private boolean mDataChanged;
+    private volatile Thread mLoadThread;
+    private boolean mLoadResult;
 
     /**
      * Opens a serial prefs for "filename.sprefs" in the app's dir.
@@ -78,19 +81,28 @@ public class PrefsStorage {
 
         final Context appContext = context.getApplicationContext();
 
-        mLoadThread = new ThreadWithResult() {
+        if (mLoadThread != null) {
+            throw new RuntimeException("Load already pending.");
+        }
+
+        mLoadThread = new Thread() {
             @Override
             public void run() {
-                setResult(false);
                 FileInputStream fis = null;
                 try {
                     fis = appContext.openFileInput(mFilename);
-                    setResult(loadStream(fis));
+                    mLoadResult = loadStream(fis);
+                } catch (FileNotFoundException e) {
+                    // This is an expected error.
+                    Log.d(TAG, "fileNotFound");
+                    mLoadResult = true;
                 } catch (Exception e) {
                     Log.d(TAG, "endReadAsync failed", e);
                 } finally {
                     try {
-                        fis.close();
+                        if (fis != null) {
+                            fis.close();
+                        }
                     } catch (IOException e) {
                         // ignore
                     }
@@ -100,8 +112,18 @@ public class PrefsStorage {
         mLoadThread.start();
     }
 
+    /**
+     * Makes sure the asynchronous read has finished.
+     * Callers must call this at least once before they access
+     * the underlying storage.
+     * @return The result from the last load operation.
+     */
     public boolean endReadAsync() {
-        ThreadWithResult t = mLoadThread;
+        Thread t = null;
+        synchronized(this) {
+            t = mLoadThread;
+            if (t != null) mLoadThread = null;
+        }
         if (t != null) {
             try {
                 t.join();
@@ -109,38 +131,54 @@ public class PrefsStorage {
                 Log.w(TAG, e);
             }
         }
-        return t == null ? false : t.getResult();
+        return mLoadResult;
     }
 
+    /**
+     * Saves the prefs if they have changed.
+     * @param context The app context.
+     * @return True if prefs could be failed, false otherwise.
+     */
     public boolean flushSync(Context context) {
-        FileOutputStream fos = null;
-        try {
-            fos = context.openFileOutput(mFilename, Context.MODE_PRIVATE);
-            return saveStream(fos);
-        } catch (Exception e) {
-            Log.d(TAG, "flushSync failed", e);
-            return false;
-        } finally {
-            try {
-                fos.close();
-            } catch (IOException e) {
-                // ignore
+        if (!mDataChanged) return true;
+        synchronized(this) {
+            if (mDataChanged) {
+                mDataChanged = false;
+                FileOutputStream fos = null;
+                try {
+                    fos = context.openFileOutput(mFilename, Context.MODE_PRIVATE);
+                    return saveStream(fos);
+                } catch (Exception e) {
+                    Log.d(TAG, "flushSync failed", e);
+                } finally {
+                    try {
+                        if (fos != null) {
+                            fos.close();
+                        }
+                    } catch (IOException e) {
+                        // ignore
+                    }
+                }
             }
         }
+        return false;
     }
 
     // --- put
 
     public void putInt(String key, int value) {
         mData.put(mKeyer.encodeNewKey(key), Integer.valueOf(value));
+        mDataChanged = true;
     }
 
     public void putBool(String key, boolean value) {
         mData.put(mKeyer.encodeNewKey(key), Boolean.valueOf(value));
+        mDataChanged = true;
     }
 
     public void putString(String key, String value) {
         mData.put(mKeyer.encodeNewKey(key), value);
+        mDataChanged = true;
     }
 
     // --- has
@@ -197,18 +235,6 @@ public class PrefsStorage {
     }
 
     // ----
-
-    private static class ThreadWithResult extends Thread {
-        private boolean mResult;
-
-        public void setResult(boolean result) {
-            mResult = result;
-        }
-
-        public boolean getResult() {
-            return mResult;
-        }
-    }
 
     private boolean loadStream(InputStream is) {
         try {
@@ -279,6 +305,7 @@ public class PrefsStorage {
             }
 
             bw.write(sw.encodeAsString());
+            bw.newLine();
 
             bw.write(FOOTER);
             bw.newLine();

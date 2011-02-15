@@ -28,6 +28,7 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Pattern;
 
+import android.app.Application;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -56,8 +57,10 @@ import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.actions.EditActionUI;
 import com.alfray.timeriffic.app.ApplySettings;
 import com.alfray.timeriffic.app.IntroActivity;
+import com.alfray.timeriffic.app.TimerifficApp;
 import com.alfray.timeriffic.app.UpdateReceiver;
 import com.alfray.timeriffic.app.UpdateService;
+import com.alfray.timeriffic.prefs.PrefsStorage;
 import com.alfray.timeriffic.prefs.PrefsValues;
 import com.alfray.timeriffic.profiles.BaseHolder;
 import com.alfray.timeriffic.profiles.EditProfileUI;
@@ -80,6 +83,8 @@ import com.alfray.timeriffic.utils.AgentWrapper;
 import com.alfray.timeriffic.utils.ChangeBrightnessActivity;
 import com.alfray.timeriffic.utils.SettingsHelper;
 
+/* $ A="foo" ; python -c "print [ ord(a) for a in '$A' ]" | tr [] {} */
+
 /**
  * Screen to generate an error report.
  */
@@ -93,13 +98,15 @@ public class ErrorReporterUI extends ExceptionHandlerActivity {
     public static final String EXTRA_IS_EXCEPTION =
         ErrorReporterUI.class.getPackage().getName() + "_isException";
 
+    // TODO more UTs
     /**
-     * Mailto address. %s is app name. Address is naively obfuscated
-     * since this code will end up open sourced, to prevent address harvesting.
+     * %s is app name.
      */
-    private static final String MAILTO = "r_dr_r . lab_s +report + %s";
-    /** domain part of mailto. */
-    private static final String DOMTO = "g_ma_il / c_om";
+    private static final char MAILTO[] =
+        { 114, 95, 100, 114, 95, 114, 32, 46, 32, 108, 97, 98, 95, 115, 32,
+         43, 114, 101, 112, 111, 114, 116, 32, 43, 32, 37, 115 };
+    private static final char DOMTO[] =
+        {103, 95, 109, 97, 95, 105, 108, 32, 47, 32, 99, 95, 111, 109};
 
     private static final int MSG_REPORT_COMPLETE = 1;
 
@@ -426,14 +433,27 @@ public class ErrorReporterUI extends ExceptionHandlerActivity {
                         if (report != null) {
 
                             // Prepare mailto and subject.
-                            String to = String.format(MAILTO, mAppName).trim();
+                            String to = String.format(new String(MAILTO), mAppName).trim();
                             to += "@";
-                            to += DOMTO.replace("/", ".");
+                            to += new String(DOMTO).replace("/", ".");
                             to = to.replaceAll("[ _]", "").toLowerCase();
 
-                            String subject = String.format("[%s] %s",
-                                    mAppName,
-                                    getReportType()).trim();
+                            StringBuilder sb = new StringBuilder();
+                            sb.append('[').append(mAppName.trim()).append("] ");
+                            sb.append(getReportType().trim());
+
+                            Application app = getApplication();
+                            TimerifficApp ta;
+                            if (app instanceof TimerifficApp) {
+                                ta = (TimerifficApp) app;
+                                sb.append(" [").append(ta.getIssueId());
+                                PrefsStorage ps = ta.getPrefsStorage();
+                                if (ps.endReadAsync()) {
+                                    sb.append('-').append(ps.getInt("iss_id_count", -1));
+                                }
+                                sb.append(']');
+                            }
+                            String subject = sb.toString();
 
                             // Generate the intent to send an email
                             Intent i = new Intent(Intent.ACTION_SEND);
@@ -549,6 +569,7 @@ public class ErrorReporterUI extends ExceptionHandlerActivity {
             addHeader(sb, c);
             addUserFeedback(sb);
             addTopInfo(sb);
+            addIssueId(sb);
             addAndroidBuildInfo(sb);
 
             if (!mAbortReport) addProfiles(sb, c);
@@ -575,8 +596,24 @@ public class ErrorReporterUI extends ExceptionHandlerActivity {
             }
         }
 
-        private void addUserFeedback(StringBuilder sb) {
+        private void addIssueId(StringBuilder sb) {
+            Application app = getApplication();
+            if (app instanceof TimerifficApp) {
+                TimerifficApp ta = (TimerifficApp) app;
+                sb.append("\n## Issue Id: ").append(ta.getIssueId());
 
+                PrefsStorage ps = ta.getPrefsStorage();
+                if (ps.endReadAsync()) {
+                    int count = ps.getInt("iss_id_count", 0);
+                    count += 1;
+                    sb.append(" - ").append(count);
+                    ps.putInt("iss_id_count", count);
+                    ps.flushSync(getApplicationContext());
+                }
+            }
+        }
+
+        private void addUserFeedback(StringBuilder sb) {
             sb.append("\n## Report Type: ").append(getReportType());
 
             if (!mIsException) {
@@ -618,7 +655,7 @@ public class ErrorReporterUI extends ExceptionHandlerActivity {
                         manufacturer,
                         Build.DEVICE));
 
-                sb.append(String.format("Android: %s (SDK %s)\n",
+                sb.append(String.format("Android: %s (API %s)\n",
                         Build.VERSION.RELEASE, Build.VERSION.SDK));
 
                 sb.append(String.format("Build  : %s\n",

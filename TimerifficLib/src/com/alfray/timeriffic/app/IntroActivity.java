@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Locale;
 
+import android.app.Application;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
@@ -101,7 +102,13 @@ public class IntroActivity extends ExceptionHandlerActivity {
 
         @SuppressWarnings("unused")
         public String introFile() {
-            return mIntroFile + " (" + Locale.getDefault().toString() + ")";
+            StringBuilder sb = new StringBuilder(mIntroFile);
+            sb.append(" (").append(Locale.getDefault().toString()).append(')');
+            Application app = getApplication();
+            if (app instanceof TimerifficApp) {
+                sb.append(" [").append(((TimerifficApp) app).getIssueId()).append(']');
+            }
+            return sb.toString();
         }
     }
 
