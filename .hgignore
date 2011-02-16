@@ -3,6 +3,7 @@ bin
 bin2
 gen
 Thumbs.db
+local.properties
 
 *.bak
 *.orig
