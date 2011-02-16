@@ -142,7 +142,14 @@ public class UpdateService extends Service {
                 }
 
                 Intent i = intent.getParcelableExtra(EXTRA_OLD_INTENT);
-                if (i != null) {
+                if (i == null) {
+                    // Not supposed to happen.
+                    String msg = "Missing old_intent in UpdateService.onStart";
+                    PrefsValues prefs = new PrefsValues(this);
+                    ApplySettings as = new ApplySettings(this, prefs);
+                    as.addToDebugLog(msg);
+                    Log.e(TAG, msg);
+                } else {
                     applyUpdate(i);
                     return;
                 }
