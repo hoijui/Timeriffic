@@ -115,26 +115,24 @@ public class TimerifficApp extends Application {
         String id = mPrefsStorage.getString("iid", null);
 
         if (id == null) {
-            // generate a random code with 6 unique symbols out of 34
+            // generate a random code with 8 unique symbols out of 34
             // (0-9 + A-Z). We avoid letter O and I which look like 0 and 1.
-            //
-            // How many combinations do we have, since we do not allow repetitions?
-            // => http://en.wikipedia.org/wiki/Combination
-            // k=6, n=34, n!/(k!.(n-k)!)=1,344,904
 
             Random r = new Random();
-            char c[] = new char[6];
+            char c[] = new char[8];
             long used = 0;
-            // mark O and I (the letters) as used, to avoid using them
+            // Mark O and I (the letters) as used, to avoid using them.
             used |= (1 << (10 + 'O' - 'A'));
             used |= (1 << (10 + 'I' - 'A'));
+            // Avoid repeating the same symbol twice in a row
+            int last = -1;
             for (int i = 0; i < c.length; i++) {
                 int j = 0;
                 // get a new unused letter
                 do {
                     j = r.nextInt(10+26);
-                } while ((used & (1 << j)) != 0);
-                used |= (1 << j);
+                } while (j == last || (used & (1 << j)) != 0);
+                last = j;
                 if (j < 10) {
                     c[i] = (char) ('0' + j);
                 } else {
