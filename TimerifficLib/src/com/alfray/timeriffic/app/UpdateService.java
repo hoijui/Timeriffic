@@ -197,18 +197,22 @@ public class UpdateService extends Service {
                 UpdateReceiver.ACTION_APPLY_STATE.equals(action) ||
                 Intent.ACTION_BOOT_COMPLETED.equals(action);
 
-        String logAction = action.replace("android.intent.action.", "");
-        logAction = logAction.replace("com.alfray.intent.action.", "");
+        // Log all actions except for "TIME_SET" which can happen too
+        // frequently on some carriers and then pollutes the log.
+        if (!Intent.ACTION_TIME_CHANGED.equals(action)) {
+            String logAction = action.replace("android.intent.action.", "");
+            logAction = logAction.replace("com.alfray.intent.action.", "");
 
-        String debug = String.format("UpdateService %s%s",
-                applyState ? "*Apply* " : "",
-                logAction
-                );
-        as.addToDebugLog(debug);
-        Log.d(TAG, debug);
+            String debug = String.format("UpdateService %s%s",
+                    applyState ? "*Apply* " : "",
+                    logAction
+                    );
+            as.addToDebugLog(debug);
+            Log.d(TAG, debug);
+        }
 
         if (!prefs.isServiceEnabled()) {
-            debug = "Checking disabled";
+            String debug = "Checking disabled";
             as.addToDebugLog(debug);
             Log.d(TAG, debug);
 

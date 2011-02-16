@@ -30,7 +30,7 @@ import android.util.Log;
 
 public class UpdateReceiver extends BroadcastReceiver {
 
-    private final static boolean DEBUG = true;
+    private final static boolean DEBUG = false;
     public final static String TAG = UpdateReceiver.class.getSimpleName();
 
     /** Name of intent to broadcast to activate this receiver when doing
@@ -63,7 +63,7 @@ public class UpdateReceiver extends BroadcastReceiver {
                 wl.acquire();
             } catch (Exception e) {
                 // Hmm wake lock failed... not sure why. Continue anyway.
-                if (DEBUG) Log.w(TAG, "WakeLock.acquire failed");
+                Log.w(TAG, "WakeLock.acquire failed");
             }
             UpdateService.startFromReceiver(context, intent, wl);
             if (DEBUG) Log.d(TAG, "UpdateService requested");
