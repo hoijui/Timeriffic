@@ -115,8 +115,13 @@ public class TimerifficApp extends Application {
         String id = mPrefsStorage.getString("iid", null);
 
         if (id == null) {
-            // generate a random code with 8 unique symbols out of 34
+            // Generate a random code with 8 unique symbols out of 34
             // (0-9 + A-Z). We avoid letter O and I which look like 0 and 1.
+            // We avoid repeating the same symbol twice in a row so
+            // the number of combinations is n*(n-1)*(n-1)*..*(n-1)
+            // or c = n * (n-1)^(k-1)
+            // k=6, n=34 => c=    1,330,603,362 ... 1 million is a bit low.
+            // k=8, n=34 => c=1,449,027,061,218 ... 1 trillion will do it.
 
             Random r = new Random();
             char c[] = new char[8];
@@ -124,7 +129,6 @@ public class TimerifficApp extends Application {
             // Mark O and I (the letters) as used, to avoid using them.
             used |= (1 << (10 + 'O' - 'A'));
             used |= (1 << (10 + 'I' - 'A'));
-            // Avoid repeating the same symbol twice in a row
             int last = -1;
             for (int i = 0; i < c.length; i++) {
                 int j = 0;
