@@ -97,7 +97,7 @@ public class SerialWriter {
     }
 
     private final SerialKey mKeyer = new SerialKey();
-    
+
     private int[] mData;
     private int mSize;
     private boolean mCantAdd;
@@ -161,7 +161,7 @@ public class SerialWriter {
     }
 
     //--
-    
+
     public void addInt(String name, int intValue) {
         addInt(mKeyer.encodeUniqueKey(name), intValue);
     }
@@ -175,11 +175,11 @@ public class SerialWriter {
     }
 
     public void addFloat(String name, float floatValue) {
-        addFloat(mKeyer.encodeUniqueKey(name), Float.floatToIntBits(floatValue));
+        addFloat(mKeyer.encodeUniqueKey(name), floatValue);
     }
 
     public void addDouble(String name, double doubleValue) {
-        addDouble(mKeyer.encodeUniqueKey(name),  Double.doubleToLongBits(doubleValue));
+        addDouble(mKeyer.encodeUniqueKey(name), doubleValue);
     }
 
     /** Add a string. Doesn't add a null value. */

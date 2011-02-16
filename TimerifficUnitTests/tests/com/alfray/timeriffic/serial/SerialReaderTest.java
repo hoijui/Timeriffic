@@ -169,7 +169,7 @@ public class SerialReaderTest extends TestCase {
     }
 
     public void testGetFloat() throws Exception {
-        m.addFloat("foo" ,  42.0f);
+        m.addFloat("foo" , 42.0f);
         m.addFloat("max" , Float.MAX_VALUE);
         m.addFloat("min" , Float.MIN_VALUE);
         m.addFloat("-inf", Float.NEGATIVE_INFINITY);
