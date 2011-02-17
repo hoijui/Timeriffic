@@ -4,6 +4,7 @@ bin2
 gen
 Thumbs.db
 local.properties
+distrib/Timeriffic.apk
 
 *.bak
 *.orig
