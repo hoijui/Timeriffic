@@ -60,11 +60,11 @@ function close_all_emus() {
     local EMU
     
     # find any emulator (offline or online) and kill them
-    EMU=$(adb devices | grep emulator | cut -f 1)
+    EMU=$($ADB -e devices | grep emulator | cut -f 1)
     while [[ $EMU ]]; do
         warn "## Closing $EMU"
         send_emu_cmd $EMU kill
-        EMU=$(adb devices | grep emulator | cut -f 1)
+        EMU=$($ADB -e devices | grep emulator | cut -f 1)
     done
 }
 
@@ -84,10 +84,10 @@ function start_avd() {
     local EMU
     local N=0
     while [[ ! $EMU ]]; do
-        EMU=$(adb devices | grep device | grep emulator | cut -f 1)
+        EMU=$($ADB -e devices | grep device | grep emulator | cut -f 1)
         if [[ ! $EMU ]]; then
             warn "## [$N] Waiting for emulator @$AVD..."
-            [[ $N -gt 5 ]] && $ADB devices > /dev/stderr
+            [[ $N -gt 5 ]] && $ADB -e devices > /dev/stderr
             sleep 1
             N=$((N+1))
             if [[ $N -gt 60 ]]; then
@@ -99,13 +99,13 @@ function start_avd() {
     warn "## Emulator found: $EMU"
     
     # Remove any previous package, install new one, run monkey
-    $ADB uninstall $PKG
-    $ADB install $APK
-    $ADB shell monkey -p $PKG -v 1000 -c Intent.CATEGORY_LAUNCHER
+    $ADB -e uninstall $PKG
+    $ADB -e install $APK
+    $ADB -e shell monkey -p $PKG -v 1000 -c Intent.CATEGORY_LAUNCHER
 
-    $ADB uninstall $PKG
-    $ADB install $APK
-    $ADB shell monkey -p $PKG -v 1000
+    $ADB -e uninstall $PKG
+    $ADB -e install $APK
+    $ADB -e shell monkey -p $PKG -v 1000
 
     close_all_emus
 }
