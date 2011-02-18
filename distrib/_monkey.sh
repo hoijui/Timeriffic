@@ -7,13 +7,18 @@ EMULATOR=~/sdk/tools/emulator
 
 APK="$1"
 PKG=""
+LANG=()
 
 function warn() {
+	echo > /dev/stderr
     echo "$*" > /dev/stderr
+	echo > /dev/stderr
 }
 
 function die() {
+	echo > /dev/stderr
     echo "$*" > /dev/stderr
+	echo > /dev/stderr
     exit 1
 }
 
@@ -40,6 +45,23 @@ function check_apk() {
     PKG=$($AAPT dump badging "$APK" | sed -n "/package/s/.*name='\([^']\+\).*/\1/p")
     [[ ! $PKG ]] && die "## Can't find package name for $APK"
     warn "## Package name: $PKG"
+
+	if ! $AAPT list "$APK" | grep -qs RSA ; then
+		warn "## Package is not signed."
+		if [[ "${APK/_v/}" == "$APK" ]]; then
+			warn "## Signing $APK with debug key."
+			jarsigner -verbose -keystore $(cygpath -w ~/*-debug-*.keystore) -storepass android -keypass android "$APK" androiddebugkey
+		else
+			die "## Won't sign $APK."
+		fi
+	fi
+	
+	# get languages
+	LANG=( $( $AAPT dump configurations "$APK "| sed -e 's/^.*lang=\(..\).*reg=\(..\).*/\1_\2/;s/_--//;s/--//' ) )
+	if [[ ${#LANG[@]} == 0 ]]; then
+		LANG=( en_US )
+	fi
+	warn "## Found ${#LANG[@]} languages: ${LANG[@]}"
 }
 
 #-----
@@ -90,7 +112,7 @@ function start_avd() {
             [[ $N -gt 5 ]] && $ADB -e devices > /dev/stderr
             sleep 1
             N=$((N+1))
-            if [[ $N -gt 60 ]]; then
+            if [[ $N -gt 90 ]]; then
                 warn "## Giving up starting emulator @$AVD"
                 exit 1
             fi
@@ -98,15 +120,24 @@ function start_avd() {
     done
     warn "## Emulator found: $EMU"
     
-    # Remove any previous package, install new one, run monkey
-    $ADB -e uninstall $PKG
-    $ADB -e install $APK
-    $ADB -e shell monkey -p $PKG -v 1000 -c Intent.CATEGORY_LAUNCHER
+    # Install CustomLocale2
+    $ADB -e install -r CustomLocale2.apk
 
-    $ADB -e uninstall $PKG
-    $ADB -e install $APK
-    $ADB -e shell monkey -p $PKG -v 1000
+	for LC in ${LANG[@]}; do
+		warn "## Set locale to $LC"
+		$ADB shell am broadcast -a com.android.intent.action.SET_LOCALE --es com.android.intent.extra.LOCALE $LC
 
+	    # Remove any previous package, install new one, run monkey
+	    $ADB -e uninstall $PKG
+	    $ADB -e install $APK
+	    $ADB -e shell monkey -p $PKG -v 1000 -c Intent.CATEGORY_LAUNCHER ; R=$?
+	    warn "## Monkey result: $R"
+	    
+	    # $ADB -e uninstall $PKG
+	    # $ADB -e install $APK
+	    # $ADB -e shell monkey -p $PKG -v 100
+	done
+	
     close_all_emus
 }
 
@@ -114,5 +145,7 @@ check_tools
 check_apk
 for AVD in $(list_avds); do
     start_avd $AVD
+    # warn "## DEBUG do only one AVD"
+    # exit 1
 done
 
