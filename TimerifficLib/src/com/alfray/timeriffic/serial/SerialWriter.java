@@ -162,27 +162,44 @@ public class SerialWriter {
 
     //--
 
+    /**
+     * @throws DuplicateKey if the key had already been registered.
+     */
     public void addInt(String name, int intValue) {
         addInt(mKeyer.encodeUniqueKey(name), intValue);
     }
 
+    /**
+     * @throws DuplicateKey if the key had already been registered.
+     */
     public void addLong(String name, long longValue) {
         addLong(mKeyer.encodeUniqueKey(name), longValue);
     }
 
+    /**
+     * @throws DuplicateKey if the key had already been registered.
+     */
     public void addBool(String name, boolean boolValue) {
         addBool(mKeyer.encodeUniqueKey(name), boolValue);
     }
 
+    /**
+     * @throws DuplicateKey if the key had already been registered.
+     */
     public void addFloat(String name, float floatValue) {
         addFloat(mKeyer.encodeUniqueKey(name), floatValue);
     }
 
+    /**
+     * @throws DuplicateKey if the key had already been registered.
+     */
     public void addDouble(String name, double doubleValue) {
         addDouble(mKeyer.encodeUniqueKey(name), doubleValue);
     }
 
-    /** Add a string. Doesn't add a null value. */
+    /** Add a string. Doesn't add a null value.
+     * @throws DuplicateKey if the key had already been registered.
+     */
     public void addString(String name, String strValue) {
         addString(mKeyer.encodeUniqueKey(name), strValue);
     }
