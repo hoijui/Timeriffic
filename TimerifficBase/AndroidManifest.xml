@@ -18,7 +18,7 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:sharedUserId="com.alfray.timeriffic" android:versionName="1.09.06" android:versionCode="10906" package="com.rdrrlabs.timeriffic.demo">
+    android:sharedUserId="com.alfray.timeriffic" android:versionName="1.09.06" android:versionCode="10906" package="com.rdrrlabs.timeriffic.base">
 
     <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="4"/>
 

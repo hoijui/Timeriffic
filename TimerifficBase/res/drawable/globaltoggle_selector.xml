@@ -19,7 +19,7 @@
 
 <selector
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:timeriffic="http://schemas.android.com/apk/res/com.rdrrlabs.timeriffic.demo"
+    xmlns:timeriffic="http://schemas.android.com/apk/res/com.rdrrlabs.timeriffic.base"
     >
 
     <item android:state_active="false"
