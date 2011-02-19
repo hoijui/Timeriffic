@@ -25,5 +25,6 @@
 <resources>
     <!-- Placeholder. Do not remove. Do not translate. -->
     <string name="placeholder">Placeholder</string>
+    <string name="app_name">Timeriffic Base</string>
 
 </resources>
