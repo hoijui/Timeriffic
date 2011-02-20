@@ -68,8 +68,7 @@
         android:backupAgent="com.alfray.timeriffic.app.TimerifficBackupAgent"
         android:restoreAnyVersion="true"
         android:allowBackup="true"
-        android:killAfterRestore="true"
-        android:name="com.alfray.timeriffic.app.TimerifficApp">
+        android:killAfterRestore="true" android:name="com.alfray.timeriffic.app.t1.TimerifficAppBase">
 
 
         <receiver android:name="com.alfray.timeriffic.app.UpdateReceiver">
