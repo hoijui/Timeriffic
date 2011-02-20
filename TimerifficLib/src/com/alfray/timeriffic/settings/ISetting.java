@@ -27,6 +27,7 @@ import android.content.Context;
 //-----------------------------------------------
 
 public interface ISetting {
+
     /**
      * Return true if the setting is supported.
      * <p/>

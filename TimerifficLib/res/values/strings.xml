@@ -87,13 +87,19 @@
     <!-- Settings - Animation of the toggle button logo: help string -->
     <string name="prefs_toggle_anim_tooltip">Select the animation of the toggle icon in the profile list screen.</string>
 
-
     <!-- Settings - Display Notification: toggle title -->
     <string name="prefs_display_notif_label">Display notification on profile change</string>
     <!-- Settings - Display Notification: help string when on -->
     <string name="prefs_display_notif_on">Display a notification when a profile changes</string>
     <!-- Settings - Display Notification: help string when off -->
     <string name="prefs_display_notif_off">Do not display a notification when a profile changes</string>
+
+    <!-- Settings - Check use data sync: toggle title -->
+    <string name="prefs_use_data_sync_label">Enable data sync action</string>
+    <!-- Settings - Check use data sync: help string when on -->
+    <string name="prefs_use_data_sync_off">Data sync action is not available.</string>
+    <!-- Settings - Check use data sync: help string when off -->
+    <string name="prefs_use_data_sync_on">Data sync action is available if supported by this device.</string>
 
 
     <!-- === Intro screen === -->
@@ -200,6 +206,7 @@
 
     <string name="editaction_button_label">  <b>@</b>\n  $</string>
 
+    <string name="setting_not_enabled">Not Enabled</string>
     <string name="setting_not_supported">Not Supported</string>
     <string name="setting_not_installed">Not installed</string>
 

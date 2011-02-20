@@ -19,10 +19,14 @@
 package com.alfray.timeriffic.prefs;
 
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.Preference.OnPreferenceChangeListener;
 import android.view.WindowManager;
 
 import com.alfray.timeriffic.R;
+import com.alfray.timeriffic.profiles.Columns;
+import com.alfray.timeriffic.settings.SettingFactory;
 
 /**
  * Displays preferences
@@ -30,14 +34,25 @@ import com.alfray.timeriffic.R;
 public class PrefsActivity extends PreferenceActivity {
 
     @Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
         // Have the system blur any windows behind this one.
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND,
                 WindowManager.LayoutParams.FLAG_BLUR_BEHIND);
 
-		setTitle(R.string.prefs_title);
-		addPreferencesFromResource(R.xml.prefs);
-	}
+        setTitle(R.string.prefs_title);
+        addPreferencesFromResource(R.xml.prefs);
+        
+        Preference useDataSyncPref = findPreference("use_data_sync");
+        if (useDataSyncPref != null) {
+            useDataSyncPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+                @Override
+                public boolean onPreferenceChange(Preference preference, Object newValue) {
+                    SettingFactory.getInstance().forgetSetting(Columns.ACTION_DATA);
+                    return true;
+                }
+            });
+        }
+    }
 }

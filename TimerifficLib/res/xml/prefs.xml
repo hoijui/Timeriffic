@@ -26,21 +26,24 @@
         android:key="enable_serv"
         android:title="@string/prefs_enable_label"
         android:summaryOff="@string/prefs_enable_off"
-        android:summaryOn="@string/prefs_enable_on" />
+        android:summaryOn="@string/prefs_enable_on" 
+        />
 
     <CheckBoxPreference
         android:key="dismiss_intro"
         android:defaultValue="false"
         android:title="@string/prefs_dismiss_intro_label"
         android:summaryOff="@string/prefs_dismiss_intro_off"
-        android:summaryOn="@string/prefs_dismiss_intro_on" />
+        android:summaryOn="@string/prefs_dismiss_intro_on" 
+        />
 
     <CheckBoxPreference
         android:key="check_service"
         android:defaultValue="true"
         android:title="@string/prefs_check_service_label"
         android:summaryOff="@string/prefs_check_service_off"
-        android:summaryOn="@string/prefs_check_service_on" />
+        android:summaryOn="@string/prefs_check_service_on" 
+        />
 
     <ListPreference
         android:entryValues="@array/prefs_globaltoggle_anim_values"
@@ -49,6 +52,14 @@
         android:entries="@array/prefs_globaltoggle_anim_names"
         android:key="globaltoggle_anim"
         android:defaultValue="fast"
-    />
+        />
+
+    <CheckBoxPreference
+        android:key="use_data_sync"
+        android:defaultValue="false"
+        android:title="@string/prefs_use_data_sync_label"
+        android:summaryOff="@string/prefs_use_data_sync_off"
+        android:summaryOn="@string/prefs_use_data_sync_on" 
+        />
 
 </PreferenceScreen>

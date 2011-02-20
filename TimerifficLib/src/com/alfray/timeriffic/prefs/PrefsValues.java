@@ -50,19 +50,19 @@ public class PrefsValues {
 
     private SharedPreferences mPrefs;
 
-	public PrefsValues(Context context) {
+    public PrefsValues(Context context) {
         mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
-	}
+    }
 
-	public SharedPreferences getPrefs() {
+    public SharedPreferences getPrefs() {
         return mPrefs;
     }
 
-	public Object editLock() {
-	    return PrefsValues.class;
-	}
+    public Object editLock() {
+        return PrefsValues.class;
+    }
 
-	/** Returns a shared pref editor. Must call endEdit() later. */
+    /** Returns a shared pref editor. Must call endEdit() later. */
     public Editor startEdit() {
         return mPrefs.edit();
     }
@@ -74,18 +74,18 @@ public class PrefsValues {
         return b;
     }
 
-	/** Returns pref version or 0 if not present. */
-	public int getVersion() {
-	    return mPrefs.getInt("version", 0);
-	}
+    /** Returns pref version or 0 if not present. */
+    public int getVersion() {
+        return mPrefs.getInt("version", 0);
+    }
 
-	public void setVersion() {
-	    mPrefs.edit().putInt("version", VERSION).commit();
-	}
+    public void setVersion() {
+        mPrefs.edit().putInt("version", VERSION).commit();
+    }
 
-	public boolean isServiceEnabled() {
-	    return mPrefs.getBoolean("enable_serv", true);
-	}
+    public boolean isServiceEnabled() {
+        return mPrefs.getBoolean("enable_serv", true);
+    }
 
     /**
      * Sets the dismiss_intro boolean value.
@@ -207,5 +207,15 @@ public class PrefsValues {
             return GlobalToggleAnimMode.SLOW;
         }
         return GlobalToggleAnimMode.FAST;
+    }
+
+    public boolean getUseDataSync() {
+        return mPrefs.getBoolean("use_data_sync", false);
+    }
+
+    public boolean setUseDataSync(boolean check) {
+        synchronized (editLock()) {
+            return mPrefs.edit().putBoolean("use_data_sync", check).commit();
+        }
     }
 }

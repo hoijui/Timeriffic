@@ -31,6 +31,7 @@ import android.util.Log;
 
 import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.actions.PrefToggle;
+import com.alfray.timeriffic.prefs.PrefsValues;
 import com.alfray.timeriffic.profiles.Columns;
 import com.android.internal.telephony.ITelephony;
 
@@ -46,40 +47,47 @@ public class DataSetting implements ISetting {
     private static final boolean DEBUG = true;
     public static final String TAG = DataSetting.class.getSimpleName();
 
-    private boolean mCheckSupported = false; // TODO disabled, not worky
+    private boolean mCheckSupported = true;
     private boolean mIsSupported = false;
+    private boolean mIsEnabled = false;
 
     @Override
     public boolean isSupported(Context context) {
         if (mCheckSupported) {
             try {
-                if (!checkMinApiLevel(8)) return false;
-
-                // Requires permission android.permission.MODIFY_PHONE_STATE which is
-                // usually not granted (a signatureOrSystem permission.)
-                boolean hasPermission = context.getPackageManager().checkPermission(
-                        Manifest.permission.MODIFY_PHONE_STATE,
-                        context.getPackageName()) == PackageManager.PERMISSION_GRANTED;
-
-                if (hasPermission) {
-                    ITelephony it = getITelephony(context);
-
-                    // just check we can call one of the method. we don't need the info
-                    it.isDataConnectivityPossible();
-
-                    // check we have the methods we want to call
-                    mIsSupported =
-                        (it.getClass().getDeclaredMethod("disableDataConnectivity", (Class[]) null) != null) &&
-                        (it.getClass().getDeclaredMethod("enableDataConnectivity",  (Class[]) null) != null);
+                if (!mIsEnabled) {
+                    // check prefs to see if we should enable this.
+                    PrefsValues pv = new PrefsValues(context);
+                    mIsEnabled = pv.getUseDataSync();
                 }
-
+                if (mIsEnabled) {
+                    if (!checkMinApiLevel(8)) return false;
+    
+                    // Requires permission android.permission.MODIFY_PHONE_STATE which is
+                    // usually not granted (a signatureOrSystem permission.)
+                    boolean hasPermission = context.getPackageManager().checkPermission(
+                            Manifest.permission.MODIFY_PHONE_STATE,
+                            context.getPackageName()) == PackageManager.PERMISSION_GRANTED;
+    
+                    if (hasPermission) {
+                        ITelephony it = getITelephony(context);
+    
+                        // just check we can call one of the method. we don't need the info
+                        it.isDataConnectivityPossible();
+    
+                        // check we have the methods we want to call
+                        mIsSupported =
+                            (it.getClass().getDeclaredMethod("disableDataConnectivity", (Class[]) null) != null) &&
+                            (it.getClass().getDeclaredMethod("enableDataConnectivity",  (Class[]) null) != null);
+                    }
+                }
             } catch (Throwable e) {
                 Log.d(TAG, "Missing Data toggle API");
             } finally {
                 mCheckSupported = false;
             }
         }
-        return mIsSupported;
+        return mIsSupported && mIsEnabled;
     }
 
     @Override
@@ -89,7 +97,9 @@ public class DataSetting implements ISetting {
                         currentActions,
                         Columns.ACTION_DATA,
                         activity.getString(R.string.editaction_data));
-        p.setEnabled(isSupported(activity), activity.getString(R.string.setting_not_supported));
+        p.setEnabled(isSupported(activity), 
+                mIsEnabled ? activity.getString(R.string.setting_not_supported)
+                           : activity.getString(R.string.setting_not_enabled));
         return p;
     }
 

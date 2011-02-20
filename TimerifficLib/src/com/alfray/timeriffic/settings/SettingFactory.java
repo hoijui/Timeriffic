@@ -18,6 +18,7 @@
 
 package com.alfray.timeriffic.settings;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,8 +35,11 @@ public class SettingFactory {
     public static final String TAG = SettingFactory.class.getSimpleName();
 
     private static final SettingFactory sInstance = new SettingFactory();
-    private final Map<Character, ISetting> mSettings = new HashMap<Character, ISetting>();
     private IExtraFctory mExtraFactory;
+
+    /** A synchronized map of existing loaded settings. */
+    private final Map<Character, ISetting> mSettings =
+        Collections.synchronizedMap(new HashMap<Character, ISetting>());
 
     public interface IExtraFctory {
         public ISetting getSetting(char code);
@@ -50,6 +54,11 @@ public class SettingFactory {
 
     public void registerExtraFactory(IExtraFctory extraFactory) {
         mExtraFactory = extraFactory;
+    }
+    
+    /** Unloads the setting if it's loaded. */
+    public void forgetSetting(char code) {
+        mSettings.remove(code);
     }
 
     /**
