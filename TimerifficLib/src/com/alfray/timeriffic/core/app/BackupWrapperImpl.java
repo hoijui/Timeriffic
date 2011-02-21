@@ -16,25 +16,31 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.alfray.timeriffic.profiles;
+package com.alfray.timeriffic.core.app;
 
-import com.alfray.timeriffic.ui.ProfilesUI1;
-
-import android.app.Activity;
-import android.content.Intent;
-import android.os.Bundle;
+import android.app.backup.BackupManager;
+import android.content.Context;
 
 /**
- * Activity redirector which is only present for backward compatibility.
+ * Wrapper around the {@link BackupManager} API, only available with
+ * Froyo (Android API level 8).
+ * <p/>
+ * This class should not be used directly. Instead, use {@link BackupWrapper}
+ * which will delegate calls to this one if it can be loaded (that is if the
+ * backup API is available.)
  */
-public class ProfilesUI extends Activity {
+/* package */ class BackupWrapperImpl {
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    private BackupManager mManager;
 
-        Intent i = new Intent(this, ProfilesUI1.class);
-        startActivity(i);
-        finish();
+    public BackupWrapperImpl(Context context) {
+        mManager = new BackupManager(context);
     }
+
+    public void dataChanged() {
+        if (mManager != null) {
+            mManager.dataChanged();
+        }
+    }
+
 }

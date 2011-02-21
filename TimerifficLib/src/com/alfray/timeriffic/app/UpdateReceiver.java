@@ -18,7 +18,7 @@
 
 package com.alfray.timeriffic.app;
 
-import com.alfray.timeriffic.error.ExceptionHandler;
+import com.alfray.timeriffic.core.error.ExceptionHandler;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

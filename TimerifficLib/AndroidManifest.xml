@@ -22,7 +22,7 @@
     package="com.alfray.timeriffic"
     android:versionCode="0"
     android:versionName="0.00.00"
-	android:sharedUserId="com.alfray.timeriffic">
+  	android:sharedUserId="com.alfray.timeriffic">
 
     <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="4"/>
 
@@ -58,7 +58,7 @@
     <uses-feature android:name="android.hardware.telephony" android:required="false" />
     <uses-feature android:name="android.hardware.wifi" android:required="false" />
     <uses-feature android:name="android.hardware.touchscreen" android:required="false" />
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:label="@string/app_name"
@@ -94,17 +94,16 @@
         </receiver>
 
         <activity
-            android:name=".prefs.PrefsActivity"
+            android:name=".ui.PrefsActivity"
             android:label="@string/prefs_title" />
 
         <activity
-            android:name=".app.IntroActivity"
+            android:name=".ui.IntroActivity"
             android:label="@string/intro_title"
             android:theme="@android:style/Theme.Dialog" />
 
         <activity
-            android:name=".profiles.ProfilesUI"
-            android:label="@string/app_name" >
+            android:label="@string/app_name" android:name=".ui.ProfilesUI1">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />
@@ -112,16 +111,16 @@
         </activity>
 
         <activity
-            android:name=".profiles.EditProfileUI"
+            android:name=".ui.EditProfileUI"
             android:label="@string/editprofile_title"
             android:theme="@android:style/Theme.Dialog" />
 
         <activity
-            android:name=".actions.EditActionUI"
+            android:name=".ui.EditActionUI"
             android:label="@string/editaction_title" />
 
         <activity
-            android:name=".utils.ChangeBrightnessActivity"
+            android:name=".ui.ChangeBrightnessActivity"
             android:theme="@style/NoBackground"
             android:taskAffinity="com.alfray.timeriffic.Change"
             android:excludeFromRecents="true"/>
@@ -131,10 +130,11 @@
         <activity
             android:theme="@android:style/Theme.Dialog"
             android:label="@string/errorreport_title"
-            android:name=".error.ErrorReporterUI"
+            android:name=".ui.ErrorReporterUI"
             android:windowSoftInputMode="adjustPan" />
 
         <service android:name=".app.UpdateService" />
+        <activity android:name=".profiles.ProfilesUI"></activity>
     </application>
 
 </manifest>

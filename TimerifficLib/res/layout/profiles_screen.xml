@@ -19,7 +19,7 @@
 
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-	android:layout_width="fill_parent"
+  android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical"
     >
@@ -29,7 +29,7 @@
     android:layout_height="wrap_content"
     android:layout_weight="0"
     >
-    <com.alfray.timeriffic.profiles.GlobalStatus
+    <com.alfray.timeriffic.ui.GlobalStatus
         android:id="@+id/global_status"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         />
-    <com.alfray.timeriffic.profiles.GlobalToggle
+    <com.alfray.timeriffic.ui.GlobalToggle
         android:id="@+id/global_toggle"
         android:layout_width="38dip"
         android:layout_height="64dip"

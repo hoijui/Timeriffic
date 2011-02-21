@@ -25,7 +25,7 @@ import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import com.alfray.timeriffic.prefs.PrefsStorage;
+import com.alfray.timeriffic.core.prefs.PrefsStorage;
 
 
 public class TimerifficApp extends Application {

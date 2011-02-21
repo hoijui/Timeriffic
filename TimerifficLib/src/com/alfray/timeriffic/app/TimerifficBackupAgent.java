@@ -31,7 +31,8 @@ import android.os.ParcelFileDescriptor;
 import android.preference.PreferenceManager;
 import android.util.Log;
 
-import com.alfray.timeriffic.profiles.ProfilesDB;
+import com.alfray.timeriffic.core.app.BackupWrapper;
+import com.alfray.timeriffic.core.profiles1.ProfilesDB;
 
 /**
  * Backup agent to backup/restore both preferences and main database.

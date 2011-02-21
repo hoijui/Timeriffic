@@ -18,7 +18,10 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:sharedUserId="com.alfray.timeriffic" android:versionName="1.09.06" android:versionCode="10906" package="com.rdrrlabs.timeriffic.base">
+    android:sharedUserId="com.alfray.timeriffic"
+    android:versionName="1.09.06"
+    android:versionCode="10906"
+    package="com.rdrrlabs.timeriffic.base">
 
     <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="4"/>
 
@@ -68,7 +71,7 @@
         android:backupAgent="com.alfray.timeriffic.app.TimerifficBackupAgent"
         android:restoreAnyVersion="true"
         android:allowBackup="true"
-        android:killAfterRestore="true" android:name="com.alfray.timeriffic.app.t1.TimerifficAppBase">
+        android:killAfterRestore="true" android:name="com.alfray.timeriffic.app.TimerifficAppBase">
 
 
         <receiver android:name="com.alfray.timeriffic.app.UpdateReceiver">
@@ -95,14 +98,17 @@
         </receiver>
 
         <activity
-            android:label="@string/prefs_title" android:name="com.alfray.timeriffic.prefs.PrefsActivity"/>
+            android:label="@string/prefs_title"
+            android:name="com.alfray.timeriffic.ui.PrefsUI"/>
 
         <activity
             android:label="@string/intro_title"
-            android:theme="@android:style/Theme.Dialog" android:name="com.alfray.timeriffic.app.IntroActivity"/>
+            android:theme="@android:style/Theme.Dialog"
+            android:name="com.alfray.timeriffic.ui.IntroUI"/>
 
         <activity
-            android:label="@string/app_name" android:name="com.alfray.timeriffic.profiles.ProfilesUI">
+            android:label="@string/app_name"
+            android:name="com.alfray.timeriffic.profiles.ProfilesUI1">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />
@@ -111,22 +117,26 @@
 
         <activity
             android:label="@string/editprofile_title"
-            android:theme="@android:style/Theme.Dialog" android:name="com.alfray.timeriffic.profiles.EditProfileUI"/>
+            android:theme="@android:style/Theme.Dialog"
+            android:name="com.alfray.timeriffic.ui.EditProfileUI"/>
 
         <activity
-            android:label="@string/editaction_title" android:name="com.alfray.timeriffic.actions.EditActionUI"/>
+            android:label="@string/editaction_title"
+            android:name="com.alfray.timeriffic.ui.EditActionUI"/>
 
         <activity
             android:theme="@style/NoBackground"
             android:taskAffinity="com.alfray.timeriffic.Change"
-            android:excludeFromRecents="true" android:name="com.alfray.timeriffic.utils.ChangeBrightnessActivity"/>
+            android:excludeFromRecents="true"
+            android:name="com.alfray.timeriffic.ui.ChangeBrightnessUI"/>
 
         <service android:name="com.alfray.timeriffic.app.PhoneStateService"/>
 
         <activity
             android:theme="@android:style/Theme.Dialog"
             android:label="@string/errorreport_title"
-            android:windowSoftInputMode="adjustPan" android:name="com.alfray.timeriffic.error.ErrorReporterUI"/>
+            android:windowSoftInputMode="adjustPan"
+            android:name="com.alfray.timeriffic.ui.ErrorReporterUI"/>
 
         <service android:name="com.alfray.timeriffic.app.UpdateService"/>
     </application>
