@@ -58,7 +58,7 @@ public class DataSetting implements ISetting {
                 if (!mIsEnabled) {
                     // check prefs to see if we should enable this.
                     PrefsValues pv = new PrefsValues(context);
-                    mIsEnabled = pv.getUseDataSync();
+                    mIsEnabled = pv.getUseDataToggle();
                 }
                 if (mIsEnabled) {
                     if (!checkMinApiLevel(8)) return false;

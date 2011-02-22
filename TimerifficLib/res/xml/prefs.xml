@@ -55,11 +55,11 @@
         />
 
     <CheckBoxPreference
-        android:key="use_data_sync"
+        android:key="use_data_toggle"
         android:defaultValue="false"
-        android:title="@string/prefs_use_data_sync_label"
-        android:summaryOff="@string/prefs_use_data_sync_off"
-        android:summaryOn="@string/prefs_use_data_sync_on" 
+        android:title="@string/prefs_use_data_toggle_label"
+        android:summaryOff="@string/prefs_use_data_toggle_off"
+        android:summaryOn="@string/prefs_use_data_toggle_on" 
         />
 
 </PreferenceScreen>

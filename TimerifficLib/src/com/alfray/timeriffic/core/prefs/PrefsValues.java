@@ -209,13 +209,13 @@ public class PrefsValues {
         return GlobalToggleAnimMode.FAST;
     }
 
-    public boolean getUseDataSync() {
-        return mPrefs.getBoolean("use_data_sync", false);
+    public boolean getUseDataToggle() {
+        return mPrefs.getBoolean("use_data_toggle", false);
     }
 
-    public boolean setUseDataSync(boolean check) {
+    public boolean setUseDataToggle(boolean check) {
         synchronized (editLock()) {
-            return mPrefs.edit().putBoolean("use_data_sync", check).commit();
+            return mPrefs.edit().putBoolean("use_data_toggle", check).commit();
         }
     }
 }

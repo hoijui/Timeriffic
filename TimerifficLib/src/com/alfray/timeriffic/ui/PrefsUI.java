@@ -44,9 +44,9 @@ public class PrefsUI extends PreferenceActivity {
         setTitle(R.string.prefs_title);
         addPreferencesFromResource(R.xml.prefs);
         
-        Preference useDataSyncPref = findPreference("use_data_sync");
-        if (useDataSyncPref != null) {
-            useDataSyncPref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
+        Preference useDataTogglePref = findPreference("use_data_toggle");
+        if (useDataTogglePref != null) {
+            useDataTogglePref.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
                 @Override
                 public boolean onPreferenceChange(Preference preference, Object newValue) {
                     SettingFactory.getInstance().forgetSetting(Columns.ACTION_DATA);

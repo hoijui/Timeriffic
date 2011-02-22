@@ -98,6 +98,15 @@
     <!-- Settings - Display Notification: help string when off -->
     <string name="prefs_display_notif_off">Vis ikke notifikation når en profil ændres</string>
 
+<!-- BEGIN NEW TRANSLATION -->
+    <!-- Settings - Check use data toggle: title -->
+    <string name="prefs_use_data_toggle_label">Enable data toggle action</string>
+    <!-- Settings - Check use data toggle: help string when on -->
+    <string name="prefs_use_data_toggle_off">Data toggle action is not available.</string>
+    <!-- Settings - Check use data toggle: help string when off -->
+    <string name="prefs_use_data_toggle_on">Data toggle action is available if supported by this device.</string>
+<!-- END NEW TRANSLATION -->
+
 
     <!-- === Intro screen === -->
 
