@@ -108,33 +108,6 @@ public class SettingsHelper {
 
     // --- ringer: vibrate & volume ---
 
-    /**
-     * Notify ring-guard app types that the volume change was automated
-     * and intentional.
-     *
-     * @see http://code.google.com/p/autosettings/issues/detail?id=4
-     * @see http://www.openintents.org/en/node/380
-     * @param stream One of AudioManager.STREAM_xyz
-     * @param volume The new volume level or -1 for a ringer/mute change
-     */
-    private void broadcastVolumeUpdate(int stream, int volume, int ringMode) {
-        try {
-            Intent intent = new Intent("org.openintents.audio.action_volume_update");
-            intent.putExtra("org.openintents.audio.extra_stream_type", stream);
-
-            if (volume != -1) {
-                intent.putExtra("org.openintents.audio.extra_volume_index", volume);
-            }
-            if (ringMode != -1) {
-                intent.putExtra("org.openintents.audio.extra_ringer_mode", ringMode);
-            }
-            Log.d(TAG, "Notify RingGuard: " + intent.toString() + intent.getExtras().toString());
-            mContext.sendBroadcast(intent);
-        } catch (Exception e) {
-            Log.w(TAG, e);
-        }
-    }
-
     public void changeRingerVibrate(RingerMode ringer, VibrateRingerMode vib) {
         AudioManager manager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
 
@@ -191,26 +164,34 @@ public class SettingsHelper {
         if (ringer != null) {
             switch (ringer) {
                 case RING:
-                    broadcastVolumeUpdate(AudioManager.STREAM_RING,
-                            -1, AudioManager.RINGER_MODE_NORMAL);
-
                     // normal may or may not vibrate, cf setting above
-                    manager.setRingerMode(AudioManager.RINGER_MODE_NORMAL);
+                    VolumeChangeBroadcast.broadcast(
+                            mContext,
+                            AudioManager.STREAM_RING,
+                            -1, //volume
+                            AudioManager.RINGER_MODE_NORMAL,
+                            -1); //notifSync
                     break;
                 case MUTE:
 
                     if (vib != null && vib == VibrateRingerMode.VIBRATE) {
-                        broadcastVolumeUpdate(AudioManager.STREAM_RING,
-                                0, AudioManager.RINGER_MODE_VIBRATE);
-                        manager.setRingerMode(AudioManager.RINGER_MODE_VIBRATE);
+                        VolumeChangeBroadcast.broadcast(
+                                mContext,
+                                AudioManager.STREAM_RING,
+                                -1, //volume
+                                AudioManager.RINGER_MODE_VIBRATE,
+                                -1); //notifSync
                     } else {
-                        // this turns of the vibrate, which unfortunately doesn't respect
+                        // this turns off the vibrate, which unfortunately doesn't respect
                         // the case where vibrate should not be changed when going silent.
                         // TODO read the system pref for the default "vibrate" mode and use
                         // when vib==null.
-                        broadcastVolumeUpdate(AudioManager.STREAM_RING,
-                                0, AudioManager.RINGER_MODE_SILENT);
-                        manager.setRingerMode(AudioManager.RINGER_MODE_SILENT);
+                        VolumeChangeBroadcast.broadcast(
+                                mContext,
+                                AudioManager.STREAM_RING,
+                                -1, //volume
+                                AudioManager.RINGER_MODE_SILENT,
+                                -1); //notifSync
                     }
                     break;
             }

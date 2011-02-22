@@ -19,10 +19,8 @@
 package com.alfray.timeriffic.core.settings;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
-import android.content.Intent;
 import android.media.AudioManager;
 import android.provider.Settings;
 import android.util.Log;
@@ -32,36 +30,19 @@ import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.core.actions.PrefPercent;
 import com.alfray.timeriffic.core.actions.PrefPercentDialog.Accessor;
 import com.alfray.timeriffic.core.profiles1.Columns;
+import com.alfray.timeriffic.core.utils.VolumeChangeBroadcast;
 
 //-----------------------------------------------
 
 public class VolumeSetting implements ISetting {
 
-    private static final String EXTRA_OI_VOLUME = "org.openintents.audio.extra_volume_index";
-    private static final String EXTRA_OI_STREAM = "org.openintents.audio.extra_stream_type";
-
     private static final boolean DEBUG = true;
     public static final String TAG = VolumeSetting.class.getSimpleName();
-
-    private static final String INTENT_OI_VOL_UPDATE = "org.openintents.audio.action_volume_update";
-
-    private static BroadcastReceiver sBroadcastReceiver;
 
     private final int mStream;
 
     private boolean mCheckSupported = true;
     private boolean mIsSupported = false;
-
-    /** android.provider.Settings.NOTIFICATION_USE_RING_VOLUME, available starting with API 3
-     *  but it's hidden from the SDK. The Settings.java comment says eventually this setting
-     *  will go away later once there are "profile" support, whatever that is. */
-    private static final String NOTIF_RING_VOL_KEY = "notifications_use_ring_volume";
-    /** Notification vol and ring volumes are synched. */
-    private static final int NOTIF_RING_VOL_SYNCED = 1;
-    /** Notification vol and ring volumes are not synched. */
-    private static final int NOTIF_RING_VOL_NOT_SYNCHED = 0;
-    /** No support for notification and ring volume sync. */
-    private static final int NOTIF_RING_VOL_UNSUPPORTED = -1;
 
     private static SparseArray<StreamInfo> sStreamInfo = new SparseArray<StreamInfo>(6);
 
@@ -101,7 +82,7 @@ public class VolumeSetting implements ISetting {
                         R.id.voiceCallVolButton,
                         R.string.editaction_voice_call_volume,
                         R.string.timedaction_voice_call_vol_int));
-        }
+    }
 
     public VolumeSetting(int stream) {
         mStream = stream;
@@ -135,7 +116,7 @@ public class VolumeSetting implements ISetting {
                 new Accessor() {
                     @Override
                     public void changePercent(int percent) {
-                        change(activity, percent);
+                        change(activity, percent, -1 /*notifSync*/);
                     }
 
                     @Override
@@ -204,18 +185,20 @@ public class VolumeSetting implements ISetting {
         if (mStream == AudioManager.STREAM_NOTIFICATION) {
             char v = action.charAt(1);
             if (v == Columns.ACTION_NOTIF_RING_VOL_SYNC) {
-                changeNotifRingVolSync(context, true);
+                change(context, -1 /*volume*/, 1 /*notifSync true*/);
                 return true;
             }
         }
+
+        int newNotifSync = -1;
         try {
             int value = Integer.parseInt(action.substring(1));
 
             if (mStream == AudioManager.STREAM_NOTIFICATION) {
-                changeNotifRingVolSync(context, false);
+                newNotifSync = 0; // false
             }
 
-            change(context, value);
+            change(context, value, newNotifSync);
         } catch (Throwable e) {
             if (DEBUG) Log.e(TAG, "Perform action failed for " + action, e);
         }
@@ -239,7 +222,7 @@ public class VolumeSetting implements ISetting {
         return (vol * 100 / max);
     }
 
-    private void change(Context context, int percent) {
+    private void change(Context context, int percent, int notifSync) {
         AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 
         if (manager == null) {
@@ -254,87 +237,13 @@ public class VolumeSetting implements ISetting {
 
         int actual = manager.getStreamVolume(mStream);
         if (actual != vol) {
-            broadcastVolumeUpdate(context, vol);
+            VolumeChangeBroadcast.broadcast(
+                    context,
+                    mStream,
+                    vol, //volume
+                    -1, //ring
+                    notifSync);
         }
-    }
-
-    /**
-     * Notify ring-guard app types that the volume change was automated
-     * and intentional.
-     *<p/>
-     * See http://code.google.com/p/autosettings/issues/detail?id=4  </br>
-     * See http://www.openintents.org/en/node/380
-     *
-     * @param context App context
-     * @param volume The new volume level or -1 for a ringer/mute change
-     */
-    private void broadcastVolumeUpdate(Context context, int volume) {
-        try {
-            Intent intent = new Intent(INTENT_OI_VOL_UPDATE);
-            intent.putExtra(EXTRA_OI_STREAM, mStream);
-            intent.putExtra(EXTRA_OI_VOLUME, volume);
-
-            if (sBroadcastReceiver == null) {
-                synchronized (VolumeSetting.class) {
-                    if (sBroadcastReceiver == null) {
-                        sBroadcastReceiver = new ApplyVolumeReceiver();
-                    }
-                }
-            }
-
-            context.sendOrderedBroadcast(intent,
-                    null, //receiverPermission
-                    sBroadcastReceiver,
-                    null, //scheduler
-                    Activity.RESULT_OK, //initialCode
-                    null, //initialData
-                    intent.getExtras() //initialExtras
-                    );
-
-        } catch (Exception e) {
-            Log.w(TAG, e);
-        }
-    }
-
-    private static class ApplyVolumeReceiver extends BroadcastReceiver {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            int stream = intent.getIntExtra(EXTRA_OI_STREAM, -1);
-            int vol = intent.getIntExtra(EXTRA_OI_VOLUME, -1);
-
-            if (DEBUG) Log.d(TAG, String.format("applyVolume: stream=%d, vol=%d%%", stream, vol));
-
-            if (stream >= 0 && vol >= 0) {
-                AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                if (manager != null) {
-                    if (DEBUG) Log.d(TAG, String.format("current=%d%%", manager.getStreamVolume(stream)));
-
-                    manager.setStreamVolume(stream, vol, 0 /*flags*/);
-
-                    try {
-                        Thread.sleep(1 /*ms*/);
-                    } catch (InterruptedException e) {
-                        // ignore
-                    }
-
-                    int actual = manager.getStreamVolume(stream);
-                    if (actual == vol) {
-                        if (DEBUG) Log.d(TAG,
-                                String.format("Vol change OK, stream %d, vol %d", stream, vol));
-                    } else {
-                        if (DEBUG) Log.d(TAG,
-                                String.format("Vol change FAIL, stream %d, vol %d, actual %d", stream, vol, actual));
-                    }
-                }
-            }
-        }
-    }
-
-    private void changeNotifRingVolSync(Context context, boolean sync) {
-        ContentResolver resolver = context.getContentResolver();
-        Settings.System.putInt(resolver,
-                               NOTIF_RING_VOL_KEY,
-                               sync ? NOTIF_RING_VOL_SYNCED : NOTIF_RING_VOL_NOT_SYNCHED);
     }
 
     /**
@@ -343,11 +252,13 @@ public class VolumeSetting implements ISetting {
      */
     private int getSyncNotifRingVol(Context context) {
         final ContentResolver resolver = context.getContentResolver();
-        return Settings.System.getInt(resolver, NOTIF_RING_VOL_KEY, NOTIF_RING_VOL_UNSUPPORTED);
+        return Settings.System.getInt(resolver,
+                VolumeChangeBroadcast.NOTIF_RING_VOL_KEY,
+                VolumeChangeBroadcast.NOTIF_RING_VOL_UNSUPPORTED);
     }
 
     private boolean canSyncNotificationRingVol(Context context) {
-        return getSyncNotifRingVol(context) != NOTIF_RING_VOL_UNSUPPORTED;
+        return getSyncNotifRingVol(context) != VolumeChangeBroadcast.NOTIF_RING_VOL_UNSUPPORTED;
     }
 
     private static class StreamInfo {
