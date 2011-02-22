@@ -82,15 +82,20 @@ public class VolumeChangeBroadcast {
             }
             if (ringMode != -1) {
                 intent.putExtra(EXTRA_OI_RING_MODE, ringMode);
-                if (volume == -1) {
-                    // simulate an indempotent volume change
-                    AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                    if (manager != null) {
-                        int vol = manager.getStreamVolume(AudioManager.STREAM_RING);
-                        intent.putExtra(EXTRA_OI_STREAM, AudioManager.STREAM_RING);
-                        intent.putExtra(EXTRA_OI_VOLUME, vol);
-                    }
-                }
+
+                // For testing, simulate an indempotent volume change to
+                // see if that helps ringguard not complain about the ring mode
+                // change.
+                // [Code deactivated, it doesn't help any. Rmeove later.]
+                // if (volume == -1) {
+                //   // simulate an indempotent volume change
+                //   AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+                //   if (manager != null) {
+                //      int vol = manager.getStreamVolume(AudioManager.STREAM_RING);
+                //      intent.putExtra(EXTRA_OI_STREAM, AudioManager.STREAM_RING);
+                //      intent.putExtra(EXTRA_OI_VOLUME, vol);
+                //   }
+                // }
             }
             if (notifSync != -1) {
                 intent.putExtra(EXTRA_NOTIF_SYNC, notifSync);
@@ -98,6 +103,9 @@ public class VolumeChangeBroadcast {
 
             ApplyVolumeReceiver receiver = new ApplyVolumeReceiver();
             context.registerReceiver(receiver, new IntentFilter());
+
+            if (DEBUG) Log.d(TAG, String.format("Broadcast: %s %s",
+                    intent.toString(), intent.getExtras().toString()));
 
             context.sendOrderedBroadcast(intent,
                     null, //receiverPermission
@@ -114,6 +122,8 @@ public class VolumeChangeBroadcast {
     }
 
     private static class ApplyVolumeReceiver extends BroadcastReceiver {
+        public static final String TAG = ApplyVolumeReceiver.class.getSimpleName();
+
         @Override
         public void onReceive(Context context, Intent intent) {
 
