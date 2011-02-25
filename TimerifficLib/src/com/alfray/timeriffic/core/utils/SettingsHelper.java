@@ -19,7 +19,6 @@
 package com.alfray.timeriffic.core.utils;
 
 import android.content.Context;
-import android.content.Intent;
 import android.media.AudioManager;
 import android.util.Log;
 
@@ -165,10 +164,11 @@ public class SettingsHelper {
             switch (ringer) {
                 case RING:
                     // normal may or may not vibrate, cf setting above
+                    // (for RingGuard intent, need to keep volume unchanged)
                     VolumeChangeBroadcast.broadcast(
                             mContext,
                             AudioManager.STREAM_RING,
-                            -1, //volume
+                            manager.getStreamVolume(AudioManager.STREAM_RING), //volume
                             AudioManager.RINGER_MODE_NORMAL,
                             -1); //notifSync
                     break;
@@ -178,7 +178,7 @@ public class SettingsHelper {
                         VolumeChangeBroadcast.broadcast(
                                 mContext,
                                 AudioManager.STREAM_RING,
-                                -1, //volume
+                                0, //volume set to 0 for mute mode
                                 AudioManager.RINGER_MODE_VIBRATE,
                                 -1); //notifSync
                     } else {
@@ -189,7 +189,7 @@ public class SettingsHelper {
                         VolumeChangeBroadcast.broadcast(
                                 mContext,
                                 AudioManager.STREAM_RING,
-                                -1, //volume
+                                0, //volume set to 0 for mute mode
                                 AudioManager.RINGER_MODE_SILENT,
                                 -1); //notifSync
                     }

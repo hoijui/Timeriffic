@@ -83,19 +83,20 @@ public class VolumeChangeBroadcast {
             if (ringMode != -1) {
                 intent.putExtra(EXTRA_OI_RING_MODE, ringMode);
 
-                // For testing, simulate an indempotent volume change to
-                // see if that helps ringguard not complain about the ring mode
-                // change.
-                // [Code deactivated, it doesn't help any. Rmeove later.]
-                // if (volume == -1) {
-                //   // simulate an indempotent volume change
-                //   AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                //   if (manager != null) {
-                //      int vol = manager.getStreamVolume(AudioManager.STREAM_RING);
-                //      intent.putExtra(EXTRA_OI_STREAM, AudioManager.STREAM_RING);
-                //      intent.putExtra(EXTRA_OI_VOLUME, vol);
-                //   }
-                // }
+                // RingGuard will ignore the ringMode change if we don't
+                // also provide a stream/volume information.
+                // For mute, specify a volume of 0.
+                // For ring, reuse the same current volume.
+                if (volume == -1) {
+                    // simulate an indempotent volume change
+                    AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
+                    if (manager != null) {
+                        int vol = manager.getStreamVolume(AudioManager.STREAM_RING);
+                        intent.putExtra(EXTRA_OI_STREAM, AudioManager.STREAM_RING);
+                        intent.putExtra(EXTRA_OI_VOLUME,
+                                ringMode == AudioManager.RINGER_MODE_NORMAL ? vol : 0);
+                    }
+                }
             }
             if (notifSync != -1) {
                 intent.putExtra(EXTRA_NOTIF_SYNC, notifSync);
