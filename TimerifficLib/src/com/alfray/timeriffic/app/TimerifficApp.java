@@ -40,6 +40,8 @@ public class TimerifficApp extends Application {
         mPrefsStorage.beginReadAsync(getApplicationContext());
     }
 
+    //---------------------
+
     public boolean isFirstStart() {
         return mFirstStart;
     }

@@ -59,6 +59,9 @@ public class VolumeChangeBroadcast {
     /** No support for notification and ring volume sync. */
     public static final int NOTIF_RING_VOL_UNSUPPORTED = -1;
 
+    /** Static instance of the volume receiver. */
+    private static ApplyVolumeReceiver sVolumeReceiver;
+
     /**
      * Notify ring-guard app types that the volume change was automated
      * and intentional, and then performs the actual action.
@@ -88,7 +91,7 @@ public class VolumeChangeBroadcast {
                 // For mute, specify a volume of 0.
                 // For ring, reuse the same current volume.
                 if (volume == -1) {
-                    // simulate an indempotent volume change
+                    // simulate an idempotent volume change
                     AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
                     if (manager != null) {
                         int vol = manager.getStreamVolume(AudioManager.STREAM_RING);
@@ -102,15 +105,19 @@ public class VolumeChangeBroadcast {
                 intent.putExtra(EXTRA_NOTIF_SYNC, notifSync);
             }
 
-            ApplyVolumeReceiver receiver = new ApplyVolumeReceiver();
-            context.registerReceiver(receiver, new IntentFilter());
+            synchronized (VolumeChangeBroadcast.class) {
+                if (sVolumeReceiver == null) {
+                    sVolumeReceiver = new ApplyVolumeReceiver();
+                    context.getApplicationContext().registerReceiver(sVolumeReceiver, new IntentFilter());
+                }
+            }
 
             if (DEBUG) Log.d(TAG, String.format("Broadcast: %s %s",
                     intent.toString(), intent.getExtras().toString()));
 
             context.sendOrderedBroadcast(intent,
                     null, //receiverPermission
-                    receiver,
+                    sVolumeReceiver,
                     null, //scheduler
                     Activity.RESULT_OK, //initialCode
                     null, //initialData
@@ -122,38 +129,53 @@ public class VolumeChangeBroadcast {
         }
     }
 
+    public static void unregisterVolumeReceiver(Context context) {
+        synchronized (VolumeChangeBroadcast.class) {
+            if (sVolumeReceiver != null) {
+                try {
+                    context.getApplicationContext().unregisterReceiver(sVolumeReceiver);
+                } catch (Exception e) {
+                    Log.w(TAG, e);
+                } finally {
+                    sVolumeReceiver = null;
+                }
+            }
+        }
+    }
+
     private static class ApplyVolumeReceiver extends BroadcastReceiver {
         public static final String TAG = ApplyVolumeReceiver.class.getSimpleName();
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            try {
+                if (intent == null) {
+                    Log.d(TAG, "null intent");
+                    return;
+                }
 
-            context.unregisterReceiver(this);
+                if (getResultCode() == Activity.RESULT_CANCELED) {
+                    Log.d(TAG, "VolumeReceiver was canceled");
+                }
 
-            if (intent == null) {
-                Log.d(TAG, "null intent");
-                return;
-            }
+                int stream = intent.getIntExtra(EXTRA_OI_STREAM, -1);
+                int vol = intent.getIntExtra(EXTRA_OI_VOLUME, -1);
+                int ringMode = intent.getIntExtra(EXTRA_OI_RING_MODE, -1);
+                int notifSync = intent.getIntExtra(EXTRA_NOTIF_SYNC, -1);
 
-            if (getResultCode() == Activity.RESULT_CANCELED) {
-                Log.d(TAG, "VolumeReceiver was canceled");
-            }
+                if (stream >= 0 && vol >= 0) {
+                    changeStreamVolume(context, stream, vol);
+                }
 
-            int stream = intent.getIntExtra(EXTRA_OI_STREAM, -1);
-            int vol = intent.getIntExtra(EXTRA_OI_VOLUME, -1);
-            int ringMode = intent.getIntExtra(EXTRA_OI_RING_MODE, -1);
-            int notifSync = intent.getIntExtra(EXTRA_NOTIF_SYNC, -1);
+                if (notifSync >= 0) {
+                    changeNotifRingVolSync(context, notifSync > 0);
+                }
 
-            if (stream >= 0 && vol >= 0) {
-                changeStreamVolume(context, stream, vol);
-            }
-
-            if (notifSync >= 0) {
-                changeNotifRingVolSync(context, notifSync > 0);
-            }
-
-            if (ringMode >= 0) {
-                changeRingMode(context, ringMode);
+                if (ringMode >= 0) {
+                    changeRingMode(context, ringMode);
+                }
+            } catch (Exception e) {
+                Log.w(TAG, e);
             }
         }
 
