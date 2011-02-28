@@ -101,7 +101,7 @@
 
 <!-- BEGIN NEW TRANSLATION -->
     <!-- Settings - Check use data toggle: title -->
-    <string name="prefs_use_data_toggle_label">Enable data toggle action</string>
+    <string name="prefs_use_data_toggle_label">Force data toggle action</string>
     <!-- Settings - Check use data toggle: help string when on -->
     <string name="prefs_use_data_toggle_off">Data toggle action is not available.</string>
     <!-- Settings - Check use data toggle: help string when off -->

@@ -60,25 +60,27 @@ public class DataSetting implements ISetting {
                     PrefsValues pv = new PrefsValues(context);
                     mIsEnabled = pv.getUseDataToggle();
                 }
-                if (mIsEnabled) {
-                    if (!checkMinApiLevel(8)) return false;
-    
-                    // Requires permission android.permission.MODIFY_PHONE_STATE which is
-                    // usually not granted (a signatureOrSystem permission.)
-                    boolean hasPermission = context.getPackageManager().checkPermission(
-                            Manifest.permission.MODIFY_PHONE_STATE,
-                            context.getPackageName()) == PackageManager.PERMISSION_GRANTED;
-    
-                    if (hasPermission) {
-                        ITelephony it = getITelephony(context);
-    
-                        // just check we can call one of the method. we don't need the info
-                        it.isDataConnectivityPossible();
-    
-                        // check we have the methods we want to call
-                        mIsSupported =
-                            (it.getClass().getDeclaredMethod("disableDataConnectivity", (Class[]) null) != null) &&
-                            (it.getClass().getDeclaredMethod("enableDataConnectivity",  (Class[]) null) != null);
+                if (!mIsEnabled) {
+                    mIsSupported = checkMinApiLevel(7);
+                    
+                    if (mIsSupported) {
+                        // Requires permission android.permission.MODIFY_PHONE_STATE which is
+                        // usually not granted (a signatureOrSystem permission.)
+                        boolean hasPermission = context.getPackageManager().checkPermission(
+                                Manifest.permission.MODIFY_PHONE_STATE,
+                                context.getPackageName()) == PackageManager.PERMISSION_GRANTED;
+        
+                        if (hasPermission) {
+                            ITelephony it = getITelephony(context);
+        
+                            // just check we can call one of the method. we don't need the info
+                            it.isDataConnectivityPossible();
+        
+                            // check we have the methods we want to call
+                            mIsSupported =
+                                (it.getClass().getDeclaredMethod("disableDataConnectivity", (Class[]) null) != null) &&
+                                (it.getClass().getDeclaredMethod("enableDataConnectivity",  (Class[]) null) != null);
+                        }
                     }
                 }
             } catch (Throwable e) {
@@ -87,7 +89,7 @@ public class DataSetting implements ISetting {
                 mCheckSupported = false;
             }
         }
-        return mIsSupported && mIsEnabled;
+        return mIsSupported || mIsEnabled;
     }
 
     @Override
