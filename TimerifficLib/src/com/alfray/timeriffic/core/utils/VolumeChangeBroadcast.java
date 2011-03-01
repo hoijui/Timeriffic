@@ -18,12 +18,15 @@
 
 package com.alfray.timeriffic.core.utils;
 
+import java.util.List;
+
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ResolveInfo;
 import android.media.AudioManager;
 import android.provider.Settings;
 import android.util.Log;
@@ -101,8 +104,19 @@ public class VolumeChangeBroadcast {
                     }
                 }
             }
+
             if (notifSync != -1) {
                 intent.putExtra(EXTRA_NOTIF_SYNC, notifSync);
+            }
+
+            if (DEBUG) Log.d(TAG, String.format("Broadcast: %s %s",
+                    intent.toString(), intent.getExtras().toString()));
+
+            List<ResolveInfo> receivers = context.getPackageManager().queryBroadcastReceivers(intent, 0 /*flags*/);
+            if (receivers == null || receivers.isEmpty()) {
+                Log.d(TAG, "No vol_update receivers found. Doing direct call.");
+                ApplyVolumeReceiver.applyVolumeIntent(context, intent);
+                return;
             }
 
             synchronized (VolumeChangeBroadcast.class) {
@@ -111,9 +125,6 @@ public class VolumeChangeBroadcast {
                     context.getApplicationContext().registerReceiver(sVolumeReceiver, new IntentFilter());
                 }
             }
-
-            if (DEBUG) Log.d(TAG, String.format("Broadcast: %s %s",
-                    intent.toString(), intent.getExtras().toString()));
 
             context.sendOrderedBroadcast(intent,
                     null, //receiverPermission
@@ -143,24 +154,28 @@ public class VolumeChangeBroadcast {
         }
     }
 
-    private static class ApplyVolumeReceiver extends BroadcastReceiver {
+    public static class ApplyVolumeReceiver extends BroadcastReceiver {
         public static final String TAG = ApplyVolumeReceiver.class.getSimpleName();
 
         @Override
         public void onReceive(Context context, Intent intent) {
+            if (getResultCode() == Activity.RESULT_CANCELED) {
+                Log.d(TAG, "VolumeReceiver was canceled (and ignored)");
+            }
+
+            applyVolumeIntent(context, intent);
+        }
+
+        public static void applyVolumeIntent(Context context, Intent intent) {
             try {
                 if (intent == null) {
                     Log.d(TAG, "null intent");
                     return;
                 }
 
-                if (getResultCode() == Activity.RESULT_CANCELED) {
-                    Log.d(TAG, "VolumeReceiver was canceled");
-                }
-
-                int stream = intent.getIntExtra(EXTRA_OI_STREAM, -1);
-                int vol = intent.getIntExtra(EXTRA_OI_VOLUME, -1);
-                int ringMode = intent.getIntExtra(EXTRA_OI_RING_MODE, -1);
+                int stream    = intent.getIntExtra(EXTRA_OI_STREAM, -1);
+                int vol       = intent.getIntExtra(EXTRA_OI_VOLUME, -1);
+                int ringMode  = intent.getIntExtra(EXTRA_OI_RING_MODE, -1);
                 int notifSync = intent.getIntExtra(EXTRA_NOTIF_SYNC, -1);
 
                 if (stream >= 0 && vol >= 0) {
@@ -179,7 +194,7 @@ public class VolumeChangeBroadcast {
             }
         }
 
-        private void changeStreamVolume(Context context, int stream, int vol) {
+        private static void changeStreamVolume(Context context, int stream, int vol) {
             //-- if (DEBUG) Log.d(TAG, String.format("applyVolume: stream=%d, vol=%d%%", stream, vol));
 
             AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
@@ -207,14 +222,14 @@ public class VolumeChangeBroadcast {
             }
         }
 
-        private void changeNotifRingVolSync(Context context, boolean sync) {
+        private static void changeNotifRingVolSync(Context context, boolean sync) {
             ContentResolver resolver = context.getContentResolver();
             Settings.System.putInt(resolver,
                                    NOTIF_RING_VOL_KEY,
                                    sync ? NOTIF_RING_VOL_SYNCED : NOTIF_RING_VOL_NOT_SYNCHED);
         }
 
-        private void changeRingMode(Context context, int ringMode) {
+        private static void changeRingMode(Context context, int ringMode) {
             AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
 
             if (manager != null) {

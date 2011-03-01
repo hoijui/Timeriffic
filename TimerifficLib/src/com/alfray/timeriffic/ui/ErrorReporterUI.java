@@ -78,6 +78,7 @@ import com.alfray.timeriffic.core.settings.VolumeSetting;
 import com.alfray.timeriffic.core.settings.WifiSetting;
 import com.alfray.timeriffic.core.utils.AgentWrapper;
 import com.alfray.timeriffic.core.utils.SettingsHelper;
+import com.alfray.timeriffic.core.utils.VolumeChangeBroadcast;
 
 /* $ A="foo" ; python -c "print [ ord(a) for a in '$A' ]" | tr [] {} */
 
@@ -750,6 +751,9 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
                     AgentWrapper.TAG + ":D",
                     ChangeBrightnessUI.TAG + ":D",
                     SettingsHelper.TAG + ":D",
+                    VolumeChangeBroadcast.TAG + ":D",
+                    VolumeChangeBroadcast.ApplyVolumeReceiver.TAG + ":D",
+
 
                     "FlurryAgent:W",
 
