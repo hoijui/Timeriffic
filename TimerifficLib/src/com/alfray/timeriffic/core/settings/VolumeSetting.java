@@ -185,17 +185,19 @@ public class VolumeSetting implements ISetting {
         if (mStream == AudioManager.STREAM_NOTIFICATION) {
             char v = action.charAt(1);
             if (v == Columns.ACTION_NOTIF_RING_VOL_SYNC) {
-                change(context, -1 /*volume*/, 1 /*notifSync true*/);
+                change(context,
+                        -1 /*volume*/,
+                        VolumeChangeBroadcast.NOTIF_RING_VOL_SYNCED /*notifSync true*/);
                 return true;
             }
         }
 
-        int newNotifSync = -1;
+        int newNotifSync = VolumeChangeBroadcast.NOTIF_RING_VOL_UNSUPPORTED;
         try {
             int value = Integer.parseInt(action.substring(1));
 
             if (mStream == AudioManager.STREAM_NOTIFICATION) {
-                newNotifSync = 0; // false
+                newNotifSync = VolumeChangeBroadcast.NOTIF_RING_VOL_NOT_SYNCHED; // false
             }
 
             change(context, value, newNotifSync);
@@ -230,13 +232,13 @@ public class VolumeSetting implements ISetting {
             return;
         }
 
-        if (DEBUG) Log.d(TAG, String.format("changeVolume: stream=%d, vol=%d%%", mStream, percent));
+        if (DEBUG) Log.d(TAG, String.format("changeVolume: stream=%d, vol=%d%%, sync=%d", mStream, percent, notifSync));
 
         int max = manager.getStreamMaxVolume(mStream);
         int vol = (max * percent) / 100;
 
         int actual = manager.getStreamVolume(mStream);
-        if (actual != vol) {
+        if (actual != vol || notifSync != VolumeChangeBroadcast.NOTIF_RING_VOL_UNSUPPORTED) {
             VolumeChangeBroadcast.broadcast(
                     context,
                     mStream,
