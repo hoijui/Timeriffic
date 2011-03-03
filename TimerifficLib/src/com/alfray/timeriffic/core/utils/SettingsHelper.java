@@ -169,18 +169,16 @@ public class SettingsHelper {
                             mContext,
                             AudioManager.STREAM_RING,
                             manager.getStreamVolume(AudioManager.STREAM_RING), //volume
-                            AudioManager.RINGER_MODE_NORMAL,
-                            -1); //notifSync
+                            AudioManager.RINGER_MODE_NORMAL);
                     break;
-                case MUTE:
 
+                case MUTE:
                     if (vib != null && vib == VibrateRingerMode.VIBRATE) {
                         VolumeChangeBroadcast.broadcast(
                                 mContext,
                                 AudioManager.STREAM_RING,
                                 0, //volume set to 0 for mute mode
-                                AudioManager.RINGER_MODE_VIBRATE,
-                                -1); //notifSync
+                                AudioManager.RINGER_MODE_VIBRATE);
                     } else {
                         // this turns off the vibrate, which unfortunately doesn't respect
                         // the case where vibrate should not be changed when going silent.
@@ -190,8 +188,7 @@ public class SettingsHelper {
                                 mContext,
                                 AudioManager.STREAM_RING,
                                 0, //volume set to 0 for mute mode
-                                AudioManager.RINGER_MODE_SILENT,
-                                -1); //notifSync
+                                AudioManager.RINGER_MODE_SILENT);
                     }
                     break;
             }

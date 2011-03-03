@@ -49,18 +49,6 @@ public class VolumeChangeBroadcast {
     private static final String EXTRA_OI_VOLUME = "org.openintents.audio.extra_volume_index";
     private static final String EXTRA_OI_STREAM = "org.openintents.audio.extra_stream_type";
     private static final String EXTRA_OI_RING_MODE = "org.openintents.audio.extra_ringer_mode";
-    private static final String EXTRA_NOTIF_SYNC = "com.rdrrlabs.audio.ring_notif_sync";
-
-    /** android.provider.Settings.NOTIFICATION_USE_RING_VOLUME, available starting with API 3
-     *  but it's hidden from the SDK. The Settings.java comment says eventually this setting
-     *  will go away later once there are "profile" support, whatever that is. */
-    public static final String NOTIF_RING_VOL_KEY = "notifications_use_ring_volume";
-    /** Notification vol and ring volumes are synched. */
-    public static final int NOTIF_RING_VOL_SYNCED = 1;
-    /** Notification vol and ring volumes are not synched. */
-    public static final int NOTIF_RING_VOL_NOT_SYNCHED = 0;
-    /** No support for notification and ring volume sync. */
-    public static final int NOTIF_RING_VOL_UNSUPPORTED = -1;
 
     /** Static instance of the volume receiver. */
     private static ApplyVolumeReceiver sVolumeReceiver;
@@ -78,8 +66,7 @@ public class VolumeChangeBroadcast {
     public static void broadcast(Context context,
             int stream,
             int volume,
-            int ringMode,
-            int notifSync) {
+            int ringMode) {
         try {
             Intent intent = new Intent(INTENT_OI_VOL_UPDATE);
             if (volume != -1) {
@@ -87,26 +74,13 @@ public class VolumeChangeBroadcast {
                 intent.putExtra(EXTRA_OI_VOLUME, volume);
             }
             if (ringMode != -1) {
+                // Note: RingGuard will ignore the ringMode change if we don't
+                // also provide a stream/volume information. It's up to the caller
+                // to pass in the stream/volume too.
                 intent.putExtra(EXTRA_OI_RING_MODE, ringMode);
-
-                // RingGuard will ignore the ringMode change if we don't
-                // also provide a stream/volume information.
-                // For mute, specify a volume of 0.
-                // For ring, reuse the same current volume.
                 if (volume == -1) {
-                    // simulate an idempotent volume change
-                    AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
-                    if (manager != null) {
-                        int vol = manager.getStreamVolume(AudioManager.STREAM_RING);
-                        intent.putExtra(EXTRA_OI_STREAM, AudioManager.STREAM_RING);
-                        intent.putExtra(EXTRA_OI_VOLUME,
-                                ringMode == AudioManager.RINGER_MODE_NORMAL ? vol : 0);
-                    }
+                    Log.w(TAG, "Warning: ringmode will be ignored if there's no stream/volume");
                 }
-            }
-
-            if (notifSync != -1) {
-                intent.putExtra(EXTRA_NOTIF_SYNC, notifSync);
             }
 
             if (DEBUG) Log.d(TAG, String.format("Broadcast: %s %s",
@@ -176,14 +150,9 @@ public class VolumeChangeBroadcast {
                 int stream    = intent.getIntExtra(EXTRA_OI_STREAM, -1);
                 int vol       = intent.getIntExtra(EXTRA_OI_VOLUME, -1);
                 int ringMode  = intent.getIntExtra(EXTRA_OI_RING_MODE, -1);
-                int notifSync = intent.getIntExtra(EXTRA_NOTIF_SYNC, -1);
 
                 if (stream >= 0 && vol >= 0) {
                     changeStreamVolume(context, stream, vol);
-                }
-
-                if (notifSync >= 0) {
-                    changeNotifRingVolSync(context, notifSync > 0);
                 }
 
                 if (ringMode >= 0) {
@@ -220,13 +189,6 @@ public class VolumeChangeBroadcast {
             } else {
                 Log.d(TAG, "No audio manager found");
             }
-        }
-
-        private static void changeNotifRingVolSync(Context context, boolean sync) {
-            ContentResolver resolver = context.getContentResolver();
-            Settings.System.putInt(resolver,
-                                   NOTIF_RING_VOL_KEY,
-                                   sync ? NOTIF_RING_VOL_SYNCED : NOTIF_RING_VOL_NOT_SYNCHED);
         }
 
         private static void changeRingMode(Context context, int ringMode) {
