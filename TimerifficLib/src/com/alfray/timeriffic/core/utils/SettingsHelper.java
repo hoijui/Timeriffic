@@ -165,29 +165,23 @@ public class SettingsHelper {
                 case RING:
                     // normal may or may not vibrate, cf setting above
                     // (for RingGuard intent, need to keep volume unchanged)
-                    VolumeChangeBroadcast.broadcast(
+                    VolumeChange.changeRinger(
                             mContext,
-                            AudioManager.STREAM_RING,
-                            manager.getStreamVolume(AudioManager.STREAM_RING), //volume
                             AudioManager.RINGER_MODE_NORMAL);
                     break;
 
                 case MUTE:
                     if (vib != null && vib == VibrateRingerMode.VIBRATE) {
-                        VolumeChangeBroadcast.broadcast(
+                        VolumeChange.changeRinger(
                                 mContext,
-                                AudioManager.STREAM_RING,
-                                0, //volume set to 0 for mute mode
                                 AudioManager.RINGER_MODE_VIBRATE);
                     } else {
                         // this turns off the vibrate, which unfortunately doesn't respect
                         // the case where vibrate should not be changed when going silent.
                         // TODO read the system pref for the default "vibrate" mode and use
                         // when vib==null.
-                        VolumeChangeBroadcast.broadcast(
+                        VolumeChange.changeRinger(
                                 mContext,
-                                AudioManager.STREAM_RING,
-                                0, //volume set to 0 for mute mode
                                 AudioManager.RINGER_MODE_SILENT);
                     }
                     break;
