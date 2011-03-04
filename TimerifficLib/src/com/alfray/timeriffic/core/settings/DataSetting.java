@@ -62,29 +62,29 @@ public class DataSetting implements ISetting {
                 }
                 if (!mIsEnabled) {
                     mIsSupported = checkMinApiLevel(7);
-                    
+
                     if (mIsSupported) {
                         // Requires permission android.permission.MODIFY_PHONE_STATE which is
                         // usually not granted (a signatureOrSystem permission.)
-                        boolean hasPermission = context.getPackageManager().checkPermission(
+                        mIsSupported = context.getPackageManager().checkPermission(
                                 Manifest.permission.MODIFY_PHONE_STATE,
                                 context.getPackageName()) == PackageManager.PERMISSION_GRANTED;
-        
-                        if (hasPermission) {
-                            ITelephony it = getITelephony(context);
-        
-                            // just check we can call one of the method. we don't need the info
-                            it.isDataConnectivityPossible();
-        
-                            // check we have the methods we want to call
-                            mIsSupported =
-                                (it.getClass().getDeclaredMethod("disableDataConnectivity", (Class[]) null) != null) &&
-                                (it.getClass().getDeclaredMethod("enableDataConnectivity",  (Class[]) null) != null);
-                        }
+                    }
+                    if (mIsSupported) {
+                        ITelephony it = getITelephony(context);
+
+                        // just check we can call one of the method. we don't need the info
+                        it.isDataConnectivityPossible();
+
+                        // check we have the methods we want to call
+                        mIsSupported =
+                            (it.getClass().getDeclaredMethod("disableDataConnectivity", (Class[]) null) != null) &&
+                            (it.getClass().getDeclaredMethod("enableDataConnectivity",  (Class[]) null) != null);
                     }
                 }
             } catch (Throwable e) {
                 Log.d(TAG, "Missing Data toggle API");
+                mIsSupported = false;
             } finally {
                 mCheckSupported = false;
             }
@@ -99,7 +99,7 @@ public class DataSetting implements ISetting {
                         currentActions,
                         Columns.ACTION_DATA,
                         activity.getString(R.string.editaction_data));
-        p.setEnabled(isSupported(activity), 
+        p.setEnabled(isSupported(activity),
                 mIsEnabled ? activity.getString(R.string.setting_not_supported)
                            : activity.getString(R.string.setting_not_enabled));
         return p;
