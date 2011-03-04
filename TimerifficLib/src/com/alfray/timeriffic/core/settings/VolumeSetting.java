@@ -30,7 +30,7 @@ import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.core.actions.PrefPercent;
 import com.alfray.timeriffic.core.actions.PrefPercentDialog.Accessor;
 import com.alfray.timeriffic.core.profiles1.Columns;
-import com.alfray.timeriffic.core.utils.VolumeChangeBroadcast;
+import com.alfray.timeriffic.core.utils.VolumeChange;
 
 //-----------------------------------------------
 
@@ -247,11 +247,10 @@ public class VolumeSetting implements ISetting {
         int max = manager.getStreamMaxVolume(mStream);
         int vol = (max * percent) / 100;
 
-        VolumeChangeBroadcast.broadcast(
+        VolumeChange.changeVolume(
                 context,
                 mStream,
-                vol, //volume
-                -1); //ring
+                vol);
     }
 
     /**

@@ -32,7 +32,7 @@ import com.alfray.timeriffic.core.prefs.PrefsStorage;
 public class AppId {
 
     private static final int ID_LEN = 8;
-    private static final String TAG = AppId.class.getSimpleName();
+    public static final String TAG = AppId.class.getSimpleName();
 
     /**
      * Returns an id specific to this device or instance of the app.

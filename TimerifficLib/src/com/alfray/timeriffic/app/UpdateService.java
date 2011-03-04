@@ -33,7 +33,7 @@ import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.core.app.ApplySettings;
 import com.alfray.timeriffic.core.error.ExceptionHandler;
 import com.alfray.timeriffic.core.prefs.PrefsValues;
-import com.alfray.timeriffic.core.utils.VolumeChangeBroadcast;
+import com.alfray.timeriffic.core.utils.VolumeChange;
 
 public class UpdateService extends Service {
 
@@ -171,7 +171,7 @@ public class UpdateService extends Service {
 
     @Override
     public void onDestroy() {
-        VolumeChangeBroadcast.unregisterVolumeReceiver(this);
+        VolumeChange.unregisterVolumeReceiver(this);
         releaseWakeLock();
         super.onDestroy();
     }

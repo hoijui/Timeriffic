@@ -60,7 +60,7 @@ public class TimerifficBackupAgent extends BackupAgentHelper {
      *   the Froyo/2.2 Samples.
      */
 
-    private static final String TAG = TimerifficBackupAgent.class.getSimpleName();
+    public static final String TAG = TimerifficBackupAgent.class.getSimpleName();
 
     private static final String KEY_DEFAULT_SHARED_PREFS = "default_shared_prefs";
     private static final String KEY_PROFILES_DB = "profiles_db";

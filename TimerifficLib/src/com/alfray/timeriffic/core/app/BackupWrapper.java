@@ -35,7 +35,7 @@ import android.util.Log;
  */
 public class BackupWrapper {
 
-    private static final String TAG = BackupWrapper.class.getSimpleName();
+    public static final String TAG = BackupWrapper.class.getSimpleName();
     private static final boolean DEBUG = true;
     private static Object[] sLock = new Object[0];
 

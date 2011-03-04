@@ -33,8 +33,8 @@ import com.alfray.timeriffic.core.profiles1.Columns;
 
 public class SyncSetting implements ISetting {
 
+    public static final String TAG = SyncSetting.class.getSimpleName();
     private static final boolean DEBUG = true;
-    private static final String TAG = "SyncSetting";
 
     private boolean mCheckSupported = true;
     private boolean mIsSupported = false;

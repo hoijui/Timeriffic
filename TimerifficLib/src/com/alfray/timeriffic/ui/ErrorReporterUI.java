@@ -55,9 +55,12 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.app.TimerifficApp;
+import com.alfray.timeriffic.app.TimerifficBackupAgent;
 import com.alfray.timeriffic.app.UpdateReceiver;
 import com.alfray.timeriffic.app.UpdateService;
+import com.alfray.timeriffic.core.app.AppId;
 import com.alfray.timeriffic.core.app.ApplySettings;
+import com.alfray.timeriffic.core.app.BackupWrapper;
 import com.alfray.timeriffic.core.error.ExceptionHandler;
 import com.alfray.timeriffic.core.prefs.PrefsStorage;
 import com.alfray.timeriffic.core.prefs.PrefsValues;
@@ -73,12 +76,14 @@ import com.alfray.timeriffic.core.settings.BrightnessSetting;
 import com.alfray.timeriffic.core.settings.DataSetting;
 import com.alfray.timeriffic.core.settings.RingerSetting;
 import com.alfray.timeriffic.core.settings.SettingFactory;
+import com.alfray.timeriffic.core.settings.SyncSetting;
 import com.alfray.timeriffic.core.settings.VibrateSetting;
 import com.alfray.timeriffic.core.settings.VolumeSetting;
 import com.alfray.timeriffic.core.settings.WifiSetting;
 import com.alfray.timeriffic.core.utils.AgentWrapper;
+import com.alfray.timeriffic.core.utils.ApplyVolumeReceiver;
 import com.alfray.timeriffic.core.utils.SettingsHelper;
-import com.alfray.timeriffic.core.utils.VolumeChangeBroadcast;
+import com.alfray.timeriffic.core.utils.VolumeChange;
 
 /* $ A="foo" ; python -c "print [ ord(a) for a in '$A' ]" | tr [] {} */
 
@@ -712,24 +717,25 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
                     "-d",       // dump log and exits
 
                     // actions package
-                    EditActionUI.TAG + ":D",
 
                     // app package
                     ApplySettings.TAG + ":D",
-                    IntroUI.TAG + ":D",
                     UpdateReceiver.TAG + ":D",
                     UpdateService.TAG + ":D",
+                    TimerifficBackupAgent.TAG + ":D",
+
+                    AppId.TAG + ":D",
+                    BackupWrapper.TAG + ":D",
 
                     // error package
-                    ErrorReporterUI.TAG + ":D",
                     ExceptionHandler.TAG + ":D",
+
+                    // prefs package
 
                     // profiles package
                     BaseHolder.TAG + ":D",
-                    EditProfileUI.TAG + ":D",
                     ProfileHeaderHolder.TAG + ":D",
                     ProfilesDB.TAG + ":D",
-                    ProfilesUI1.TAG + ":D",
                     TimedActionHolder.TAG + ":D",
 
                     // serial package
@@ -743,17 +749,24 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
                     DataSetting.TAG + ":D",
                     RingerSetting.TAG + ":D",
                     SettingFactory.TAG + ":D",
+                    SyncSetting.TAG + ":D",
                     VibrateSetting.TAG + ":D",
                     VolumeSetting.TAG + ":D",
                     WifiSetting.TAG + ":D",
 
                     // utils package
                     AgentWrapper.TAG + ":D",
-                    ChangeBrightnessUI.TAG + ":D",
                     SettingsHelper.TAG + ":D",
-                    VolumeChangeBroadcast.TAG + ":D",
-                    VolumeChangeBroadcast.ApplyVolumeReceiver.TAG + ":D",
+                    VolumeChange.TAG + ":D",
+                    ApplyVolumeReceiver.TAG + ":D",
 
+                    // ui package
+                    ChangeBrightnessUI.TAG + ":D",
+                    EditActionUI.TAG + ":D",
+                    EditProfileUI.TAG + ":D",
+                    ErrorReporterUI.TAG + ":D",
+                    IntroUI.TAG + ":D",
+                    ProfilesUI1.TAG + ":D",
 
                     "FlurryAgent:W",
 
