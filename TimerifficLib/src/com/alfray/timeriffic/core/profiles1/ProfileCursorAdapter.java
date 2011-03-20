@@ -26,8 +26,7 @@ import android.view.ViewGroup;
 import android.widget.CursorAdapter;
 
 import com.alfray.timeriffic.R;
-import com.alfray.timeriffic.ui.ProfilesUI1;
-import com.alfray.timeriffic.ui.ProfilesUI1.ColIndexes;
+import com.alfray.timeriffic.core.profiles1.ProfilesUiImpl.ColIndexes;
 
 
 /**
@@ -38,11 +37,8 @@ import com.alfray.timeriffic.ui.ProfilesUI1.ColIndexes;
  * or {@link TimedActionHolder}, a subclass of {@link BaseHolder}.
  * <p/>
  * When a view is reused, it's tag is reused with a new cursor by using
- * {@link BaseHolder#setUiData(Cursor)}. This also updates the view
- * with the data from the cursor.
- * <p/>
- * When a view is recycled/reclaimed, it's tag is cleared by the
- * {@link ProfileRecyclerListener}.
+ * {@link BaseHolder#setUiData}. This also updates the view
+ * with the data from the cursor..
  */
 public class ProfileCursorAdapter extends CursorAdapter {
 
@@ -53,16 +49,16 @@ public class ProfileCursorAdapter extends CursorAdapter {
 
     private final LayoutInflater mLayoutInflater;
     private final ColIndexes mColIndexes;
-    private final ProfilesUI1 mActivity;
+    private final ProfilesUiImpl mActivity;
 
     /**
      * Creates a new {@link ProfileCursorAdapter} for that cursor
      * and context.
      */
-    public ProfileCursorAdapter(ProfilesUI1 activity,
+    public ProfileCursorAdapter(ProfilesUiImpl activity,
             ColIndexes colIndexes,
             LayoutInflater layoutInflater) {
-        super(activity, activity.getCursor());
+        super(activity.getActivity(), activity.getCursor());
         mActivity = activity;
         mColIndexes = colIndexes;
         mLayoutInflater = layoutInflater;
@@ -117,7 +113,7 @@ public class ProfileCursorAdapter extends CursorAdapter {
      * <p/>
      * It then associates the tag with a new {@link ProfileHeaderHolder}
      * or {@link TimedActionHolder} and initializes the holder using
-     * {@link BaseHolder#setUiData(Cursor)}.
+     * {@link BaseHolder#setUiData}.
      *
      */
     @Override
@@ -143,7 +139,7 @@ public class ProfileCursorAdapter extends CursorAdapter {
 
     /**
      * To recycle a view, we just re-associate its tag using
-     * {@link BaseHolder#setUiData(Cursor)}.
+     * {@link BaseHolder#setUiData}.
      */
     @Override
     public void bindView(View view, Context context, Cursor cursor) {

@@ -32,10 +32,9 @@ import android.widget.TextView;
 
 import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.core.actions.TimedActionUtils;
+import com.alfray.timeriffic.core.profiles1.ProfilesUiImpl.ColIndexes;
 import com.alfray.timeriffic.ui.EditActionUI;
 import com.alfray.timeriffic.ui.EditProfileUI;
-import com.alfray.timeriffic.ui.ProfilesUI1;
-import com.alfray.timeriffic.ui.ProfilesUI1.ColIndexes;
 
 /**
  * A base holder class that keeps tracks of the current cursor
@@ -51,9 +50,9 @@ public abstract class BaseHolder {
      */
     private final TextView mDescription;
 
-    protected final ProfilesUI1 mActivity;
+    protected final ProfilesUiImpl mActivity;
 
-    public BaseHolder(ProfilesUI1 activity, View view) {
+    public BaseHolder(ProfilesUiImpl activity, View view) {
         mActivity = activity;
         mDescription = view != null ? (TextView) view.findViewById(R.id.description) : null;
     }
@@ -73,10 +72,10 @@ public abstract class BaseHolder {
     // --- profile actions ---
 
     private void startEditActivity(Class<?> activity, String extra_id, long extra_value) {
-        Intent intent = new Intent(mActivity, activity);
+        Intent intent = new Intent(mActivity.getActivity(), activity);
         intent.putExtra(extra_id, extra_value);
 
-        mActivity.startActivityForResult(intent, ProfilesUI1.DATA_CHANGED);
+        mActivity.getActivity().startActivityForResult(intent, ProfilesUiImpl.DATA_CHANGED);
     }
 
     protected void deleteProfile(Cursor cursor) {
@@ -84,7 +83,7 @@ public abstract class BaseHolder {
         final long row_id = cursor.getLong(colIndexes.mIdColIndex);
         String title = cursor.getString(colIndexes.mDescColIndex);
 
-        mActivity.showTempDialog(row_id, title, ProfilesUI1.DIALOG_DELETE_PROFILE);
+        mActivity.showTempDialog(row_id, title, ProfilesUiImpl.DIALOG_DELETE_PROFILE);
     }
 
     protected void insertNewProfile(Cursor beforeCursor) {
@@ -96,7 +95,7 @@ public abstract class BaseHolder {
 
         ProfilesDB profDb = mActivity.getProfilesDb();
         prof_index = profDb.insertProfile(prof_index,
-                        mActivity.getString(R.string.insertprofile_new_profile_title),
+                        mActivity.getActivity().getString(R.string.insertprofile_new_profile_title),
                         true /*isEnabled*/);
 
         startEditActivity(EditProfileUI.class,
@@ -118,7 +117,7 @@ public abstract class BaseHolder {
         final long row_id = cursor.getLong(colIndexes.mIdColIndex);
         String description = cursor.getString(colIndexes.mDescColIndex);
 
-        mActivity.showTempDialog(row_id, description, ProfilesUI1.DIALOG_DELETE_ACTION);
+        mActivity.showTempDialog(row_id, description, ProfilesUiImpl.DIALOG_DELETE_ACTION);
     }
 
     protected void insertNewAction(Cursor beforeCursor) {

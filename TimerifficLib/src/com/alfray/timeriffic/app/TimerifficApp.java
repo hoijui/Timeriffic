@@ -22,7 +22,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.alfray.timeriffic.core.app.AppId;
-import com.alfray.timeriffic.core.app.Extensions;
+import com.alfray.timeriffic.core.app.Core;
 import com.alfray.timeriffic.core.prefs.PrefsStorage;
 
 
@@ -34,7 +34,7 @@ public class TimerifficApp extends Application {
     private boolean mFirstStart = true;
     private Runnable mDataListener;
 
-    private final Extensions mExtensions = new Extensions();
+    private final Core mCore = new Core();
     private final PrefsStorage mPrefsStorage = new PrefsStorage("prefs");
 
     @Override
@@ -88,7 +88,7 @@ public class TimerifficApp extends Application {
         return AppId.getIssueId(this, mPrefsStorage);
     }
 
-    public Extensions getExtensions() {
-        return mExtensions;
+    public Core getCore() {
+        return mCore;
     }
 }

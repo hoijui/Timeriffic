@@ -19,6 +19,11 @@
 package com.alfray.timeriffic.core.app;
 
 
-public class Extensions {
+public class Core {
+
+    public UpdateServiceImpl mUpdateServiceImpl = new UpdateServiceImpl();
+
+    public Core() {
+    }
 
 }

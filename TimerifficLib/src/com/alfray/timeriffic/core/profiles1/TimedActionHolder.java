@@ -26,8 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.alfray.timeriffic.R;
-import com.alfray.timeriffic.ui.ProfilesUI1;
-import com.alfray.timeriffic.ui.ProfilesUI1.ColIndexes;
+import com.alfray.timeriffic.core.profiles1.ProfilesUiImpl.ColIndexes;
 
 /**
  * The holder for a timed action row.
@@ -37,7 +36,7 @@ public class TimedActionHolder extends BaseHolder {
     private static boolean DEBUG = false;
     public static final String TAG = TimedActionHolder.class.getSimpleName();
 
-    public TimedActionHolder(ProfilesUI1 activity, View view) {
+    public TimedActionHolder(ProfilesUiImpl activity, View view) {
         super(activity, view);
     }
 

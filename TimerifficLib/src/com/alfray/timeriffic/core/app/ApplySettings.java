@@ -35,7 +35,6 @@ import android.widget.Toast;
 import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.app.TimerifficApp;
 import com.alfray.timeriffic.app.UpdateReceiver;
-import com.alfray.timeriffic.app.UpdateService;
 import com.alfray.timeriffic.core.actions.TimedActionUtils;
 import com.alfray.timeriffic.core.error.ExceptionHandler;
 import com.alfray.timeriffic.core.prefs.PrefsValues;
@@ -428,7 +427,8 @@ public class ApplySettings {
         String actions = sb.toString();
         String details = TimedActionUtils.computeLabels(mContext, actions);
 
-        UpdateService.createRetryNotification(mContext, mPrefs, actions, details);
+        Core core = TimerifficApp.getInstance(mContext).getCore();
+        core.mUpdateServiceImpl.createRetryNotification(mContext, mPrefs, actions, details);
     }
 
 }

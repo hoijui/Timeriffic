@@ -392,7 +392,6 @@ public class ProfilesDB {
      *
      * Returns the new highest action index (not id) used.
      * Returns 0 if there were no actions.
-     * @return
      */
     private long repackTimeActions(long profileIndex) {
 
@@ -539,7 +538,6 @@ public class ProfilesDB {
     }
 
     /**
-     * @param name Timed action description to update, if not null.
      * @return Number of rows affected. 1 on success, 0 on failure.
      */
     public int updateTimedAction(long action_id, int hourMin, int days,
@@ -682,8 +680,7 @@ public class ProfilesDB {
     /**
      * Called by {@link DatabaseHelper} when the database has just been
      * created to initialize it with initial data. It's safe to use
-     * {@link ProfilesDB#insertProfile(String, boolean)} or
-     * {@link ProfilesDB#insertTimedAction(String, boolean, int, int, String, long)}
+     * {@link ProfilesDB#insertProfile} or {@link ProfilesDB#insertTimedAction}
      * at that point.
      */
     private void initDefaultProfiles() {

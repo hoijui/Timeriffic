@@ -67,6 +67,7 @@ import com.alfray.timeriffic.core.prefs.PrefsValues;
 import com.alfray.timeriffic.core.profiles1.BaseHolder;
 import com.alfray.timeriffic.core.profiles1.ProfileHeaderHolder;
 import com.alfray.timeriffic.core.profiles1.ProfilesDB;
+import com.alfray.timeriffic.core.profiles1.ProfilesUiImpl;
 import com.alfray.timeriffic.core.profiles1.TimedActionHolder;
 import com.alfray.timeriffic.core.serial.SerialReader;
 import com.alfray.timeriffic.core.settings.AirplaneSetting;
@@ -737,6 +738,7 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
                     ProfileHeaderHolder.TAG + ":D",
                     ProfilesDB.TAG + ":D",
                     TimedActionHolder.TAG + ":D",
+                    ProfilesUiImpl.TAG + ":D",
 
                     // serial package
                     SerialReader.TAG + ":D",
@@ -766,7 +768,6 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
                     EditProfileUI.TAG + ":D",
                     ErrorReporterUI.TAG + ":D",
                     IntroUI.TAG + ":D",
-                    ProfilesUI1.TAG + ":D",
 
                     "FlurryAgent:W",
 

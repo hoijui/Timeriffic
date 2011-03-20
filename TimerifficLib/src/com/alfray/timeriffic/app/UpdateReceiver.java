@@ -18,6 +18,7 @@
 
 package com.alfray.timeriffic.app;
 
+import com.alfray.timeriffic.core.app.Core;
 import com.alfray.timeriffic.core.error.ExceptionHandler;
 
 import android.content.BroadcastReceiver;
@@ -30,8 +31,8 @@ import android.util.Log;
 
 public class UpdateReceiver extends BroadcastReceiver {
 
-    private final static boolean DEBUG = false;
     public final static String TAG = UpdateReceiver.class.getSimpleName();
+    private final static boolean DEBUG = false;
 
     /** Name of intent to broadcast to activate this receiver when doing
      *  alarm-based apply-state. */
@@ -55,8 +56,8 @@ public class UpdateReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         ExceptionHandler handler = new ExceptionHandler(context);
+        WakeLock wl = null;
         try {
-            WakeLock wl = null;
             try {
                 PowerManager pm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
                 wl = pm.newWakeLock(PowerManager.PARTIAL_WAKE_LOCK, "TimerifficReceiver");
@@ -65,9 +66,21 @@ public class UpdateReceiver extends BroadcastReceiver {
                 // Hmm wake lock failed... not sure why. Continue anyway.
                 Log.w(TAG, "WakeLock.acquire failed");
             }
-            UpdateService.startFromReceiver(context, intent, wl);
+
             if (DEBUG) Log.d(TAG, "UpdateService requested");
+
+            Core core = TimerifficApp.getInstance(context).getCore();
+            core.mUpdateServiceImpl.startFromReceiver(context, intent, wl);
+            wl = null;
+
         } finally {
+            if (wl != null) {
+                try {
+                    wl.release();
+                } catch (Exception e) {
+                    // ignore
+                }
+            }
             handler.detach();
         }
     }

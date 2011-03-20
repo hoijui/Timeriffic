@@ -1,6 +1,6 @@
 /*
  * Project: Timeriffic
- * Copyright (C) 2009 ralfoide gmail com,
+ * Copyright (C) 2011 rdrr labs gmail com,
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,12 +16,12 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.alfray.timeriffic.ui;
+package com.alfray.timeriffic.core.profiles1;
 
 import java.util.ArrayList;
 
+import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Application;
 import android.app.Dialog;
 import android.app.AlertDialog.Builder;
 import android.content.DialogInterface;
@@ -47,22 +47,23 @@ import android.widget.AdapterView.AdapterContextMenuInfo;
 import android.widget.AdapterView.OnItemClickListener;
 
 import com.alfray.timeriffic.R;
-import com.alfray.timeriffic.app.UpdateReceiver;
 import com.alfray.timeriffic.app.TimerifficApp;
+import com.alfray.timeriffic.app.UpdateReceiver;
 import com.alfray.timeriffic.core.app.BackupWrapper;
 import com.alfray.timeriffic.core.prefs.PrefsValues;
-import com.alfray.timeriffic.core.profiles1.BaseHolder;
-import com.alfray.timeriffic.core.profiles1.Columns;
-import com.alfray.timeriffic.core.profiles1.ProfileCursorAdapter;
-import com.alfray.timeriffic.core.profiles1.ProfileRecyclerListener;
-import com.alfray.timeriffic.core.profiles1.ProfilesDB;
 import com.alfray.timeriffic.core.settings.SettingFactory;
 import com.alfray.timeriffic.core.utils.AgentWrapper;
+import com.alfray.timeriffic.ui.EditProfileUI;
+import com.alfray.timeriffic.ui.ErrorReporterUI;
+import com.alfray.timeriffic.ui.GlobalStatus;
+import com.alfray.timeriffic.ui.GlobalToggle;
+import com.alfray.timeriffic.ui.IntroUI;
+import com.alfray.timeriffic.ui.PrefsUI;
 
-public class ProfilesUI1 extends ExceptionHandlerUI {
+public class ProfilesUiImpl {
 
     private static final boolean DEBUG = true;
-    public static final String TAG = ProfilesUI1.class.getSimpleName();
+    public static final String TAG = ProfilesUiImpl.class.getSimpleName();
 
     public static final int DATA_CHANGED = 42;
     static final int SETTINGS_UPDATED = 43;
@@ -72,6 +73,8 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
     public static final int DIALOG_DELETE_ACTION  = 1;
     public static final int DIALOG_DELETE_PROFILE = 2;
     static final int DIALOG_CHECK_SERVICES = 3;
+
+    private final Activity mActivity;
 
     private ListView mProfilesList;
     private ProfileCursorAdapter mAdapter;
@@ -105,38 +108,40 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
     private ColIndexes mColIndexes = new ColIndexes();
     private BackupWrapper mBackupWrapper;
 
+    public ProfilesUiImpl(Activity profileActivity) {
+        mActivity = profileActivity;
+    }
+
     /**
      * Called when the activity is created.
      * <p/>
      * Initializes row indexes and buttons.
      * Profile list & db is initialized in {@link #onResume()}.
      */
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public void onCreate(Bundle savedInstanceState) {
 
         Log.d(TAG, String.format("Started %s", getClass().getSimpleName()));
 
-        setContentView(R.layout.profiles_screen);
-        mLayoutInflater = getLayoutInflater();
+        mActivity.setContentView(R.layout.profiles_screen);
+        mLayoutInflater = mActivity.getLayoutInflater();
 
-        mPrefsValues = new PrefsValues(this);
-        mGrayDot = getResources().getDrawable(R.drawable.dot_gray);
-        mGreenDot = getResources().getDrawable(R.drawable.dot_green);
-        mPurpleDot = getResources().getDrawable(R.drawable.dot_purple);
-        mCheckOn = getResources().getDrawable(R.drawable.btn_check_on);
-        mCheckOff = getResources().getDrawable(R.drawable.btn_check_off);
+        mPrefsValues = new PrefsValues(mActivity);
+        mGrayDot   = mActivity.getResources().getDrawable(R.drawable.dot_gray);
+        mGreenDot  = mActivity.getResources().getDrawable(R.drawable.dot_green);
+        mPurpleDot = mActivity.getResources().getDrawable(R.drawable.dot_purple);
+        mCheckOn   = mActivity.getResources().getDrawable(R.drawable.btn_check_on);
+        mCheckOff  = mActivity.getResources().getDrawable(R.drawable.btn_check_off);
 
         initButtons();
         showIntroAtStartup();
 
         mAgentWrapper = new AgentWrapper();
-        mAgentWrapper.start(this);
+        mAgentWrapper.start(mActivity);
         mAgentWrapper.event(AgentWrapper.Event.OpenProfileUI);
     }
 
     private void showIntroAtStartup() {
-        final TimerifficApp tapp = TimerifficApp.getInstance(this);
+        final TimerifficApp tapp = TimerifficApp.getInstance(mActivity);
         if (tapp.isFirstStart() && mGlobalToggle != null) {
             final Runnable action = new Runnable() {
                 @Override
@@ -174,7 +179,8 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
         // a version upgrade
         int currentVersion = -1;
         try {
-            currentVersion = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
+            currentVersion = mActivity.getPackageManager().getPackageInfo(
+                    mActivity.getPackageName(), 0).versionCode;
             // the version number is in format n.m.kk where n.m is the
             // actual version number, incremented for features and kk is
             // a sub-minor index of minor fixes. We clear these last digits
@@ -193,15 +199,19 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
                 mPrefsValues.setLastIntroVersion(currentVersion);
             }
 
-            Intent i = new Intent(this, IntroUI.class);
+            Intent i = new Intent(mActivity, IntroUI.class);
             if (force) i.putExtra(IntroUI.EXTRA_NO_CONTROLS, true);
-            startActivityForResult(i, CHECK_SERVICES);
+            mActivity.startActivityForResult(i, CHECK_SERVICES);
             return;
         }
 
         if (checkServices) {
             onCheckServices();
         }
+    }
+
+    public Activity getActivity() {
+        return mActivity;
     }
 
     public Cursor getCursor() {
@@ -245,9 +255,8 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
         Log.d(TAG, "init profile list");
 
         if (mProfilesList == null) {
-            mProfilesList = (ListView) findViewById(R.id.profilesList);
-            mProfilesList.setRecyclerListener(new ProfileRecyclerListener());
-            mProfilesList.setEmptyView(findViewById(R.id.empty));
+            mProfilesList = (ListView) mActivity.findViewById(R.id.profilesList);
+            mProfilesList.setEmptyView(mActivity.findViewById(R.id.empty));
 
             mProfilesList.setOnItemClickListener(new OnItemClickListener() {
                 @Override
@@ -272,7 +281,7 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
 
         if (mProfilesDb == null) {
             mProfilesDb = new ProfilesDB();
-            mProfilesDb.onCreate(this);
+            mProfilesDb.onCreate(mActivity);
 
             String next = mPrefsValues.getStatusNextTS();
             if (next == null) {
@@ -323,9 +332,7 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
      * <p/>
      * Initializes the profile list & db.
      */
-    @Override
-    protected void onResume() {
-        super.onResume();
+    public void onResume() {
         initOnResume();
     }
 
@@ -341,20 +348,16 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
      * Reclaim all views (so that they tag's cursor can be cleared).
      * Destroys the db connection.
      */
-    @Override
-    protected void onPause() {
-        super.onPause();
+    public void onPause() {
         removeDataListener();
     }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-        mAgentWrapper.stop(this);
+    public void onStop() {
+        mAgentWrapper.stop(mActivity);
     }
 
     private void setDataListener() {
-        TimerifficApp app = TimerifficApp.getInstance(this);
+        TimerifficApp app = TimerifficApp.getInstance(mActivity);
         if (app != null) {
             app.setDataListener(new Runnable() {
                 @Override
@@ -368,32 +371,23 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
     }
 
     private void removeDataListener() {
-        TimerifficApp app = TimerifficApp.getInstance(this);
+        TimerifficApp app = TimerifficApp.getInstance(mActivity);
         if (app != null) {
             app.setDataListener(null);
         }
     }
 
-
-    @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-        super.onRestoreInstanceState(savedInstanceState);
-
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
         mTempDialogRowId = savedInstanceState.getLong("dlg_rowid");
         mTempDialogTitle = savedInstanceState.getString("dlg_title");
     }
 
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-
+    public void onSaveInstanceState(Bundle outState) {
         outState.putLong("dlg_rowid", mTempDialogRowId);
         outState.putString("dlg_title", mTempDialogTitle);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onDestroy() {
         if (mAdapter != null) {
             mAdapter.changeCursor(null);
             mAdapter = null;
@@ -414,10 +408,7 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         switch(requestCode) {
         case DATA_CHANGED:
             onDataChanged(true /*backup*/);
@@ -439,13 +430,12 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
         updateGlobalState();
 
         if (backup) {
-            if (mBackupWrapper == null) mBackupWrapper = new BackupWrapper(this);
+            if (mBackupWrapper == null) mBackupWrapper = new BackupWrapper(mActivity);
             mBackupWrapper.dataChanged();
         }
     }
 
-    @Override
-    protected Dialog onCreateDialog(int id) {
+    public Dialog onCreateDialog(int id) {
 
         // In case of configuration change (e.g. screen rotation),
         // the activity is restored but onResume hasn't been called yet
@@ -471,7 +461,7 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
         String msg = getCheckServicesMessage();
         if (DEBUG) Log.d(TAG, "Check Services: " + msg == null ? "null" : msg);
         if (msg.length() > 0 && mPrefsValues.getCheckService()) {
-            showDialog(DIALOG_CHECK_SERVICES);
+            mActivity.showDialog(DIALOG_CHECK_SERVICES);
         }
     }
 
@@ -480,17 +470,17 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
         SettingFactory factory = SettingFactory.getInstance();
         StringBuilder sb = new StringBuilder();
 
-        if (!factory.getSetting(Columns.ACTION_RING_VOLUME).isSupported(this)) {
-            sb.append("\n- ").append(getString(R.string.checkservices_miss_audio_service));
+        if (!factory.getSetting(Columns.ACTION_RING_VOLUME).isSupported(mActivity)) {
+            sb.append("\n- ").append(mActivity.getString(R.string.checkservices_miss_audio_service));
         }
-        if (!factory.getSetting(Columns.ACTION_WIFI).isSupported(this)) {
-            sb.append("\n- ").append(getString(R.string.checkservices_miss_wifi_service));
+        if (!factory.getSetting(Columns.ACTION_WIFI).isSupported(mActivity)) {
+            sb.append("\n- ").append(mActivity.getString(R.string.checkservices_miss_wifi_service));
         }
-        if (!factory.getSetting(Columns.ACTION_AIRPLANE).isSupported(this)) {
-            sb.append("\n- ").append(getString(R.string.checkservices_miss_airplane));
+        if (!factory.getSetting(Columns.ACTION_AIRPLANE).isSupported(mActivity)) {
+            sb.append("\n- ").append(mActivity.getString(R.string.checkservices_miss_airplane));
         }
-        if (!factory.getSetting(Columns.ACTION_BRIGHTNESS).isSupported(this)) {
-            sb.append("\n- ").append(getString(R.string.checkservices_miss_brightness));
+        if (!factory.getSetting(Columns.ACTION_BRIGHTNESS).isSupported(mActivity)) {
+            sb.append("\n- ").append(mActivity.getString(R.string.checkservices_miss_brightness));
         }
 
         // Bluetooth and APNDroid are not essential settings. We can't just bug the
@@ -505,28 +495,28 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
         // }
 
         if (sb.length() > 0) {
-            sb.insert(0, getString(R.string.checkservices_warning));
+            sb.insert(0, mActivity.getString(R.string.checkservices_warning));
         }
 
         return sb.toString();
     }
 
     private Dialog createDialogCheckServices() {
-        Builder b = new AlertDialog.Builder(this);
+        Builder b = new AlertDialog.Builder(mActivity);
 
         b.setTitle(R.string.checkservices_dlg_title);
         b.setMessage(getCheckServicesMessage());
         b.setPositiveButton(R.string.checkservices_ok_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                removeDialog(DIALOG_CHECK_SERVICES);
+                mActivity.removeDialog(DIALOG_CHECK_SERVICES);
             }
         });
         b.setNegativeButton(R.string.checkservices_skip_button, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 mPrefsValues.setCheckService(false);
-                removeDialog(DIALOG_CHECK_SERVICES);
+                mActivity.removeDialog(DIALOG_CHECK_SERVICES);
             }
         });
 
@@ -534,14 +524,13 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
         b.setOnCancelListener(new OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                removeDialog(DIALOG_CHECK_SERVICES);
+                mActivity.removeDialog(DIALOG_CHECK_SERVICES);
             }
         });
 
         return b.create();
     }
 
-    @Override
     public boolean onContextItemSelected(MenuItem item) {
         ContextMenuInfo info = item.getMenuInfo();
         BaseHolder h = getHolder(info, null);
@@ -550,7 +539,7 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
             return true;
         }
 
-        return super.onContextItemSelected(item);
+        return false;
     }
 
     private BaseHolder getHolder(ContextMenuInfo menuInfo, View selectedView) {
@@ -571,8 +560,8 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
      * Initializes the list-independent buttons: global toggle, check now.
      */
     private void initButtons() {
-        mGlobalToggle = (GlobalToggle) findViewById(R.id.global_toggle);
-        mGlobalStatus = (GlobalStatus) findViewById(R.id.global_status);
+        mGlobalToggle = (GlobalToggle) mActivity.findViewById(R.id.global_toggle);
+        mGlobalStatus = (GlobalStatus) mActivity.findViewById(R.id.global_status);
 
         updateGlobalState();
 
@@ -602,14 +591,13 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
             mGlobalStatus.setTextNextTs(mPrefsValues.getStatusNextTS());
             mGlobalStatus.setTextNextDesc(mPrefsValues.getStatusNextAction());
         } else {
-            mGlobalStatus.setTextNextTs(getString(R.string.globalstatus_disabled));
-            mGlobalStatus.setTextNextDesc(getString(R.string.help_to_enable));
+            mGlobalStatus.setTextNextTs(mActivity.getString(R.string.globalstatus_disabled));
+            mGlobalStatus.setTextNextDesc(mActivity.getString(R.string.help_to_enable));
         }
         mGlobalStatus.invalidate();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public void onCreateOptionsMenu(Menu menu) {
         menu.add(0, R.string.menu_append_profile,
                  0, R.string.menu_append_profile).setIcon(R.drawable.ic_menu_add);
         menu.add(0, R.string.menu_settings,
@@ -623,11 +611,8 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
         menu.add(0, R.string.menu_reset,
                  0, R.string.menu_reset).setIcon(R.drawable.ic_menu_revert);
         // TODO save to sd
-
-        return super.onCreateOptionsMenu(menu);
     }
 
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()) {
         case R.string.menu_settings:
@@ -653,17 +638,17 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
             showErrorReport();
             break;
         default:
-            return super.onOptionsItemSelected(item);
+            return false;
         }
         return true; // handled
     }
 
     private void showPrefs() {
-        startActivityForResult(new Intent(this, PrefsUI.class), SETTINGS_UPDATED);
+        mActivity.startActivityForResult(new Intent(mActivity, PrefsUI.class), SETTINGS_UPDATED);
     }
 
     private void showErrorReport() {
-        startActivity(new Intent(this, ErrorReporterUI.class));
+        mActivity.startActivity(new Intent(mActivity, ErrorReporterUI.class));
     }
 
     /**
@@ -676,17 +661,17 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
         if (DEBUG) Log.d(TAG, "Request settings check");
         Intent i = new Intent(UpdateReceiver.ACTION_UI_CHECK);
         i.putExtra(UpdateReceiver.EXTRA_TOAST_NEXT_EVENT, displayToast);
-        sendBroadcast(i);
+        mActivity.sendBroadcast(i);
     }
 
     protected void showResetChoices() {
-        showDialog(DIALOG_RESET_CHOICES);
+        mActivity.showDialog(DIALOG_RESET_CHOICES);
     }
 
     // TODO save to sd
 
     private Dialog createDialogResetChoices() {
-        Builder d = new AlertDialog.Builder(this);
+        Builder d = new AlertDialog.Builder(mActivity);
 
         d.setCancelable(true);
         d.setTitle(R.string.resetprofiles_msg_confirm_delete);
@@ -696,7 +681,7 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mProfilesDb.resetProfiles(which);
-                    removeDialog(DIALOG_RESET_CHOICES);
+                    mActivity.removeDialog(DIALOG_RESET_CHOICES);
                     onDataChanged(true /*backup*/);
                     requestSettingsCheck(UpdateReceiver.TOAST_IF_CHANGED);
                 }
@@ -705,14 +690,14 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
         d.setOnCancelListener(new OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                removeDialog(DIALOG_RESET_CHOICES);
+                mActivity.removeDialog(DIALOG_RESET_CHOICES);
             }
         });
 
         d.setNegativeButton(R.string.resetprofiles_button_cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                removeDialog(DIALOG_RESET_CHOICES);
+                mActivity.removeDialog(DIALOG_RESET_CHOICES);
             }
         });
 
@@ -725,7 +710,7 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
     public void showTempDialog(long row_id, String title, int dlg_id) {
         mTempDialogRowId = row_id;
         mTempDialogTitle = title;
-        showDialog(dlg_id);
+        mActivity.showDialog(dlg_id);
     }
 
     //--------------
@@ -734,25 +719,25 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
         final long row_id = mTempDialogRowId;
         final String title = mTempDialogTitle;
 
-        Builder d = new AlertDialog.Builder(ProfilesUI1.this);
+        Builder d = new AlertDialog.Builder(mActivity);
 
         d.setCancelable(true);
         d.setTitle(R.string.deleteprofile_title);
         d.setIcon(R.drawable.app_icon);
         d.setMessage(String.format(
-                getString(R.string.deleteprofile_msgbody), title));
+                mActivity.getString(R.string.deleteprofile_msgbody), title));
 
         d.setOnCancelListener(new OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                removeDialog(DIALOG_DELETE_PROFILE);
+                mActivity.removeDialog(DIALOG_DELETE_PROFILE);
             }
         });
 
         d.setNegativeButton(R.string.deleteprofile_button_cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                removeDialog(DIALOG_DELETE_PROFILE);
+                mActivity.removeDialog(DIALOG_DELETE_PROFILE);
             }
         });
 
@@ -764,7 +749,7 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
                     mAdapter.notifyDataSetChanged();
                     onDataChanged(true /*backup*/);
                 }
-                removeDialog(DIALOG_DELETE_PROFILE);
+                mActivity.removeDialog(DIALOG_DELETE_PROFILE);
             }
         });
 
@@ -776,24 +761,24 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
         final long row_id = mTempDialogRowId;
         final String description = mTempDialogTitle;
 
-        Builder d = new AlertDialog.Builder(ProfilesUI1.this);
+        Builder d = new AlertDialog.Builder(mActivity);
 
         d.setCancelable(true);
         d.setTitle(R.string.deleteaction_title);
         d.setIcon(R.drawable.app_icon);
-        d.setMessage(getString(R.string.deleteaction_msgbody, description));
+        d.setMessage(mActivity.getString(R.string.deleteaction_msgbody, description));
 
         d.setOnCancelListener(new OnCancelListener() {
             @Override
             public void onCancel(DialogInterface dialog) {
-                removeDialog(DIALOG_DELETE_ACTION);
+                mActivity.removeDialog(DIALOG_DELETE_ACTION);
             }
         });
 
         d.setNegativeButton(R.string.deleteaction_button_cancel, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                removeDialog(DIALOG_DELETE_ACTION);
+                mActivity.removeDialog(DIALOG_DELETE_ACTION);
             }
         });
 
@@ -805,7 +790,7 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
                     mAdapter.notifyDataSetChanged();
                     onDataChanged(true /*backup*/);
                 }
-                removeDialog(DIALOG_DELETE_ACTION);
+                mActivity.removeDialog(DIALOG_DELETE_ACTION);
             }
         });
 
@@ -815,13 +800,13 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
 
     public void appendNewProfile() {
         long prof_index = mProfilesDb.insertProfile(0,
-                        getString(R.string.insertprofile_new_profile_title),
+                        mActivity.getString(R.string.insertprofile_new_profile_title),
                         true /*isEnabled*/);
 
-        Intent intent = new Intent(ProfilesUI1.this, EditProfileUI.class);
+        Intent intent = new Intent(mActivity, EditProfileUI.class);
         intent.putExtra(EditProfileUI.EXTRA_PROFILE_ID, prof_index << Columns.PROFILE_SHIFT);
 
-        startActivityForResult(intent, DATA_CHANGED);
+        mActivity.startActivityForResult(intent, DATA_CHANGED);
     }
 
 }
