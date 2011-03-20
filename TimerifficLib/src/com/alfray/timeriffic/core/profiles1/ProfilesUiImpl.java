@@ -57,10 +57,11 @@ import com.alfray.timeriffic.ui.EditProfileUI;
 import com.alfray.timeriffic.ui.ErrorReporterUI;
 import com.alfray.timeriffic.ui.GlobalStatus;
 import com.alfray.timeriffic.ui.GlobalToggle;
+import com.alfray.timeriffic.ui.IActivityDelegate;
 import com.alfray.timeriffic.ui.IntroUI;
 import com.alfray.timeriffic.ui.PrefsUI;
 
-public class ProfilesUiImpl {
+public class ProfilesUiImpl implements IActivityDelegate<ProfilesUiImpl> {
 
     private static final boolean DEBUG = true;
     public static final String TAG = ProfilesUiImpl.class.getSimpleName();

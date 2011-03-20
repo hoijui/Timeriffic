@@ -70,7 +70,7 @@
         android:killAfterRestore="true"
         >
 
-        <activity android:name=".profiles.ProfilesUI">
+        <activity android:name=".profiles.ProfilesUi1">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />

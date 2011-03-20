@@ -16,7 +16,7 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.alfray.timeriffic.profiles;
+package com.alfray.timeriffic.ui;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -25,67 +25,67 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.alfray.timeriffic.core.profiles1.ProfilesUiImpl;
-
 /**
- * Activity redirector which is only present for backward compatibility.
+ * Activity delegate.
  */
-public class ProfilesUI extends Activity {
+public abstract class ActivityDelegate<T extends IActivityDelegate<?>> extends Activity {
 
-    private ProfilesUiImpl mDelegate;
+    private T mDelegate;
+
+    abstract public T createDelegate();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        mDelegate = new ProfilesUiImpl(this);
+        mDelegate = createDelegate();
         mDelegate.onCreate(savedInstanceState);
     }
 
     @Override
-    protected void onResume() {
+    public void onResume() {
         super.onResume();
         mDelegate.onResume();
     }
 
     @Override
-    protected void onPause() {
+    public void onPause() {
         super.onPause();
         mDelegate.onPause();
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         mDelegate.onStop();
     }
 
     @Override
-    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
         mDelegate.onRestoreInstanceState(savedInstanceState);
     }
 
     @Override
-    protected void onSaveInstanceState(Bundle outState) {
+    public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         mDelegate.onSaveInstanceState(outState);
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         mDelegate.onDestroy();
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         mDelegate.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override
-    protected Dialog onCreateDialog(int id) {
+    public Dialog onCreateDialog(int id) {
         return mDelegate.onCreateDialog(id);
     }
 
@@ -108,6 +108,4 @@ public class ProfilesUI extends Activity {
         if (!b) b = super.onOptionsItemSelected(item);
         return b;
     }
-
-
 }
