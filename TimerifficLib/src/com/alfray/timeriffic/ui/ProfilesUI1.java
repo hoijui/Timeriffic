@@ -136,7 +136,7 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
     }
 
     private void showIntroAtStartup() {
-        final TimerifficApp tapp = getApp();
+        final TimerifficApp tapp = TimerifficApp.getInstance(this);
         if (tapp.isFirstStart() && mGlobalToggle != null) {
             final Runnable action = new Runnable() {
                 @Override
@@ -202,12 +202,6 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
         if (checkServices) {
             onCheckServices();
         }
-    }
-
-    private TimerifficApp getApp() {
-        Application app = getApplication();
-        if (app instanceof TimerifficApp) return (TimerifficApp) app;
-        return null;
     }
 
     public Cursor getCursor() {
@@ -360,7 +354,7 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
     }
 
     private void setDataListener() {
-        TimerifficApp app = getApp();
+        TimerifficApp app = TimerifficApp.getInstance(this);
         if (app != null) {
             app.setDataListener(new Runnable() {
                 @Override
@@ -374,7 +368,7 @@ public class ProfilesUI1 extends ExceptionHandlerUI {
     }
 
     private void removeDataListener() {
-        TimerifficApp app = getApp();
+        TimerifficApp app = TimerifficApp.getInstance(this);
         if (app != null) {
             app.setDataListener(null);
         }

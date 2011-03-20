@@ -1,6 +1,6 @@
 /*
  * Project: Timeriffic
- * Copyright (C) 2010 ralfoide gmail com,
+ * Copyright (C) 2010 rdrr labs gmail com,
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -35,15 +35,11 @@ public class SettingFactory {
     public static final String TAG = SettingFactory.class.getSimpleName();
 
     private static final SettingFactory sInstance = new SettingFactory();
-    private IExtraFctory mExtraFactory;
+    private ISettingsFactory2 mSettingsFactory2;
 
     /** A synchronized map of existing loaded settings. */
     private final Map<Character, ISetting> mSettings =
         Collections.synchronizedMap(new HashMap<Character, ISetting>());
-
-    public interface IExtraFctory {
-        public ISetting getSetting(char code);
-    }
 
     public static SettingFactory getInstance() {
         return sInstance;
@@ -52,10 +48,10 @@ public class SettingFactory {
     private SettingFactory() {
     }
 
-    public void registerExtraFactory(IExtraFctory extraFactory) {
-        mExtraFactory = extraFactory;
+    public void registerFactory2(ISettingsFactory2 factory2) {
+        mSettingsFactory2 = factory2;
     }
-    
+
     /** Unloads the setting if it's loaded. */
     public void forgetSetting(char code) {
         mSettings.remove(code);
@@ -113,8 +109,8 @@ public class SettingFactory {
                 break;
         }
 
-        if (s == null && mExtraFactory != null) {
-            s = mExtraFactory.getSetting(code);
+        if (s == null && mSettingsFactory2 != null) {
+            s = mSettingsFactory2.getSetting(code);
         }
 
         if (s == null) {

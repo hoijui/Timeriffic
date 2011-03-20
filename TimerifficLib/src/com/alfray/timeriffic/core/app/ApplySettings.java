@@ -260,9 +260,9 @@ public class ApplySettings {
 
     /** Notify UI to update */
     private void notifyDataChanged() {
-        Context c = mContext.getApplicationContext();
-        if (c instanceof TimerifficApp) {
-            ((TimerifficApp) c).invokeDataListener();
+        TimerifficApp app = TimerifficApp.getInstance(mContext);
+        if (app != null) {
+            app.invokeDataListener();
         }
     }
 

@@ -19,8 +19,10 @@
 package com.alfray.timeriffic.app;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.alfray.timeriffic.core.app.AppId;
+import com.alfray.timeriffic.core.app.Extensions;
 import com.alfray.timeriffic.core.prefs.PrefsStorage;
 
 
@@ -32,12 +34,29 @@ public class TimerifficApp extends Application {
     private boolean mFirstStart = true;
     private Runnable mDataListener;
 
-    private PrefsStorage mPrefsStorage = new PrefsStorage("prefs");
+    private final Extensions mExtensions = new Extensions();
+    private final PrefsStorage mPrefsStorage = new PrefsStorage("prefs");
 
     @Override
     public void onCreate() {
         super.onCreate();
         mPrefsStorage.beginReadAsync(getApplicationContext());
+    }
+
+    /**
+     * Returns the {@link TimerifficApp} instance using the
+     * {@link Context#getApplicationContext()}.
+     *
+     * Returns null if context doesn't correctly, which is not supposed
+     * to happen in normal behavior.
+     */
+    public static TimerifficApp getInstance(Context context) {
+        Context app = context.getApplicationContext();
+        if (app instanceof TimerifficApp) {
+            return (TimerifficApp) app;
+        }
+
+        return null;
     }
 
     //---------------------
@@ -67,5 +86,9 @@ public class TimerifficApp extends Application {
     public String getIssueId() {
         mPrefsStorage.endReadAsync();
         return AppId.getIssueId(this, mPrefsStorage);
+    }
+
+    public Extensions getExtensions() {
+        return mExtensions;
     }
 }
