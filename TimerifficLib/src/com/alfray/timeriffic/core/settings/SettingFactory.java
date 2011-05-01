@@ -116,8 +116,9 @@ public class SettingFactory {
         if (s == null) {
             s = new NullSetting();
         }
+        assert s != null;
 
-        if (s != null) mSettings.put(code, s);
+        mSettings.put(code, s);
         return s;
     }
 
