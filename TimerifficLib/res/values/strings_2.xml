@@ -29,6 +29,7 @@
     <!-- === Backup/Restore SDCard === -->
 
     <string name="menu_save_to_sd">Save Profiles to SD Card</string>
+    <string name="menu_donate">Donate</string>
 
     <string name="restore_from_sd">Restore from SD Card</string>
 
