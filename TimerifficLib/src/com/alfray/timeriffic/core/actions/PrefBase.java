@@ -21,12 +21,17 @@ package com.alfray.timeriffic.core.actions;
 import com.alfray.timeriffic.R;
 
 import android.app.Activity;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 
 //-----------------------------------------------
 
 public abstract class PrefBase {
+
+    public static final String TAG = PrefBase.class.getSimpleName();
 
     private final Activity mActivity;
 
@@ -71,6 +76,37 @@ public abstract class PrefBase {
     public abstract void onCreateContextMenu(ContextMenu menu);
 
     public abstract void onContextItemSelected(MenuItem item);
+
+    // ---
+
+    private final static int[] sExtraButtonsResId = {
+            R.id.button0,
+            R.id.button1,
+            R.id.button2,
+            R.id.button3,
+    };
+
+    public Button findButtonById(int buttonResId) {
+        if (buttonResId == -1) {
+            // This is a dynamically allocated button.
+            // Use the first one that is free.
+
+            for (int id : sExtraButtonsResId) {
+                Button b = (Button) getActivity().findViewById(id);
+                if (b != null && b.getTag() == null) {
+                    b.setTag(this);
+                    b.setEnabled(true);
+                    b.setVisibility(View.VISIBLE);
+                    return b;
+                }
+            }
+
+            Log.e(TAG, "No free button slot for " + this.getClass().getSimpleName());
+            throw new RuntimeException("No free button slot for " + this.getClass().getSimpleName());
+        }
+
+        return (Button) getActivity().findViewById(buttonResId);
+    }
 }
 
 

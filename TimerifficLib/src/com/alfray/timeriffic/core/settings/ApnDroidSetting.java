@@ -55,7 +55,7 @@ public class ApnDroidSetting implements ISetting {
     @Override
     public Object createUi(Activity activity, String[] currentActions) {
         PrefToggle p = new PrefToggle(activity,
-                        R.id.apndroidButton,
+                        -1 /*button id*/,
                         currentActions,
                         Columns.ACTION_APN_DROID,
                         activity.getString(R.string.editaction_apndroid),

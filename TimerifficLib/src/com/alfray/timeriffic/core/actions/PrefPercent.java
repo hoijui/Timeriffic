@@ -65,7 +65,7 @@ public class PrefPercent extends PrefBase implements View.OnClickListener {
         mIconResId = iconResId;
         mAccessor = accessor;
 
-        mButton = (Button) getActivity().findViewById(buttonResId);
+        mButton = findButtonById(buttonResId);
         mButton.setOnClickListener(this);
         mButton.setTag(this);
 

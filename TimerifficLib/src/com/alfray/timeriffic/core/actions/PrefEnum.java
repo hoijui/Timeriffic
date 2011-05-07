@@ -84,7 +84,7 @@ public class PrefEnum extends PrefBase
         mActionPrefix = actionPrefix;
         mMenuTitle = menuTitle;
 
-        mButton = (Button) getActivity().findViewById(buttonResId);
+        mButton = findButtonById(buttonResId);
         getActivity().registerForContextMenu(mButton);
         mButton.setOnClickListener(this);
         mButton.setTag(this);

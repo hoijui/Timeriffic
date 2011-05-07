@@ -61,7 +61,7 @@ public class SyncSetting implements ISetting {
     @Override
     public Object createUi(Activity activity, String[] currentActions) {
         PrefToggle p = new PrefToggle(activity,
-                        R.id.syncButton,
+                        -1 /*button id*/,
                         currentActions,
                         Columns.ACTION_SYNC,
                         activity.getString(R.string.editaction_sync));

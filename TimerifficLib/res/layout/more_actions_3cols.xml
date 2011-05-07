@@ -114,12 +114,13 @@
         style="@style/ActionButton"
         />
     <Button
-        android:id="@+id/dataButton"
+        android:id="@+id/button0"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="data"
+        android:text="button0"
         style="@style/ActionButton"
+        android:visibility="gone"
         />
 </LinearLayout>
 
@@ -132,30 +133,31 @@
     >
 
     <Button
-        android:id="@+id/apndroidButton"
+        android:id="@+id/button1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="apndroid"
+        android:text="button1"
         style="@style/ActionButton"
+        android:visibility="gone"
         />
     <Button
-        android:enabled="false" android:visibility="invisible"
-        android:id="@+id/freeButton1"
+        android:id="@+id/button2"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:text="free1"
+        android:text="button2"
         style="@style/ActionButton"
+        android:visibility="gone"
         />
     <Button
-        android:enabled="false" android:visibility="invisible"
-        android:id="@+id/freeButton2"
+        android:id="@+id/button3"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight="1"
-        android:text="free2"
+        android:text="button3"
         style="@style/ActionButton"
+        android:visibility="gone"
         />
 </LinearLayout>
 
