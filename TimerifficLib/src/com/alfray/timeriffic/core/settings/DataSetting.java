@@ -94,12 +94,23 @@ public class DataSetting implements ISetting {
 
     @Override
     public Object createUi(Activity activity, String[] currentActions) {
+
+        boolean supported = isSupported(activity);
+        if (!mIsEnabled) {
+            // New in version 1.9.14: if not enabled in the prefs, the UI
+            // is not shown at all.
+            // It's OK to return null here as EditActionUI just stores the
+            // value as-is and collectUiResults() checks using instanceof
+            // so it's null-safe.
+            return null;
+        }
+
         PrefToggle p = new PrefToggle(activity,
                         -1 /*button id*/,
                         currentActions,
                         Columns.ACTION_DATA,
                         activity.getString(R.string.editaction_data));
-        p.setEnabled(isSupported(activity),
+        p.setEnabled(supported,
                 mIsEnabled ? activity.getString(R.string.setting_not_supported)
                            : activity.getString(R.string.setting_not_enabled));
         return p;
