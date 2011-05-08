@@ -428,7 +428,7 @@ public class ApplySettings {
         String details = TimedActionUtils.computeLabels(mContext, actions);
 
         Core core = TimerifficApp.getInstance(mContext).getCore();
-        core.mUpdateServiceImpl.createRetryNotification(mContext, mPrefs, actions, details);
+        core.getUpdateService().createRetryNotification(mContext, mPrefs, actions, details);
     }
 
 }

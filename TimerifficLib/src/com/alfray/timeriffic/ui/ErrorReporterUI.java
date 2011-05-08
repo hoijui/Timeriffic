@@ -55,12 +55,13 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.alfray.timeriffic.R;
 import com.alfray.timeriffic.app.TimerifficApp;
-import com.alfray.timeriffic.app.TimerifficBackupAgent;
 import com.alfray.timeriffic.app.UpdateReceiver;
 import com.alfray.timeriffic.app.UpdateService;
 import com.alfray.timeriffic.core.app.AppId;
 import com.alfray.timeriffic.core.app.ApplySettings;
 import com.alfray.timeriffic.core.app.BackupWrapper;
+import com.alfray.timeriffic.core.app.CoreStrings;
+import com.alfray.timeriffic.core.app.CoreStrings.Strings;
 import com.alfray.timeriffic.core.error.ExceptionHandler;
 import com.alfray.timeriffic.core.prefs.PrefsStorage;
 import com.alfray.timeriffic.core.prefs.PrefsValues;
@@ -86,8 +87,6 @@ import com.alfray.timeriffic.core.utils.ApplyVolumeReceiver;
 import com.alfray.timeriffic.core.utils.SettingsHelper;
 import com.alfray.timeriffic.core.utils.VolumeChange;
 
-/* $ A="foo" ; python -c "print [ ord(a) for a in '$A' ]" | tr [] {} */
-
 /**
  * Screen to generate an error report.
  */
@@ -102,14 +101,6 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
         ErrorReporterUI.class.getPackage().getName() + "_isException";
 
     // TODO more UTs
-    /**
-     * %s is app name.
-     */
-    private static final char MAILTO[] =
-        { 114, 95, 100, 114, 95, 114, 32, 46, 32, 108, 97, 98, 95, 115, 32,
-         43, 114, 101, 112, 111, 114, 116, 32, 43, 32, 37, 115 };
-    private static final char DOMTO[] =
-        {103, 95, 109, 97, 95, 105, 108, 32, 47, 32, 99, 95, 111, 109};
 
     private static final int MSG_REPORT_COMPLETE = 1;
 
@@ -434,28 +425,26 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
                         }
 
                         if (report != null) {
+                            TimerifficApp ta = TimerifficApp.getInstance(getApplicationContext());
+                            CoreStrings str = ta.getCore().getCoreStrings();
 
                             // Prepare mailto and subject.
-                            String to = String.format(new String(MAILTO), mAppName).trim();
+                            String to = str.format(Strings.ERR_UI_MAILTO, mAppName).trim();
                             to += "@";
-                            to += new String(DOMTO).replace("/", ".");
+                            to += str.get(Strings.ERR_UI_DOMTO).replace("/", ".");
                             to = to.replaceAll("[ _]", "").toLowerCase();
 
                             StringBuilder sb = new StringBuilder();
                             sb.append('[').append(mAppName.trim()).append("] ");
                             sb.append(getReportType().trim());
 
-                            Application app = getApplication();
-                            TimerifficApp ta;
-                            if (app instanceof TimerifficApp) {
-                                ta = (TimerifficApp) app;
-                                sb.append(" [").append(ta.getIssueId());
-                                PrefsStorage ps = ta.getPrefsStorage();
-                                if (ps.endReadAsync()) {
-                                    sb.append('-').append(ps.getInt("iss_id_count", -1));
-                                }
-                                sb.append(']');
+                            sb.append(" [").append(ta.getIssueId());
+                            PrefsStorage ps = ta.getPrefsStorage();
+                            if (ps.endReadAsync()) {
+                                sb.append('-').append(ps.getInt("iss_id_count", -1));
                             }
+                            sb.append(']');
+
                             String subject = sb.toString();
 
                             // Generate the intent to send an email
@@ -713,6 +702,14 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
         private void addLogcat(StringBuilder sb) {
             sb.append(String.format("\n## %s Logcat ##\n\n", mAppName));
 
+            BackupWrapper backupWrapper = new BackupWrapper(getApplicationContext());
+            String sTimerifficBackupAgent_TAG = backupWrapper.getTAG_TimerifficBackupAgent();
+            if (sTimerifficBackupAgent_TAG == null) {
+                sTimerifficBackupAgent_TAG = "";
+            } else {
+                sTimerifficBackupAgent_TAG += ":D";
+            }
+
             String[] cmd = new String[] {
                     "logcat",
                     "-d",       // dump log and exits
@@ -723,10 +720,10 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
                     ApplySettings.TAG + ":D",
                     UpdateReceiver.TAG + ":D",
                     UpdateService.TAG + ":D",
-                    TimerifficBackupAgent.TAG + ":D",
 
                     AppId.TAG + ":D",
                     BackupWrapper.TAG + ":D",
+                    sTimerifficBackupAgent_TAG,
 
                     // error package
                     ExceptionHandler.TAG + ":D",

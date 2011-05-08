@@ -48,7 +48,7 @@ public class UpdateService extends Service {
             super.onStart(intent, startId);
 
             Core core = TimerifficApp.getInstance(this).getCore();
-            core.mUpdateServiceImpl.onStart(this, intent, startId);
+            core.getUpdateService().onStart(this, intent, startId);
 
         } finally {
             handler.detach();
@@ -60,7 +60,7 @@ public class UpdateService extends Service {
     @Override
     public void onDestroy() {
         Core core = TimerifficApp.getInstance(this).getCore();
-        core.mUpdateServiceImpl.onDestroy(this);
+        core.getUpdateService().onDestroy(this);
 
         super.onDestroy();
     }

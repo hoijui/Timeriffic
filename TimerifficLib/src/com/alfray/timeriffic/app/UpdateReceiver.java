@@ -70,7 +70,7 @@ public class UpdateReceiver extends BroadcastReceiver {
             if (DEBUG) Log.d(TAG, "UpdateService requested");
 
             Core core = TimerifficApp.getInstance(context).getCore();
-            core.mUpdateServiceImpl.startFromReceiver(context, intent, wl);
+            core.getUpdateService().startFromReceiver(context, intent, wl);
             wl = null;
 
         } finally {

@@ -19,33 +19,24 @@
 package com.alfray.timeriffic.core.app;
 
 /**
- * Holder for app-wide implementation-specific instances.
- * <p/>
- * Think of it has the kind of global instances one would typically
- * define using dependency injection. Tests could override this, etc.
+ * Holder for app-wide encoded strings.
  */
-public class Core {
+public class CoreStrings {
 
-    protected UpdateServiceImpl mUpdateServiceImpl;
-    protected CoreStrings mCoreStrings;
-
-    /** Base constructor with defaults. */
-    public Core() {
-        mUpdateServiceImpl = new UpdateServiceImpl();
-        mCoreStrings = new CoreStrings();
+    public enum Strings {
+        ERR_UI_MAILTO,
+        ERR_UI_DOMTO
     }
 
-    /** Derived constructor with overrides. */
-    public Core(CoreStrings strings) {
-        mUpdateServiceImpl = new UpdateServiceImpl();
-        mCoreStrings = strings;
+    CoreStrings() {
     }
 
-    public UpdateServiceImpl getUpdateService() {
-        return mUpdateServiceImpl;
+    public String get(Strings code) {
+        return "undefined";
     }
 
-    public CoreStrings getCoreStrings() {
-        return mCoreStrings;
+    public String format(Strings code, Object...args) {
+        return String.format(get(code), args);
     }
+
 }

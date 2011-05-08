@@ -18,6 +18,8 @@
 
 package com.alfray.timeriffic.core.app;
 
+import com.alfray.timeriffic.app.TimerifficBackupAgent;
+
 import android.app.backup.BackupManager;
 import android.content.Context;
 
@@ -41,6 +43,10 @@ import android.content.Context;
         if (mManager != null) {
             mManager.dataChanged();
         }
+    }
+
+    public String getTAG_TimerifficBackupAgent() {
+        return TimerifficBackupAgent.TAG;
     }
 
 }

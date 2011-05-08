@@ -34,8 +34,18 @@ public class TimerifficApp extends Application {
     private boolean mFirstStart = true;
     private Runnable mDataListener;
 
-    private final Core mCore = new Core();
+    private final Core mCore;
     private final PrefsStorage mPrefsStorage = new PrefsStorage("prefs");
+
+    /** Base constructor with a default core. */
+    public TimerifficApp() {
+        mCore = new Core();
+    }
+
+    /** Derived constructor, to override the core. */
+    public TimerifficApp(Core core) {
+        mCore = core;
+    }
 
     @Override
     public void onCreate() {

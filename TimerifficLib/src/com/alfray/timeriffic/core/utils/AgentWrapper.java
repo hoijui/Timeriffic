@@ -26,6 +26,8 @@ import android.util.Log;
 
 /**
  * Wrapper so that we don't depend directly on the agent lib.
+ * <p/>
+ * Status: not currently used.
  */
 public class AgentWrapper {
 

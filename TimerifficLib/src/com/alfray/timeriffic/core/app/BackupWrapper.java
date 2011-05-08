@@ -64,6 +64,17 @@ public class BackupWrapper {
     }
 
     /**
+     * Returns the TAG for TimerifficBackupAgent if it loaded, or null.
+     * @return
+     */
+    public String getTAG_TimerifficBackupAgent() {
+        if (mImpl != null) {
+            mImpl.getTAG_TimerifficBackupAgent();
+        }
+        return null;
+    }
+
+    /**
      * This lock must be used by all parties that want to manipulate
      * directly the files being backup/restored. This ensures that the
      * backup agent isn't trying to backup or restore whilst the other
