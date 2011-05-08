@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.Button;
 
 //-----------------------------------------------
@@ -97,6 +98,10 @@ public abstract class PrefBase {
                     b.setTag(this);
                     b.setEnabled(true);
                     b.setVisibility(View.VISIBLE);
+                    ViewParent p = b.getParent();
+                    if (p instanceof View) {
+                        ((View) p).setVisibility(View.VISIBLE);
+                    }
                     return b;
                 }
             }

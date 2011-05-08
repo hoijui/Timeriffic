@@ -132,6 +132,7 @@
     android:layout_weight="1"
     android:orientation="horizontal"
     android:baselineAligned="false"
+    android:visibility="gone"
     >
     <Button
         android:id="@+id/button0"
@@ -140,7 +141,7 @@
         android:layout_weight="1"
         android:text="button0"
         style="@style/ActionButton"
-        android:visibility="gone"
+        android:visibility="invisible"
         />
     <Button
         android:id="@+id/button1"
@@ -149,7 +150,7 @@
         android:layout_weight="1"
         android:text="button1"
         style="@style/ActionButton"
-        android:visibility="gone"
+        android:visibility="invisible"
         />
 </LinearLayout>
 
@@ -159,6 +160,7 @@
     android:layout_weight="1"
     android:orientation="horizontal"
     android:baselineAligned="false"
+    android:visibility="gone"
     >
     <Button
         android:id="@+id/button2"
@@ -167,7 +169,7 @@
         android:layout_weight="1"
         android:text="button2"
         style="@style/ActionButton"
-        android:visibility="gone"
+        android:visibility="invisible"
         />
     <Button
         android:id="@+id/button2"
@@ -176,7 +178,7 @@
         android:layout_weight="1"
         android:text="button3"
         style="@style/ActionButton"
-        android:visibility="gone"
+        android:visibility="invisible"
         />
     <!-- Button
         android:enabled="false" android:visibility="invisible"
