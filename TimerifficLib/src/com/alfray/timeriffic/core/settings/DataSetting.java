@@ -51,7 +51,6 @@ public class DataSetting implements ISetting {
     private boolean mIsSupported = false;
     private boolean mIsEnabled = false;
 
-    @Override
     public boolean isSupported(Context context) {
         if (mCheckSupported) {
             try {
@@ -92,7 +91,6 @@ public class DataSetting implements ISetting {
         return mIsSupported || mIsEnabled;
     }
 
-    @Override
     public Object createUi(Activity activity, String[] currentActions) {
 
         boolean supported = isSupported(activity);
@@ -116,14 +114,12 @@ public class DataSetting implements ISetting {
         return p;
     }
 
-    @Override
     public void collectUiResults(Object settingUi, StringBuilder outActions) {
         if (settingUi instanceof PrefToggle) {
             ((PrefToggle) settingUi).collectResult(outActions);
         }
     }
 
-    @Override
     public String getActionLabel(Context context, String action) {
         try {
             int value = Integer.parseInt(action.substring(1));
@@ -136,7 +132,6 @@ public class DataSetting implements ISetting {
         return null;
     }
 
-    @Override
     public boolean performAction(Context context, String action) {
         try {
             int value = Integer.parseInt(action.substring(1));

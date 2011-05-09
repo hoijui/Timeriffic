@@ -53,7 +53,6 @@ public class BrightnessSetting implements ISetting {
     /** Auto-brightness is not supported. */
     public static final int AUTO_BRIGHT_UNSUPPORTED = -1;
 
-    @Override
     public boolean isSupported(Context context) {
         return true;
     }
@@ -87,7 +86,6 @@ public class BrightnessSetting implements ISetting {
         return mIsAutoSupported;
     }
 
-    @Override
     public Object createUi(final Activity activity, String[] currentActions) {
         PrefPercent p = new PrefPercent(activity,
                         R.id.brightnessButton,
@@ -96,17 +94,14 @@ public class BrightnessSetting implements ISetting {
                         activity.getString(R.string.editaction_brightness),
                         R.drawable.ic_menu_view_brightness,
                         new Accessor() {
-                            @Override
                             public void changePercent(int percent) {
                                 // disable the immediate slider feedback, it flickers too much and is very slow.
                             }
 
-                            @Override
                             public int getPercent() {
                                 return getCurrentBrightness(activity);
                             }
 
-                            @Override
                             public int getCustomChoiceLabel() {
                                 if (isAutoBrightnessSupported(activity)) {
                                     return R.string.timedaction_auto_brightness;
@@ -118,7 +113,6 @@ public class BrightnessSetting implements ISetting {
                                 return R.string.timedaction_automatic;
                             }
 
-                            @Override
                             public char getCustomChoiceValue() {
                                 return Columns.ACTION_BRIGHTNESS_AUTO;
                             }
@@ -127,14 +121,12 @@ public class BrightnessSetting implements ISetting {
         return p;
     }
 
-    @Override
     public void collectUiResults(Object settingUi, StringBuilder outActions) {
         if (settingUi instanceof PrefPercent) {
             ((PrefPercent) settingUi).collectResult(outActions);
         }
     }
 
-    @Override
     public String getActionLabel(Context context, String action) {
         if (action.length() < 2) return null;
         char v = action.charAt(1);
@@ -154,7 +146,6 @@ public class BrightnessSetting implements ISetting {
         return null;
     }
 
-    @Override
     public boolean performAction(Context context, String action) {
         if (action.length() < 2) return true;
         char v = action.charAt(1);

@@ -31,7 +31,6 @@ public class VibrateSetting implements ISetting {
     private boolean mCheckSupported = true;
     private boolean mIsSupported = false;
 
-    @Override
     public boolean isSupported(Context context) {
         if (mCheckSupported) {
             AudioManager manager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
@@ -41,21 +40,17 @@ public class VibrateSetting implements ISetting {
         return mIsSupported;
     }
 
-    @Override
     public Object createUi(Activity activity, String[] currentActions) {
         return null;
     }
 
-    @Override
     public void collectUiResults(Object settingUi, StringBuilder outActions) {
     }
 
-    @Override
     public String getActionLabel(Context context, String action) {
         return null;
     }
 
-    @Override
     public boolean performAction(Context context, String action) {
         return true;
     }

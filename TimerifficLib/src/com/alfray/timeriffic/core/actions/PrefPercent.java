@@ -194,7 +194,6 @@ public class PrefPercent extends PrefBase implements View.OnClickListener {
         // from PrefBase, not used here
     }
 
-    @Override
     public void onClick(View v) {
         getActivity().showDialog(mDialogId);
     }

@@ -100,7 +100,6 @@ public class VolumeSetting implements ISetting {
         mStream = stream;
     }
 
-    @Override
     public boolean isSupported(Context context) {
         if (mCheckSupported) {
             if (sStreamInfo.get(mStream) == null) {
@@ -114,7 +113,6 @@ public class VolumeSetting implements ISetting {
         return mIsSupported;
     }
 
-    @Override
     public Object createUi(final Activity activity, String[] currentActions) {
         StreamInfo info = sStreamInfo.get(mStream);
         if (info == null) return null; // should not happen
@@ -126,18 +124,15 @@ public class VolumeSetting implements ISetting {
                 activity.getString(info.getDialogTitleResId()),
                 0,
                 new Accessor() {
-                    @Override
                     public void changePercent(int percent) {
                         // Don't do live feedback of the volume change from the action UI
                         // -- changeVolume(activity, percent);
                     }
 
-                    @Override
                     public int getPercent() {
                         return getVolume(activity, mStream);
                     }
 
-                    @Override
                     public int getCustomChoiceLabel() {
                         if (mStream == AudioManager.STREAM_NOTIFICATION &&
                                 canSyncNotificationRingVol(activity)) {
@@ -146,7 +141,6 @@ public class VolumeSetting implements ISetting {
                         return 0;
                     }
 
-                    @Override
                     public int getCustomChoiceButtonLabel() {
                         if (mStream == AudioManager.STREAM_NOTIFICATION) {
                             return R.string.actionlabel_notif_ring_sync;
@@ -155,7 +149,6 @@ public class VolumeSetting implements ISetting {
                         return 0;
                     }
 
-                    @Override
                     public char getCustomChoiceValue() {
                         if (mStream == AudioManager.STREAM_NOTIFICATION) {
                             return Columns.ACTION_NOTIF_RING_VOL_SYNC;
@@ -166,14 +159,12 @@ public class VolumeSetting implements ISetting {
         return p;
     }
 
-    @Override
     public void collectUiResults(Object settingUi, StringBuilder outActions) {
         if (settingUi instanceof PrefPercent) {
             ((PrefPercent) settingUi).collectResult(outActions);
         }
     }
 
-    @Override
     public String getActionLabel(Context context, String action) {
         if (mStream == AudioManager.STREAM_NOTIFICATION) {
             char v = action.charAt(1);
@@ -193,7 +184,6 @@ public class VolumeSetting implements ISetting {
         return null;
     }
 
-    @Override
     public boolean performAction(Context context, String action) {
         if (mStream == AudioManager.STREAM_NOTIFICATION) {
             char v = action.charAt(1);

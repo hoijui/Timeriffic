@@ -105,7 +105,6 @@ public class EditProfileUI extends ExceptionHandlerUI {
 
         Button accept = (Button) findViewById(R.id.ok);
         accept.setOnClickListener(new OnClickListener() {
-            @Override
             public void onClick(View v) {
                 accept();
             }

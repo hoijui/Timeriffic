@@ -39,11 +39,11 @@ public class SerialReader implements Iterable<SerialReader.Entry> {
             mKey = key;
             mValue = value;
         }
-        
+
         public int getKey() {
             return mKey;
         }
-        
+
         public Object getValue() {
             return mValue;
         }
@@ -152,28 +152,24 @@ public class SerialReader implements Iterable<SerialReader.Entry> {
         throw new ClassCastException("SerialReader expected, got " + d.getClass().getSimpleName());
     }
 
-    @Override
     public Iterator<Entry> iterator() {
         return new Iterator<Entry>() {
             final int n = mData.size();
             int index = 0;
 
-            @Override
             public boolean hasNext() {
                 return index < n;
             }
 
-            @Override
             public Entry next() {
                 Entry e = new Entry(mData.keyAt(index), mData.valueAt(index));
                 index++;
                 return e;
             }
 
-            @Override
             public void remove() {
                 throw new UnsupportedOperationException(
-                        "Remove is not supported by " + 
+                        "Remove is not supported by " +
                         SerialReader.class.getSimpleName());
             }
         };

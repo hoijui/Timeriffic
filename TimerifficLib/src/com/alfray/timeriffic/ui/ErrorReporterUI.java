@@ -326,7 +326,6 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
     private void setupListeners() {
         if (mButtonGen != null) {
             mButtonGen.setOnClickListener(new OnClickListener() {
-                @Override
                 public void onClick(View v) {
 
                     // Start inderterminate progress bar
@@ -359,7 +358,6 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
 
         if (mButtonPrev != null) {
             mButtonPrev.setOnClickListener(new OnClickListener() {
-                @Override
                 public void onClick(View v) {
                     if (!mIsException) selectPage(1);
                 }
@@ -368,7 +366,6 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
 
         if (mButtonNext != null) {
             mButtonNext.setOnClickListener(new OnClickListener() {
-                @Override
                 public void onClick(View v) {
                     selectPage(2);
                 }
@@ -377,7 +374,6 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
 
         if (mRadioGroup != null) {
             mRadioGroup.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                @Override
                 public void onCheckedChanged(RadioGroup group, int checkedId) {
                     updateButtons();
                 }
@@ -386,18 +382,14 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
 
         if (mUserText != null) {
             mUserText.addTextChangedListener(new TextWatcher() {
-
-                @Override
                 public void onTextChanged(CharSequence s, int start, int before, int count) {
                     // pass
                 }
 
-                @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                     // pass
                 }
 
-                @Override
                 public void afterTextChanged(Editable s) {
                     updateButtons();
                 }
@@ -408,7 +400,6 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
     private void setupHandler() {
         mHandler = new Handler(new Callback() {
 
-            @Override
             public boolean handleMessage(Message msg) {
 
                 if (msg.what == MSG_REPORT_COMPLETE) {
@@ -550,7 +541,6 @@ public class ErrorReporterUI extends ExceptionHandlerUI {
      * - Recent logcat
      */
     private class ReportGenerator implements Runnable {
-        @Override
         public void run() {
 
             Context c = ErrorReporterUI.this.getApplicationContext();

@@ -39,7 +39,6 @@ public class SyncSetting implements ISetting {
     private boolean mCheckSupported = true;
     private boolean mIsSupported = false;
 
-    @Override
     public boolean isSupported(Context context) {
         if (mCheckSupported) {
             try {
@@ -58,7 +57,6 @@ public class SyncSetting implements ISetting {
         return mIsSupported;
     }
 
-    @Override
     public Object createUi(Activity activity, String[] currentActions) {
         PrefToggle p = new PrefToggle(activity,
                         -1 /*button id*/,
@@ -69,14 +67,12 @@ public class SyncSetting implements ISetting {
         return p;
     }
 
-    @Override
     public void collectUiResults(Object settingUi, StringBuilder outActions) {
         if (settingUi instanceof PrefToggle) {
             ((PrefToggle) settingUi).collectResult(outActions);
         }
     }
 
-    @Override
     public String getActionLabel(Context context, String action) {
         try {
             int value = Integer.parseInt(action.substring(1));
@@ -88,7 +84,6 @@ public class SyncSetting implements ISetting {
         return null;
     }
 
-    @Override
     public boolean performAction(Context context, String action) {
         try {
             int value = Integer.parseInt(action.substring(1));

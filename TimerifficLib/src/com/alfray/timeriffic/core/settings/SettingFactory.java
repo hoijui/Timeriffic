@@ -123,28 +123,22 @@ public class SettingFactory {
     }
 
     private static class NullSetting implements ISetting {
-        @Override
         public boolean isSupported(Context context) {
             return false;
         }
 
-        @Override
         public Object createUi(Activity activity, String[] currentActions) {
             return null;
         }
 
-        @Override
         public void collectUiResults(Object settingUi, StringBuilder outActions) {
             // pass
         }
 
-
-        @Override
         public String getActionLabel(Context context, String action) {
             return null;
         }
 
-        @Override
         public boolean performAction(Context context, String action) {
             return true;
         }

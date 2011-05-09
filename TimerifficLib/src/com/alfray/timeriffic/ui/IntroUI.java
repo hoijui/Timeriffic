@@ -294,9 +294,7 @@ public class IntroUI extends ExceptionHandlerUI {
                 dismiss.setChecked(pv.isIntroDismissed());
 
                 dismiss.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(CompoundButton buttonView,
-                            boolean isChecked) {
+                    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                         pv.setIntroDismissed(isChecked);
                     }
                 });
@@ -309,7 +307,6 @@ public class IntroUI extends ExceptionHandlerUI {
                 cont.setVisibility(View.GONE);
             } else {
                 cont.setOnClickListener(new OnClickListener() {
-                    @Override
                     public void onClick(View v) {
                         // close activity
                         finish();

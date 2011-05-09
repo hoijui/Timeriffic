@@ -145,7 +145,6 @@ public class ProfilesUiImpl implements IActivityDelegate<ProfilesUiImpl> {
         final TimerifficApp tapp = TimerifficApp.getInstance(mActivity);
         if (tapp.isFirstStart() && mGlobalToggle != null) {
             final Runnable action = new Runnable() {
-                @Override
                 public void run() {
                     showIntro(false, true);
                     tapp.setFirstStart(false);
@@ -154,7 +153,6 @@ public class ProfilesUiImpl implements IActivityDelegate<ProfilesUiImpl> {
 
             final ViewTreeObserver obs = mGlobalToggle.getViewTreeObserver();
             obs.addOnPreDrawListener(new OnPreDrawListener() {
-                @Override
                 public boolean onPreDraw() {
                     mGlobalToggle.postDelayed(action, 200 /*delayMillis*/);
                     ViewTreeObserver obs2 = mGlobalToggle.getViewTreeObserver();
@@ -260,7 +258,6 @@ public class ProfilesUiImpl implements IActivityDelegate<ProfilesUiImpl> {
             mProfilesList.setEmptyView(mActivity.findViewById(R.id.empty));
 
             mProfilesList.setOnItemClickListener(new OnItemClickListener() {
-                @Override
                 public void onItemClick(AdapterView<?> parent, View clickedView, int position, long id) {
                     if (DEBUG) Log.d(TAG, String.format("onItemClick: pos %d, id %d", position, id));
                     BaseHolder h = null;
@@ -270,7 +267,6 @@ public class ProfilesUiImpl implements IActivityDelegate<ProfilesUiImpl> {
             });
 
             mProfilesList.setOnCreateContextMenuListener(new OnCreateContextMenuListener() {
-                @Override
                 public void onCreateContextMenu(ContextMenu menu, View listview, ContextMenuInfo menuInfo) {
                     if (DEBUG) Log.d(TAG, "onCreateContextMenu");
                     BaseHolder h = null;
@@ -361,7 +357,6 @@ public class ProfilesUiImpl implements IActivityDelegate<ProfilesUiImpl> {
         TimerifficApp app = TimerifficApp.getInstance(mActivity);
         if (app != null) {
             app.setDataListener(new Runnable() {
-                @Override
                 public void run() {
                     onDataChanged(true /*backup*/);
                 }
@@ -508,13 +503,11 @@ public class ProfilesUiImpl implements IActivityDelegate<ProfilesUiImpl> {
         b.setTitle(R.string.checkservices_dlg_title);
         b.setMessage(getCheckServicesMessage());
         b.setPositiveButton(R.string.checkservices_ok_button, new DialogInterface.OnClickListener() {
-            @Override
             public void onClick(DialogInterface dialog, int which) {
                 mActivity.removeDialog(DIALOG_CHECK_SERVICES);
             }
         });
         b.setNegativeButton(R.string.checkservices_skip_button, new DialogInterface.OnClickListener() {
-            @Override
             public void onClick(DialogInterface dialog, int which) {
                 mPrefsValues.setCheckService(false);
                 mActivity.removeDialog(DIALOG_CHECK_SERVICES);
@@ -523,7 +516,6 @@ public class ProfilesUiImpl implements IActivityDelegate<ProfilesUiImpl> {
 
 
         b.setOnCancelListener(new OnCancelListener() {
-            @Override
             public void onCancel(DialogInterface dialog) {
                 mActivity.removeDialog(DIALOG_CHECK_SERVICES);
             }
@@ -567,7 +559,6 @@ public class ProfilesUiImpl implements IActivityDelegate<ProfilesUiImpl> {
         updateGlobalState();
 
         mGlobalToggle.setOnClickListener(new View.OnClickListener() {
-            @Override
             public void onClick(View v) {
                 mPrefsValues.setServiceEnabled(!mPrefsValues.isServiceEnabled());
                 updateGlobalState();
@@ -576,7 +567,6 @@ public class ProfilesUiImpl implements IActivityDelegate<ProfilesUiImpl> {
         });
 
         mGlobalStatus.setWindowVisibilityChangedCallback(new Runnable() {
-            @Override
             public void run() {
                 updateGlobalState();
             }
@@ -679,7 +669,6 @@ public class ProfilesUiImpl implements IActivityDelegate<ProfilesUiImpl> {
         d.setIcon(R.drawable.app_icon);
         d.setItems(mProfilesDb.getResetLabels(),
             new DialogInterface.OnClickListener() {
-                @Override
                 public void onClick(DialogInterface dialog, int which) {
                     mProfilesDb.resetProfiles(which);
                     mActivity.removeDialog(DIALOG_RESET_CHOICES);
@@ -689,14 +678,12 @@ public class ProfilesUiImpl implements IActivityDelegate<ProfilesUiImpl> {
         });
 
         d.setOnCancelListener(new OnCancelListener() {
-            @Override
             public void onCancel(DialogInterface dialog) {
                 mActivity.removeDialog(DIALOG_RESET_CHOICES);
             }
         });
 
         d.setNegativeButton(R.string.resetprofiles_button_cancel, new DialogInterface.OnClickListener() {
-            @Override
             public void onClick(DialogInterface dialog, int which) {
                 mActivity.removeDialog(DIALOG_RESET_CHOICES);
             }
@@ -729,21 +716,18 @@ public class ProfilesUiImpl implements IActivityDelegate<ProfilesUiImpl> {
                 mActivity.getString(R.string.deleteprofile_msgbody), title));
 
         d.setOnCancelListener(new OnCancelListener() {
-            @Override
             public void onCancel(DialogInterface dialog) {
                 mActivity.removeDialog(DIALOG_DELETE_PROFILE);
             }
         });
 
         d.setNegativeButton(R.string.deleteprofile_button_cancel, new DialogInterface.OnClickListener() {
-            @Override
             public void onClick(DialogInterface dialog, int which) {
                 mActivity.removeDialog(DIALOG_DELETE_PROFILE);
             }
         });
 
         d.setPositiveButton(R.string.deleteprofile_button_delete, new DialogInterface.OnClickListener() {
-            @Override
             public void onClick(DialogInterface dialog, int which) {
                 int count = mProfilesDb.deleteProfile(row_id);
                 if (count > 0) {
@@ -770,21 +754,18 @@ public class ProfilesUiImpl implements IActivityDelegate<ProfilesUiImpl> {
         d.setMessage(mActivity.getString(R.string.deleteaction_msgbody, description));
 
         d.setOnCancelListener(new OnCancelListener() {
-            @Override
             public void onCancel(DialogInterface dialog) {
                 mActivity.removeDialog(DIALOG_DELETE_ACTION);
             }
         });
 
         d.setNegativeButton(R.string.deleteaction_button_cancel, new DialogInterface.OnClickListener() {
-            @Override
             public void onClick(DialogInterface dialog, int which) {
                 mActivity.removeDialog(DIALOG_DELETE_ACTION);
             }
         });
 
         d.setPositiveButton(R.string.deleteaction_button_delete, new DialogInterface.OnClickListener() {
-            @Override
             public void onClick(DialogInterface dialog, int which) {
                 int count = mProfilesDb.deleteAction(row_id);
                 if (count > 0) {

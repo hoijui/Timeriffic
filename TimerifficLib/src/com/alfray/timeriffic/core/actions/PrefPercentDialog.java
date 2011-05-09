@@ -135,12 +135,10 @@ public class PrefPercentDialog extends AlertDialog
         mRadioChange.setText(String.format("%s %3d%% ", mRadioChangeText, percent));
     }
 
-    @Override
     public void onDismiss(DialogInterface dialog) {
         if (mAccessor != null) mAccessor.changePercent(mInitialValue);
     }
 
-    @Override
     public void onProgressChanged(SeekBar seekBar, int progress, boolean fromTouch) {
         if (fromTouch) {
             progress = roundup(progress);
@@ -161,18 +159,15 @@ public class PrefPercentDialog extends AlertDialog
         return progress;
     }
 
-    @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
         // pass
     }
 
-    @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
         // pass
     }
 
     /** DialogInterface.OnClickListener callback, when dialog is accepted */
-    @Override
     public void onClick(DialogInterface dialog, int which) {
         // Update button with percentage selected
         if (mRadioChange.isChecked()) {
@@ -185,7 +180,6 @@ public class PrefPercentDialog extends AlertDialog
         dismiss();
     }
 
-    @Override
     public void onClick(View toggle) {
         mSeekBar.setEnabled(mRadioChange.isChecked());
     }

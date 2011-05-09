@@ -153,7 +153,6 @@ public class PrefEnum extends PrefBase
         }
     }
 
-    @Override
     public void onClick(View view) {
         getActivity().openContextMenu(mButton);
     }

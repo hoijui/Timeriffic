@@ -305,7 +305,6 @@ public class EditActionUI extends ExceptionHandlerUI {
             // otherwise the next use of the same dialog might reuse the previous
             // dialog from another setting!
             d.setOnDismissListener(new OnDismissListener() {
-                @Override
                 public void onDismiss(DialogInterface dialog) {
                     removeDialog(id);
                 }

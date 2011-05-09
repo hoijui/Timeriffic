@@ -121,7 +121,6 @@ public class ExceptionHandler {
             return mOldHanlder;
         }
 
-        @Override
         public void uncaughtException(Thread t, Throwable e) {
 
             try {
