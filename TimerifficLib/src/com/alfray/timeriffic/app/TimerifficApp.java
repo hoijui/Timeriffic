@@ -94,7 +94,6 @@ public class TimerifficApp extends Application {
     }
 
     public String getIssueId() {
-        mPrefsStorage.endReadAsync();
         return AppId.getIssueId(this, mPrefsStorage);
     }
 
