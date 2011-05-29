@@ -18,17 +18,17 @@
 -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:sharedUserId="com.alfray.timeriffic"
+    android:sharedUserId="com.rdrrlabs.timeriffic"
     android:versionName="1.09.06"
     android:versionCode="10906"
     package="com.rdrrlabs.timeriffic.base">
 
     <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="4"/>
 
-    <!-- Package-specific Key for the Backup service. -->
+    <!-- Package-specific Key for the Backup service for com.rdrrlabs.timeriffic.base. -->
     <meta-data
         android:name="com.google.android.backup.api_key"
-        android:value="AEdPqrEAAAAIXS_7uOiRQbIyYv9blIYVgAgFutG47YljcSKDUA" />
+        android:value="AEdPqrEAAAAIL192DRv4SCiv2fzTGwA4kQ2oayn8LhWih75z-Q" />
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
@@ -68,23 +68,24 @@
     <application
         android:label="@string/app_name"
         android:icon="@drawable/app_icon"
-        android:backupAgent="com.alfray.timeriffic.app.TimerifficBackupAgent"
+        android:backupAgent="com.rdrrlabs.timeriffic.app.TimerifficBackupAgent"
         android:restoreAnyVersion="true"
         android:allowBackup="true"
-        android:killAfterRestore="true" android:name="com.alfray.timeriffic.app.TimerifficAppBase">
+        android:killAfterRestore="true"
+        android:name="com.rdrrlabs.timeriffic.app.TimerifficAppBase">
 
 
-        <receiver android:name="com.alfray.timeriffic.app.UpdateReceiver">
+        <receiver android:name="com.rdrrlabs.timeriffic.app.UpdateReceiverceiver">
             <intent-filter>
                 <!-- this triggers an apply state too -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
             <intent-filter>
-                <action android:name="com.alfray.intent.action.APPLY_STATE" />
+                <action android:name="com.rdrrlabs.intent.action.APPLY_STATE" />
             </intent-filter>
             <intent-filter>
                 <!-- this triggers an apply state too -->
-                <action android:name="com.alfray.intent.action.UI_CHECK" />
+                <action android:name="com.rdrrlabs.intent.action.UI_CHECK" />
             </intent-filter>
             <intent-filter>
                 <!-- this does NOT trigger apply state, just recompute alarms. -->
@@ -99,16 +100,16 @@
 
         <activity
             android:label="@string/prefs_title"
-            android:name="com.alfray.timeriffic.ui.PrefsUI"/>
+            android:name="com.rdrrlabs.timeriffic.ui.PrefsUI"/>
 
         <activity
             android:label="@string/intro_title"
             android:theme="@android:style/Theme.Dialog"
-            android:name="com.alfray.timeriffic.ui.IntroUI"/>
+            android:name="com.rdrrlabs.timeriffic.ui.IntroUI"/>
 
         <activity
             android:label="@string/app_name"
-            android:name="com.alfray.timeriffic.profiles.ProfilesUI1">
+            android:name="com.rdrrlabs.timeriffic.ui.ProfilesUI1">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />
@@ -118,27 +119,27 @@
         <activity
             android:label="@string/editprofile_title"
             android:theme="@android:style/Theme.Dialog"
-            android:name="com.alfray.timeriffic.ui.EditProfileUI"/>
+            android:name="com.rdrrlabs.timeriffic.ui.EditProfileUI"/>
 
         <activity
             android:label="@string/editaction_title"
-            android:name="com.alfray.timeriffic.ui.EditActionUI"/>
+            android:name="com.rdrrlabs.timeriffic.ui.EditActionUI"/>
 
         <activity
             android:theme="@style/NoBackground"
-            android:taskAffinity="com.alfray.timeriffic.Change"
+            android:taskAffinity="com.rdrrlabs.timeriffic.Change"
             android:excludeFromRecents="true"
-            android:name="com.alfray.timeriffic.ui.ChangeBrightnessUI"/>
+            android:name="com.rdrrlabs.timeriffic.ui.ChangeBrightnessUI"/>
 
-        <service android:name="com.alfray.timeriffic.app.PhoneStateService"/>
+        <service android:name="com.rdrrlabs.timeriffic.app.PhoneStateService"/>
 
         <activity
             android:theme="@android:style/Theme.Dialog"
             android:label="@string/errorreport_title"
             android:windowSoftInputMode="adjustPan"
-            android:name="com.alfray.timeriffic.ui.ErrorReporterUI"/>
+            android:name="com.rdrrlabs.timeriffic.ui.ErrorReporterUIporterUI"/>
 
-        <service android:name="com.alfray.timeriffic.app.UpdateService"/>
+        <service android:name="com.rdrrlabs.timeriffic.app.UpdateServiceateService"/>
     </application>
 
 </manifest>

@@ -22,7 +22,7 @@
     package="com.alfray.timeriffic"
     android:versionCode="0"
     android:versionName="0.00.00"
-      android:sharedUserId="com.alfray.timeriffic">
+    android:sharedUserId="com.alfray.timeriffic">
 
     <uses-sdk android:minSdkVersion="3" android:targetSdkVersion="11"/>
 
@@ -62,32 +62,32 @@
 
     <application
         android:label="@string/app_name"
-        android:name=".app.TimerifficApp"
+        android:name="com.rdrrlabs.timeriffic.app.TimerifficApp"
         android:icon="@drawable/app_icon"
-        android:backupAgent="com.alfray.timeriffic.app.TimerifficBackupAgent"
+        android:backupAgent="com.rdrrlabs.timeriffic.app.TimerifficBackupAgent"
         android:restoreAnyVersion="true"
         android:allowBackup="true"
         android:killAfterRestore="true"
         >
 
-        <activity android:name=".profiles.ProfilesUi1">
+        <activity android:name="com.rdrrlabs.timeriffic.ui.ProfilesUI1">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
 
-        <receiver android:name=".app.UpdateReceiver">
+        <receiver android:name="com.rdrrlabs.timeriffic.app.UpdateReceiverer">
             <intent-filter>
                 <!-- this triggers an apply state too -->
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
             <intent-filter>
-                <action android:name="com.alfray.intent.action.APPLY_STATE" />
+                <action android:name="com.rdrrlabs.intent.action.APPLY_STATE" />
             </intent-filter>
             <intent-filter>
                 <!-- this triggers an apply state too -->
-                <action android:name="com.alfray.intent.action.UI_CHECK" />
+                <action android:name="com.rdrrlabs.intent.action.UI_CHECK" />
             </intent-filter>
             <intent-filter>
                 <!-- this does NOT trigger apply state, just recompute alarms. -->
@@ -101,25 +101,25 @@
         </receiver>
 
         <activity
-            android:name=".ui.PrefsActivity"
+            android:name="com.rdrrlabs.timeriffic.ui.PrefsActivity"
             android:label="@string/prefs_title" />
 
         <activity
-            android:name=".ui.IntroActivity"
+            android:name="com.rdrrlabs.timeriffic.ui.IntroActivity"
             android:label="@string/intro_title"
             android:theme="@android:style/Theme.Dialog" />
 
         <activity
-            android:name=".ui.EditProfileUI"
+            android:name="com.rdrrlabs.timeriffic.ui.EditProfileUI"
             android:label="@string/editprofile_title"
             android:theme="@android:style/Theme.Dialog" />
 
         <activity
-            android:name=".ui.EditActionUI"
+            android:name="com.rdrrlabs.timeriffic.ui.EditActionUI"
             android:label="@string/editaction_title" />
 
         <activity
-            android:name=".ui.ChangeBrightnessActivity"
+            android:name="com.rdrrlabs.timeriffic.ui.ChangeBrightnessActivity"
             android:theme="@style/NoBackground"
             android:taskAffinity="com.alfray.timeriffic.Change"
             android:excludeFromRecents="true"/>
@@ -129,11 +129,11 @@
         <activity
             android:theme="@android:style/Theme.Dialog"
             android:label="@string/errorreport_title"
-            android:name=".ui.ErrorReporterUI"
+            android:name="com.rdrrlabs.timeriffic.ui.ErrorReporterUIUI"
             android:windowSoftInputMode="adjustPan" />
 
-        <service android:name=".app.UpdateService" />
-        
+        <service android:name="com.rdrrlabs.timeriffic.app.UpdateServicece" />
+
     </application>
 
 </manifest>

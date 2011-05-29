@@ -29,7 +29,7 @@
     android:layout_height="wrap_content"
     android:layout_weight="0"
     >
-    <com.alfray.timeriffic.ui.GlobalStatus
+    <com.rdrrlabs.timeriffic.ui.GlobalStatus
         android:id="@+id/global_status"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -37,7 +37,7 @@
         android:focusable="false"
         android:focusableInTouchMode="false"
         />
-    <com.alfray.timeriffic.ui.GlobalToggle
+    <com.rdrrlabs.timeriffic.ui.GlobalToggle
         android:id="@+id/global_toggle"
         android:layout_width="38dip"
         android:layout_height="64dip"
