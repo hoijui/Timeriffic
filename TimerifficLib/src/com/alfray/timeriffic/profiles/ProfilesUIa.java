@@ -18,11 +18,14 @@
 
 package com.alfray.timeriffic.profiles;
 
-import com.alfray.timeriffic.core.profiles1.ProfilesUiImpl;
-import com.alfray.timeriffic.ui.ActivityDelegate;
+import com.rdrrlabs.timeriffic.core.profiles1.ProfilesUiImpl;
+import com.rdrrlabs.timeriffic.ui.ActivityDelegate;
 
 /**
  * Activity redirector which is only present for backward compatibility.
+ *
+ * IMPORTANT: this MUST remain as com.rdrrlabs.timeriffic.profiles.ProfilesUi1
+ * otherwise legacy home shortcuts will break.
  */
 public class ProfilesUi1 extends ActivityDelegate<ProfilesUiImpl> {
 
